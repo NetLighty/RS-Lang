@@ -1,11 +1,11 @@
-@import '../style/global.scss';
+@import '../../style/global.scss';
 
 .logo {
    position: absolute;
    top: 17px;
    left: 30px;
    margin-left: 63px;
-   background-image: url('../assets/img/figure.svg');
+   background-image: url('../../assets/img/figure.svg');
    height: 300px;
    width: 177px;
    &__name {

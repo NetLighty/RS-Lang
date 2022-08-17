@@ -1,12 +1,23 @@
 import React from 'react';
-import Header from './components/header/header';
+import './app.scss';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainPage from './pages/main/main';
+import Menu from './components/menu/menu';
+import StatisticPage from './pages/statistic/statistic';
+import Footer from './components/footer/footer';
+import Logo from './components/logo/logo';
 
-function App() {
-  return (
-    <div>
-      <Header />
-    </div>
-  );
-}
+// eslint-disable-next-line react/function-component-definition
+const App = () => (
+  <BrowserRouter>
+    <Menu />
+    <Logo />
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/statistic" element={<StatisticPage />} />
+    </Routes>
+    <Footer />
+  </BrowserRouter>
+);
 
 export default App;

@@ -1,0 +1,56 @@
+@import '../../style/global.scss';
+
+.form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: relative;
+   row-gap: 32px;
+   &__img {
+      position: absolute;
+      left: -70px;
+      top: -40px;
+
+   }
+   &__text{
+      color: #5A5757;
+      font-size: $addFontSize;
+      margin: 48px 0 0 0;
+   }
+   &__email,
+   &__password{
+      width: 360px;
+      height: 40px;
+      background-color: rgba($color: #fff, $alpha: 0.7);
+      border-radius: 2px;
+      border: 0.5px solid #8F8C8C;
+      padding-left: 10px;
+      color: #6B6868;
+      font-size: $mainFontSize;
+   }
+   &__button {
+      display: flex;
+      column-gap: 12px;
+      &-reg,
+      &-enter {
+         height: 40px;
+         border-radius: 2px;
+         color: #fff;
+         font-size: $mainFontSize;
+         border: none;
+         transition: opacity 0.3s ease;
+         &:hover {
+            cursor: pointer;
+            opacity: 0.6;
+         }
+      }
+      &-reg{
+         width: 202px;
+         background-color: $darkOrangeColor;
+      }
+      &-enter {
+         width: 146px;
+         background-color: $lightOrangeColor;
+      }
+   }
+}

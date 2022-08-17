@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './AuthForm.scss';
+import './authForm.scss';
 
 // eslint-disable-next-line react/function-component-definition
 const AuthForm: FC = () => (

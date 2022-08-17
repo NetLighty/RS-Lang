@@ -11,10 +11,10 @@ $addFontSize: 18px;
 //-------icon-------
 @font-face{
 	font-family: icons;
-	src: url("./../assets/fonts/icons.ttf") format("truetype"),
-	url("./../assets/fonts/icons.woff") format("woff"),
-	url("./../assets/fonts/icons.eot") format("eof"),
-	url("./../assets/fonts/icons.svg") format("svg");
+	src: url("../assets/font/icons.ttf") format("truetype"),
+	url("../assets/font/icons.woff") format("woff"),
+	url("../assets/font/icons.eot") format("eof"),
+	url("../assets/font/icons.svg") format("svg");
 	font-weight: 400;
 	font-style: normal;
 	font-display: block;
@@ -90,6 +90,6 @@ $addFontSize: 18px;
    font-style: normal;
    font-weight: 400;
    src: local("Roboto"),
-        url("./../assets/fonts/Roboto-Regular.ttf") format("ttf"),
+        url("../assets/font/Roboto-Regular.ttf") format("ttf"),
 }
 
