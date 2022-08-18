@@ -1,0 +1,95 @@
+$backgrounColor : #007A7A;
+$darkOrangeColor: #DE6600;
+$lightOrangeColor: #FEA02F;
+$lightPinkColor: #EBD9C8;
+$darkBlueColor: #003F5A;
+
+$mainFontSize: 14px;
+$headerFontSize: 24px;
+$addFontSize: 18px;
+
+//-------icon-------
+@font-face{
+	font-family: icons;
+	src: url("../assets/font/icons.ttf") format("truetype"),
+	url("../assets/font/icons.woff") format("woff"),
+	url("../assets/font/icons.eot") format("eof"),
+	url("../assets/font/icons.svg") format("svg");
+	font-weight: 400;
+	font-style: normal;
+	font-display: block;
+}
+%ic{
+   font-family: "icons";
+   font-style: normal;
+   font-weight: normal;
+   font-variant: normal;
+   text-transform: none;
+   line-height: 1;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+[class*="_icon-"]{
+   &:before{
+      @extend %ic;
+      display: inline-block;
+   }
+}
+._icon-arrow:before {
+   content: "\e901";
+ }
+ ._icon-book:before {
+   content: "\e926";
+ }
+ ._icon-close:before {
+   content: "\e927";
+ }
+ ._icon-false:before {
+   content: "\e96f";
+ }
+ ._icon-home:before {
+   content: "\e970";
+ }
+ ._icon-pencil:before {
+   content: "\e988";
+ }
+ ._icon-people:before {
+   content: "\e989";
+ }
+ ._icon-play:before {
+   content: "\e98a";
+ }
+ ._icon-refresh:before {
+   content: "\e98b";
+ }
+ ._icon-star:before {
+   content: "\e9a7";
+ }
+ ._icon-statistic:before {
+   content: "\e9a8";
+ }
+ ._icon-team:before {
+   content: "\e9c6";
+   color: $lightOrangeColor;
+   font-size: 60px;
+   position: absolute;
+   top: 10px;
+   left: 10px;
+}
+ ._icon-true1:before {
+   content: "\e9c7";
+ }
+ ._icon-volum:before {
+   content: "\e9c8";
+ }
+
+ 
+//font
+@font-face {
+   font-family: "Roboto";
+   font-style: normal;
+   font-weight: 400;
+   src: local("Roboto"),
+        url("../assets/font/Roboto-Regular.ttf") format("ttf"),
+}
+

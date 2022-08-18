@@ -1,0 +1,20 @@
+@import '../../style/global.scss';
+
+.logo {
+   position: absolute;
+   top: 17px;
+   left: 30px;
+   margin-left: 63px;
+   background-image: url('../../assets/img/figure.svg');
+   height: 300px;
+   width: 177px;
+   &__name {
+      font-size: $headerFontSize;
+      color: #fff;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+      &:hover {
+         opacity: 0.6;
+      }
+   }
+}

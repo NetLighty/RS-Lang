@@ -1,0 +1,115 @@
+@import '../../style/global.scss';
+@import '../../style/mixin.scss';
+
+.main {
+   &__container {
+      background: url(../../assets/img/mainImg.svg) no-repeat;
+      margin-left: 63px;
+      height: 100vh;
+      background-size: contain;
+      display: flex;
+      justify-content: flex-end;
+   }
+}
+.content {
+   @include adaptiv-value("width",850,150,1);
+   height: 100vh;
+   position: relative;
+   margin-left: 63px;
+   font-family: 'Roboto';
+   z-index: 0;
+   &__description{
+      position: absolute;
+      top: 50%;
+      @include adaptiv-value("top",50%,30%,1);
+      //right: 40%;
+      width: 333px;
+      color: #fff;
+      line-height: 25px;
+      font-size: $addFontSize;
+      @media(max-width: 1151px) {
+         width: 250px;
+      }
+   }
+}
+.enter-link {
+   position: absolute;
+   top: 10%;
+   left: 10%;
+   transition: all 0.6s ease;
+   &:hover{
+      transform: scale(1.1) rotate(30deg);
+   }
+   &round-button {
+      width: 140px;
+      height: 140px;
+      border-radius: 100%;
+      background-color: $lightPinkColor;
+      position: relative;
+      &__image{
+         position: absolute;
+         top: 18px;
+         right: -32px;
+      }
+      &__text{
+         position: absolute;
+         top: -27px;
+         right: 8px;
+      }
+   }
+}
+
+.games-link {
+   position: absolute;
+   top: 20%;
+   right: 35%;
+   transition: all 0.6s ease;
+   &:hover{
+      transform: scale(1.1) rotate(30deg);
+   }
+   &round-button {
+      width: 140px;
+      height: 140px;
+      border-radius: 100%;
+      background-color: $lightPinkColor;
+      position: relative;
+      &__image{
+         position: absolute;
+         top: -20px;
+         right: 10px;
+      }
+      &__text{
+         position: absolute;
+         top: -40px;
+         left: -25px;
+      }
+   }
+}
+
+.book-link {
+   position: absolute;
+   top: 50%;
+   right: 23%;
+   transition: all 0.6s ease;
+   &:hover{
+      transform: scale(1.1) rotate(30deg);
+   }
+   &round-button {
+      width: 140px;
+      height: 140px;
+      border-radius: 100%;
+      background-color: $lightPinkColor;
+      position: relative;
+      &__image{
+         position: absolute;
+         top: -10px;
+         left: -5px;
+      }
+      &__text{
+         position: absolute;
+         top: -25px;
+         right: -25px;
+      }
+   }
+}
+

@@ -1,0 +1,22 @@
+@import '../../style/global.scss';
+
+.menu {
+   width: 63px;
+   height: 100%;
+   position: fixed;
+   background-color: #EBD9C8;
+   display: flex;
+   flex-direction: column;
+   align-content: center;
+   row-gap: 40px;
+   padding-top: 60px;
+   &__item {
+      text-align: center;
+      font-size: 30px;
+      color: $darkOrangeColor;
+      transition: opacity 0.3s ease;
+      &:hover {
+         opacity: 0.6;
+      }
+   }
+}
