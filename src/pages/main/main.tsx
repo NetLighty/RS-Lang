@@ -5,12 +5,8 @@ import '../../style/global.scss';
 import MainPageButton from '../../ui/mainPageButton/mainPageButton';
 import MyModal from '../../ui/myModal/myModal';
 import AuthForm from '../../components/authForm/authForm';
-import enter from '../../assets/img/enter.svg';
-import enterText from '../../assets/img/enter-text.svg'
-import games from '../../assets/img/mini-games.svg';
-import gamesText from '../../assets/img/miniGames-text.svg';
-import book from '../../assets/img/studybook.svg';
-import bookText from '../../assets/img/book-text.svg';
+
+const result = window.location.origin;
 
 // eslint-disable-next-line react/function-component-definition
 const MainPage: FC = () => {
@@ -31,9 +27,9 @@ const MainPage: FC = () => {
             запоминай их, играя в мини-игры.
             И у тебя всё получится.
           </p>
-          <MainPageButton image={enter} text={enterText} link="/" classAdd="enter-link" changeModal={changeModal} />
-          <MainPageButton image={games} text={gamesText} link="/games" classAdd="games-link" />
-          <MainPageButton image={book} text={bookText} link="/book" classAdd="book-link" />
+          <MainPageButton image={`${result}/src/assets/img/enter.svg`} text={`${result}/src/assets/img/enter-text.svg`} link="/" classAdd="enter-link" changeModal={changeModal} />
+          <MainPageButton image={`${result}/src/assets/img/mini-games.svg`} text={`${result}/src/assets/img/miniGames-text.svg`} link="/games" classAdd="games-link" />
+          <MainPageButton image={`${result}/src/assets/img/studybook.svg`} text={`${result}/src/assets/img/book-text.svg`} link="/book" classAdd="book-link" />
         </div>
       </div>
     </div>
