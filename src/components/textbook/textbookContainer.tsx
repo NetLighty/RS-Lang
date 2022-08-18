@@ -10,7 +10,7 @@ function TextbookContainer ():JSX.Element {
   // const dispatch = useDispatch();
   const [group, setGroup] = useState(0);
   const [page, setPage] = useState(0);
-  const wordsToRender = useSelector((state:RootState)=> state.words);
+  const wordsToRender = useSelector((state:RootState)=> state.textbook.bookWords);
 
   useEffect(() => {
     getWords(group, page);
@@ -19,7 +19,7 @@ function TextbookContainer ():JSX.Element {
 
   return (
     <>
-      {wordsToRender[group][page].length ? wordsToRender[group][page].map((word:IWord) => console.log(word)) : null}
+      {wordsToRender?.length ? wordsToRender.map((word:IWord) => console.log(word)) : null}
     </>
   );
 };
