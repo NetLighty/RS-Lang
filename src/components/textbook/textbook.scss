@@ -1,0 +1,170 @@
+@import './../../style/global.scss';
+@import './../../style/mixin.scss';
+
+.book {
+  &__container{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+
+  &__header{
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 34px;
+  }
+
+  &__groups{
+    width: 65%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__group__button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: $whiteColor;
+    border: none;
+  }
+
+  &__difficult__button {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: none;
+    position: relative;
+    background-color: transparent;
+    transition: all 0.6s ease;
+    &:hover{
+      transform: scale(1.1) rotate(30deg);
+   }
+  }
+
+  &__difficult__button__image {
+    position: absolute;
+    top: -1px;
+    left: -15px;
+    z-index: 2;
+  }
+
+  &__difficult__button__text {
+    position: absolute;
+    top: -45px;
+    left: -38px;
+  }
+
+  &__games {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__pagination {
+    width: 30%;
+    margin-bottom: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__pagination__button {
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    border: 1px solid $darkOrangeColor;
+    color: $darkOrangeColor;
+    background-color: $backgrounColorPaginationButton;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__sprint__button {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: none;
+    position: relative;
+    background-color: transparent;
+    transition: all 0.6s ease;
+    &:hover{
+      transform: scale(1.1) rotate(30deg);
+   }
+  }
+
+  &__sprint__button__image {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    z-index: 2;
+  }
+
+  &__sprint__button__text {
+    position: absolute;
+    top: -45px;
+    left: -38px;
+  }
+
+  &__audioGame__button {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: none;
+    position: relative;
+    background-color: transparent;
+    transition: all 0.6s ease;
+    &:hover{
+      transform: scale(1.1) rotate(30deg);
+   }
+  }
+
+  &__audioGame__button__image {
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    z-index: 2;
+  }
+
+  &__audioGame__button__text {
+    position: absolute;
+    top: -45px;
+    left: -38px;
+  }
+}
+
+#darkBrown {
+  background-color: $darkBrownColor;
+}
+
+#lightBrown {
+  background-color: $lightBrownColor;
+}
+
+#lightPink {
+  background-color: $lightPinkColor;
+}
+
+#lightOrange {
+  background-color: $lightOrangeColor;
+}
+
+#darkOrange {
+  background-color: $darkOrangeColor;
+}
+
+#darkBlue {
+  background-color: $darkBlueColor;
+}
+

@@ -1,0 +1,10 @@
+@import './../../style/global.scss';
+@import './../../style/mixin.scss';
+
+.card {
+  width: 449px;
+  height: 494px;
+  background-color: $whiteColor;
+  padding: 9px;
+  margin-bottom: 36px;
+}

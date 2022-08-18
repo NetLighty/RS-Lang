@@ -1,5 +1,6 @@
-import React, { FC } from 'react'
-import { IWord } from './../../models/IWord'
+import React, { FC } from 'react';
+import { IWord } from './../../models/IWord';
+import './cardWord.scss';
 
 interface CardWordProps{
   word: IWord;
@@ -7,8 +8,8 @@ interface CardWordProps{
 
 const  CardWord:FC<CardWordProps> = ({word}) => {
   return (
-    <div>
-      {word.id}
+    <div className='card'>
+      {word.word}
     </div>
   )
 }
