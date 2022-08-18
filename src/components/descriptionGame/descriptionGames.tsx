@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import StartGame from '../../ui/startGame/startGame';
 import './descriptionGame.scss';
 
 interface DescriptionGameProps {
@@ -6,17 +7,22 @@ interface DescriptionGameProps {
   text: string;
   addText: string;
   addClass: string;
+  textButton: string;
+  path: string;
 }
 
 // eslint-disable-next-line react/function-component-definition
 const DescriptionGame: FC<DescriptionGameProps> = ({
-  name, text, addText, addClass,
+  name, text, addText, addClass, textButton, path,
 }) => (
-  <div className={`description ${addClass}`}>
-    <div className={`description__content ${addClass}`}>
+  <div className={`description description-${addClass}`}>
+    <div className={`description__content description-${addClass}__content`}>
       <h3 className="description__content_header">{name}</h3>
       <p className="description__content_text">{text}</p>
       <p className="description__content_text">{addText}</p>
+    </div>
+    <div className={`description-${addClass}__button`}>
+      <StartGame text={textButton} path={path} />
     </div>
   </div>
 );
