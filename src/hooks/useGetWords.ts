@@ -30,8 +30,9 @@ export default function useGetWords() {
     if(request.group !== null && request.page !== null && Object.keys(words).includes(request.group.toString()) && words[request.group][request.page]) {
       setBookPageWords(words [request.group][request.page]);
       setRequest({group:null, page:null});
+      setIsLoading(false);
     }
   },[words,request])
-  
+
   return { bookPageWords, getWords, isLoading };
 }
