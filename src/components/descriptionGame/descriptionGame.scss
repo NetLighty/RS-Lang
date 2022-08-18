@@ -1,0 +1,23 @@
+@import '../../style/global.scss';
+
+.description {
+   width: 400px;
+   height: 227px;
+   background: url('../../assets/img/aboutImgBackground.svg') no-repeat;
+   position: relative;
+   &__content{
+      position: absolute;
+      top: 17px;
+      left: 61px;
+      width: 306px;
+      font-size: $mainFontSize;
+      &_header{
+         color: $lightOrangeColor;
+         font-size: $addFontSize;
+         margin-bottom: 16px;
+      }
+      &_text{
+         line-height: 25px;
+      }
+   }
+}
