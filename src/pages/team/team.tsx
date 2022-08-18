@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { NavLink } from 'react-router-dom';
 import MemberTeam from '../../components/memberTeam/memberTeam';
 import './team.scss';
 
@@ -13,21 +12,21 @@ const Team: FC = () => (
         link="https://github.com/Mariia22"
         gitName="Mariia22"
         imgClass="mariia"
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of t" 
+        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of t"
       />
       <MemberTeam
         name="Александр Шукалович"
         link="https://github.com/NetLighty"
         gitName="Netlighty"
         imgClass="sasha"
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of t" 
+        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of t"
       />
       <MemberTeam
         name="Дереча Ирина"
         link="https://github.com/Irina05-04"
         gitName="Irina05-04"
         imgClass="irina"
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of t" 
+        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of t"
       />
     </div>
   </div>
