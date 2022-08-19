@@ -2,7 +2,8 @@
 @import './../../style/mixin.scss';
 
 .card {
-  width: 449px;
+  width: 90%;
+  max-height: 449px;
   height: 494px;
   background-color: $whiteColor;
   padding: 9px;

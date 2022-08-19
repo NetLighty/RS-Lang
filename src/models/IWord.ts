@@ -1,4 +1,3 @@
-
 export interface IWord {
   id:string,
   group:number,
@@ -35,4 +34,4 @@ export type WordsStateType = {
   [group:number]:{
     [page:number]: Array<IWord>
   }
-}
+};

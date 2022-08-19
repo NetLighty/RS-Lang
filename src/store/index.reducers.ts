@@ -1,4 +1,4 @@
-import { combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import textbookReducer from './textbook.reducers';
 import wordReducer from './word.reducers';
 

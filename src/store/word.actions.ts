@@ -1,18 +1,22 @@
-import {IWord, WordActionsTypes, WordRequest } from '../models/IWord';
+import { Dispatch } from 'redux';
+import {
+  AddWordsAction, IWord, WordActionsTypes, WordRequest,
+} from '../models/IWord';
 import SETTINGS from '../utils/settings';
 
-export const addWords = (requestInfo:WordRequest) => ({ type: WordActionsTypes.ADD_WORDS, payload: requestInfo });
+export const addWords = (requestInfo:WordRequest) => (
+  { type: WordActionsTypes.ADD_WORDS, payload: requestInfo });
 
-export function getWordsFromServer(group = 0, page = 0):any {
-  return async (dispatch: (arg0: any) => void) => {
+export function getWordsFromServer(group = 0, page = 0) {
+  return async (dispatch:Dispatch<AddWordsAction>) => {
     try {
       // TODO replace it with axious
-      const response = await fetch(`${SETTINGS.BASE_URL}/words?page=${page}&group=${group}`);
-      const data:Array<IWord> = await response.json();
+      const response:Response = await fetch(`${SETTINGS.BASE_URL}/words?page=${page}&group=${group}`);
+      const data = (await response.json()) as Array<IWord>;
       dispatch(addWords({ group, page, data }));
       return data;
-    } catch (error:any) {
-      console.log(error.message);
+    } catch (error) {
+      return error;
     }
   };
 }

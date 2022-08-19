@@ -1,13 +1,11 @@
-import React, {FC} from 'react'
+import React, { FC } from 'react';
 
 interface PaginationWordProps {
- text: string
+  text: string
 }
 
-const PaginationButton:FC<PaginationWordProps> = ({text}) => {
-  return (
-    <button className='book__pagination__button'>{text}</button>
-  )
-}
+const PaginationButton:FC<PaginationWordProps> = ({ text }) => (
+  <button type="button" className="book__pagination__button">{text}</button>
+);
 
-export default PaginationButton
+export default PaginationButton;

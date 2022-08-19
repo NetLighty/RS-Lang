@@ -1,16 +1,16 @@
-import React from 'react'
-import PaginationButton from './paginationButton'
+import React from 'react';
+import PaginationButton from './paginationButton';
 
-const Pagination = () => {
+function Pagination() {
   return (
-    <div className='book__pagination'>
-    <PaginationButton text={'<<'}/>
-    <PaginationButton text={'<'}/>
-    <PaginationButton text={'1'}/>
-    <PaginationButton text={'>'}/>
-    <PaginationButton text={'>>'}/>
+    <div className="book__pagination">
+      <PaginationButton text="<<" />
+      <PaginationButton text="<" />
+      <PaginationButton text="1" />
+      <PaginationButton text=">" />
+      <PaginationButton text=">>" />
     </div>
-  )
+  );
 }
 
-export default Pagination
+export default Pagination;

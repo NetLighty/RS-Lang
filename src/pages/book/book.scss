@@ -2,9 +2,9 @@
 @import '../../style/mixin.scss';
 
 .book {
-  margin: 104px 63px 65px 210px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0 210px 65px 215px;
+  padding-top: 105px;
+  display: grid;
+  grid-template-rows: 1fr 10fr 1fr 1fr;
   min-height: 100vh;
 }

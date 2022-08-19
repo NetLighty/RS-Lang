@@ -1,14 +1,17 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 
-interface GroupsButtoProps{
+interface GroupsButtonProps {
   index: number;
-  color: string
+  color: string;
+  active?: string
 }
 
-const GroupButton:FC<GroupsButtoProps> = ({index, color}) => {
-  return (
-    <button id={`${color}`} className='book__group__button'>{index}</button>
-  )
-}
+const GroupButton:FC<GroupsButtonProps> = ({ index, color, active }) => (
+  <button type="button" id={`${color}`} className={`book__group__button ${active || ''}`}>{index}</button>
+);
 
-export default GroupButton
+GroupButton.defaultProps = {
+  active: '',
+};
+
+export default GroupButton;

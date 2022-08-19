@@ -5,7 +5,7 @@
   &__container{
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
   }
 
   &__header{
@@ -18,12 +18,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 34px;
+    justify-items: end;
   }
 
   &__groups{
-    width: 65%;
+    width: 60%;
+    margin-left: 25px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 
   &__group__button {
@@ -31,7 +33,18 @@
     height: 60px;
     border-radius: 50%;
     color: $whiteColor;
+    opacity: 0.5;
     border: none;
+    outline: none;
+    cursor: pointer;
+
+    &-active {
+      opacity: 1;
+    }
+
+    &:hover{
+      opacity: 0.8;
+   }
   }
 
   &__difficult__button {
@@ -61,14 +74,12 @@
   }
 
   &__games {
-    width: 30%;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   &__pagination {
-    width: 30%;
     margin-bottom: 44px;
     display: flex;
     justify-content: space-between;
@@ -82,13 +93,17 @@
     border: 1px solid $darkOrangeColor;
     color: $darkOrangeColor;
     background-color: $backgrounColorPaginationButton;
+    outline: none;
+    cursor: pointer;
   }
 
   &__footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template-rows: 1fr 2fr; 
+    width: 30%;
     align-items: center;
+    justify-items: stretch;
+    align-self: center;
   }
 
   &__sprint__button {
@@ -99,22 +114,24 @@
     position: relative;
     background-color: transparent;
     transition: all 0.6s ease;
+    outline: none;
+    cursor: pointer;
     &:hover{
-      transform: scale(1.1) rotate(30deg);
+      transform: scale(1.1) rotate(-30deg);
    }
   }
 
   &__sprint__button__image {
     position: absolute;
-    top: -15px;
-    left: -15px;
+    top: -18px;
+    left: 23px;
     z-index: 2;
   }
 
   &__sprint__button__text {
     position: absolute;
     top: -45px;
-    left: -38px;
+    left: 0;
   }
 
   &__audioGame__button {
@@ -125,6 +142,8 @@
     position: relative;
     background-color: transparent;
     transition: all 0.6s ease;
+    outline: none;
+    cursor: pointer;
     &:hover{
       transform: scale(1.1) rotate(30deg);
    }
@@ -133,14 +152,14 @@
   &__audioGame__button__image {
     position: absolute;
     top: -25px;
-    left: -25px;
+    left: 15px;
     z-index: 2;
   }
 
   &__audioGame__button__text {
     position: absolute;
     top: -45px;
-    left: -38px;
+    left: 0;
   }
 }
 
