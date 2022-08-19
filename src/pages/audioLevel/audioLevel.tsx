@@ -14,7 +14,6 @@ const AudioLevel: FC = () => {
     target.classList.add('active');
     localStorage.audiolevel = target.textContent;
     setChoose(true);
-    // eslint-disable-next-line no-restricted-globals, @typescript-eslint/no-unsafe-call
   }
   return (
     <div className="audiolevel">
