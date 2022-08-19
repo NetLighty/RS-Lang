@@ -1,11 +1,7 @@
 import React from 'react';
-const result = window.location.origin;
-const LearnedWordButton = () => {
-  return (
-    <button>
-      <img src={`${result}/src/assets/img/check.svg`} alt="I know this word" className="card__button card__button__learned" />
-    </button>
-  )
-}
+
+const LearnedWordButton = () => (
+  <button type="button" className="_icon-true1 card__button" aria-label="I know this word" />
+);
 
 export default LearnedWordButton;

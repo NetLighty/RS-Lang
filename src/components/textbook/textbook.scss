@@ -37,14 +37,23 @@
     border: none;
     outline: none;
     cursor: pointer;
+    position: relative;
 
     &-active {
-      opacity: 1;
+      opacity: 1;  
     }
 
     &:hover{
       opacity: 0.8;
    }
+  }
+
+  &__group__span {
+    border-radius: 50%;
+    background-color: transparent;
+    display: block;
+    width: 75px; 
+    height: 75px;
   }
 
   &__difficult__button {
@@ -95,6 +104,10 @@
     background-color: $backgrounColorPaginationButton;
     outline: none;
     cursor: pointer;
+
+    &:hover{
+      opacity: 0.8;
+   }
   }
 
   &__footer {
@@ -167,23 +180,52 @@
   background-color: $darkBrownColor;
 }
 
+#darkBrownspan.book__group__span-active {
+  padding: 4px 4px 1px;
+  border: 3px solid $darkBrownColor;
+}
+
 #lightBrown {
   background-color: $lightBrownColor;
+}
+
+#lightBrownspan.book__group__span-active {
+  padding: 4px 4px 1px;
+  border: 3px solid $lightBrownColor;
 }
 
 #lightPink {
   background-color: $lightPinkColor;
 }
 
+#lightPinkspan.book__group__span-active {
+  padding: 4px 4px 1px;
+  border: 3px solid $lightPinkColor;
+}
+
 #lightOrange {
   background-color: $lightOrangeColor;
+}
+
+#lightOrangespan.book__group__span-active {
+  padding: 4px 4px 1px;
+  border: 3px solid $lightOrangeColor;
 }
 
 #darkOrange {
   background-color: $darkOrangeColor;
 }
 
+#darkOrangespan.book__group__span-active {
+  padding: 4px 4px 1px;
+  border: 3px solid $darkOrangeColor;
+}
+
 #darkBlue {
   background-color: $darkBlueColor;
 }
 
+#darkBluespan.book__group__span-active {
+  padding: 4px 4px 1px;
+  border: 3px solid $darkBlueColor;
+}

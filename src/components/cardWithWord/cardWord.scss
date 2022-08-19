@@ -2,13 +2,20 @@
 @import './../../style/mixin.scss';
 
 .card {
+  font-family: 'Roboto';
+  display: grid;
+  grid-template-rows: 2fr 1fr 1fr 1fr;
   width: 47%;
   min-width: 150px;
+  height: 600px;
   background-color: $whiteColor;
   margin-bottom: 36px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
 
   &__image {
     width: 100%;
+    max-height: 306px;
     padding: 9px;
   }
 
@@ -17,14 +24,23 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 13px;
   }
 
   &__sound {
-    width: 20px;
-    height: 20px;
+    width: 32px;
+    height: 32px;
     margin: 9px 15px;
+    font-size: 32px;
+    color: $darkOrangeColor;
+    background-color: transparent;
     border: none;
     outline: none;
+    cursor: pointer;
+
+    &:hover{
+      opacity: 0.8;
+   }
   }
 
   &__translation {
@@ -46,18 +62,65 @@
     color: $whiteColor;
   }
 
-  &__meaning {
+  &__meaning,  &__example {
     display: flex;
     flex-direction: column;
+    padding: 0 24px;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 400px;
+    line-height: 16.41px;
   }
 
-  &__example {
+  &__meaning__text,  &__example__text {
+    color: $darkBrownColor;
+    margin-bottom: 8px;
+  }
+
+  &__meaning__textMeaningTranslate, &__example__textExampleTranslate {
+    color: $greyColor;
+  }
+
+  &__meaning__sound__wrapper, &__example__sound__wrapper {
     display: flex;
-    flex-direction: column;
+  }
+
+  &__meaning__sound,  &__example__sound {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    font-size: 15px;
+    color: $darkOrangeColor;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    &:hover{
+      opacity: 0.8;
+   }
+  }
+
+  &__buttons {
+    display:flex;
+    justify-content: flex-end;
+    margin-top: 9px;
+    margin-bottom: 9px;
+    margin-right: 20px;
   }
 
   &__button {
     width: 32px;
     height: 32px;
+    font-size: 24px;
+    color: $lightGreyColor;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  &__button__hard {
+    margin-left: 10px;
   }
 }
