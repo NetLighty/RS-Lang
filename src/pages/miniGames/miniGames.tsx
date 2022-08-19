@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import Footer from '../../components/footer/footer';
 import GameAudioAbout from '../../components/gameAudioAbout/gameAudioAbout';
 import GameSprintAbout from '../../components/gameSprintAbout/gameSprintAbout';
 import './miniGames.scss';
@@ -10,6 +11,9 @@ const MiniGames: FC = () => (
     <div className="games__container">
       <GameSprintAbout />
       <GameAudioAbout />
+    </div>
+    <div className="games__footer">
+      <Footer />
     </div>
   </div>
 );

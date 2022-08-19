@@ -2,18 +2,21 @@
 @import '../../style/mixin.scss';
 
 .main {
+   height: 100vh;
+   background: url(../../assets/img/mainImg.svg) no-repeat;
+   margin-left: 63px;
+   background-size: contain;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
    &__container {
-      background: url(../../assets/img/mainImg.svg) no-repeat;
-      margin-left: 63px;
-      height: 100vh;
-      background-size: contain;
       display: flex;
       justify-content: flex-end;
    }
 }
 .content {
    @include adaptiv-value("width",850,150,1);
-   height: 100vh;
+   height: 85vh;
    position: relative;
    margin-left: 63px;
    font-family: 'Roboto';

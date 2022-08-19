@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/main/main';
 import Menu from './components/menu/menu';
 import StatisticPage from './pages/statistic/statistic';
-import Footer from './components/footer/footer';
 import Logo from './components/logo/logo';
 import Team from './pages/team/team';
 import MiniGames from './pages/miniGames/miniGames';
@@ -20,7 +19,6 @@ const App = () => (
       <Route path="/team" element={<Team />} />
       <Route path="/games" element={<MiniGames />} />
     </Routes>
-    <Footer />
   </BrowserRouter>
 );
 

@@ -5,6 +5,7 @@ import '../../style/global.scss';
 import MainPageButton from '../../ui/mainPageButton/mainPageButton';
 import MyModal from '../../ui/myModal/myModal';
 import AuthForm from '../../components/authForm/authForm';
+import Footer from '../../components/footer/footer';
 
 const result = window.location.origin;
 
@@ -18,6 +19,7 @@ const MainPage: FC = () => {
 
   return (
     <div className="main">
+      <div>
       <MyModal visible={modal} setVisible={setModal}><AuthForm /></MyModal>
       <div className="main__container">
         <div className="content">
@@ -31,6 +33,10 @@ const MainPage: FC = () => {
           <MainPageButton image={`${result}/src/assets/img/mini-games.svg`} text={`${result}/src/assets/img/miniGames-text.svg`} link="/games" classAdd="games-link" />
           <MainPageButton image={`${result}/src/assets/img/studybook.svg`} text={`${result}/src/assets/img/book-text.svg`} link="/book" classAdd="book-link" />
         </div>
+      </div>
+      </div>
+      <div className="main__footer">
+        <Footer />
       </div>
     </div>
   );
