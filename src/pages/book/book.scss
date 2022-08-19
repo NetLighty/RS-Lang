@@ -4,7 +4,7 @@
 .book {
   margin: 0 210px 65px 215px;
   padding-top: 105px;
-  display: grid;
-  grid-template-rows: 1fr 10fr 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }

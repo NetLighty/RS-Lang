@@ -2,10 +2,62 @@
 @import './../../style/mixin.scss';
 
 .card {
-  width: 90%;
-  max-height: 449px;
-  height: 494px;
+  width: 47%;
+  min-width: 150px;
   background-color: $whiteColor;
-  padding: 9px;
   margin-bottom: 36px;
+
+  &__image {
+    width: 100%;
+    padding: 9px;
+  }
+
+  &__sound__flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__sound {
+    width: 20px;
+    height: 20px;
+    margin: 9px 15px;
+    border: none;
+    outline: none;
+  }
+
+  &__translation {
+    color: $greyColor;
+  }
+
+  &__word__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__word {
+    display: inline-block;
+    height: 37px;
+    padding: 9px 22px;
+    margin-right: 25px;
+    background-color: $darkBrownColor;
+    color: $whiteColor;
+  }
+
+  &__meaning {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__example {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__button {
+    width: 32px;
+    height: 32px;
+  }
 }

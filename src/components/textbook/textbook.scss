@@ -5,6 +5,7 @@
   &__container{
     display: flex;
     flex-direction: column;
+    margin-left: 25px;
     width: 100%;
   }
 
@@ -15,15 +16,14 @@
   }
 
   &__cards{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     margin-top: 34px;
-    justify-items: end;
   }
 
   &__groups{
     width: 60%;
-    margin-left: 25px;
     display: flex;
     justify-content: space-evenly;
   }
