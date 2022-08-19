@@ -7,6 +7,8 @@ import StatisticPage from './pages/statistic/statistic';
 import Logo from './components/logo/logo';
 import Team from './pages/team/team';
 import MiniGames from './pages/miniGames/miniGames';
+import AudioLevel from './pages/audioLevel/audioLevel';
+import AudioCall from './pages/audioCall/audioCall';
 
 // eslint-disable-next-line react/function-component-definition
 const App = () => (
@@ -18,6 +20,8 @@ const App = () => (
       <Route path="/statistic" element={<StatisticPage />} />
       <Route path="/team" element={<Team />} />
       <Route path="/games" element={<MiniGames />} />
+      <Route path="/audiocall" element={<AudioLevel />} />
+      <Route path="/audiocall/game" element={<AudioCall />} />
     </Routes>
   </BrowserRouter>
 );
