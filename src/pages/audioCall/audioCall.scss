@@ -88,6 +88,11 @@
          transform: scale(0.8);
       }
    }
+   &__result {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+   }
 }
 .choose-answer {
    background-color: $lightYellow;

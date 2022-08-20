@@ -6,7 +6,7 @@ $darkBlueColor: #003F5A;
 $firstLevelButton: #DE863B;
 $secondLevelButton: #FFBF72;
 $lightYellow: #FEF200;
-$true: #37E768;
+$true: #24810D;
 $false: #AD2621;
 
 $mainFontSize: 14px;
@@ -51,6 +51,7 @@ $addFontSize: 18px;
  }
  ._icon-false:before {
    content: "\e96f";
+   color: $false;
  }
  ._icon-home:before {
    content: "\e970";
@@ -83,6 +84,7 @@ $addFontSize: 18px;
 }
  ._icon-true1:before {
    content: "\e9c7";
+   color: $true;
  }
  ._icon-volum:before {
    content: "\e9c8";

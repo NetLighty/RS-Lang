@@ -33,7 +33,6 @@ const AudioCall: FC = () => {
   const [amountWords, setAmountWords] = useState(1);
   const [result, setResult] = useState<{ id: string, answer: boolean }[]>([]);
   const [currWord, setCurrWord] = useState(obj);
-  const [error, setError] = useState('');
   let i = 0;
   const buff: string[] = [];
   async function fetchWords(group: string, page: string) {
@@ -41,7 +40,13 @@ const AudioCall: FC = () => {
       const response = await axios.get<IWord[]>(`https://rs-lang-team148.herokuapp.com/words?group=${group}&page=${page}`);
       const words: IWord[] = response.data;
       setLevelWords(words);
-      const curr = words[Math.floor(Math.random() * 20)];
+      let curr = words[Math.floor(Math.random() * 20)];
+      while (
+        result.includes({ id: curr.id, answer: true })
+        || result.includes({ id: curr.id, answer: false })
+      ) {
+        curr = words[Math.floor(Math.random() * 20)];
+      }
       setCurrWord(curr);
       while (i < 4) {
         let randomWord: string = words[Math.floor(Math.random() * 20)].wordTranslate;
@@ -82,6 +87,7 @@ const AudioCall: FC = () => {
     const target = e.target as HTMLInputElement;
     target.classList.add('choose-answer');
     if (currWord.wordTranslate === target.textContent) {
+      setResult([...result, { id: (currWord.id), answer: true }]);
       setTimeout(() => {
         const audio = new Audio('https://promosounds.ru/wp-content/uploads/2021/10/zvuk-pravilnogo-otveta-iz-peredachi-100-k-1.mp3');
         audio.play();
@@ -89,6 +95,7 @@ const AudioCall: FC = () => {
         document.querySelector('.audiogame__header_img')?.classList.add('show-img');
       }, 1000);
     } else {
+      setResult([...result, { id: (currWord.id), answer: false }]);
       setTimeout(() => {
         const audio = new Audio('https://promosounds.ru/wp-content/uploads/2021/10/standartnyy-zvuk-s-oshibochnym-otvetom.mp3');
         audio.play();
@@ -103,13 +110,19 @@ const AudioCall: FC = () => {
     }
     setTimeout(() => {
       document.querySelector('.audiogame__header_img')?.classList.remove('show-img');
-      if (amountWords < 20) {
+      if (amountWords < 5) {
         fetchWords(localStorage.audiolevel as string, Math.floor(Math.random() * 30).toString())
           .then(
-            () => { console.log(translateWords); },
+            () => {},
             () => {},
           );
         setAmountWords(amountWords + 1);
+      } else {
+        setResult([...result, { id: '0', answer: false }]);
+        console.log(result);
+        localStorage.setItem('res', JSON.stringify(result));
+        const pageRes: HTMLElement | null = document.querySelector('.audiogame__result');
+        pageRes?.click();
       }
     }, 3000);
   }
@@ -117,6 +130,7 @@ const AudioCall: FC = () => {
   return (
     <div className="audiogame">
       <NavLink className="audiogame__close _icon-close" to="/" />
+      <NavLink className="audiogame__result" to="/audiocall/result" />
       <div className="audiogame__container">
         <div className="audiogame__header">
           <p className="audiogame__header_amount">
