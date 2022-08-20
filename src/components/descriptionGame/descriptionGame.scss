@@ -1,0 +1,56 @@
+@import '../../style/global.scss';
+
+.description {
+   width: 400px;
+   height: 227px;
+   background: url('../../assets/img/aboutImgBackground.svg') no-repeat;
+   position: relative;
+   &__content{
+      position: absolute;
+      top: 17px;
+      width: 306px;
+      font-size: $mainFontSize;
+      &_header{
+         color: $lightOrangeColor;
+         font-size: $addFontSize;
+         margin-bottom: 16px;
+      }
+      &_text{
+         line-height: 25px;
+      }
+   }
+   &-audio{
+      width: 400px;
+      height: 227px;
+      background: url('../../assets/img/cloud.svg') no-repeat;
+      &__content {
+         left: 23px;
+      }
+      &__button{
+         position: absolute;
+         bottom: -20px;
+         right: 0;
+         transition: all 0.5s ease;
+         &:hover{
+            transform: scale(1.1);
+         }
+      }
+   }
+   &-sprint{
+      width: 400px;
+      height: 227px;
+      background: url('../../assets/img/aboutImgBackground.svg') no-repeat;
+      &__content {
+         left: 61px;
+      }
+      &__button{
+         position: absolute;
+         bottom: -20px;
+         right: -40px;
+         transition: all 0.5s ease;
+         &:hover{
+            transform: scale(1.1);
+         }
+      }
+   }
+}

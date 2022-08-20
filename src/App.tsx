@@ -8,6 +8,7 @@ import Footer from './components/footer/footer';
 import Logo from './components/logo/logo';
 import Team from './pages/team/team';
 import Book from './pages/book/book';
+import MiniGames from './pages/miniGames/miniGames';
 
 // eslint-disable-next-line react/function-component-definition
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
       <Route path="/statistic" element={<StatisticPage />} />
       <Route path="/team" element={<Team />} />
       <Route path="/book" element={<Book />} />
+      <Route path="/games" element={<MiniGames />} />
     </Routes>
     <Footer />
   </BrowserRouter>
