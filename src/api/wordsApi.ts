@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { IWord } from '../models/Iword';
+import { IWord } from '../models/IWord';
 
 const url = 'https://rs-lang-team148.herokuapp.com';
 
-async function getWord(group?: string, page?: string) {
-  const response = await axios.get(`${url}/words${group ? `?group=${group}` : ''}${page ? `&page=${page}` : ''}`);
-  return response.data as Array<IWord>;
+async function getWords(group: string, page: string) {
+  const response = await axios.get<IWord[]>(`${url}/words?group=${group}&page=${page}`);
+  return response.data;
 }
 
-export default getWord;
+export default getWords;

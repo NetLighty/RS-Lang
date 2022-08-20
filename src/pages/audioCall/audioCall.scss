@@ -1,3 +1,106 @@
-.audiogame {
+@import '../../style/global.scss';
 
+.audiogame {
+   margin-left: 63px;
+   color: #fff;
+   font-family: 'Roboto';
+   font-weight: 400;
+   &__container{
+      display: flex;
+      flex-direction: column;
+      row-gap: 60px;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      height: 100vh;
+   }
+   &__header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 600px;
+      height: 110px;
+      &_amount {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 70px;
+         height: 70px;
+         border-radius: 100%;
+         background-color: $darkOrangeColor;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      }
+      &_img {
+         width: 108px;
+         height: 108px;
+         border-radius: 100%;
+         background-size: cover;
+         opacity: 0;
+         transition: all 0.3s ease;
+      }
+   }
+   &__translate {
+      display: flex;
+      column-gap: 60px;
+      cursor: pointer;
+      &_item{
+         background-color: $backgrounColor;
+         color: #fff;
+         border: none;
+         padding: 5px 10px;
+         border-radius: 2px;
+         font-size: $addFontSize;
+         font-family: 'Roboto';
+         cursor: pointer;
+         &:hover {
+            opacity: 0.8;
+         }
+         &:disabled {
+            &:hover {
+               cursor: auto;
+               opacity: 1;
+            }
+         }
+      }
+   }
+   &__recoder {
+      font-size: 47px;
+      color: $lightOrangeColor;
+      transition: all 0.5s ease;
+      cursor: pointer;
+      &:hover {
+         opacity: 0.7;
+         transform: scale(0.8);
+      }
+   }
+   &__close {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      color: $lightPinkColor;
+      font-size: 55px;
+      transition: all 0.5s ease;
+      &:hover {
+         opacity: 0.7;
+         transform: scale(0.8);
+      }
+   }
+}
+.choose-answer {
+   background-color: $lightYellow;
+   &:hover {
+      opacity: 1;
+   }
+}
+.true-answer {
+   background-color: $true;
+}
+.false-answer {
+   background-color: $false;
+}
+.show-img {
+   opacity: 1;
 }
