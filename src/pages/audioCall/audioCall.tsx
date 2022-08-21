@@ -122,7 +122,7 @@ const AudioCall: FC = () => {
         console.log(result);
         localStorage.setItem('res', JSON.stringify(result));
         const pageRes: HTMLElement | null = document.querySelector('.audiogame__result');
-        pageRes?.click();
+        setTimeout(() => { pageRes?.click(); }, 2000);
       }
     }, 3000);
   }

@@ -39,8 +39,16 @@
             transform: scale(0.9);
          }
       }
-      
+      &_word {
+         width: 100px;
+         text-align: left;
+      }
+      &_translate {
+         width: 150px;
+         text-align: left;
+      }
       &_answer {
+         width: 22px;
          font-size: 15px;
       }
    }
@@ -70,5 +78,9 @@
       text-decoration: none;
       right: -35px;
       bottom: -35px;
+      transition: all 0.3s ease;
+      &:hover {
+         transform: scale(1.2);
+      }
    }
 }

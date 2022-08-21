@@ -15,13 +15,18 @@ const AudioLevel: FC = () => {
     localStorage.audiolevel = target.textContent;
     setChoose(true);
   }
+  function sound(path: string) {
+    const audio = new Audio();
+    audio.src = path;
+    audio.autoplay = true;
+  }
   return (
     <div className="audiolevel">
       <NavLink className="audiolevel__close _icon-close" to="/" />
       <div className="audiolevel__container">
         <p className="audiolevel__header">Аудиовызов</p>
         <p className="audiolevel__text">Давай выберем уровень</p>
-        <div className="audiolevel__button" onClick={(e) => { chooseLevel(e); }} role="button" tabIndex={0} onKeyDown={() => { }}>
+        <div className="audiolevel__button" onClick={(e) => { chooseLevel(e); sound('https://zvukipro.com/uploads/files/2019-09/1567587229_8af5b2bf5d19c00.mp3'); }} role="button" tabIndex={0} onKeyDown={() => { }}>
           <LevelButton addClass="first-level" text="1" />
           <LevelButton addClass="second-level" text="2" />
           <LevelButton addClass="third-level" text="3" />
