@@ -1,32 +1,35 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import sound from '../../utils/sound';
 import LevelButton from '../../ui/levelButton/levelButton';
-import './audioLevel.scss';
+import './gameLevel.scss';
+
+interface AudioLevelProps {
+  gameName: string;
+  to: string;
+}
 
 // eslint-disable-next-line react/function-component-definition
-const AudioLevel: FC = () => {
+const AudioLevel: FC<AudioLevelProps> = ({ gameName, to }) => {
   const [choose, setChoose] = useState(false);
+
   function chooseLevel(e: React.SyntheticEvent) {
     const levels = [...document.querySelectorAll('.level-button')];
     levels.map((item: Element) => item.classList.remove('active'));
     const target = e.target as HTMLInputElement;
     target.classList.add('active');
-    localStorage.audiolevel = target.textContent;
+    localStorage[`${gameName}level`] = target.textContent;
     setChoose(true);
   }
-  function sound(path: string) {
-    const audio = new Audio();
-    audio.src = path;
-    audio.autoplay = true;
-  }
+
   return (
-    <div className="audiolevel">
-      <NavLink className="audiolevel__close _icon-close" to="/" />
-      <div className="audiolevel__container">
-        <p className="audiolevel__header">Аудиовызов</p>
-        <p className="audiolevel__text">Давай выберем уровень</p>
-        <div className="audiolevel__button" onClick={(e) => { chooseLevel(e); sound('https://zvukipro.com/uploads/files/2019-09/1567587229_8af5b2bf5d19c00.mp3'); }} role="button" tabIndex={0} onKeyDown={() => { }}>
+    <div className="gamelevel">
+      <NavLink className="gamelevel__close _icon-close" to="/" />
+      <div className="gamelevel__container">
+        <p className="gamelevel__header">Аудиовызов</p>
+        <p className="gamelevel__text">Давай выберем уровень</p>
+        <div className="gamelevel__button" onClick={(e) => { chooseLevel(e); sound('https://zvukipro.com/uploads/files/2019-09/1567587229_8af5b2bf5d19c00.mp3'); }} role="button" tabIndex={0} onKeyDown={() => { }}>
           <LevelButton addClass="first-level" text="1" />
           <LevelButton addClass="second-level" text="2" />
           <LevelButton addClass="third-level" text="3" />
@@ -34,7 +37,7 @@ const AudioLevel: FC = () => {
           <LevelButton addClass="fifth-level" text="5" />
           <LevelButton addClass="sixth-level" text="6" />
         </div>
-        <NavLink className={`audiolevel__start ${choose ? 'active-btn' : ''}`} to="/audiocall/game">вперёд</NavLink>
+        <NavLink className={`gamelevel__start ${choose ? 'active-btn' : ''}`} to={to}>вперёд</NavLink>
       </div>
     </div>
   );

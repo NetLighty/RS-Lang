@@ -7,7 +7,7 @@ import StatisticPage from './pages/statistic/statistic';
 import Logo from './components/logo/logo';
 import Team from './pages/team/team';
 import MiniGames from './pages/miniGames/miniGames';
-import AudioLevel from './pages/audioLevel/audioLevel';
+import AudioLevel from './pages/gameLevel/gameLevel';
 import AudioCall from './pages/audioCall/audioCall';
 import AudioResult from './pages/gameResult/gameResult';
 import { IAnswer } from './models/IAnswer';
@@ -22,9 +22,9 @@ const App = () => (
       <Route path="/statistic" element={<StatisticPage />} />
       <Route path="/team" element={<Team />} />
       <Route path="/games" element={<MiniGames />} />
-      <Route path="/audiocall" element={<AudioLevel />} />
+      <Route path="/audiocall" element={<AudioLevel gameName="audio" to="/audiocall/game" />} />
       <Route path="/audiocall/game" element={<AudioCall />} />
-      <Route path="/audiocall/result" element={<AudioResult AnswerArr={JSON.parse(localStorage.getItem('res') as string) as IAnswer[]} />} />
+      <Route path="/audiocall/result" element={<AudioResult nameResult="audiores" />} />
     </Routes>
   </BrowserRouter>
 );

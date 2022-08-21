@@ -115,7 +115,7 @@ const AudioCall: FC = () => {
       } else {
         setResult([...result, { id: '0', answer: false }]);
         console.log(result);
-        localStorage.setItem('res', JSON.stringify(result));
+        localStorage.setItem('audiores', JSON.stringify(result));
         const pageRes: HTMLElement | null = document.querySelector('.audiogame__result');
         pageRes?.click();
       }
