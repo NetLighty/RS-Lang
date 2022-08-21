@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/index.reducers';
 import useGetWords from '../../hooks/useGetWords';
@@ -10,8 +10,8 @@ import Loading from '../loading/loading';
 const TextbookContainer:FC = () => {
   const { bookPageWords, getWords, isLoading } = useGetWords();
   const dispatch = useDispatch();
-  const [group] = useState(0);
-  const [page] = useState(0);
+  const group = useSelector((state:RootState) => state.textbook.page);
+  const page = useSelector((state:RootState) => state.textbook.group);
   const wordsToRender = useSelector((state:RootState) => state.textbook.bookWords);
 
   useEffect(() => {
