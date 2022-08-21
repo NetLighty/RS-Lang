@@ -22,8 +22,7 @@
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",
-        "project": "./tsconfig.json",
-        "tsconfigRootDir": "RS-Lang"
+        "project": "./tsconfig.json"
     },
     "plugins": [
         "react"
