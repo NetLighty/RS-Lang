@@ -9,7 +9,8 @@ import Team from './pages/team/team';
 import MiniGames from './pages/miniGames/miniGames';
 import AudioLevel from './pages/audioLevel/audioLevel';
 import AudioCall from './pages/audioCall/audioCall';
-import AudioResult from './pages/audioResult/audioResult';
+import AudioResult from './pages/gameResult/gameResult';
+import { IAnswer } from './models/IAnswer';
 
 // eslint-disable-next-line react/function-component-definition
 const App = () => (
@@ -23,7 +24,7 @@ const App = () => (
       <Route path="/games" element={<MiniGames />} />
       <Route path="/audiocall" element={<AudioLevel />} />
       <Route path="/audiocall/game" element={<AudioCall />} />
-      <Route path="/audiocall/result" element={<AudioResult />} />
+      <Route path="/audiocall/result" element={<AudioResult AnswerArr={JSON.parse(localStorage.getItem('res') as string) as IAnswer[]} />} />
     </Routes>
   </BrowserRouter>
 );

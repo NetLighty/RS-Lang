@@ -1,0 +1,32 @@
+@import '../../style/global.scss';
+
+.gameresult__item {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 340px;
+   margin-bottom: 12px;
+   border-bottom: 1px solid #8E8D8D;
+   &_recoder {
+      color: $lightOrangeColor;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      &:hover {
+         opacity: 0.8;
+         transform: scale(0.9);
+      }
+   }
+   &_word {
+      width: 100px;
+      text-align: left;
+   }
+   &_translate {
+      width: 150px;
+      text-align: left;
+   }
+   &_answer {
+      width: 22px;
+      font-size: 15px;
+   }
+}

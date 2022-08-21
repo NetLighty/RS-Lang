@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './audioCall.scss';
 import axios from 'axios';
 import { IWord } from '../../models/IWord';
+import sound from '../../utils/sound';
 
 const obj = {
   id: '',
@@ -75,12 +76,6 @@ const AudioCall: FC = () => {
     }
   });
 
-  function sound(path: string) {
-    const audio = new Audio();
-    audio.src = path;
-    audio.autoplay = true;
-  }
-
   function chooseAnswer(e: React.SyntheticEvent) {
     const answer = [...document.querySelectorAll('.audiogame__translate_item')];
     answer.map((item) => item.setAttribute('disabled', 'true'));
@@ -122,7 +117,7 @@ const AudioCall: FC = () => {
         console.log(result);
         localStorage.setItem('res', JSON.stringify(result));
         const pageRes: HTMLElement | null = document.querySelector('.audiogame__result');
-        setTimeout(() => { pageRes?.click(); }, 2000);
+        pageRes?.click();
       }
     }, 3000);
   }
