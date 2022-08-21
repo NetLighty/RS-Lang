@@ -42,7 +42,7 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
   return (
     <div className="gameresult">
       { (loading === true)
-        ? <Loader />
+        ? <div className="gameresult__loader"><Loader /></div>
         : (
           <div>
             <NavLink className="gameresult__close _icon-close" to="/" />

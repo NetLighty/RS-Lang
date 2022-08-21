@@ -1,125 +1,118 @@
 import React, { FC, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import './audioCall.scss';
-import axios from 'axios';
 import { IWord } from '../../models/IWord';
+import { IAnswer } from '../../models/IAnswer';
 import sound from '../../utils/sound';
-
-const obj = {
-  id: '',
-  group: 0,
-  page: 0,
-  word: '',
-  image: '',
-  audio: '',
-  audioMeaning: '',
-  audioExample: '',
-  textMeaning: '',
-  textExample: '',
-  transcription: '',
-  wordTranslate: '',
-  textMeaningTranslate: '',
-  textExampleTranslate: '',
-};
-function shuffle(array: string[]) {
-  return array.sort(() => Math.random() - 0.5);
-}
+import generateTranslateWord from '../../utils/generateTranslateWords';
+import shuffle from '../../utils/shuffle';
+import obj from '../../models/emptyWord';
+import WordService from '../../api/wordsService';
+import getCurrentWord from '../../utils/getCurrentWord';
+import audioPlay from '../../utils/audioPlay';
+import generateNum from '../../utils/generateWordNumber';
+import trueAnswer from '../../utils/trueAnswerPlay';
+import falseAnswer from '../../utils/falseAnswerPlay';
+import clearStyleButton from '../../utils/clearStyleButton';
+import audioBlockButton from '../../utils/audioBlockButton';
+import getDocumentElement from '../../utils/getDocumentElement';
+import hideImage from '../../utils/audioHideImg';
+import showImage from '../../utils/audioShowImg';
+import './audioCall.scss';
 
 // eslint-disable-next-line react/function-component-definition
 const AudioCall: FC = () => {
   const [levelWords, setLevelWords] = useState<IWord[]>([]);
-  // const buff = getWords('1', '2').then((res) => { setLevelWords(res); });
-
   const [translateWords, setTranslateWord] = useState<string[]>([]);
   const [amountWords, setAmountWords] = useState(1);
-  const [result, setResult] = useState<{ id: string, answer: boolean }[]>([]);
+  const [result, setResult] = useState<IAnswer[]>([]);
+  const [prevWords, setprevWords] = useState<string[]>([]);
   const [currWord, setCurrWord] = useState(obj);
-  let i = 0;
-  const buff: string[] = [];
+  const testResult: IAnswer[] = [];
+  let arrTranslate: string[] = [];
+  let count = 1;
+
   async function fetchWords(group: string, page: string) {
+    clearStyleButton();
     try {
-      const response = await axios.get<IWord[]>(`https://rs-lang-team148.herokuapp.com/words?group=${group}&page=${page}`);
+      const response = (await WordService.getChunkOfWords(group, page));
       const words: IWord[] = response.data;
       setLevelWords(words);
-      let curr = words[Math.floor(Math.random() * 20)];
-      while (
-        result.includes({ id: curr.id, answer: true })
-        || result.includes({ id: curr.id, answer: false })
-      ) {
-        curr = words[Math.floor(Math.random() * 20)];
-      }
-      setCurrWord(curr);
-      while (i < 4) {
-        let randomWord: string = words[Math.floor(Math.random() * 20)].wordTranslate;
-        while (buff.includes(randomWord) || curr.wordTranslate === randomWord) {
-          randomWord = words[Math.floor(Math.random() * 20)].wordTranslate;
-        }
-        buff.push(randomWord);
-        i += 1;
-      }
-      buff.push(curr.wordTranslate);
-      setTranslateWord(shuffle(buff));
-      const audio = new Audio(`https://rs-lang-team148.herokuapp.com/${curr.audio}`);
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      audio.play();
-    } catch (e) {
-      alert(e);
-    }
+      const current = getCurrentWord(words, prevWords);
+      setprevWords([...prevWords, current.id]);
+      setCurrWord(current);
+      arrTranslate = generateTranslateWord(words, current);
+      setTranslateWord(shuffle(arrTranslate));
+      audioPlay(current);
+    } catch (e) { console.log(e); }
+  }
+
+  function showWord() {
+    fetchWords(localStorage.audiolevel as string, generateNum(30).toString())
+      .then(
+        () => {},
+        () => {},
+      );
   }
 
   useEffect(() => {
     if (!levelWords.length) {
-      fetchWords(localStorage.audiolevel as string, Math.floor(Math.random() * 30).toString()).then(
-        () => { console.log(translateWords); },
-        () => {},
-      );
+      showWord();
     }
   });
 
-  function chooseAnswer(e: React.SyntheticEvent) {
-    const answer = [...document.querySelectorAll('.audiogame__translate_item')];
-    answer.map((item) => item.setAttribute('disabled', 'true'));
-    const target = e.target as HTMLInputElement;
-    target.classList.add('choose-answer');
+  function showTrueWord(arr: Element[], curr: IWord) {
+    arr.forEach((item) => {
+      if (item.textContent === curr.wordTranslate) item.classList.add('true-answer');
+      showImage();
+    });
+  }
+
+  function checkAnswer(target: HTMLInputElement, answer: Element[]) {
     if (currWord.wordTranslate === target.textContent) {
+      testResult.push({ id: currWord.id, answer: true });
       setResult([...result, { id: (currWord.id), answer: true }]);
       setTimeout(() => {
-        const audio = new Audio('https://promosounds.ru/wp-content/uploads/2021/10/zvuk-pravilnogo-otveta-iz-peredachi-100-k-1.mp3');
-        audio.play();
-        target.classList.add('true-answer');
-        document.querySelector('.audiogame__header_img')?.classList.add('show-img');
+        trueAnswer(target);
+        showImage();
       }, 1000);
     } else {
+      testResult.push({ id: currWord.id, answer: false });
       setResult([...result, { id: (currWord.id), answer: false }]);
       setTimeout(() => {
-        const audio = new Audio('https://promosounds.ru/wp-content/uploads/2021/10/standartnyy-zvuk-s-oshibochnym-otvetom.mp3');
-        audio.play();
-        target.classList.add('false-answer');
+        falseAnswer(target);
         setTimeout(() => {
-          answer.forEach((item) => {
-            if (item.textContent === currWord.wordTranslate) item.classList.add('true-answer');
-            document.querySelector('.audiogame__header_img')?.classList.add('show-img');
-          });
+          showTrueWord(answer, currWord as IWord);
         }, 1000);
       }, 1000);
     }
+  }
+
+  function goToResult() {
+    localStorage.setItem('audiores', JSON.stringify(result.concat(testResult)));
+    const pageRes: HTMLElement | null = document.querySelector('.audiogame__result');
+    pageRes?.click();
+  }
+
+  function checkAmount() {
     setTimeout(() => {
-      document.querySelector('.audiogame__header_img')?.classList.remove('show-img');
-      if (amountWords < 5) {
-        fetchWords(localStorage.audiolevel as string, Math.floor(Math.random() * 30).toString())
-          .then(
-            () => {},
-            () => {},
-          );
-        setAmountWords(amountWords + 1);
+      hideImage();
+      setAmountWords(amountWords + 1);
+      count = amountWords + 1;
+      if (count <= 10) {
+        showWord();
       } else {
-        setResult([...result, { id: '0', answer: false }]);
-        console.log(result);
-        localStorage.setItem('audiores', JSON.stringify(result));
-        const pageRes: HTMLElement | null = document.querySelector('.audiogame__result');
-        pageRes?.click();
+        goToResult();
       }
     }, 3000);
+  }
+
+  function chooseAnswer(e: React.SyntheticEvent) {
+    const answer = getDocumentElement('.audiogame__translate_item');
+    audioBlockButton();
+    const target = e.target as HTMLInputElement;
+    target.classList.add('choose-answer');
+    checkAnswer(target, answer);
+    checkAmount();
   }
 
   return (
@@ -130,7 +123,7 @@ const AudioCall: FC = () => {
         <div className="audiogame__header">
           <p className="audiogame__header_amount">
             {amountWords}
-            /20
+            /10
           </p>
           <img className="audiogame__header_img" src={`https://rs-lang-team148.herokuapp.com/${currWord.image}`} alt="" />
         </div>

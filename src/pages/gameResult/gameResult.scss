@@ -54,4 +54,11 @@
          transform: scale(1.2);
       }
    }
+   &__loader {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+   }
 }

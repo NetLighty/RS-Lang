@@ -10,7 +10,6 @@ import MiniGames from './pages/miniGames/miniGames';
 import AudioLevel from './pages/gameLevel/gameLevel';
 import AudioCall from './pages/audioCall/audioCall';
 import AudioResult from './pages/gameResult/gameResult';
-import { IAnswer } from './models/IAnswer';
 
 // eslint-disable-next-line react/function-component-definition
 const App = () => (
