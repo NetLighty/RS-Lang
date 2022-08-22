@@ -8,20 +8,38 @@ interface SoundButtonProps {
   className: string
 }
 
-const SoundWordButton:FC<SoundButtonProps> = ({ audio, audioMeaning, audioExample,  className }) => {
+const SoundWordButton:FC<SoundButtonProps> = ({
+  audio, audioMeaning, audioExample, className,
+}) => {
   const player = new Audio();
+  let nextStep:number;
+  let nextSound:string;
 
-  function handlePlayButton(sound:string, soundMeaning:string, soundExample:string) {
-    if (player.paused) {
-      player.src = sound;
-      player.play().then(() => {}).catch(() => { player.pause(); });
-    } else {
-      player.pause();
+  function handlePlayButton(sound:string, step:number) {
+    player.src = `${SETTINGS.BASE_URL}/${sound}`;
+    player.load();
+    player.play().then(() => {}).catch(() => player.pause());
+    if (step === 1) {
+      nextStep = 2;
+      nextSound = audioMeaning;
     }
+    if (step === 2) {
+      nextStep = 3;
+      nextSound = audioExample;
+    }
+    if (step === 3) {
+      return;
+    }
+
+    function playNext() {
+      player.removeEventListener('ended', playNext);
+      handlePlayButton(nextSound, nextStep);
+    }
+    player.addEventListener('ended', playNext);
   }
 
   return (
-    <button type="button" className={className} onClick={() => handlePlayButton(`${SETTINGS.BASE_URL}/${audio}`, `${SETTINGS.BASE_URL}/${audioMeaning}`,`${SETTINGS.BASE_URL}/${audioExample}`)} aria-label="Play" />
+    <button type="button" className={className} onClick={() => handlePlayButton(audio, 1)} aria-label="Play" />
   );
 };
 
