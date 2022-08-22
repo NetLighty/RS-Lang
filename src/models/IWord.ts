@@ -1,5 +1,4 @@
 export interface IWord {
-
   id:string,
   group:number,
   page:number,

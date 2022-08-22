@@ -16,10 +16,12 @@ interface GameResultProps {
 const GameResult: FC<GameResultProps> = ({ nameResult }) => {
   const [result, setResult] = useState<IResultWord[]>([]);
   const [loading, setLoading] = useState(true);
-  const arr: IResultWord[] = [];
+  let arr: IResultWord[] = [];
   const answerArr = JSON.parse(localStorage.getItem(nameResult) as string) as IAnswer[];
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async function getResult() {
+  let flag: boolean;
+  function getResult() {
+    flag = false;
+    arr = [];
     answerArr.forEach((item: IAnswer) => {
       const el = WordService.getWord(item.id)
         .then((response) => {
@@ -32,10 +34,14 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
           arr.push(obj);
         });
     });
+    setResult(arr);
   }
 
   useEffect(() => {
-    getResult().then(() => { setResult(arr); }, () => {});
+    if (flag !== false) {
+      // getResult().then(() => { setResult(arr); }, () => {});
+      getResult();
+    }
     setTimeout(() => { setLoading(false); }, 2000);
   }, []);
 

@@ -17,8 +17,10 @@ import audioBlockButton from '../../utils/audioBlockButton';
 import getDocumentElement from '../../utils/getDocumentElement';
 import hideImage from '../../utils/audioHideImg';
 import showImage from '../../utils/audioShowImg';
-import './audioCall.scss';
 import Loader from '../../ui/loader/loader';
+import chooseKeyDown from '../../utils/chooseKeyDown';
+import './audioCall.scss';
+
 
 // eslint-disable-next-line react/function-component-definition
 const AudioCall: FC = () => {
@@ -32,6 +34,7 @@ const AudioCall: FC = () => {
   const testResult: IAnswer[] = [];
   let arrTranslate: string[] = [];
   let count = 1;
+  let flag: boolean;
 
   async function fetchWords(group: string, page: string) {
     clearStyleButton();
@@ -51,6 +54,7 @@ const AudioCall: FC = () => {
   }
 
   function showWord() {
+    flag = false;
     fetchWords(localStorage.audiolevel as string, generateNum(30).toString())
       .then(
         () => {},
@@ -59,7 +63,7 @@ const AudioCall: FC = () => {
   }
 
   useEffect(() => {
-    if (!levelWords.length) {
+    if (!levelWords.length && flag !== false) {
       showWord();
     }
   });
@@ -118,6 +122,8 @@ const AudioCall: FC = () => {
     checkAnswer(target, answer);
     checkAmount();
   }
+
+  document.onkeydown = chooseKeyDown;
 
   return (
     <div className="audiogame">

@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
-import { IUserWord } from '~/models/IUserWord';
-import { IWord } from '~/models/IWord';
-import apiUrl from '~/utils/api';
+import { IUserWord } from '../models/IUserWord';
+import { IWord } from '../models/IWord';
+import apiUrl from '../utils/api';
 
 export default class UserWordService {
   static async getAllUserWords(id: string): Promise<AxiosResponse<IUserWord[]>> {
