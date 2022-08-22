@@ -10,8 +10,8 @@ import Loading from '../loading/loading';
 const TextbookContainer:FC = () => {
   const { bookPageWords, getWords, isLoading } = useGetWords();
   const dispatch = useDispatch();
-  const group = useSelector((state:RootState) => state.textbook.page);
-  const page = useSelector((state:RootState) => state.textbook.group);
+  const group = useSelector((state:RootState) => state.textbook.group);
+  const page = useSelector((state:RootState) => state.textbook.page);
   const wordsToRender = useSelector((state:RootState) => state.textbook.bookWords);
 
   useEffect(() => {

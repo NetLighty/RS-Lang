@@ -109,6 +109,11 @@
     &:hover{
       opacity: 0.8;
    }
+   &:disabled {
+    color: $darkBlueColor;
+    background-color: $greyColor;
+    border: 1px solid $lightGreyColor;
+   }
   }
 
   &__footer {

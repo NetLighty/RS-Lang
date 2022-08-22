@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteClass } from '../../utils/classes';
-import { addCurrentGroup } from '../../store/textbook.actions';
+import { addCurrentGroup, addCurrentPage } from '../../store/textbook.actions';
 import GroupButton from './groupsButton';
 
 const GroupsBlock = () => {
@@ -16,6 +16,7 @@ const GroupsBlock = () => {
       target.classList.add('book__group__button-active');
       target.closest('.book__group__span')?.classList.add('book__group__span-active');
       dispatch(addCurrentGroup(Number(target.innerText) - 1));
+      dispatch(addCurrentPage(0));
     }
   }
   return (
