@@ -1,0 +1,231 @@
+@import './../../style/global.scss';
+@import './../../style/mixin.scss';
+
+.book {
+  &__container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+    width: 100%;
+  }
+
+  &__header{
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__cards{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 34px;
+  }
+
+  &__groups{
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__group__button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: $whiteColor;
+    opacity: 0.5;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+
+    &-active {
+      opacity: 1;  
+    }
+
+    &:hover{
+      opacity: 0.8;
+   }
+  }
+
+  &__group__span {
+    border-radius: 50%;
+    background-color: transparent;
+    display: block;
+    width: 75px; 
+    height: 75px;
+  }
+
+  &__difficult__button {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: none;
+    position: relative;
+    background-color: transparent;
+    transition: all 0.6s ease;
+    &:hover{
+      transform: scale(1.1) rotate(30deg);
+   }
+  }
+
+  &__difficult__button__image {
+    position: absolute;
+    top: -1px;
+    left: -15px;
+    z-index: 2;
+  }
+
+  &__difficult__button__text {
+    position: absolute;
+    top: -45px;
+    left: -38px;
+  }
+
+  &__games {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__pagination {
+    margin-bottom: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__pagination__button {
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    border: 1px solid $darkOrangeColor;
+    color: $darkOrangeColor;
+    background-color: $backgrounColorPaginationButton;
+    outline: none;
+    cursor: pointer;
+
+    &:hover{
+      opacity: 0.8;
+   }
+  }
+
+  &__footer {
+    display: grid;
+    grid-template-rows: 1fr 2fr; 
+    width: 30%;
+    align-items: center;
+    justify-items: stretch;
+    align-self: center;
+  }
+
+  &__sprint__button {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: none;
+    position: relative;
+    background-color: transparent;
+    transition: all 0.6s ease;
+    outline: none;
+    cursor: pointer;
+    &:hover{
+      transform: scale(1.1) rotate(-30deg);
+   }
+  }
+
+  &__sprint__button__image {
+    position: absolute;
+    top: -18px;
+    left: 23px;
+    z-index: 2;
+  }
+
+  &__sprint__button__text {
+    position: absolute;
+    top: -45px;
+    left: 0;
+  }
+
+  &__audioGame__button {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: none;
+    position: relative;
+    background-color: transparent;
+    transition: all 0.6s ease;
+    outline: none;
+    cursor: pointer;
+    &:hover{
+      transform: scale(1.1) rotate(30deg);
+   }
+  }
+
+  &__audioGame__button__image {
+    position: absolute;
+    top: -25px;
+    left: 15px;
+    z-index: 2;
+  }
+
+  &__audioGame__button__text {
+    position: absolute;
+    top: -45px;
+    left: 0;
+  }
+}
+
+#darkBrown {
+  background-color: $darkBrownColor;
+}
+
+#darkBrownspan.book__group__span-active {
+  padding: 4px 4px 1px;
+  border: 3px solid $darkBrownColor;
+}
+
+#lightBrown {
+  background-color: $lightBrownColor;
+}
+
+#lightBrownspan.book__group__span-active {
+  padding: 4px 4px 1px;
+  border: 3px solid $lightBrownColor;
+}
+
+#lightPink {
+  background-color: $lightPinkColor;
+}
+
+#lightPinkspan.book__group__span-active {
+  padding: 4px 4px 1px;
+  border: 3px solid $lightPinkColor;
+}
+
+#lightOrange {
+  background-color: $lightOrangeColor;
+}
+
+#lightOrangespan.book__group__span-active {
+  padding: 4px 4px 1px;
+  border: 3px solid $lightOrangeColor;
+}
+
+#darkOrange {
+  background-color: $darkOrangeColor;
+}
+
+#darkOrangespan.book__group__span-active {
+  padding: 4px 4px 1px;
+  border: 3px solid $darkOrangeColor;
+}
+
+#darkBlue {
+  background-color: $darkBlueColor;
+}
+
+#darkBluespan.book__group__span-active {
+  padding: 4px 4px 1px;
+  border: 3px solid $darkBlueColor;
+}

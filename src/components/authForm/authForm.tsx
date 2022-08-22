@@ -3,7 +3,6 @@ import './authForm.scss';
 
 const result = window.location.origin;
 
-// eslint-disable-next-line react/function-component-definition
 const AuthForm: FC = () => (
   <div className="form">
     <img className="form__img" src={`${result}/src/assets/img/enter.svg`} alt="planet" />

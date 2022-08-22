@@ -1,0 +1,10 @@
+@import '../../style/global.scss';
+@import '../../style/mixin.scss';
+
+.book {
+  margin: 0 210px 65px 215px;
+  padding-top: 105px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

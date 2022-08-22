@@ -6,6 +6,7 @@ import Menu from './components/menu/menu';
 import StatisticPage from './pages/statistic/statistic';
 import Logo from './components/logo/logo';
 import Team from './pages/team/team';
+import Book from './pages/book/book';
 import MiniGames from './pages/miniGames/miniGames';
 import AudioLevel from './pages/gameLevel/gameLevel';
 import AudioCall from './pages/audioCall/audioCall';
@@ -20,6 +21,7 @@ const App = () => (
       <Route path="/" element={<MainPage />} />
       <Route path="/statistic" element={<StatisticPage />} />
       <Route path="/team" element={<Team />} />
+      <Route path="/book" element={<Book />} />
       <Route path="/games" element={<MiniGames />} />
       <Route path="/audiocall" element={<AudioLevel gameName="audio" to="/audiocall/game" />} />
       <Route path="/audiocall/game" element={<AudioCall />} />
