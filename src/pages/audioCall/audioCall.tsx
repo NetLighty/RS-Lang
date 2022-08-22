@@ -18,6 +18,7 @@ import getDocumentElement from '../../utils/getDocumentElement';
 import hideImage from '../../utils/audioHideImg';
 import showImage from '../../utils/audioShowImg';
 import './audioCall.scss';
+import Loader from '../../ui/loader/loader';
 
 // eslint-disable-next-line react/function-component-definition
 const AudioCall: FC = () => {
@@ -27,6 +28,7 @@ const AudioCall: FC = () => {
   const [result, setResult] = useState<IAnswer[]>([]);
   const [prevWords, setprevWords] = useState<string[]>([]);
   const [currWord, setCurrWord] = useState(obj);
+  const [loading, setLoading] = useState(true);
   const testResult: IAnswer[] = [];
   let arrTranslate: string[] = [];
   let count = 1;
@@ -42,7 +44,9 @@ const AudioCall: FC = () => {
       setCurrWord(current);
       arrTranslate = generateTranslateWord(words, current);
       setTranslateWord(shuffle(arrTranslate));
-      audioPlay(current);
+      if (loading === true) {
+        setTimeout(() => { setLoading(false); audioPlay(current); }, 2000);
+      } else audioPlay(current);
     } catch (e) { console.log(e); }
   }
 
@@ -117,21 +121,27 @@ const AudioCall: FC = () => {
 
   return (
     <div className="audiogame">
-      <NavLink className="audiogame__close _icon-close" to="/" />
-      <NavLink className="audiogame__result" to="/audiocall/result" />
-      <div className="audiogame__container">
-        <div className="audiogame__header">
-          <p className="audiogame__header_amount">
-            {amountWords}
-            /10
-          </p>
-          <img className="audiogame__header_img" src={`https://rs-lang-team148.herokuapp.com/${currWord.image}`} alt="" />
-        </div>
-        <div className="audiogame__recoder _icon-volum" onClick={() => { sound(`https://rs-lang-team148.herokuapp.com/${currWord.audio}`); }} role="button" tabIndex={0} onKeyDown={() => {}}> </div>
-        <div className="audiogame__translate" onClick={(e) => { chooseAnswer(e); }} role="button" tabIndex={0} onKeyDown={() => {}}>
-          {translateWords.map((item) => <button className="audiogame__translate_item" key={item} type="button">{item}</button>)}
-        </div>
-      </div>
+      { loading === true
+        ? <div className="gameresult__loader"><Loader /></div>
+        : (
+          <div>
+            <NavLink className="audiogame__close _icon-close" to="/" />
+            <NavLink className="audiogame__result" to="/audiocall/result" />
+            <div className="audiogame__container">
+              <div className="audiogame__header">
+                <p className="audiogame__header_amount">
+                  {amountWords}
+                  /10
+                </p>
+                <img className="audiogame__header_img" src={`https://rs-lang-team148.herokuapp.com/${currWord.image}`} alt="" />
+              </div>
+              <div className="audiogame__recoder _icon-volum" onClick={() => { sound(`https://rs-lang-team148.herokuapp.com/${currWord.audio}`); }} role="button" tabIndex={0} onKeyDown={() => {}}> </div>
+              <div className="audiogame__translate" onClick={(e) => { chooseAnswer(e); }} role="button" tabIndex={0} onKeyDown={() => {}}>
+                {translateWords.map((item) => <button className="audiogame__translate_item" key={item} type="button">{item}</button>)}
+              </div>
+            </div>
+          </div>
+        )}
     </div>
   );
 };
