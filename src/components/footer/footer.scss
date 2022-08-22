@@ -1,13 +1,11 @@
 @import '../../style/global.scss';
 
 .footer {
-   position: absolute;
-   bottom: 0;
    display: flex;
    justify-content: center;
    align-items: flex-end;
-   width: calc(100% - 63px);
-   margin-left: 63px;
+   // width: calc(100% - 63px);
+   // margin-left: 63px;
    padding-bottom: 10px;
    &__about{
       display: flex;

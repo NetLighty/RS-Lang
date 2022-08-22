@@ -13,7 +13,7 @@ const GameAudioAbout: FC = () => (
       addText="Тебе надо будет перевести 20 слов, это же пустяки для тебя?"
       addClass="audio"
       textButton="играем"
-      path="/audioСall"
+      path="/audiocall"
     />
   </div>
 );

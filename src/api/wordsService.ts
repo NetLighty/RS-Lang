@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+
 import { IWord } from '~/models/IWord';
 import apiUrl from '~/utils/api';
 
