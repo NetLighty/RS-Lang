@@ -81,10 +81,6 @@
     color: $greyColor;
   }
 
-  &__meaning__sound__wrapper, &__example__sound__wrapper {
-    display: flex;
-  }
-
   &__meaning__sound,  &__example__sound {
     width: 15px;
     height: 15px;
