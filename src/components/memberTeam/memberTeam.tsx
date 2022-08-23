@@ -9,7 +9,6 @@ interface MemberTeamProps {
   description: string;
 }
 
-// eslint-disable-next-line react/function-component-definition
 const MemberTeam: FC<MemberTeamProps> = ({
   name, link, gitName, imgClass, description,
 }) => (

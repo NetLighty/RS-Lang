@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import Footer from '../../components/footer/footer';
 import MemberTeam from '../../components/memberTeam/memberTeam';
 import './team.scss';
 
@@ -28,6 +29,9 @@ const Team: FC = () => (
         imgClass="irina"
         description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of t"
       />
+    </div>
+    <div className="team__footer">
+      <Footer />
     </div>
   </div>
 );

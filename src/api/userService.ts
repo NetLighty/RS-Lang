@@ -1,9 +1,9 @@
 import axios, { AxiosResponse } from 'axios';
-import { Auth } from '~/models/Auth';
-import { ISettings } from '~/models/ISetting';
-import { IStatistic } from '~/models/IStatistic';
-import { IUser } from '~/models/IUser';
-import apiUrl from '~/utils/api';
+import { Auth } from '../models/Auth';
+import { ISettings } from '../models/ISetting';
+import { IStatistic } from '../models/IStatistic';
+import { IUser } from '../models/IUser';
+import apiUrl from '../utils/api';
 
 export default class UserService {
   static async createUser(

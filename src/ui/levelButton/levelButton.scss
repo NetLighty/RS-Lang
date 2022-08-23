@@ -1,0 +1,42 @@
+@import '../../style/global.scss';
+
+.level-button {
+   width: 60px;
+   height: 60px;
+   border-radius: 100%;
+   opacity: 0.8;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   transition: all 0.5s ease;
+   color: #fff;
+   font-size: $addFontSize;
+   &:hover{
+      opacity: 1;
+      transform: scale(1.2);
+   }
+}
+.first-level{
+   background-color: $firstLevelButton;
+}
+.second-level{
+   background-color: $secondLevelButton;
+}
+.third-level{
+   background-color: $lightPinkColor;
+}
+.fourth-level{
+   background-color: $darkBlueColor;
+}
+.fifth-level{
+   background-color: $lightOrangeColor;
+}
+.sixth-level{
+   background-color: $darkOrangeColor;
+}
+
+.active {
+   opacity: 1;
+   scale: 1.2;
+}

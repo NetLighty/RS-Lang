@@ -35,3 +35,4 @@ export type WordsStateType = {
     [page:number]: Array<IWord>
   }
 };
+

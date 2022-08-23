@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
-import { IWord } from '~/models/IWord';
-import apiUrl from '~/utils/api';
+
+import { IWord } from '../models/IWord';
+import apiUrl from '../utils/api';
 
 export default class WordService {
   static async getChunkOfWords(group: string, page: string): Promise<AxiosResponse<IWord[]>> {
