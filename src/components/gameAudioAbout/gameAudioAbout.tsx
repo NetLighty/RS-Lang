@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import DescriptionGame from '../descriptionGame/descriptionGames';
 import './gameAudioAbout.scss';
 
-// eslint-disable-next-line react/function-component-definition
 const GameAudioAbout: FC = () => (
   <div className="games__audio">
     <div className="games__audio_girl" />

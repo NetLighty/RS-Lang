@@ -12,7 +12,6 @@ interface DescriptionGameProps {
   keys: string;
 }
 
-// eslint-disable-next-line react/function-component-definition
 const DescriptionGame: FC<DescriptionGameProps> = ({
   name, text, addText, addClass, textButton, path, keys,
 }) => (

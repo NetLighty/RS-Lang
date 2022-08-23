@@ -8,7 +8,6 @@ interface ResultWordProps {
   prefixClass: string;
 }
 
-// eslint-disable-next-line react/function-component-definition
 const ResultWord: FC<ResultWordProps> = ({ item, prefixClass }) => (
   <div className={`${prefixClass}__item`} key={item.word}>
     <div className={`${prefixClass}__item_recoder _icon-volum`} onClick={() => { sound(`https://rs-lang-team148.herokuapp.com/${item.audio}`); }} role="button" tabIndex={0} onKeyDown={() => {}}> </div>

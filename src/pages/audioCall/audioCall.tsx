@@ -21,8 +21,6 @@ import Loader from '../../ui/loader/loader';
 import chooseKeyDown from '../../utils/chooseKeyDown';
 import './audioCall.scss';
 
-
-// eslint-disable-next-line react/function-component-definition
 const AudioCall: FC = () => {
   const [levelWords, setLevelWords] = useState<IWord[]>([]);
   const [translateWords, setTranslateWord] = useState<string[]>([]);
