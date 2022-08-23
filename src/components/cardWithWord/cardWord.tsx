@@ -6,6 +6,7 @@ import './cardWord.scss';
 import DifficultWordButton from './cardButtons/difficultWordButton';
 import LearnedWordButton from './cardButtons/learnedWordButton';
 import SoundWordButton from './cardButtons/soundWordButton';
+import useUpdateUserWord from '~/hooks/useUpdateUserWord';
 
 interface CardWordProps {
   word: IWord;
@@ -13,6 +14,7 @@ interface CardWordProps {
 
 const CardWord:FC<CardWordProps> = ({ word }) => {
   const [isAuth] = useState(true);
+  const { updateWord } = useUpdateUserWord();
   return (
     <div className="card">
       <img className="card__image" src={`${SETTINGS.BASE_URL}/${word.image}`} alt={word.word} />
@@ -35,8 +37,8 @@ const CardWord:FC<CardWordProps> = ({ word }) => {
       </div>
       {isAuth && (
       <div className="card__buttons">
-        <LearnedWordButton word={word} />
-        <DifficultWordButton />
+        <LearnedWordButton />
+        <DifficultWordButton onClick={() => updateWord(word, { difficulty: SETTINGS.HARD_WORD })} />
       </div>
       )}
     </div>

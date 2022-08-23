@@ -18,22 +18,8 @@ For example, dispatch(updateUserWord(SETTINGS.USER_ID, word, SETTINGS.TOKEN,
   { difficulty: 'light' }))
 */
 
-// TODO delete after users information will be added. For testing
-// export const loginUser = async (user:any) => {
-//   const rawResponse = await fetch('https://rs-lang-team148.herokuapp.com/signin', {
-//     method: 'POST',
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(user),
-//   });
-//   const content = await rawResponse.json();
-//   console.log(content);
-// };
-
-// export function loginUserId() {
-//   loginUser({ email: 'hello@user.com', password: 'Gfhjkm_123' });
+// TODO delete after users information will be added. For testin
+// loginUser({ email: 'hello@user.com', password: 'Gfhjkm_123' });
 // }
 
 export const addUserWordsToStore = (data: Array<IUserWord>) => (

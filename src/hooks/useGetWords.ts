@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IWord } from '../models/IWord';
+import { AddWordsAction, IWord } from '../models/IWord';
 import { RootState } from '../store/index.reducers';
 import { getWordsFromServer } from '../store/word.actions';
 
@@ -25,7 +25,7 @@ export default function useGetWords() {
     setIsLoading(true);
     setRequest({ group, page });
     // TODO check the type
-    return dispatch(getWordsFromServer(group, page) as any);
+    return dispatch(getWordsFromServer(group, page) as unknown as AddWordsAction);
   }, [dispatch, words]);
 
   useEffect(() => {

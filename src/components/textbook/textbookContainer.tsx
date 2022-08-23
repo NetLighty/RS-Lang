@@ -15,12 +15,16 @@ const TextbookContainer:FC = () => {
   const group = useSelector((state:RootState) => state.textbook.group);
   const page = useSelector((state:RootState) => state.textbook.page);
   const wordsToRender = useSelector((state:RootState) => state.textbook.bookWords);
+  const isAuth = true;
 
   useEffect(() => {
     // loginUserId();
-    getWords(group, page);
-    dowloadUserWords();
-  }, [group, page, getWords, dowloadUserWords]);
+    getWords(group, page);// download without auth ????
+    if (isAuth) {
+      dowloadUserWords();
+      // get Aggregated words and display them????
+    }
+  }, [group, page, getWords, dowloadUserWords, isAuth]);
 
   useEffect(() => {
     if (bookPageWords?.length) dispatch(addCurrentBookWords([...bookPageWords]));
