@@ -8,7 +8,10 @@ const SETTINGS = {
   LAST_PAGE: 'last_page',
   PREVIOUS_PAGE: 'previous_page',
   CURRENT_PAGE: 'current_page',
-  USER_ID: '63034f54f8782c00150491c5', // TODO replace real data. For testing
+  USER_ID: '630495413c6b60001672b8e6', // TODO replace real data. For testing
+  HARD_WORD: 'hard',
+  NORMAL_WORD: 'normal',
+  TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDQ5NTQxM2M2YjYwMDAxNjcyYjhlNiIsImlhdCI6MTY2MTI0NzM5NywiZXhwIjoxNjYxMjYxNzk3fQ.4XBbCfbaluvhLcngUxeUzvJ3ygZhz7v7Eo9Bb6dOr4o',
 };
 
 export default SETTINGS;

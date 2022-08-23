@@ -6,9 +6,11 @@ import { IWord } from '../../models/IWord';
 import { addCurrentBookWords } from '../../store/textbook.actions';
 import CardWord from '../cardWithWord/cardWord';
 import Loading from '../loading/loading';
+import useGetUserWords from '~/hooks/useGetUserWords';
 
 const TextbookContainer:FC = () => {
   const { bookPageWords, getWords, isLoading } = useGetWords();
+  const {dowloadUserWords} = useGetUserWords();
   const dispatch = useDispatch();
   const group = useSelector((state:RootState) => state.textbook.group);
   const page = useSelector((state:RootState) => state.textbook.page);
@@ -16,6 +18,7 @@ const TextbookContainer:FC = () => {
 
   useEffect(() => {
     getWords(group, page);
+    dowloadUserWords();
   }, [group, page, getWords]);
 
   useEffect(() => {

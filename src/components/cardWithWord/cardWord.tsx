@@ -35,7 +35,7 @@ const CardWord:FC<CardWordProps> = ({ word }) => {
       </div>
       {isAuth && (
       <div className="card__buttons">
-        <LearnedWordButton />
+        <LearnedWordButton word={word} />
         <DifficultWordButton />
       </div>
       )}
