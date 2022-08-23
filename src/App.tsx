@@ -12,7 +12,6 @@ import AudioLevel from './pages/gameLevel/gameLevel';
 import AudioCall from './pages/audioCall/audioCall';
 import AudioResult from './pages/gameResult/gameResult';
 
-// eslint-disable-next-line react/function-component-definition
 const App = () => (
   <BrowserRouter>
     <Menu />

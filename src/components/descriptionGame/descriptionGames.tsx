@@ -9,11 +9,11 @@ interface DescriptionGameProps {
   addClass: string;
   textButton: string;
   path: string;
+  keys: string;
 }
 
-// eslint-disable-next-line react/function-component-definition
 const DescriptionGame: FC<DescriptionGameProps> = ({
-  name, text, addText, addClass, textButton, path,
+  name, text, addText, addClass, textButton, path, keys,
 }) => (
   <div className={`description description-${addClass}`}>
     <div className={`description__content description-${addClass}__content`}>
@@ -23,6 +23,14 @@ const DescriptionGame: FC<DescriptionGameProps> = ({
     </div>
     <div className={`description-${addClass}__button`}>
       <StartGame text={textButton} path={path} />
+    </div>
+    <div className={`description-${addClass}__promt`}>
+      <div className={`description-${addClass}__promt_content`}>
+        Для управления клавиатурой используйте клавиши:
+        {' '}
+        {keys}
+      </div>
+      <div className={`description-${addClass}__promt_img`}> </div>
     </div>
   </div>
 );

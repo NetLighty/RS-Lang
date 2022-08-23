@@ -10,7 +10,6 @@ interface AudioLevelProps {
   to: string;
 }
 
-// eslint-disable-next-line react/function-component-definition
 const AudioLevel: FC<AudioLevelProps> = ({ gameName, to }) => {
   const [choose, setChoose] = useState(false);
 
