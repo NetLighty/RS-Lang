@@ -13,7 +13,7 @@ export default function userWordsReducer(
   /* eslint-disable */
   ) {
 
-  if(action.type === UserWordsActionsTypes.ADD_WORDS_TO_STORE){
+  if(action.type === UserWordsActionsTypes.ADD_USER_WORDS_TO_STORE){
     const userWords:UsersWordsStateType = {};
      action.payload.forEach((item:IUserWord) => {
       if(item.optional){
@@ -22,7 +22,7 @@ export default function userWordsReducer(
 				userWords[item.optional.group][item.optional.page].push(item);
       }})
      return {...state, userWords};
-  } else if (action.type === UserWordsActionsTypes.ADD_WORD_TO_STORE){
+  } else if (action.type === UserWordsActionsTypes.ADD_USER_WORD_TO_STORE){
     const userWords = {...state}
     if(action.payload.optional) {
     const {group, page} = action.payload.optional;

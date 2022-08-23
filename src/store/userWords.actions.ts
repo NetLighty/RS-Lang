@@ -4,10 +4,10 @@ import { IUserWord, Options, UserWordsActionsTypes } from '../models/IUserWord';
 import UserWordService from '../api/userWordsService';
 
 export const addUserWordsToStore = (data: Array<IUserWord>) => (
-  { type: UserWordsActionsTypes.ADD_WORDS_TO_STORE, payload: data }
+  { type: UserWordsActionsTypes.ADD_USER_WORDS_TO_STORE, payload: data }
 );
 
-export const addWordToUser = (word:IUserWord) => ({ type: UserWordsActionsTypes.ADD_WORD_TO_STORE, payload: word });
+export const addWordToUser = (word:IUserWord) => ({ type: UserWordsActionsTypes.ADD_USER_WORD_TO_STORE, payload: word });
 
 export function getUserWords(userId: string, token:string) {
   return async (dispatch: any) => {
@@ -22,8 +22,7 @@ export function getUserWords(userId: string, token:string) {
   };
 }
 
-export function getUserWordsById(userId: string, wordId:string, token:string) {
-  return async () => {
+export async function getUserWordsById(userId: string, wordId:string, token:string) {
     try {
       const response:AxiosResponse = await UserWordService.getUserWord(userId, wordId,token);
       const data = (await response.data) as IUserWord;
@@ -32,8 +31,8 @@ export function getUserWordsById(userId: string, wordId:string, token:string) {
       return error;
     }
   };
-}
 
+//Don't send requests with empty strings. You get 422 Error
 export function createUserWord(userId: string, word:IWord, token:string, data:IUserWord) {
   const defaultOptionalInfo:Options = {
     id: word.id,
@@ -69,6 +68,7 @@ export function createUserWord(userId: string, word:IWord, token:string, data:IU
   };
 }
 
+//Don't send requests with empty strings. You get 422 Error
 export function updateUserWord(userId: string, word:IWord, token:string, data:IUserWord) {
   const defaultOptionalInfo:Options = {
     id: word.id,
@@ -77,9 +77,9 @@ export function updateUserWord(userId: string, word:IWord, token:string, data:IU
     learned: false,
     success: 0,
     allAttemts: 0,
-    dataupdate: '',
-    audiogame: '',
-    sprint: '',
+    dataupdate: '0',
+    audiogame: '0',
+    sprint: '0',
   };
 
   const userWord:IUserWord = {
@@ -114,7 +114,6 @@ export const loginUser = async (user:any) => {
     body: JSON.stringify(user),
   });
   const content = await rawResponse.json();
-
   console.log(content);
 };
 //

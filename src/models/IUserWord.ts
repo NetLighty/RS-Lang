@@ -20,8 +20,8 @@ export enum UserWordsActionsTypes {
   GET_USER_WORDS = 'GET_USER_WORDS',
   CREATE_USER_WORD = 'CREATE_USER_WORD',
   UPDATE_USER_WORD = 'UPDATE_USER_WORD',
-  ADD_WORDS_TO_STORE = 'ADD_WORDS_TO_STORE',
-  ADD_WORD_TO_STORE = 'ADD_WORD_TO_USER_STORE',
+  ADD_USER_WORDS_TO_STORE = 'ADD_USER_WORDS_TO_STORE',
+  ADD_USER_WORD_TO_STORE = 'ADD_USER_WORD_TO_USER_STORE',
 }
 
 interface GetUserWordsAction {
@@ -56,12 +56,12 @@ interface UpdateUserWordsAction {
 }
 
 export interface AddUserWordsToStoreAction {
-  type: UserWordsActionsTypes.ADD_WORDS_TO_STORE,
+  type: UserWordsActionsTypes.ADD_USER_WORDS_TO_STORE,
   payload: Array<IUserWord>
 }
 
 export interface AddUserWordToStoreAction {
-  type: UserWordsActionsTypes.ADD_WORD_TO_STORE,
+  type: UserWordsActionsTypes.ADD_USER_WORD_TO_STORE,
   payload: IUserWord
 }
 
