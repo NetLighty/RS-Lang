@@ -11,7 +11,7 @@ const SETTINGS = {
   USER_ID: '630495413c6b60001672b8e6', // TODO replace real data. For testing
   HARD_WORD: 'hard',
   NORMAL_WORD: 'normal',
-  TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDQ5NTQxM2M2YjYwMDAxNjcyYjhlNiIsImlhdCI6MTY2MTI0NzM5NywiZXhwIjoxNjYxMjYxNzk3fQ.4XBbCfbaluvhLcngUxeUzvJ3ygZhz7v7Eo9Bb6dOr4o',
+  TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDQ5NTQxM2M2YjYwMDAxNjcyYjhlNiIsImlhdCI6MTY2MTI2MjMyMCwiZXhwIjoxNjYxMjc2NzIwfQ.9790bxYVPZBwWGHDSGQBDcIHqC1JAzP9DQrdefmTkgw',
 };
 
 export default SETTINGS;

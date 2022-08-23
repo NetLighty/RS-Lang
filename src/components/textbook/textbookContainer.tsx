@@ -10,16 +10,17 @@ import useGetUserWords from '~/hooks/useGetUserWords';
 
 const TextbookContainer:FC = () => {
   const { bookPageWords, getWords, isLoading } = useGetWords();
-  const {dowloadUserWords} = useGetUserWords();
+  const { dowloadUserWords } = useGetUserWords();
   const dispatch = useDispatch();
   const group = useSelector((state:RootState) => state.textbook.group);
   const page = useSelector((state:RootState) => state.textbook.page);
   const wordsToRender = useSelector((state:RootState) => state.textbook.bookWords);
 
   useEffect(() => {
+    // loginUserId();
     getWords(group, page);
     dowloadUserWords();
-  }, [group, page, getWords]);
+  }, [group, page, getWords, dowloadUserWords]);
 
   useEffect(() => {
     if (bookPageWords?.length) dispatch(addCurrentBookWords([...bookPageWords]));

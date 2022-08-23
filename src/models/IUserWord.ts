@@ -15,13 +15,19 @@ export type Options = {
   sprint: string
 };
 
+export enum AddUserWordsActionsTypes {
+  ADD_USER_WORDS_TO_STORE = 'ADD_USER_WORDS_TO_STORE',
+}
+
+export enum AddUserWordsIdActionsTypes {
+  ADD_USER_WORD_TO_STORE = 'ADD_USER_WORD_TO_USER_STORE',
+}
+
 export enum UserWordsActionsTypes {
   GET_ALL_USER_WORDS = 'GET_ALL_USER_WORDS',
   GET_USER_WORDS = 'GET_USER_WORDS',
   CREATE_USER_WORD = 'CREATE_USER_WORD',
   UPDATE_USER_WORD = 'UPDATE_USER_WORD',
-  ADD_USER_WORDS_TO_STORE = 'ADD_USER_WORDS_TO_STORE',
-  ADD_USER_WORD_TO_STORE = 'ADD_USER_WORD_TO_USER_STORE',
 }
 
 interface GetUserWordsAction {
@@ -56,12 +62,12 @@ interface UpdateUserWordsAction {
 }
 
 export interface AddUserWordsToStoreAction {
-  type: UserWordsActionsTypes.ADD_USER_WORDS_TO_STORE,
+  type: AddUserWordsActionsTypes.ADD_USER_WORDS_TO_STORE,
   payload: Array<IUserWord>
 }
 
 export interface AddUserWordToStoreAction {
-  type: UserWordsActionsTypes.ADD_USER_WORD_TO_STORE,
+  type: AddUserWordsIdActionsTypes.ADD_USER_WORD_TO_STORE,
   payload: IUserWord
 }
 
@@ -71,4 +77,6 @@ export type UsersWordsStateType = {
   }
 };
 
-export type UserWordsActions = GetUserWordsAction | GetUserWordByIdAction | CreateUserWordsAction | UpdateUserWordsAction | AddUserWordsToStoreAction | AddUserWordToStoreAction;
+export type UserWordsActions = GetUserWordsAction | GetUserWordByIdAction
+| CreateUserWordsAction | UpdateUserWordsAction | AddUserWordsToStoreAction
+| AddUserWordToStoreAction;

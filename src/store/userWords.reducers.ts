@@ -1,6 +1,6 @@
 import {
   IUserWord, UserWordsActions, UsersWordsStateType,
-  UserWordsActionsTypes,
+  AddUserWordsActionsTypes, AddUserWordsIdActionsTypes,
 } from '~/models/IUserWord';
 
 const initialState:UsersWordsStateType = {};
@@ -13,7 +13,7 @@ export default function userWordsReducer(
   /* eslint-disable */
   ) {
 
-  if(action.type === UserWordsActionsTypes.ADD_USER_WORDS_TO_STORE){
+  if(action.type === AddUserWordsActionsTypes.ADD_USER_WORDS_TO_STORE){
     const userWords:UsersWordsStateType = {};
      action.payload.forEach((item:IUserWord) => {
       if(item.optional){
@@ -21,12 +21,12 @@ export default function userWordsReducer(
         if(!Array.isArray(userWords[item.optional.group][item.optional.page])) userWords[item.optional.group][item.optional.page] = []
 				userWords[item.optional.group][item.optional.page].push(item);
       }})
-     return {...state, userWords};
-  } else if (action.type === UserWordsActionsTypes.ADD_USER_WORD_TO_STORE){
+     return {...state, ...userWords};
+  } else if (action.type === AddUserWordsIdActionsTypes.ADD_USER_WORD_TO_STORE){
     const userWords = {...state}
     if(action.payload.optional) {
     const {group, page} = action.payload.optional;
-    if(!userWords[group]) userWords[group] = {}
+    if(!userWords[group]) {userWords[group] = {}}
     if(!Array.isArray(userWords[group][page])) {
       userWords[group][page] = [action.payload];
     } else {
@@ -46,7 +46,7 @@ export default function userWordsReducer(
     }
 
     }
-    return {...state, userWords};
+    return {...state, ...userWords};
   } else {
     return state;
   }
