@@ -5,17 +5,28 @@
    flex-direction: column;
    align-items: center;
    position: relative;
-   row-gap: 32px;
+   row-gap: 1.1rem;
+   &__input-block {
+      display: grid;
+      grid-template-columns: 1fr;
+      row-gap: 0.5rem;
+   }
    &__img {
       position: absolute;
       left: -70px;
       top: -40px;
-
    }
    &__text{
-      color: #5A5757;
-      font-size: $addFontSize;
-      margin: 48px 0 0 0;
+      color: $darkOrangeColor;
+      font-size: 2.4rem;
+      margin: 3.5rem 0 2rem 0;
+   }
+   &__error-container {
+      height: $errorMessageHeight;
+   }
+   &__error-message {
+      font-size: 1.8rem;
+      color: red;
    }
    &__email,
    &__password{
@@ -52,5 +63,10 @@
          width: 146px;
          background-color: $lightOrangeColor;
       }
+   }
+   .auth-link {
+      text-decoration: none;
+      color: $darkOrangeColor;
+      font-size: 2rem;
    }
 }

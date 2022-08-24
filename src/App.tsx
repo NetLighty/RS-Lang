@@ -11,6 +11,7 @@ import MiniGames from './pages/miniGames/miniGames';
 import AudioLevel from './pages/gameLevel/gameLevel';
 import AudioCall from './pages/audioCall/audioCall';
 import AudioResult from './pages/gameResult/gameResult';
+import RegistrationForm from './components/authForm/registrationForm';
 
 const App = () => (
   <BrowserRouter>
@@ -18,6 +19,7 @@ const App = () => (
     <Logo />
     <Routes>
       <Route path="/" element={<MainPage />} />
+      <Route path="/registration" element={<RegistrationForm />} />
       <Route path="/statistic" element={<StatisticPage />} />
       <Route path="/team" element={<Team />} />
       <Route path="/book" element={<Book />} />

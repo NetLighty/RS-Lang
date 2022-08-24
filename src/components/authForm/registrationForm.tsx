@@ -2,22 +2,23 @@ import {
   Field, Form, Formik,
 } from 'formik';
 import React, { FC } from 'react';
-import { LoginSchema } from '~/utils/rules/authSchemas';
+import { RegistrationSchema } from '~/utils/rules/authSchemas';
 import './authForm.scss';
 
 const result = window.location.origin;
 
-interface LoginValues {
+interface RegistrationValues {
+  username: string;
   email: string;
   password: string;
 }
 
-const AuthForm: FC = () => {
-  const initialValues: LoginValues = { email: '', password: '' };
+const RegistrationForm: FC = () => {
+  const initialValues: RegistrationValues = { username: '', email: '', password: '' };
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={LoginSchema}
+      validationSchema={RegistrationSchema}
       onSubmit={(values, actions) => {
         console.log(values);
         console.log(actions);
@@ -28,9 +29,17 @@ const AuthForm: FC = () => {
         <Form>
           <div className="form">
             <img className="form__img" src={`${result}/src/assets/img/enter.svg`} alt="planet" />
-            <p className="form__text">Добро пожаловать в RSLang!</p>
+            <p className="form__text">Введите ваши данные</p>
             <div className="form__input-block">
-              <Field name="email" className="form__email" placeholder="введите email" />
+              <Field name="username" className="form__email" placeholder="Username" />
+              <div className="form__error-container">
+                {errors.username && touched.username ? (
+                  <span className="form__error-message">{errors.username}</span>
+                ) : null}
+              </div>
+            </div>
+            <div className="form__input-block">
+              <Field name="email" className="form__email" placeholder="Email" />
               <div className="form__error-container">
                 {errors.email && touched.email ? (
                   <span className="form__error-message">{errors.email}</span>
@@ -38,7 +47,7 @@ const AuthForm: FC = () => {
               </div>
             </div>
             <div className="form__input-block">
-              <Field name="password" className="form__password" type="password" placeholder="введите пароль" />
+              <Field name="password" className="form__password" type="password" placeholder="Пароль" />
               <div className="form__error-container">
                 {errors.password && touched.password ? (
                   <span className="form__error-message">{errors.password}</span>
@@ -56,4 +65,4 @@ const AuthForm: FC = () => {
   );
 };
 
-export default AuthForm;
+export default RegistrationForm;
