@@ -7,6 +7,7 @@
     flex-direction: column;
     margin-left: 25px;
     width: 100%;
+    max-width: 1200px;
   }
 
   &__header{
@@ -87,6 +88,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 300px;
   }
 
   &__pagination {
@@ -94,6 +96,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 300px;
   }
 
   &__pagination__button {
@@ -116,10 +119,9 @@
    }
   }
 
-  &__footer {
+  &__bottom {
     display: grid;
     grid-template-rows: 1fr 2fr; 
-    width: 30%;
     align-items: center;
     justify-items: stretch;
     align-self: center;
@@ -180,6 +182,13 @@
     top: -45px;
     left: 0;
   }
+
+  &__footer {
+    width: calc(100% - 63px);
+      @media (max-width: 1200px) {
+         width: 100%;
+      }
+ }
 }
 
 #darkBrown {

@@ -16,7 +16,7 @@ const TextbookContent = ():JSX.Element => (
     <div className="book__cards">
       <TextbookContainer />
     </div>
-    <div className="book__footer">
+    <div className="book__bottom">
       <Pagination />
       <div className="book__games">
         <AudioGameButton />
