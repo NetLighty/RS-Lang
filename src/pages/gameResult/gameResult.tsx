@@ -56,13 +56,13 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
   useEffect(() => {
     if (flag !== false) {
       getResult();
-      upsertSettings();
-    }
-    if (isAuth) {
-      dowloadUserWords();
+      if (isAuth) {
+        dowloadUserWords();
+        upsertSettings();
+      }
     }
     setTimeout(() => { setLoading(false); }, 2000);
-  }, [isAuth]);
+  }, []);
 
   return (
     <div className="gameresult">

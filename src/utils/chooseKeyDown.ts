@@ -2,6 +2,7 @@ import getDocumentElement from './getDocumentElement';
 
 function chooseKeyDown(event: KeyboardEvent) {
   switch (event.keyCode) {
+    case 32: getDocumentElement('.audiogame__recoder')[0].click(); break;
     case 49: getDocumentElement('.audiogame__translate_item')[0].click(); break;
     case 50: getDocumentElement('.audiogame__translate_item')[1].click(); break;
     case 51: getDocumentElement('.audiogame__translate_item')[2].click(); break;

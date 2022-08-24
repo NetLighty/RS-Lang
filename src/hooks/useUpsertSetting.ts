@@ -1,8 +1,14 @@
 import { DefaultSettingsOptional, ISettings } from '~/models/ISetting';
+// eslint-disable-next-line import/extensions
 import { getSettingsData, updateSettingsData } from '~/utils/setting.action';
 
 export default function useUpsertSetting(
-  userId: string, token: string, gameName: string, wordsCount: number, success: number) {
+  userId: string,
+  token: string,
+  gameName: string,
+  wordsCount: number,
+  success: number,
+) {
   const upsertSettings = () => {
     const settings = getSettingsData(userId, token)
       .then((response) => {
