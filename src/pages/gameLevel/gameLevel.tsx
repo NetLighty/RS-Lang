@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import sound from '../../utils/sound';
+import { sound } from '../../utils/subGameFunc';
 import LevelButton from '../../ui/levelButton/levelButton';
 import './gameLevel.scss';
 

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import sound from '../../utils/sound';
+import { sound } from '../../utils/subGameFunc';
 import { IResultWord } from '../../models/IResultWord';
 import './resultWord.scss';
 
