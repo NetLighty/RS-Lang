@@ -7,6 +7,10 @@ import { IAnswer } from '../../models/IAnswer';
 import { IResultWord } from '../../models/IResultWord';
 import createResultWord from '../../utils/createResultWord';
 import './gameResult.scss';
+import useGetUserWords from '~/hooks/useGetUserWords';
+import useUpdateUserWord from '~/hooks/useUpdateUserWord';
+import useUpsertSetting from '~/hooks/useUpsertSetting';
+import { ID, TOKEN } from '~/utils/my';
 
 interface GameResultProps {
   nameResult: string;
@@ -16,7 +20,18 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
   const [result, setResult] = useState<IResultWord[]>([]);
   const [loading, setLoading] = useState(true);
   const answerArr = JSON.parse(localStorage.getItem(nameResult) as string) as IAnswer[];
+  const successResult = answerArr.filter((item) => item.answer === true);
+  const { dowloadUserWords } = useGetUserWords();
+  const { updateWord } = useUpdateUserWord();
+  const { upsertSettings } = useUpsertSetting(
+    ID,
+    TOKEN,
+    localStorage.gameName as string,
+    answerArr.length,
+    successResult.length,
+  );
   let flag: boolean;
+  const isAuth = true;
 
   function getResult() {
     flag = false;
@@ -31,6 +46,8 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
             item.answer,
           );
           arr.push(obj);
+        }).then((response) => {
+          // updateWord(response.data, {su})
         });
     });
     setResult(arr);
@@ -38,11 +55,14 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
 
   useEffect(() => {
     if (flag !== false) {
-      // getResult().then(() => { setResult(arr); }, () => {});
       getResult();
+      upsertSettings();
+    }
+    if (isAuth) {
+      dowloadUserWords();
     }
     setTimeout(() => { setLoading(false); }, 2000);
-  }, []);
+  }, [isAuth]);
 
   return (
     <div className="gameresult">

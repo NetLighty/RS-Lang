@@ -95,6 +95,7 @@ const AudioCall: FC = () => {
 
   function goToResult() {
     localStorage.setItem('audiores', JSON.stringify(result.concat(testResult)));
+    localStorage.setItem('gameName', 'audio');
     const pageRes: HTMLElement | null = document.querySelector('.audiogame__result');
     pageRes?.click();
   }

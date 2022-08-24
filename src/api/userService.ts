@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { Auth } from '../models/Auth';
-import { ISettings } from '../models/ISetting';
+import { ISettings, SettingsOptional } from '../models/ISetting';
 import { IStatistic } from '../models/IStatistic';
 import { IUser } from '../models/IUser';
 import apiUrl from '../utils/api';
@@ -50,15 +50,27 @@ export default class UserService {
     return axios.put(`${apiUrl}/users/${id}`, { learnedWords, optional });
   }
 
-  static async getUserSettings(id: string): Promise<AxiosResponse<ISettings>> {
-    return axios.get(`${apiUrl}/users/${id}/settings`);
+  static async getUserSettings(id: string, token: string): Promise<AxiosResponse<ISettings>> {
+    return axios.get(`${apiUrl}/users/${id}/settings`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+      },
+    });
   }
 
   static async upsertUserSettings(
     id: string,
     wordsPerDay: number,
-    optional?: Record<string, string>,
+    token: string,
+    optional?: SettingsOptional,
   ): Promise<AxiosResponse<ISettings>> {
-    return axios.put(`${apiUrl}/users/${id}/settings`, { wordsPerDay, optional });
+    return axios.put(`${apiUrl}/users/${id}/settings`, { wordsPerDay, optional }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
   }
 }

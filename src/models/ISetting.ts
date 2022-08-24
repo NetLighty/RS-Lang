@@ -1,4 +1,18 @@
 export interface ISettings {
   wordsPerDay: number,
-  optional?: Record<string, string>
+  optional?: SettingsOptional,
 }
+
+export interface SettingsOptional {
+  audioSuccess: number,
+  audioTotalCount: number,
+  sprintSuccess: number,
+  sprintTotalCount: number,
+}
+
+export const DefaultSettingsOptional = {
+  audioSuccess: 0,
+  audioTotalCount: 0,
+  sprintSuccess: 0,
+  sprintTotalCount: 0,
+};
