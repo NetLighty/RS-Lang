@@ -19,7 +19,7 @@ const CardWord:FC<CardWordProps> = ({ word }) => {
     <div className="card">
       <img className="card__image" src={`${SETTINGS.BASE_URL}/${word.image}`} alt={word.word} />
       <div className="card__sound__flex">
-        <div className='card__word__wrapper'>
+        <div className="card__word__wrapper">
           <div className={`card__word card__bgcolor${word.group}`}>{`${word.word[0].toUpperCase() + word.word.slice(1)} ${word.transcription}`}</div>
           <div className="card__translation">{word.wordTranslate}</div>
         </div>
@@ -44,8 +44,10 @@ const CardWord:FC<CardWordProps> = ({ word }) => {
           <span>3</span>
         </div>
         <div className="card__buttons__block">
-        <DifficultWordButton onClick={() => updateWord(word, { difficulty: SETTINGS.HARD_WORD })} />
-        <LearnedWordButton />
+          <DifficultWordButton
+            onClick={() => updateWord(word, { difficulty: SETTINGS.HARD_WORD })}
+          />
+          <LearnedWordButton />
         </div>
       </div>
       )}

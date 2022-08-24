@@ -5,12 +5,12 @@ import './book.scss';
 
 const Book = () => (
   <>
-  <div className="book">
-    <TextbookContent />
-  </div>
-      <div className="book__footer">
+    <div className="book">
+      <TextbookContent />
+    </div>
+    <div className="book__footer">
       <Footer />
-  </div>
+    </div>
   </>
 );
 

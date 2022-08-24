@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { Options } from '../models/IUserWord';
-import { IUserWord } from '../models/IUserWord';
+import { Options, IUserWord } from '../models/IUserWord';
 import { IWord } from '../models/IWord';
 import apiUrl from '../utils/api';
 
