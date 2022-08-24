@@ -14,7 +14,8 @@ interface CardWordProps {
 
 const CardWord:FC<CardWordProps> = ({ word }) => {
   const [isAuth] = useState(true);
-  const { updateWord } = useUpdateUserWord();
+  const { updateWord, updateWordDifficulty } = useUpdateUserWord();
+
   return (
     <div className="card">
       <img className="card__image" src={`${SETTINGS.BASE_URL}/${word.image}`} alt={word.word} />
@@ -45,9 +46,11 @@ const CardWord:FC<CardWordProps> = ({ word }) => {
         </div>
         <div className="card__buttons__block">
           <DifficultWordButton
-            onClick={() => updateWord(word, { difficulty: SETTINGS.HARD_WORD })}
+            onClick={() => updateWordDifficulty(word, { difficulty: SETTINGS.HARD_WORD })}
           />
-          <LearnedWordButton />
+          <LearnedWordButton
+            onClick={() => updateWord(word, { game: 'sprint', dataupdate: (new Date()).toString() })}
+          />
         </div>
       </div>
       )}

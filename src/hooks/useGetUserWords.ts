@@ -15,5 +15,5 @@ export default function useGetUserWords() {
     }
   }, [dispatch, userWords]);
 
-  return { dowloadUserWords };
+  return { dowloadUserWords, userWords };
 }
