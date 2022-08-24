@@ -5,5 +5,5 @@ import { rootReducer } from './index.reducers';
 
 const composeEnhancers = composeWithDevTools || compose;
 const enhancers = [applyMiddleware(thunk)];
-const store = createStore(rootReducer, composeEnhancers(...enhancers));
-export default store;
+export const store = createStore(rootReducer, composeEnhancers(...enhancers));
+export type AppDispatch = typeof store.dispatch;

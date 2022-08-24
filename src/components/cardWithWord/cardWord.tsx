@@ -6,6 +6,7 @@ import './cardWord.scss';
 import DifficultWordButton from './cardButtons/difficultWordButton';
 import LearnedWordButton from './cardButtons/learnedWordButton';
 import SoundWordButton from './cardButtons/soundWordButton';
+import useUpdateUserWord from '~/hooks/useUpdateUserWord';
 
 interface CardWordProps {
   word: IWord;
@@ -13,6 +14,7 @@ interface CardWordProps {
 
 const CardWord:FC<CardWordProps> = ({ word }) => {
   const [isAuth] = useState(true);
+  const { updateWord } = useUpdateUserWord();
   return (
     <div className="card">
       <img className="card__image" src={`${SETTINGS.BASE_URL}/${word.image}`} alt={word.word} />
@@ -21,28 +23,22 @@ const CardWord:FC<CardWordProps> = ({ word }) => {
           <div className="card__word">{`${word.word[0].toUpperCase() + word.word.slice(1)} ${word.transcription}`}</div>
           <div className="card__translation">{word.wordTranslate}</div>
         </div>
-        <SoundWordButton className="_icon-volum card__sound" audio={word.audio} />
+        <SoundWordButton className="_icon-volum card__sound" audio={word.audio} audioMeaning={word.audioMeaning} audioExample={word.audioExample} />
       </div>
       <div className="card__meaning">
         <p className="card__meaning__text">значение</p>
-        <div className="card__meaning__sound__wrapper">
-          <SoundWordButton className="_icon-volum card__meaning__sound" audio={word.audioMeaning} />
-          <p className="card__meaning__textMeaning">{Parser(word.textMeaning)}</p>
-        </div>
+        <p className="card__meaning__textMeaning">{Parser(word.textMeaning)}</p>
         <p className="card__meaning__textMeaningTranslate">{word.textMeaningTranslate}</p>
       </div>
       <div className="card__example">
         <p className="card__example__text">применение</p>
-        <div className="card__example__sound__wrapper">
-          <SoundWordButton className="_icon-volum card__example__sound" audio={word.audioExample} />
-          <p className="card__example__textExample">{Parser(word.textExample)}</p>
-        </div>
+        <p className="card__example__textExample">{Parser(word.textExample)}</p>
         <p className="card__example__textExampleTranslate">{word.textExampleTranslate}</p>
       </div>
       {isAuth && (
       <div className="card__buttons">
         <LearnedWordButton />
-        <DifficultWordButton />
+        <DifficultWordButton onClick={() => updateWord(word, { difficulty: SETTINGS.HARD_WORD })} />
       </div>
       )}
     </div>

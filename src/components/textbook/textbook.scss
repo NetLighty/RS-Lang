@@ -49,6 +49,7 @@
   }
 
   &__group__span {
+    padding: 4px 4px 1px;
     border-radius: 50%;
     background-color: transparent;
     display: block;
@@ -107,6 +108,11 @@
 
     &:hover{
       opacity: 0.8;
+   }
+   &:disabled {
+    color: $darkBlueColor;
+    background-color: $greyColor;
+    border: 1px solid $lightGreyColor;
    }
   }
 
@@ -181,7 +187,6 @@
 }
 
 #darkBrownspan.book__group__span-active {
-  padding: 4px 4px 1px;
   border: 3px solid $darkBrownColor;
 }
 
@@ -190,7 +195,6 @@
 }
 
 #lightBrownspan.book__group__span-active {
-  padding: 4px 4px 1px;
   border: 3px solid $lightBrownColor;
 }
 
@@ -199,7 +203,6 @@
 }
 
 #lightPinkspan.book__group__span-active {
-  padding: 4px 4px 1px;
   border: 3px solid $lightPinkColor;
 }
 
@@ -208,7 +211,6 @@
 }
 
 #lightOrangespan.book__group__span-active {
-  padding: 4px 4px 1px;
   border: 3px solid $lightOrangeColor;
 }
 
@@ -217,7 +219,6 @@
 }
 
 #darkOrangespan.book__group__span-active {
-  padding: 4px 4px 1px;
   border: 3px solid $darkOrangeColor;
 }
 
@@ -226,6 +227,5 @@
 }
 
 #darkBluespan.book__group__span-active {
-  padding: 4px 4px 1px;
   border: 3px solid $darkBlueColor;
 }

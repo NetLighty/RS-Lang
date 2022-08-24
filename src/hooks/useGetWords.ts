@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IWord } from '../models/IWord';
+import { AddWordsAction, IWord } from '../models/IWord';
 import { RootState } from '../store/index.reducers';
 import { getWordsFromServer } from '../store/word.actions';
 
@@ -16,7 +16,7 @@ export default function useGetWords() {
   const [request, setRequest] = useState<Request>({ group: null, page: null });
   const [isLoading, setIsLoading] = useState(false);
 
-  const getWords = (group:number, page:number) => {
+  const getWords = useCallback((group:number, page:number) => {
     if (Object.keys(words).includes(group.toString()) && words[group][page]) {
       setBookPageWords(words[group][page]);
       setIsLoading(false);
@@ -25,8 +25,8 @@ export default function useGetWords() {
     setIsLoading(true);
     setRequest({ group, page });
     // TODO check the type
-    return dispatch(getWordsFromServer(group, page) as any);
-  };
+    return dispatch(getWordsFromServer(group, page) as unknown as AddWordsAction);
+  }, [dispatch, words]);
 
   useEffect(() => {
     if (request.group !== null
