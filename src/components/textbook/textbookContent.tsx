@@ -21,7 +21,7 @@ const TextbookContent = ():JSX.Element => {
         <GroupsBlock />
         <DifficultWordButton onClick={() => { displayDifficultWords(); }} />
       </div>
-      <div className="book__cards">
+      <div className="book__cards__container">
         <TextbookContainer />
       </div>
       <div className="book__bottom">

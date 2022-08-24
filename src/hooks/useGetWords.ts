@@ -24,7 +24,6 @@ export default function useGetWords() {
     }
     setIsLoading(true);
     setRequest({ group, page });
-    // TODO check the type
     return dispatch(getWordsFromServer(group, page) as unknown as AddWordsAction);
   }, [dispatch, words]);
 

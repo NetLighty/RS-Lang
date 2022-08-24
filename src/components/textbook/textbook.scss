@@ -183,6 +183,13 @@
     left: 0;
   }
 
+  &__loader {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__footer {
     width: calc(100% - 63px);
       @media (max-width: 1200px) {
