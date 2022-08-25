@@ -8,6 +8,7 @@ export interface SettingsOptional {
   audioTotalCount: number,
   sprintSuccess: number,
   sprintTotalCount: number,
+  dataSettings: string,
 }
 
 export const DefaultSettingsOptional = {
@@ -15,4 +16,5 @@ export const DefaultSettingsOptional = {
   audioTotalCount: 0,
   sprintSuccess: 0,
   sprintTotalCount: 0,
+  dataSettings: '',
 };

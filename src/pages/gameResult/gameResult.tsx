@@ -23,12 +23,14 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
   const successResult = answerArr.filter((item) => item.answer === true);
   const { dowloadUserWords } = useGetUserWords();
   const { updateWord } = useUpdateUserWord();
+  const nowdDate = new Date();
   const { upsertSettings } = useUpsertSetting(
     ID,
     TOKEN,
     localStorage.gameName as string,
     answerArr.length,
     successResult.length,
+    nowdDate,
   );
   let flag: boolean;
   const isAuth = true;
