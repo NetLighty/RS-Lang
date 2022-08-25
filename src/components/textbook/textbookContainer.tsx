@@ -14,8 +14,8 @@ const TextbookContainer:FC = () => {
   const { bookPageWords, getWords, isLoading } = useGetWords();
   const { dowloadUserWords, userWords } = useGetUserWords();
   const dispatch = useDispatch();
-  const group = useSelector((state:RootState) => state.textbook.group);
-  const page = useSelector((state:RootState) => state.textbook.page);
+  const group = Number(localStorage.getItem('bookGroup') || 0);
+  const page = Number(localStorage.getItem('bookPage') || 0);
   const wordsToRender = useSelector((state:RootState) => state.textbook.bookWords);
   const isAuth = true;
 

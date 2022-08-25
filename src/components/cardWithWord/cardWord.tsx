@@ -15,7 +15,7 @@ interface CardWordProps {
 const CardWord:FC<CardWordProps> = ({ word }) => {
   const [isAuth] = useState(true);
   const { updateWord, updateWordDifficulty } = useUpdateUserWord();
-
+  // console.log(word);
   return (
     <div className="card">
       <img className="card__image" src={`${SETTINGS.BASE_URL}/${word.image}`} alt={word.word} />
