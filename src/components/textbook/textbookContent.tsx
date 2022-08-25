@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import DifficultWordButton from '../difficultWordsButton/difficultWordsButton';
 import AudioGameButton from '../gamesButtons/audioGameButton/audioGameButton';
 import SprintButton from '../gamesButtons/sprintButton/sprintButton';
@@ -7,19 +8,17 @@ import Pagination from '../pagination/pagination';
 import TextbookContainer from './textbookContainer';
 import './textbook.scss';
 import useSavePageToLocalStorage from '~/hooks/useSavePageToLocalStorage';
-import { useNavigate } from 'react-router-dom';
-
 
 const TextbookContent = ():JSX.Element => {
-  const { savePageToLocalStore} = useSavePageToLocalStorage();
   const navigate = useNavigate();
+  const { savePageToLocalStore } = useSavePageToLocalStorage();
 
   function displayDifficultWords() {
   // download difficult words and display them
   }
 
-  function savePageToLocalStoreAndGo(value:string){
-    savePageToLocalStore()
+  function savePageToLocalStoreAndGo(value:string) {
+    savePageToLocalStore();
     navigate(`${value}`);
   }
 

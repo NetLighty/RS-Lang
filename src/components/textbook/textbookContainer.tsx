@@ -4,7 +4,7 @@ import { RootState } from '../../store/index.reducers';
 import useGetWords from '../../hooks/useGetWords';
 import { IWord } from '../../models/IWord';
 import { IUserWord } from '../../models/IUserWord';
-import { addCurrentBookWords } from '../../store/textbook.actions';
+import { addCurrentBookWords, addCurrentGroup, addCurrentPage } from '../../store/textbook.actions';
 import CardWord from '../cardWithWord/cardWord';
 import useGetUserWords from '~/hooks/useGetUserWords';
 import Loader from '~/ui/loader/loader';
@@ -22,7 +22,7 @@ const TextbookContainer:FC = () => {
   const findUserWord = useCallback((word:IWord) => {
     const currentUserWords = userWords[group][page];
     const currentWord = currentUserWords.find((item:IUserWord) => item.optional?.id === word.id);
-    let newWord:IUserWord = {
+    let newWord:IUserWord & IWord = {
       ...word,
       difficulty: SETTINGS.NORMAL_WORD,
       optional: {
@@ -47,6 +47,11 @@ const TextbookContainer:FC = () => {
     }
     return newWord;
   }, [group, page, userWords]);
+
+  useEffect(() => {
+    dispatch(addCurrentGroup(Number(localStorage.getItem('bookGroup')) || 0));
+    dispatch(addCurrentPage(Number(localStorage.getItem('bookPage')) || 0));
+  }, [dispatch]);
 
   useEffect(() => {
     getWords(group, page);

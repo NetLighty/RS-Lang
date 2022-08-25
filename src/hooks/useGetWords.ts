@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { IUserWord } from '~/models/IUserWord';
 import { AddWordsAction, IWord } from '../models/IWord';
 import { RootState } from '../store/index.reducers';
 import { getWordsFromServer } from '../store/word.actions';
@@ -12,7 +13,7 @@ import { getWordsFromServer } from '../store/word.actions';
 export default function useGetWords() {
   const dispatch = useDispatch();
   const words = useSelector((state:RootState) => state.words);
-  const [bookPageWords, setBookPageWords] = useState<Array<IWord> | null>(null);
+  const [bookPageWords, setBookPageWords] = useState<Array<IWord | IUserWord & IWord> | null>(null);
   const [request, setRequest] = useState<Request>({ group: null, page: null });
   const [isLoading, setIsLoading] = useState(false);
 

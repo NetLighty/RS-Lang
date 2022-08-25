@@ -18,15 +18,19 @@ const Pagination = () => {
       switch (target.dataset.direction) {
         case SETTINGS.FIRST_PAGE:
           dispatch(addCurrentPage(0));
+          localStorage.setItem('bookPage', JSON.stringify(0));
           break;
         case SETTINGS.LAST_PAGE:
           dispatch(addCurrentPage(SETTINGS.PAGES - 1));
+          localStorage.setItem('bookPage', JSON.stringify(SETTINGS.PAGES - 1));
           break;
         case SETTINGS.PREVIOUS_PAGE:
           dispatch(addCurrentPage(pageText - 2));
+          localStorage.setItem('bookPage', JSON.stringify(pageText - 2));
           break;
         case SETTINGS.NEXT_PAGE:
           dispatch(addCurrentPage(pageText));
+          localStorage.setItem('bookPage', JSON.stringify(pageText));
           break;
         default: break;
       }
