@@ -7,13 +7,21 @@ import Pagination from '../pagination/pagination';
 import TextbookContainer from './textbookContainer';
 import './textbook.scss';
 import useSavePageToLocalStorage from '~/hooks/useSavePageToLocalStorage';
+import { useNavigate } from 'react-router-dom';
+
 
 const TextbookContent = ():JSX.Element => {
+  const { savePageToLocalStore} = useSavePageToLocalStorage();
+  const navigate = useNavigate();
+
   function displayDifficultWords() {
   // download difficult words and display them
   }
 
-  const { savePageAndGoToGamePage } = useSavePageToLocalStorage();
+  function savePageToLocalStoreAndGo(value:string){
+    savePageToLocalStore()
+    navigate(`${value}`);
+  }
 
   return (
     <div className="book__container">
@@ -27,8 +35,8 @@ const TextbookContent = ():JSX.Element => {
       <div className="book__bottom">
         <Pagination />
         <div className="book__games">
-          <AudioGameButton onClick={() => { savePageAndGoToGamePage('/audiocall'); }} />
-          <SprintButton onClick={() => { savePageAndGoToGamePage('/sprint'); }} />
+          <AudioGameButton onClick={() => { savePageToLocalStoreAndGo('/audiocall'); }} />
+          <SprintButton onClick={() => { savePageToLocalStoreAndGo('/sprint'); }} />
         </div>
       </div>
     </div>
