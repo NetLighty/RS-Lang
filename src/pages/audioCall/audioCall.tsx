@@ -2,23 +2,17 @@ import React, { FC, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { IWord } from '../../models/IWord';
 import { IAnswer } from '../../models/IAnswer';
-import sound from '../../utils/sound';
-import generateTranslateWord from '../../utils/generateTranslateWords';
-import shuffle from '../../utils/shuffle';
 import obj from '../../models/emptyWord';
 import WordService from '../../api/wordsService';
-import getCurrentWord from '../../utils/getCurrentWord';
-import audioPlay from '../../utils/audioPlay';
-import generateNum from '../../utils/generateWordNumber';
-import trueAnswer from '../../utils/trueAnswerPlay';
-import falseAnswer from '../../utils/falseAnswerPlay';
-import clearStyleButton from '../../utils/clearStyleButton';
-import audioBlockButton from '../../utils/audioBlockButton';
-import getDocumentElement from '../../utils/getDocumentElement';
-import hideImage from '../../utils/audioHideImg';
-import showImage from '../../utils/audioShowImg';
 import Loader from '../../ui/loader/loader';
-import chooseKeyDown from '../../utils/chooseKeyDown';
+import {
+  sound, shuffle, getDocumentElement, generateNum, chooseKeyDown, falseAnswer, trueAnswer,
+} from '../../utils/subGameFunc';
+import {
+  getCurrentWord,
+  generateTranslateWord,
+  clearStyleButton, showImage, hideImage, audioBlockButton, audioPlay,
+} from '../../utils/audioFunc';
 import './audioCall.scss';
 
 const AudioCall: FC = () => {
@@ -95,6 +89,7 @@ const AudioCall: FC = () => {
 
   function goToResult() {
     localStorage.setItem('audiores', JSON.stringify(result.concat(testResult)));
+    localStorage.setItem('gameName', 'audio');
     const pageRes: HTMLElement | null = document.querySelector('.audiogame__result');
     pageRes?.click();
   }
