@@ -19,6 +19,17 @@ export default function useUpdateUserWord() {
         if (result === true) {
           editWord.optional.allAttemts += 1;
           editWord.optional.success += 1;
+          editWord.optional.countSuccessInRow += 1;
+          if (editWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROW
+            && editWord.difficulty === SETTINGS.NORMAL_WORD) {
+            editWord.optional.learned = true;
+            editWord.optional.countSuccessInRow = 0;
+          }
+          if (editWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROWHARD
+            && editWord.difficulty === SETTINGS.HARD_WORD) {
+            editWord.optional.learned = true;
+            editWord.optional.countSuccessInRow = 0;
+          }
         } else if (result === false) {
           editWord.optional.allAttemts += 1;
         }
@@ -30,6 +41,7 @@ export default function useUpdateUserWord() {
             editWord.optional.sprint = dataupdate;
           }
         }
+
         const wordForUpdate:IUserWord = {
           ...editWord,
           difficulty: editWord.difficulty || SETTINGS.NORMAL_WORD,
@@ -54,6 +66,7 @@ export default function useUpdateUserWord() {
       page: word.page,
       learned: false,
       result: false,
+      countSuccessInRow: 0,
       success: 0,
       allAttemts: 0,
       dataupdate: '0',

@@ -11,6 +11,8 @@ const SETTINGS = {
   USER_ID: '630495413c6b60001672b8e6', // TODO for testing. Delete after we get users data
   HARD_WORD: 'hard',
   NORMAL_WORD: 'normal',
+  COUNTSUCCESSINROW: 2,
+  COUNTSUCCESSINROWHARD: 4,
   // TODO for testing. Delete after we get users data
   TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDQ5NTQxM2M2YjYwMDAxNjcyYjhlNiIsImlhdCI6MTY2MTQ1NTI1NCwiZXhwIjoxNjYxNDY5NjU0fQ.BMjtea6DH7E6mQ7vSI-uyz8oncYeUWtK1Ih1yXiSQVI',
 };

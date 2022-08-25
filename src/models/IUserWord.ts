@@ -8,7 +8,8 @@ export type Options = {
   group: number,
   page: number,
   learned: boolean,
-  result: boolean
+  result: boolean,
+  countSuccessInRow: number,
   success: number,
   allAttemts: number,
   dataupdate: string,
