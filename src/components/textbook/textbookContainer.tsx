@@ -41,6 +41,7 @@ const TextbookContainer:FC = () => {
         page: word.page,
         learned: false,
         result: false,
+        countSuccessInRow: 0,
         success: 0,
         allAttemts: 0,
         dataupdate: '0',
