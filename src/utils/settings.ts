@@ -8,11 +8,11 @@ const SETTINGS = {
   LAST_PAGE: 'last_page',
   PREVIOUS_PAGE: 'previous_page',
   CURRENT_PAGE: 'current_page',
-  USER_ID: '630495413c6b60001672b8e6', // TODO for testing. Delete after we get users data
+  USER_ID: '63071aac9e822b0016d75a1b', // TODO for testing. Delete after we get users data
   HARD_WORD: 'hard',
   NORMAL_WORD: 'normal',
   // TODO for testing. Delete after we get users data
-  TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDQ5NTQxM2M2YjYwMDAxNjcyYjhlNiIsImlhdCI6MTY2MTM3MTE5OSwiZXhwIjoxNjYxMzg1NTk5fQ.XF4PYuLcf3NHSZzvHGABGUVtujEWj_rZXiR5DmkEjkw',
+  TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDcxYWFjOWU4MjJiMDAxNmQ3NWExYiIsImlhdCI6MTY2MTQxMTMwOCwiZXhwIjoxNjYxNDI1NzA4fQ.ckJKzYZAZ5HOFAQtdFVyicH99ucZ30b5I57Gj41jwoI',
 };
 
 // TODO delete after users information will be added. For testin

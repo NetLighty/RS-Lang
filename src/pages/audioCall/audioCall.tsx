@@ -111,9 +111,13 @@ const AudioCall: FC = () => {
     const answer = getDocumentElement('.audiogame__translate_item');
     audioBlockButton();
     const target = e.target as HTMLInputElement;
-    target.classList.add('choose-answer');
-    checkAnswer(target, answer);
-    checkAmount();
+    if (target.classList.contains('audiogame__translate_item')) {
+      target.classList.add('choose-answer');
+      checkAnswer(target, answer);
+      checkAmount();
+    } else {
+      clearStyleButton();
+    }
   }
 
   document.onkeydown = chooseKeyDown;
