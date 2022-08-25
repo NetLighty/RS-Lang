@@ -22,7 +22,17 @@ const TextbookContainer:FC = () => {
   const findUserWord = useCallback((word:IWord) => {
     const currentUserWords = userWords[group][page];
     const currentWord = currentUserWords.find((item:IUserWord) => item.optional?.id === word.id);
-    let newWord:IUserWord & IWord = {
+    if (currentWord) {
+      const newCurrentWord = {
+        ...word,
+        difficulty: currentWord.difficulty || SETTINGS.NORMAL_WORD,
+        optional: {
+          ...currentWord.optional,
+        },
+      };
+      return newCurrentWord;
+    }
+    const newWord:IUserWord & IWord = {
       ...word,
       difficulty: SETTINGS.NORMAL_WORD,
       optional: {
@@ -39,12 +49,6 @@ const TextbookContainer:FC = () => {
         sprint: '0',
       },
     };
-    if (currentWord) {
-      newWord = {
-        ...word,
-        ...currentWord,
-      };
-    }
     return newWord;
   }, [group, page, userWords]);
 
@@ -64,14 +68,12 @@ const TextbookContainer:FC = () => {
   }, [isAuth, dowloadUserWords]);
 
   useEffect(() => {
-    if (isAuth) {
-      if (userWords[group] && userWords[group][page]) {
-        if (bookPageWords?.length) {
-          dispatch(addCurrentBookWords(bookPageWords.map((item:IWord) => findUserWord(item))));
-        }
-      } else if (bookPageWords?.length) {
-        if (bookPageWords?.length) dispatch(addCurrentBookWords([...bookPageWords]));
+    if (userWords[group] && userWords[group][page]) {
+      if (bookPageWords?.length) {
+        dispatch(addCurrentBookWords(bookPageWords.map((item:IWord) => findUserWord(item))));
       }
+    } else if (bookPageWords?.length) {
+      if (bookPageWords?.length) dispatch(addCurrentBookWords([...bookPageWords]));
     }
   }, [group, page, isAuth, bookPageWords, dispatch, findUserWord, userWords]);
 
@@ -86,7 +88,7 @@ const TextbookContainer:FC = () => {
       <div className="book__loader">{isLoading && <Loader />}</div>
       <div className="book__cards">
         {wordsToRender?.length
-          ? wordsToRender.map((word:IWord) => <CardWord key={word.id} word={word} />)
+          ? wordsToRender.map((word:IWord & IUserWord) => <CardWord key={word.id} word={word} />)
           : null}
       </div>
     </>

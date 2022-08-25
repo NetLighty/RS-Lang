@@ -111,7 +111,6 @@ export function updateUserWord(userId: string, word:IWord, token:string, data:IU
       ...data.optional,
     },
   };
-
   const { difficulty, optional } = userWord;
   return async (dispatch:Dispatch<AddUserWordToStoreAction>) => {
     try {

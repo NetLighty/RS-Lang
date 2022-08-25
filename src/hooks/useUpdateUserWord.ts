@@ -16,10 +16,10 @@ export default function useUpdateUserWord() {
       const editWord:IUserWord | undefined = userWords[word.group][word.page]
         .find((item:IUserWord) => item.optional?.id === word.id);
       if (editWord && editWord.optional) {
-        if (result) {
+        if (result === true) {
           editWord.optional.allAttemts += 1;
           editWord.optional.success += 1;
-        } else {
+        } else if (result === false) {
           editWord.optional.allAttemts += 1;
         }
         if (dataupdate && game) {
@@ -61,10 +61,10 @@ export default function useUpdateUserWord() {
       audiogame: '0',
       sprint: '0',
     };
-    if (result) {
+    if (result === true) {
       defaultOptionalInfo.allAttemts += 1;
       defaultOptionalInfo.success += 1;
-    } else {
+    } else if (result === false) {
       defaultOptionalInfo.allAttemts += 1;
     }
     if (dataupdate && game) {

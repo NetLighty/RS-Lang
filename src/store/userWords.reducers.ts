@@ -44,7 +44,6 @@ export default function userWordsReducer(
         userWords[group][page].push(action.payload)
       }
     }
-
     }
     return {...state, ...userWords};
   } else {

@@ -13,10 +13,6 @@ const TextbookContent = ():JSX.Element => {
   const navigate = useNavigate();
   const { savePageToLocalStore } = useSavePageToLocalStorage();
 
-  function displayDifficultWords() {
-  // download difficult words and display them
-  }
-
   function savePageToLocalStoreAndGo(value:string) {
     savePageToLocalStore();
     navigate(`${value}`);
@@ -26,7 +22,7 @@ const TextbookContent = ():JSX.Element => {
     <div className="book__container">
       <div className="book__header">
         <GroupsBlock />
-        <DifficultWordButton onClick={() => { displayDifficultWords(); }} />
+        <DifficultWordButton onClick={() => { savePageToLocalStoreAndGo('/hardwords'); }} />
       </div>
       <div className="book__cards__container">
         <TextbookContainer />

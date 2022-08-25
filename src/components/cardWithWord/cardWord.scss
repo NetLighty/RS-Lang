@@ -120,6 +120,17 @@
 
   &__button__hard {
     margin-right: 10px;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__button__learned:hover {
+    opacity: 0.5;
+  }
+
+ &__button__learned-active {
+    color: $true;
   }
 
   &__progress__block {
