@@ -1,6 +1,6 @@
 export interface IUserWord {
   difficulty: string;
-  optional?: Options;
+  optional?: Options
 }
 
 export type Options = {
@@ -8,9 +8,11 @@ export type Options = {
   group: number,
   page: number,
   learned: boolean,
+  result: boolean
   success: number,
   allAttemts: number,
   dataupdate: string,
+  game: 'audiogame' | 'sprint' | 'undefined',
   audiogame: string,
   sprint: string
 };

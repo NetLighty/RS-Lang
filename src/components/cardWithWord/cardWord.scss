@@ -32,7 +32,6 @@
     height: 32px;
     margin: 9px 15px;
     font-size: 32px;
-    color: $darkOrangeColor;
     background-color: transparent;
     border: none;
     outline: none;
@@ -51,6 +50,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    flex-wrap: wrap;
   }
 
   &__word {
@@ -58,7 +58,6 @@
     height: 37px;
     padding: 9px 22px;
     margin-right: 25px;
-    background-color: $darkBrownColor;
     color: $whiteColor;
   }
 
@@ -73,7 +72,6 @@
   }
 
   &__meaning__text,  &__example__text {
-    color: $darkBrownColor;
     margin-bottom: 8px;
   }
 
@@ -99,16 +97,20 @@
 
   &__buttons {
     display:flex;
-    justify-content: flex-end;
-    margin-top: 9px;
-    margin-bottom: 9px;
-    margin-right: 20px;
+    justify-content: space-between;
+    margin: 9px 20px;
+  }
+
+  &__buttons__block {
+    display:flex;
+    justify-content: space-between;
+    margin: 9px 0;
   }
 
   &__button {
-    width: 32px;
-    height: 32px;
-    font-size: 24px;
+    width: 45px;
+    height: 45px;
+    font-size: 36px;
     color: $lightGreyColor;
     background-color: transparent;
     border: none;
@@ -117,6 +119,60 @@
   }
 
   &__button__hard {
-    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  &__progress__block {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &__color0 {
+    color: $darkBrownColor;
+  }
+  
+  &__color1 {
+    color:$lightBrownColor;;
+  }
+  
+  &__color2 {
+    color: $lightPinkColor;
+  }
+  
+  &__color3 {
+    color: $darkBlueColor;
+  }
+  
+  &__color4 {
+    color: $lightOrangeColor;
+  }
+  
+  &__color5 {
+    color: $darkOrangeColor;
+  }
+
+  &__bgcolor0 {
+    background-color: $darkBrownColor;
+  }
+  
+  &__bgcolor1 {
+    background-color:$lightBrownColor;;
+  }
+  
+  &__bgcolor2 {
+    background-color: $lightPinkColor;
+  }
+  
+  &__bgcolor3 {
+    background-color: $darkBlueColor;
+  }
+  
+  &__bgcolor4 {
+    background-color: $lightOrangeColor;
+  }
+  
+  &__bgcolor5 {
+    background-color: $darkOrangeColor;
   }
 }
+

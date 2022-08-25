@@ -18,10 +18,6 @@ For example, dispatch(updateUserWord(SETTINGS.USER_ID, word, SETTINGS.TOKEN,
   { difficulty: 'light' }))
 */
 
-// TODO delete after users information will be added. For testin
-// loginUser({ email: 'hello@user.com', password: 'Gfhjkm_123' });
-// }
-
 export const addUserWordsToStore = (data: Array<IUserWord>) => (
   { type: AddUserWordsActionsTypes.ADD_USER_WORDS_TO_STORE, payload: data }
 );
@@ -61,9 +57,11 @@ export function createUserWord(userId: string, word:IWord, token:string, data:IU
     group: word.group,
     page: word.page,
     learned: false,
+    result: false,
     success: 0,
     allAttemts: 0,
     dataupdate: '0',
+    game: 'undefined',
     audiogame: '0',
     sprint: '0',
   };
@@ -75,7 +73,6 @@ export function createUserWord(userId: string, word:IWord, token:string, data:IU
       ...data.optional,
     },
   };
-
   const { difficulty, optional } = userWord;
   return async (dispatch:Dispatch<AddUserWordToStoreAction>) => {
     try {
@@ -98,9 +95,11 @@ export function updateUserWord(userId: string, word:IWord, token:string, data:IU
     group: word.group,
     page: word.page,
     learned: false,
+    result: false,
     success: 0,
     allAttemts: 0,
     dataupdate: '0',
+    game: 'undefined',
     audiogame: '0',
     sprint: '0',
   };
