@@ -64,23 +64,33 @@ export default class UserWordService {
   static async getUserAggregatedWord(
     userId: string,
     wordId: string,
+    token: string,
   ): Promise<AxiosResponse<IUserWord>> {
-    return axios.get(`${apiUrl}/${userId}/aggregatedWords/${wordId}`);
+    return axios.get(`${apiUrl}/users/${userId}/aggregatedWords/${wordId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+      },
+    });
   }
 
   static async getAllUserAggregatedWords(
     id: string,
+    token: string,
     group?: string,
-    page?: string,
     wordsPerPage?: string,
     filter?: string,
+    page?: string,
   ): Promise<AxiosResponse<IWord[]>> {
-    return axios.get(`${apiUrl}/${id}/aggregatedWords`, {
-      params: {
-        group,
-        page,
-        wordsPerPage,
-        filter,
+    const url = new URL(`${apiUrl}/users/${id}/aggregatedWords`);
+    if (group) url.searchParams.set('group', group);
+    if (page) url.searchParams.set('page', page);
+    if (wordsPerPage) url.searchParams.set('wordsPerPage', wordsPerPage);
+    if (filter) url.searchParams.set('filter', filter);
+    return axios.get((url as unknown as string), {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
       },
     });
   }

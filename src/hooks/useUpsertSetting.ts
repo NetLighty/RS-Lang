@@ -24,7 +24,7 @@ export default function useUpsertSetting(
           settingstDate = data.optional?.dataSettings;
         }
         if (settingstDate === formatDate(nowData)) {
-          if (gameName === 'audio') {
+          if (gameName === 'audiogame') {
             totalCount = data.optional?.audioTotalCount as number + wordsCount;
             successCount = data.optional?.audioSuccess as number + success;
             optional = {
@@ -47,7 +47,7 @@ export default function useUpsertSetting(
           }
           const result = updateSettingsData(userId, wordsPerDay + wordsCount, token, optional);
         } else if (settingstDate === '' || settingstDate !== formatDate(nowData)) {
-          if (gameName === 'audio') {
+          if (gameName === 'audiogame') {
             optional = {
               ...DefaultSettingsOptional,
               audioSuccess: success,

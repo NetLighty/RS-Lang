@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import UserService from '~/api/userService';
 import UserWordService from '~/api/userWordsService';
-import { ISettings, ISettingsPut, SettingsOptional } from '~/models/ISetting';
+import { ISettings, SettingsOptional } from '~/models/ISetting';
 import { IUserWord } from '~/models/IUserWord';
 
 export async function getUserWordsById(userId: string, wordId:string, token:string) {
