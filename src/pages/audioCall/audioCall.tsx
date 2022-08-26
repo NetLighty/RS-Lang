@@ -15,7 +15,7 @@ import {
 } from '../../utils/audioFunc';
 import './audioCall.scss';
 import SETTINGS from '~/utils/settings';
-import generateArrayGame from '~/hooks/useGenerateArrayGame';
+import generateArrayGameFunc from '~/hooks/useGenerateArrayGame';
 
 const AudioCall: FC = () => {
   const [levelWords, setLevelWords] = useState<IWord[]>([]);
@@ -31,22 +31,19 @@ const AudioCall: FC = () => {
   let count = 1;
   let flag: boolean;
   const bookGroup = localStorage.bookGroup ? localStorage.bookGroup as string : '';
-  // localStorage.removeItem('bookGroup');
   const bookPage = localStorage.bookPage ? localStorage.bookPage as string : '';
-  // localStorage.removeItem('bookPage');
   async function fetchWords(group: string, page: string) {
     clearStyleButton();
     try {
       let words: IWord[];
       if (bookGroup !== '' && bookPage !== '') {
-        words = (await generateArrayGame(
+        words = (await generateArrayGameFunc(
           SETTINGS.USER_ID,
           SETTINGS.TOKEN,
           bookGroup,
           bookPage,
-        )) as IWord[];
-        console.log(words);
-        setTotalCount(words.length);
+        ));
+        if (words.length < 10) setTotalCount(words.length);
       } else {
         const response = (await WordService.getChunkOfWords(group, page));
         words = response.data;
@@ -117,7 +114,6 @@ const AudioCall: FC = () => {
       hideImage();
       setAmountWords(amountWords + 1);
       count = amountWords + 1;
-      console.log(totalCount);
       if (count <= totalCount) {
         showWord();
       } else {
