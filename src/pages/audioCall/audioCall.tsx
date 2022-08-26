@@ -13,9 +13,9 @@ import {
   generateTranslateWord,
   clearStyleButton, showImage, hideImage, audioBlockButton, audioPlay,
 } from '../../utils/audioFunc';
-import './audioCall.scss';
 import SETTINGS from '~/utils/settings';
-import generateArrayGameFunc from '~/hooks/useGenerateArrayGame';
+import generateArrayGameFunc from '~/utils/generateArrayGame';
+import './audioCall.scss';
 
 const AudioCall: FC = () => {
   const [levelWords, setLevelWords] = useState<IWord[]>([]);

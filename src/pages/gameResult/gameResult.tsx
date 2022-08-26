@@ -59,8 +59,6 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
             item.answer,
           );
           arr.push(obj);
-        }).then((response) => {
-          // updateWord(response.data, {su})
         });
     });
     setResult(arr);

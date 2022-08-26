@@ -3,6 +3,12 @@ export interface ISettings {
   optional?: SettingsOptional,
 }
 
+export interface ISettingsRes {
+  id: string,
+  wordsPerDay: number,
+  optional?: SettingsOptional,
+}
+
 export interface SettingsOptional {
   audioSuccess: number,
   audioTotalCount: number,

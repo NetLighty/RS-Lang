@@ -7,17 +7,17 @@ import { AddWordsAction, IWord } from '~/models/IWord';
 export async function getAggregatedWordsForGame(
   userId: string,
   token: string,
+  filter?: string,
   group?: string,
   wordsPerPage?: string,
-  filter?: string,
 ) {
   try {
     const response:AxiosResponse = await UserWordService.getAllUserAggregatedWords(
       userId,
       token,
+      filter,
       group,
       wordsPerPage,
-      filter,
     );
     const data = (await response.data) as IAggregatedResponse[];
     return data;
@@ -26,21 +26,15 @@ export async function getAggregatedWordsForGame(
   }
 }
 
-export async function getAggregatedWords(
+export async function getAggregatedWordsForStatistic(
   userId: string,
   token: string,
-  group?: string,
-  page?: string,
-  wordsPerPage?: string,
   filter?: string,
 ) {
   try {
     const response:AxiosResponse = await UserWordService.getAllUserAggregatedWords(
       userId,
       token,
-      group,
-      page,
-      wordsPerPage,
       filter,
     );
     const data = (await response.data) as IAggregatedResponse[];

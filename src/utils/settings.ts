@@ -12,7 +12,7 @@ const SETTINGS = {
   HARD_WORD: 'hard',
   NORMAL_WORD: 'normal',
   // TODO for testing. Delete after we get users data
-  TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDYzZGI0ZGI0ODJlMDAxNmUxNGM3NCIsImlhdCI6MTY2MTQ4ODg3MywiZXhwIjoxNjYxNTAzMjczfQ.2gyoPBPq06T_xo64GxVYiPZuosz1yn5hveRaJeQvGFc',
+  TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDYzZGI0ZGI0ODJlMDAxNmUxNGM3NCIsImlhdCI6MTY2MTUwNTIyNiwiZXhwIjoxNjYxNTE5NjI2fQ.Aqzj8AEQo-J5E_EGZsFVRtzA21SMprAt6h_YWmmcGqM',
 };
 
 // TODO delete after users information will be added. For testin

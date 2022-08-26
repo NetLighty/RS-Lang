@@ -77,9 +77,9 @@ export default class UserWordService {
   static async getAllUserAggregatedWords(
     id: string,
     token: string,
+    filter?: string,
     group?: string,
     wordsPerPage?: string,
-    filter?: string,
     page?: string,
   ): Promise<AxiosResponse<IWord[]>> {
     const url = new URL(`${apiUrl}/users/${id}/aggregatedWords`);
