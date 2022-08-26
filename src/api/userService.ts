@@ -15,7 +15,7 @@ export default class UserService {
   }
 
   static async signIn(email: string, password: string): Promise<AxiosResponse<Auth>> {
-    return axios.post<Auth>(`${apiUrl}/users`, { email, password });
+    return axios.post<Auth>(`${apiUrl}/signin`, { email, password });
   }
 
   static async getNewUserTokens(id: string): Promise<AxiosResponse<Auth>> {

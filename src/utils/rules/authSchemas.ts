@@ -7,7 +7,7 @@ const minPasswordLengthMessage = `Atlest ${minPasswordLength} characters long`;
 const minUsernameLengthMessage = `Atlest ${minUsernameLength} characters long`;
 
 export const RegistrationSchema = Yup.object().shape({
-  username: Yup.string()
+  name: Yup.string()
     .min(minUsernameLength, minUsernameLengthMessage)
     .max(25, 'Too Long!')
     .required(requiredMessage),

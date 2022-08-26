@@ -4,7 +4,7 @@ import './main.scss';
 import '../../style/global.scss';
 import MainPageButton from '../../ui/mainPageButton/mainPageButton';
 import MyModal from '../../ui/myModal/myModal';
-import AuthForm from '../../components/authForm/authForm';
+import AuthForm from '../../components/authForm/loginForm';
 import Footer from '../../components/footer/footer';
 
 const result = window.location.origin;
