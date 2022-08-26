@@ -35,12 +35,12 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
     gameName,
     answerArr.length,
     successResult.length,
+    +localStorage.audioseries,
     nowdDate,
   );
 
   let flag: boolean;
   const isAuth = true;
-
   function getResult() {
     flag = false;
     const arr: IResultWord[] = [];

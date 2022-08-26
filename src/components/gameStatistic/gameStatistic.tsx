@@ -13,6 +13,7 @@ interface GameStatisticpProps {
 const GameStatistic: FC<GameStatisticpProps> = ({ gameName }) => {
   const [newWords, setNewWords] = useState(0);
   const [percent, setPercent] = useState(0);
+  const [series, setSeries] = useState(0);
   let flag = true;
   async function fetchStatisticGame(id: string, token: string) {
     flag = false;
@@ -26,6 +27,7 @@ const GameStatistic: FC<GameStatisticpProps> = ({ gameName }) => {
             (data.optional?.audioSuccess * 100) / data.optional.audioTotalCount,
           ));
         }
+        setSeries(data.optional.audioSeries);
       } else if (gameName === 'sprint') {
         if (data.optional.sprintTotalCount !== 0) {
           setPercent(Math.ceil(
@@ -33,6 +35,7 @@ const GameStatistic: FC<GameStatisticpProps> = ({ gameName }) => {
             (data.optional?.sprintSuccess * 100) / data.optional.sprintTotalCount,
           ));
         }
+        setSeries(data.optional.sprintSeries);
       }
     }
     const date = new Date() as unknown as string;
@@ -68,7 +71,7 @@ const GameStatistic: FC<GameStatisticpProps> = ({ gameName }) => {
       </div>
       <div className="game-statistic__item">
         <p className="game-statistic__item_text">самая длинная серия:</p>
-        <p className="game-statistic__item_number">{}</p>
+        <p className="game-statistic__item_number">{series}</p>
       </div>
     </div>
   );

@@ -26,6 +26,7 @@ const AudioCall: FC = () => {
   const [currWord, setCurrWord] = useState(obj);
   const [loading, setLoading] = useState(true);
   const [totalCount, setTotalCount] = useState(10);
+  const [series, setSeries] = useState(0);
   const testResult: IAnswer[] = [];
   let arrTranslate: string[] = [];
   let count = 1;
@@ -84,6 +85,7 @@ const AudioCall: FC = () => {
 
   function checkAnswer(target: HTMLInputElement, answer: Element[]) {
     if (currWord.wordTranslate === target.textContent) {
+      setSeries(series + 1);
       testResult.push({ id: currWord.id, answer: true });
       setResult([...result, { id: (currWord.id), answer: true }]);
       setTimeout(() => {
@@ -91,6 +93,12 @@ const AudioCall: FC = () => {
         showImage();
       }, 1000);
     } else {
+      if (localStorage.audioseries) {
+        if (+localStorage.audioseries <= series) localStorage.audioseries = (series + 1).toString();
+      } else {
+        localStorage.audioseries = (series + 1).toString();
+      }
+      setSeries(0);
       testResult.push({ id: currWord.id, answer: false });
       setResult([...result, { id: (currWord.id), answer: false }]);
       setTimeout(() => {
@@ -117,6 +125,7 @@ const AudioCall: FC = () => {
       if (count <= totalCount) {
         showWord();
       } else {
+        if (!localStorage.audioseries) localStorage.audioseries = (series + 1).toString();
         goToResult();
       }
     }, 3000);
