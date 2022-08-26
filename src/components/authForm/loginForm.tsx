@@ -2,9 +2,11 @@ import {
   Field, Form, Formik,
 } from 'formik';
 import React, { FC } from 'react';
+import { NavLink } from 'react-router-dom';
 import UserService from '~/api/userService';
-import UserWordService from '~/api/userWordsService';
-import getCookie, { accesTokenName } from '~/utils/cookie';
+import { useAppDispatch } from '~/hooks';
+import useTypedSelector from '~/hooks/useTypedSelector';
+import AuthActionCreators from '~/store/reducers/auth/action-creators';
 import { LoginSchema } from '~/utils/rules/authSchemas';
 import './authForm.scss';
 
@@ -16,38 +18,48 @@ interface LoginValues {
 }
 
 const LoginForm: FC = () => {
+  const dispatch = useAppDispatch();
+  const { error } = useTypedSelector((state) => state.auth);
   const initialValues: LoginValues = { email: '', password: '' };
+
+  const login = async (email: string, password: string) => {
+    try {
+      dispatch(AuthActionCreators.setIsLoading(true));
+      const loginRes = await UserService.signIn(email, password);
+      if (loginRes.status === 200) {
+        document.cookie = `token=${loginRes.data.token}; secure; sameSite=strict`;
+        localStorage.setItem('auth', 'true');
+        localStorage.setItem('username', loginRes.data.name);
+        dispatch(AuthActionCreators.setUser({
+          id: loginRes.data.userId, name: loginRes.data.name,
+        }));
+        dispatch(AuthActionCreators.setIsAuth(true));
+        dispatch(AuthActionCreators.setError(''));
+      } else {
+        /* dispatch(AuthActionCreators.setError('Некорректный логин или пароль')); */
+      }
+      dispatch(AuthActionCreators.setIsLoading(false));
+    } catch (e) {
+      dispatch(AuthActionCreators.setError('Некорректный логин или пароль'));
+    }
+  };
   return (
     <div className="auth">
       <Formik
         initialValues={initialValues}
         validationSchema={LoginSchema}
         onSubmit={async (values, actions) => {
-          console.log(values);
-          console.log(actions);
-          const loginRes = await UserService.signIn(values.email, values.password);
-          console.log(loginRes);
-          if (loginRes.status === 200) {
-            document.cookie = `token=${loginRes.data.token}; secure; sameSite=strict`;
-            const accesToken = getCookie(accesTokenName);
-            console.log('acessToken');
-            console.log(accesToken);
-            const wordsRes = await UserWordService.getAllUserWords(
-              loginRes.data.userId,
-              accesToken,
-            );
-            console.log(wordsRes.data);
-          }
+          await login(values.email, values.password);
           actions.setSubmitting(false);
         }}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, isSubmitting }) => (
           <Form>
             <div className="form">
               <img className="form__img" src={`${result}/src/assets/img/enter.svg`} alt="planet" />
               <p className="form__text">Добро пожаловать в RSLang!</p>
               <div className="form__input-block">
-                <Field name="email" className="form__email" placeholder="введите email" />
+                <Field type="text" name="email" className="form__email" placeholder="введите email" autoComplete="off" />
                 <div className="form__error-container">
                   {errors.email && touched.email ? (
                     <span className="form__error-message">{errors.email}</span>
@@ -55,7 +67,7 @@ const LoginForm: FC = () => {
                 </div>
               </div>
               <div className="form__input-block">
-                <Field name="password" className="form__password" type="password" placeholder="введите пароль" />
+                <Field name="password" className="form__password" type="password" placeholder="введите пароль" autoComplete="off" />
                 <div className="form__error-container">
                   {errors.password && touched.password ? (
                     <span className="form__error-message">{errors.password}</span>
@@ -63,11 +75,14 @@ const LoginForm: FC = () => {
                 </div>
               </div>
               <div className="form__button">
-                <button className="form__button-enter" type="submit">вход</button>
+                <button className="form__button-enter" type="submit">{ isSubmitting ? 'загрузка' : 'войти' }</button>
               </div>
+              {error ? (
+                <span className="form__error-message">{error}</span>
+              ) : null}
               <span>
                 {'Нет аккаунта? - '}
-                <a className="auth-link" href="/registration">Регистрация</a>
+                <NavLink className="auth-link" to="/registration">Регистрация</NavLink>
               </span>
             </div>
           </Form>

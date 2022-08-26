@@ -39,14 +39,27 @@
       }
       &__email,
       &__password{
+         margin: 0;
          width: 360px;
          height: 40px;
-         background-color: rgba($color: #fff, $alpha: 0.7);
-         border-radius: 2px;
-         border: 0.5px solid #8F8C8C;
-         padding-left: 10px;
-         color: #6B6868;
-         font-size: $mainFontSize;
+         border: 0.05rem solid #8F8C8C;
+         padding-left: 1rem;
+         font-size: 1.7rem;
+         color: $darkOrangeColor;
+         background-color: rgba($darkBrownColor, 0.1);
+         border-color: rgba($darkBrownColor, 0.2);
+         border-radius: 0.25rem;
+         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      }
+      &__email:focus,
+      &__password:focus {
+         border-color: rgba($darkBrownColor, 0.4);
+         outline: 0;
+         box-shadow: 0 0 0 0.2rem rgba($darkBrownColor, 0.4);
+      }
+      &__email::placeholder,
+      &__password::placeholder {
+         color: rgba($darkBrownColor, 0.7);
       }
       &__button {
          display: flex;

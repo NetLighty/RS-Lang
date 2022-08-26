@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddWordsAction, IWord } from '../models/IWord';
-import { RootState } from '../store/index.reducers';
+import { RootState } from '../store/index-reducers';
 import { getWordsFromServer } from '../store/word.actions';
 
  type Request = {
