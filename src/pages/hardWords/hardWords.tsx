@@ -19,17 +19,17 @@ const HardWords = () => {
         <MainPageButton
           image={`${result}/src/assets/img/studybook.svg`}
           text={`${result}/src/assets/img/book-text.svg`}
-          link='/book'
-          classAdd='hard__words__link'
+          link="/book"
+          classAdd="hard__words__link"
         />
       </header>
-      <div className='hard__words__cards'>
+      <div className="hard__words__cards">
         {wordsToRender?.length
           ? wordsToRender.map((word: IWord & IUserWord) => <CardWord key={word.id} word={word} />)
           : null}
       </div>
       <Pagination />
-      <div className='hard__footer'>
+      <div className="hard__footer">
         <Footer />
       </div>
     </>

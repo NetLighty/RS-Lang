@@ -8,8 +8,8 @@ interface PaginationWordProps {
 
 const PaginationButton: FC<PaginationWordProps> = ({ text, direction, disabledValue }) => (
   <button
-    type='button'
-    className='book__pagination__button'
+    type="button"
+    className="book__pagination__button"
     data-direction={direction}
     disabled={disabledValue}
   >

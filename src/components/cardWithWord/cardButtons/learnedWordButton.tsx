@@ -6,10 +6,10 @@ const LearnedWordButton: FC<{
 }> = ({ classString, onClick }) => (
   <button
     onClick={onClick}
-    type='button'
+    type="button"
     className={`_icon-book card__button card__button__learned ${classString}`}
-    id='learned__button'
-    aria-label='I know this word'
+    id="learned__button"
+    aria-label="I know this word"
   />
 );
 

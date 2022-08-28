@@ -19,8 +19,8 @@ const TextbookContent = (): JSX.Element => {
   }
 
   return (
-    <div className='book__container'>
-      <div className='book__header'>
+    <div className="book__container">
+      <div className="book__header">
         <GroupsBlock />
         <DifficultWordButton
           onClick={() => {
@@ -28,12 +28,12 @@ const TextbookContent = (): JSX.Element => {
           }}
         />
       </div>
-      <div className='book__cards__container'>
+      <div className="book__cards__container">
         <TextbookContainer />
       </div>
-      <div className='book__bottom'>
+      <div className="book__bottom">
         <Pagination />
-        <div className='book__games'>
+        <div className="book__games">
           <AudioGameButton
             onClick={() => {
               savePageToLocalStoreAndGo('/audiocall');

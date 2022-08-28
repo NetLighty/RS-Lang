@@ -24,15 +24,15 @@ export default function useUpdateUserWord() {
             editWord.optional.success += 1;
             editWord.optional.countSuccessInRow += 1;
             if (
-              editWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROW &&
-              editWord.difficulty === SETTINGS.NORMAL_WORD
+              editWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROW
+              && editWord.difficulty === SETTINGS.NORMAL_WORD
             ) {
               editWord.optional.learned = true;
               editWord.optional.countSuccessInRow = 0;
             }
             if (
-              editWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROWHARD &&
-              editWord.difficulty === SETTINGS.HARD_WORD
+              editWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROWHARD
+              && editWord.difficulty === SETTINGS.HARD_WORD
             ) {
               editWord.optional.learned = true;
               editWord.optional.countSuccessInRow = 0;

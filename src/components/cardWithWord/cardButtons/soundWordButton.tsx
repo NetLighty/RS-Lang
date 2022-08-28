@@ -46,10 +46,10 @@ const SoundWordButton: FC<SoundButtonProps> = ({
 
   return (
     <button
-      type='button'
+      type="button"
       className={className}
       onClick={() => handlePlayButton(audio, 1)}
-      aria-label='Play'
+      aria-label="Play"
     />
   );
 };

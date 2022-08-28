@@ -51,12 +51,12 @@ const Pagination = () => {
   }, [pageText]);
 
   return (
-    <div className='book__pagination' onClick={setPage} onKeyDown={setPage} role='presentation'>
-      <PaginationButton text='<<' direction={SETTINGS.FIRST_PAGE} disabledValue={prevDisabled} />
-      <PaginationButton text='<' direction={SETTINGS.PREVIOUS_PAGE} disabledValue={prevDisabled} />
+    <div className="book__pagination" onClick={setPage} onKeyDown={setPage} role="presentation">
+      <PaginationButton text="<<" direction={SETTINGS.FIRST_PAGE} disabledValue={prevDisabled} />
+      <PaginationButton text="<" direction={SETTINGS.PREVIOUS_PAGE} disabledValue={prevDisabled} />
       <PaginationButton text={pageText.toString()} direction={SETTINGS.CURRENT_PAGE} />
-      <PaginationButton text='>' direction={SETTINGS.NEXT_PAGE} disabledValue={lastDisabled} />
-      <PaginationButton text='>>' direction={SETTINGS.LAST_PAGE} disabledValue={lastDisabled} />
+      <PaginationButton text=">" direction={SETTINGS.NEXT_PAGE} disabledValue={lastDisabled} />
+      <PaginationButton text=">>" direction={SETTINGS.LAST_PAGE} disabledValue={lastDisabled} />
     </div>
   );
 };

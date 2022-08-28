@@ -5,9 +5,9 @@ const DifficultWordButton: FC<{
   onClick: React.MouseEventHandler<HTMLElement>;
 }> = ({ classString, onClick }) => (
   <button
-    type='button'
+    type="button"
     className={`_icon-star card__button card__button__hard ${classString}`}
-    aria-label='Hard button'
+    aria-label="Hard button"
     onClick={onClick}
   />
 );
