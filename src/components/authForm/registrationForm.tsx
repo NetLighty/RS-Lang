@@ -1,4 +1,6 @@
-import { Field, Form, Formik } from 'formik';
+import {
+  Field, Form, Formik,
+} from 'formik';
 import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import UserService from '~/api/userService';
@@ -54,12 +56,7 @@ const RegistrationForm: FC = () => {
                 </div>
               </div>
               <div className="form__input-block">
-                <Field
-                  name="password"
-                  className="form__password"
-                  type="password"
-                  placeholder="Пароль"
-                />
+                <Field name="password" className="form__password" type="password" placeholder="Пароль" />
                 <div className="form__error-container">
                   {errors.password && touched.password ? (
                     <span className="form__error-message">{errors.password}</span>
@@ -67,15 +64,11 @@ const RegistrationForm: FC = () => {
                 </div>
               </div>
               <div className="form__button">
-                <button className="form__button-enter" type="submit">
-                  Регистрация
-                </button>
+                <button className="form__button-enter" type="submit">Регистрация</button>
               </div>
               <span>
                 {'Есть аккаунт? - '}
-                <NavLink className="auth-link" to="/login">
-                  Войти
-                </NavLink>
+                <NavLink className="auth-link" to="/login">Войти</NavLink>
               </span>
             </div>
           </Form>

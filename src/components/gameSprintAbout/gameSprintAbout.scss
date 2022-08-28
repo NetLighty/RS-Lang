@@ -1,22 +1,24 @@
 @import '../../style/mixin.scss';
 
 .games {
-  &__sprint {
-    display: flex;
-    position: relative;
-    height: 550px;
-    @media (max-width: 1280px) {
-      height: 390px;
-    }
-    &_boy {
-      width: 171px;
-      height: 390px;
-      @include adaptiv-value('width', 171, 87, 1);
-      @include adaptiv-value('height', 390, 200, 1);
-      background: url('../../assets/img/boy.svg') no-repeat;
-      background-size: contain;
+   &__sprint {
+      display: flex;
       position: relative;
-      top: 25%;
-    }
-  }
+      height: 550px;
+      @media(max-width: 1280px) {
+         height: 390px;
+      }
+      &_boy{
+         width: 171px;
+         height: 390px;
+         @include adaptiv-value('width', 171, 87, 1);
+         @include adaptiv-value('height', 390, 200, 1);
+         background: url('../../assets/img/boy.svg') no-repeat;
+         background-size: contain;
+         position: relative;
+         top: 25%;
+      }
+  
+   }
+
 }

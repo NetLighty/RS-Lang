@@ -1,4 +1,4 @@
 export interface IStatistic {
   learnedWords: number;
-  optional?: Record<string, string>;
+  optional?: Record<string, string>
 }

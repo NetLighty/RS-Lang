@@ -37,7 +37,7 @@ const AudioCall: FC = () => {
   async function fetchWords(group: string, page: string) {
     clearStyleButton();
     try {
-      const response = await WordService.getChunkOfWords(group, page);
+      const response = (await WordService.getChunkOfWords(group, page));
       const words: IWord[] = response.data;
       setLevelWords(words);
       const current = getCurrentWord(words, prevWords);
@@ -46,22 +46,18 @@ const AudioCall: FC = () => {
       arrTranslate = generateTranslateWord(words, current);
       setTranslateWord(shuffle(arrTranslate));
       if (loading === true) {
-        setTimeout(() => {
-          setLoading(false);
-          audioPlay(current);
-        }, 2000);
+        setTimeout(() => { setLoading(false); audioPlay(current); }, 2000);
       } else audioPlay(current);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) { console.log(e); }
   }
 
   function showWord() {
     flag = false;
-    fetchWords(localStorage.audiolevel as string, generateNum(30).toString()).then(
-      () => {},
-      () => {},
-    );
+    fetchWords(localStorage.audiolevel as string, generateNum(30).toString())
+      .then(
+        () => {},
+        () => {},
+      );
   }
 
   useEffect(() => {
@@ -80,14 +76,14 @@ const AudioCall: FC = () => {
   function checkAnswer(target: HTMLInputElement, answer: Element[]) {
     if (currWord.wordTranslate === target.textContent) {
       testResult.push({ id: currWord.id, answer: true });
-      setResult([...result, { id: currWord.id, answer: true }]);
+      setResult([...result, { id: (currWord.id), answer: true }]);
       setTimeout(() => {
         trueAnswer(target);
         showImage();
       }, 1000);
     } else {
       testResult.push({ id: currWord.id, answer: false });
-      setResult([...result, { id: currWord.id, answer: false }]);
+      setResult([...result, { id: (currWord.id), answer: false }]);
       setTimeout(() => {
         falseAnswer(target);
         setTimeout(() => {
@@ -129,55 +125,27 @@ const AudioCall: FC = () => {
 
   return (
     <div className="audiogame">
-      {loading === true ? (
-        <div className="gameresult__loader">
-          <Loader />
-        </div>
-      ) : (
-        <div>
-          <NavLink className="audiogame__close _icon-close" to="/" />
-          <NavLink className="audiogame__result" to="/audiocall/result" />
-          <div className="audiogame__container">
-            <div className="audiogame__header">
-              <p className="audiogame__header_amount">
-                {amountWords}
-                /10
-              </p>
-              <img
-                className="audiogame__header_img"
-                src={`https://rs-lang-team148.herokuapp.com/${currWord.image}`}
-                alt=""
-              />
-            </div>
-            <div
-              className="audiogame__recoder _icon-volum"
-              onClick={() => {
-                sound(`https://rs-lang-team148.herokuapp.com/${currWord.audio}`);
-              }}
-              role="button"
-              tabIndex={0}
-              onKeyDown={() => {}}
-            >
-              {' '}
-            </div>
-            <div
-              className="audiogame__translate"
-              onClick={(e) => {
-                chooseAnswer(e);
-              }}
-              role="button"
-              tabIndex={0}
-              onKeyDown={() => {}}
-            >
-              {translateWords.map((item) => (
-                <button className="audiogame__translate_item" key={item} type="button">
-                  {item}
-                </button>
-              ))}
+      { loading === true
+        ? <div className="gameresult__loader"><Loader /></div>
+        : (
+          <div>
+            <NavLink className="audiogame__close _icon-close" to="/" />
+            <NavLink className="audiogame__result" to="/audiocall/result" />
+            <div className="audiogame__container">
+              <div className="audiogame__header">
+                <p className="audiogame__header_amount">
+                  {amountWords}
+                  /10
+                </p>
+                <img className="audiogame__header_img" src={`https://rs-lang-team148.herokuapp.com/${currWord.image}`} alt="" />
+              </div>
+              <div className="audiogame__recoder _icon-volum" onClick={() => { sound(`https://rs-lang-team148.herokuapp.com/${currWord.audio}`); }} role="button" tabIndex={0} onKeyDown={() => {}}> </div>
+              <div className="audiogame__translate" onClick={(e) => { chooseAnswer(e); }} role="button" tabIndex={0} onKeyDown={() => {}}>
+                {translateWords.map((item) => <button className="audiogame__translate_item" key={item} type="button">{item}</button>)}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
     </div>
   );
 };

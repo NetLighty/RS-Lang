@@ -1,27 +1,27 @@
 @import '../../style/global.scss';
 
-.game-link {
-  display: flex;
-  width: 95px;
-  height: 95px;
-  background-color: $darkOrangeColor;
-  border-radius: 100%;
-  color: #fff;
-  text-decoration: none;
-  align-items: center;
-  justify-content: center;
-  &__container {
-    display: flex;
-    column-gap: 6px;
-  }
-  &__text {
-    font-size: $mainFontSize;
-  }
-  &__arrow {
-    &:before {
-      content: url('../../assets/img/arrow.svg');
-      width: 12px;
-      height: 3px;
-    }
-  }
+.game-link{
+   display: flex;
+   width: 95px;
+   height: 95px;
+   background-color: $darkOrangeColor;
+   border-radius: 100%;
+   color: #fff;
+   text-decoration: none;
+   align-items: center;
+   justify-content: center;
+   &__container{
+      display: flex;
+      column-gap: 6px;
+   }
+   &__text{
+      font-size: $mainFontSize;
+   }
+   &__arrow{
+      &:before {
+         content: url('../../assets/img/arrow.svg');
+         width: 12px;
+         height: 3px;
+      }
+   }
 }

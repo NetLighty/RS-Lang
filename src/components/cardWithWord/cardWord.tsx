@@ -12,7 +12,7 @@ interface CardWordProps {
   word: IWord;
 }
 
-const CardWord: FC<CardWordProps> = ({ word }) => {
+const CardWord:FC<CardWordProps> = ({ word }) => {
   const [isAuth] = useState(true);
   const { updateWord } = useUpdateUserWord();
   return (
@@ -20,19 +20,10 @@ const CardWord: FC<CardWordProps> = ({ word }) => {
       <img className="card__image" src={`${SETTINGS.BASE_URL}/${word.image}`} alt={word.word} />
       <div className="card__sound__flex">
         <div className="card__word__wrapper">
-          <div className="card__word">
-            {`${word.word[0].toUpperCase() + word.word.slice(1)} ${
-              word.transcription
-            }`}
-          </div>
+          <div className="card__word">{`${word.word[0].toUpperCase() + word.word.slice(1)} ${word.transcription}`}</div>
           <div className="card__translation">{word.wordTranslate}</div>
         </div>
-        <SoundWordButton
-          className="_icon-volum card__sound"
-          audio={word.audio}
-          audioMeaning={word.audioMeaning}
-          audioExample={word.audioExample}
-        />
+        <SoundWordButton className="_icon-volum card__sound" audio={word.audio} audioMeaning={word.audioMeaning} audioExample={word.audioExample} />
       </div>
       <div className="card__meaning">
         <p className="card__meaning__text">значение</p>
@@ -45,12 +36,10 @@ const CardWord: FC<CardWordProps> = ({ word }) => {
         <p className="card__example__textExampleTranslate">{word.textExampleTranslate}</p>
       </div>
       {isAuth && (
-        <div className="card__buttons">
-          <LearnedWordButton />
-          <DifficultWordButton
-            onClick={() => updateWord(word, { difficulty: SETTINGS.HARD_WORD })}
-          />
-        </div>
+      <div className="card__buttons">
+        <LearnedWordButton />
+        <DifficultWordButton onClick={() => updateWord(word, { difficulty: SETTINGS.HARD_WORD })} />
+      </div>
       )}
     </div>
   );

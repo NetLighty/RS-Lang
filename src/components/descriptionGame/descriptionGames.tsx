@@ -13,13 +13,7 @@ interface DescriptionGameProps {
 }
 
 const DescriptionGame: FC<DescriptionGameProps> = ({
-  name,
-  text,
-  addText,
-  addClass,
-  textButton,
-  path,
-  keys,
+  name, text, addText, addClass, textButton, path, keys,
 }) => (
   <div className={`description description-${addClass}`}>
     <div className={`description__content description-${addClass}__content`}>

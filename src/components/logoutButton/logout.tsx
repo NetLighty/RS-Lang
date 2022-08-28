@@ -12,15 +12,12 @@ const LogoutButton: FC = () => {
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
     setUser({
-      id: '',
-      name: '',
+      id: '', name: '',
     });
   };
   return (
     // eslint-disable-next-line jsx-a11y/control-has-associated-label
-    <button onClick={logout} className="logout-button" type="button">
-      {logoutText}
-    </button>
+    <button onClick={logout} className="logout-button" type="button">{logoutText}</button>
   );
 };
 

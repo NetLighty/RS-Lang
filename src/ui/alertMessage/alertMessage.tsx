@@ -10,7 +10,9 @@ export interface AlertMessageProps {
 }
 
 const AlertMessage: FC<AlertMessageProps> = ({ children }) => (
-  <div className="alert-message">{children}</div>
+  <div className="alert-message">
+    {children}
+  </div>
 );
 
 export default AlertMessage;
