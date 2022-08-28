@@ -1,18 +1,18 @@
 import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import useTypedSelector from '~/hooks/useTypedSelector';
-import { store } from '~/store';
+import LogoutButton from '../logoutButton/logout';
 import './logo.scss';
 
 const Logo: FC = () => {
-  const { name } = useTypedSelector((state) => state.auth.user);
+  const { user, isAuth } = useTypedSelector((state) => state.auth);
   return (
     <div className="logo">
       <NavLink className="logo__name" to="/">
-        RSLang (
-        {name}
-        )
+        RSLang
+        { user.name ? `( ${user.name} )` : '' }
       </NavLink>
+      { isAuth ? <LogoutButton /> : null}
     </div>
   );
 };

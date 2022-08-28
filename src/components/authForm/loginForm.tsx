@@ -2,11 +2,10 @@ import {
   Field, Form, Formik,
 } from 'formik';
 import React, { FC } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import UserService from '~/api/userService';
-import { useAppDispatch } from '~/hooks';
+import useActions from '~/hooks/useActions';
 import useTypedSelector from '~/hooks/useTypedSelector';
-import AuthActionCreators from '~/store/reducers/auth/action-creators';
 import { LoginSchema } from '~/utils/rules/authSchemas';
 import './authForm.scss';
 
@@ -18,29 +17,34 @@ interface LoginValues {
 }
 
 const LoginForm: FC = () => {
-  const dispatch = useAppDispatch();
+  const {
+    setIsAuth, setIsLoading, setError, setUser,
+  } = useActions();
   const { error } = useTypedSelector((state) => state.auth);
+  const navigate = useNavigate();
   const initialValues: LoginValues = { email: '', password: '' };
 
   const login = async (email: string, password: string) => {
     try {
-      dispatch(AuthActionCreators.setIsLoading(true));
+      setIsLoading(true);
       const loginRes = await UserService.signIn(email, password);
       if (loginRes.status === 200) {
         document.cookie = `token=${loginRes.data.token}; secure; sameSite=strict`;
         localStorage.setItem('auth', 'true');
         localStorage.setItem('username', loginRes.data.name);
-        dispatch(AuthActionCreators.setUser({
+        localStorage.setItem('userId', loginRes.data.userId);
+        setUser({
           id: loginRes.data.userId, name: loginRes.data.name,
-        }));
-        dispatch(AuthActionCreators.setIsAuth(true));
-        dispatch(AuthActionCreators.setError(''));
+        });
+        setIsAuth(true);
+        setError('');
+        navigate('../');
       } else {
         /* dispatch(AuthActionCreators.setError('Некорректный логин или пароль')); */
       }
-      dispatch(AuthActionCreators.setIsLoading(false));
+      setIsLoading(false);
     } catch (e) {
-      dispatch(AuthActionCreators.setError('Некорректный логин или пароль'));
+      setError('Некорректный логин или пароль');
     }
   };
   return (

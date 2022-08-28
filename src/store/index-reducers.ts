@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import authReducer from './reducers/auth/auth.reducers';
+import authReducer from './reducers/auth/auth-reducers';
 import textbookReducer from './textbook.reducers';
 import userWordsReducer from './userWords.reducers';
 import wordReducer from './word.reducers';

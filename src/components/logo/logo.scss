@@ -1,6 +1,9 @@
 @import '../../style/global.scss';
 
 .logo {
+   display: grid;
+   grid-template-columns: 1fr 5rem;
+   column-gap: 0.7rem;
    position: absolute;
    z-index: 0;
    top: 17px;
@@ -8,7 +11,7 @@
    margin-left: 63px;
    background-image: url('../../assets/img/figure.svg');
    height: 300px;
-   width: 177px;
+   width: fit-content;
    &__name {
       font-size: $headerFontSize;
       color: #fff;
