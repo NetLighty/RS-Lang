@@ -4,15 +4,15 @@ export interface IUserWord {
 }
 
 export type Options = {
-  id: string,
-  group: number,
-  page: number,
-  learned: boolean,
-  success: number,
-  allAttemts: number,
-  dataupdate: string,
-  audiogame: string,
-  sprint: string
+  id: string;
+  group: number;
+  page: number;
+  learned: boolean;
+  success: number;
+  allAttemts: number;
+  dataupdate: string;
+  audiogame: string;
+  sprint: string;
 };
 
 export enum AddUserWordsActionsTypes {
@@ -31,52 +31,56 @@ export enum UserWordsActionsTypes {
 }
 
 interface GetUserWordsAction {
-  type: UserWordsActionsTypes.GET_ALL_USER_WORDS,
-  payload: string
+  type: UserWordsActionsTypes.GET_ALL_USER_WORDS;
+  payload: string;
 }
 
 type GetUserWordRequest = {
-  id: string,
-  wordId: string
+  id: string;
+  wordId: string;
 };
 
 interface GetUserWordByIdAction {
-  type: UserWordsActionsTypes.GET_USER_WORDS,
-  payload: GetUserWordRequest
+  type: UserWordsActionsTypes.GET_USER_WORDS;
+  payload: GetUserWordRequest;
 }
 
 type NoGetUserWordRequest = {
-  id: string,
-  wordId: string,
-  body: Partial<IUserWord>
+  id: string;
+  wordId: string;
+  body: Partial<IUserWord>;
 };
 
 interface CreateUserWordsAction {
-  type: UserWordsActionsTypes.CREATE_USER_WORD,
-  payload: NoGetUserWordRequest
+  type: UserWordsActionsTypes.CREATE_USER_WORD;
+  payload: NoGetUserWordRequest;
 }
 
 interface UpdateUserWordsAction {
-  type: UserWordsActionsTypes.UPDATE_USER_WORD,
-  payload: NoGetUserWordRequest
+  type: UserWordsActionsTypes.UPDATE_USER_WORD;
+  payload: NoGetUserWordRequest;
 }
 
 export interface AddUserWordsToStoreAction {
-  type: AddUserWordsActionsTypes.ADD_USER_WORDS_TO_STORE,
-  payload: Array<IUserWord>
+  type: AddUserWordsActionsTypes.ADD_USER_WORDS_TO_STORE;
+  payload: Array<IUserWord>;
 }
 
 export interface AddUserWordToStoreAction {
-  type: AddUserWordsIdActionsTypes.ADD_USER_WORD_TO_STORE,
-  payload: IUserWord
+  type: AddUserWordsIdActionsTypes.ADD_USER_WORD_TO_STORE;
+  payload: IUserWord;
 }
 
 export type UsersWordsStateType = {
-  [group:number]:{
-    [page:number]: Array<IUserWord>
-  }
+  [group: number]: {
+    [page: number]: Array<IUserWord>;
+  };
 };
 
-export type UserWordsActions = GetUserWordsAction | GetUserWordByIdAction
-| CreateUserWordsAction | UpdateUserWordsAction | AddUserWordsToStoreAction
-| AddUserWordToStoreAction;
+export type UserWordsActions =
+  | GetUserWordsAction
+  | GetUserWordByIdAction
+  | CreateUserWordsAction
+  | UpdateUserWordsAction
+  | AddUserWordsToStoreAction
+  | AddUserWordToStoreAction;

@@ -22,18 +22,36 @@ const MainPage: FC = () => {
   return (
     <div className="main">
       <div>
-        { !isAuth ? <MyModal visible={modal} setVisible={setModal}><AuthForm /></MyModal> : null }
+        {!isAuth ? (
+          <MyModal visible={modal} setVisible={setModal}>
+            <AuthForm />
+          </MyModal>
+        ) : null}
         <div className="main__container">
           <div className="content">
             <p className="content__description">
-              Учить английский играя? Легко.
-              Заходи каждый день, учи новые слова,
-              запоминай их, играя в мини-игры.
-              И у тебя всё получится.
+              Учить английский играя? Легко. Заходи каждый день, учи новые слова, запоминай их,
+              играя в мини-игры. И у тебя всё получится.
             </p>
-            <MainPageButton image={`${result}/src/assets/img/enter.svg`} text={`${result}/src/assets/img/enter-text.svg`} link="/" classAdd="enter-link" changeModal={changeModal} />
-            <MainPageButton image={`${result}/src/assets/img/mini-games.svg`} text={`${result}/src/assets/img/miniGames-text.svg`} link="/games" classAdd="games-link" />
-            <MainPageButton image={`${result}/src/assets/img/studybook.svg`} text={`${result}/src/assets/img/book-text.svg`} link="/book" classAdd="book-link" />
+            <MainPageButton
+              image={`${result}/src/assets/img/enter.svg`}
+              text={`${result}/src/assets/img/enter-text.svg`}
+              link="/"
+              classAdd="enter-link"
+              changeModal={changeModal}
+            />
+            <MainPageButton
+              image={`${result}/src/assets/img/mini-games.svg`}
+              text={`${result}/src/assets/img/miniGames-text.svg`}
+              link="/games"
+              classAdd="games-link"
+            />
+            <MainPageButton
+              image={`${result}/src/assets/img/studybook.svg`}
+              text={`${result}/src/assets/img/book-text.svg`}
+              link="/book"
+              classAdd="book-link"
+            />
           </div>
         </div>
       </div>

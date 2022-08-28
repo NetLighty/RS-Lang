@@ -1,64 +1,64 @@
 @import '../../style/global.scss';
 
 .gameresult {
-   height: 100vh;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   align-content: center;
-   &__contaniner {
-      position: relative;
-      padding-bottom: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-left: 63px;
-      width: 400px;
-      background-color: $lightPinkColor;
-      border-radius: 2px;
-      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
-      line-height: 25px;
-   }
-   &__header {
-      font-size: $headerFontSize;
-      margin: 24px 0 36px 0;
-   }
-   &__close {
-      position: absolute;
-      top: 40px;
-      right: 40px;
-      color: $lightPinkColor;
-      font-size: 55px;
-      transition: all 0.5s ease;
-      &:hover {
-         opacity: 0.7;
-         transform: scale(0.8);
-      }
-   }
-   &__repeat {
-      position: absolute;
-      width: 70px;
-      height: 70px;
-      border-radius: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: $darkOrangeColor;
-      color: #fff;
-      font-size: 32px;
-      text-decoration: none;
-      right: -35px;
-      bottom: -35px;
-      transition: all 0.3s ease;
-      &:hover {
-         transform: scale(1.2);
-      }
-   }
-   &__loader {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-   }
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  &__contaniner {
+    position: relative;
+    padding-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 63px;
+    width: 400px;
+    background-color: $lightPinkColor;
+    border-radius: 2px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    line-height: 25px;
+  }
+  &__header {
+    font-size: $headerFontSize;
+    margin: 24px 0 36px 0;
+  }
+  &__close {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    color: $lightPinkColor;
+    font-size: 55px;
+    transition: all 0.5s ease;
+    &:hover {
+      opacity: 0.7;
+      transform: scale(0.8);
+    }
+  }
+  &__repeat {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $darkOrangeColor;
+    color: #fff;
+    font-size: 32px;
+    text-decoration: none;
+    right: -35px;
+    bottom: -35px;
+    transition: all 0.3s ease;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+  &__loader {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
 }

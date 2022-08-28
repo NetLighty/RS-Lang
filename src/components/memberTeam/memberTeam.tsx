@@ -14,7 +14,9 @@ const MemberTeam: FC<MemberTeamProps> = ({
 }) => (
   <div className="member">
     <div className={`member__img ${imgClass}`} />
-    <a className="member__link" href={link}>{gitName}</a>
+    <a className="member__link" href={link}>
+      {gitName}
+    </a>
     <h3 className="memmber__name">{name}</h3>
     <p className="member__description">{description}</p>
   </div>

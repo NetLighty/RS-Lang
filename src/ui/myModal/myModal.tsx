@@ -4,7 +4,7 @@ import './MyModal.scss';
 interface MyModalProps {
   children: ReactNode;
   visible: boolean;
-  setVisible: (b:boolean) => void;
+  setVisible: (b: boolean) => void;
 }
 
 // eslint-disable-next-line react/function-component-definition
@@ -15,8 +15,20 @@ const MyModal: FC<MyModalProps> = ({ children, visible, setVisible }) => {
   }
 
   return (
-    <div className={rootClasses.join(' ')} role="button" tabIndex={-1} onClick={() => setVisible(false)} onKeyDown={() => setVisible(false)}>
-      <div className="myModalContent" role="button" tabIndex={0} onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
+    <div
+      className={rootClasses.join(' ')}
+      role="button"
+      tabIndex={-1}
+      onClick={() => setVisible(false)}
+      onKeyDown={() => setVisible(false)}
+    >
+      <div
+        className="myModalContent"
+        role="button"
+        tabIndex={0}
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
         {children}
       </div>
     </div>

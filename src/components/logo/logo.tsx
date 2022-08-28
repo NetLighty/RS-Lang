@@ -12,9 +12,9 @@ const Logo: FC = () => {
       <div className="logo">
         <NavLink className="logo__name" to="/">
           RSLang
-          { user.name ? `( ${user.name} )` : '' }
+          {user.name ? `( ${user.name} )` : ''}
         </NavLink>
-        { isAuth ? <LogoutButton /> : null}
+        {isAuth ? <LogoutButton /> : null}
       </div>
     </div>
   );

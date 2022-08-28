@@ -1,71 +1,71 @@
 @import '../../style/global.scss';
 
 .gamelevel {
-   margin-left: 63px;
-   color: #fff;
-   font-family: 'Roboto';
-   font-weight: 400;
-   &__container{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-      height: 100vh;
-   }
-   &__header {
-      font-size: $headerFontSize;
-      margin-bottom: 80px;
-   }
-   &__text {
-      font-size: $addFontSize;
-      margin-bottom: 55px;
-   }
-   &__button{
-      display: flex;
-      column-gap: 32px;
-   }
-   &__start{
-      width: 150px;
-      height: 40px;
-      border-radius: 2px;
-      background-color: $darkOrangeColor;
-      color: #fff;
-      display: flex;
-      margin-top: 60px;
-      align-items: center;
-      text-decoration: none;
-      font-size: $mainFontSize;
-      column-gap: 12px;
-      justify-content: center;
-      transition: all 0.5s ease;
-      opacity: 0;
+  margin-left: 63px;
+  color: #fff;
+  font-family: 'Roboto';
+  font-weight: 400;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100vh;
+  }
+  &__header {
+    font-size: $headerFontSize;
+    margin-bottom: 80px;
+  }
+  &__text {
+    font-size: $addFontSize;
+    margin-bottom: 55px;
+  }
+  &__button {
+    display: flex;
+    column-gap: 32px;
+  }
+  &__start {
+    width: 150px;
+    height: 40px;
+    border-radius: 2px;
+    background-color: $darkOrangeColor;
+    color: #fff;
+    display: flex;
+    margin-top: 60px;
+    align-items: center;
+    text-decoration: none;
+    font-size: $mainFontSize;
+    column-gap: 12px;
+    justify-content: center;
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform: scale(0.8);
+    cursor: auto;
+    &:after {
+      content: url('../../assets/img/longArrow.svg');
+    }
+  }
+  &__close {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    color: $lightPinkColor;
+    font-size: 55px;
+    transition: all 0.5s ease;
+    &:hover {
+      opacity: 0.7;
       transform: scale(0.8);
-      cursor: auto;
-      &:after {
-         content: url('../../assets/img/longArrow.svg');
-      }
-   }
-   &__close {
-      position: absolute;
-      top: 40px;
-      right: 40px;
-      color: $lightPinkColor;
-      font-size: 55px;
-      transition: all 0.5s ease;
-      &:hover {
-         opacity: 0.7;
-         transform: scale(0.8);
-      }
-   }
+    }
+  }
 }
 
 .active-btn {
-   opacity: 1;
-   cursor: pointer;
-   transform: scale(1);
-   &:hover{
-      opacity: 1;
-      transform: scale(1.1);
-   }
+  opacity: 1;
+  cursor: pointer;
+  transform: scale(1);
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
 }

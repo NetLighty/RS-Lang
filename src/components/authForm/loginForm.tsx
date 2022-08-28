@@ -1,6 +1,4 @@
-import {
-  Field, Form, Formik,
-} from 'formik';
+import { Field, Form, Formik } from 'formik';
 import React, { FC } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import UserService from '~/api/userService';
@@ -35,7 +33,8 @@ const LoginForm: FC = () => {
         localStorage.setItem('username', loginRes.data.name);
         localStorage.setItem('userId', loginRes.data.userId);
         setUser({
-          id: loginRes.data.userId, name: loginRes.data.name,
+          id: loginRes.data.userId,
+          name: loginRes.data.name,
         });
         setIsAuth(true);
         setError('');
@@ -64,7 +63,13 @@ const LoginForm: FC = () => {
               <img className="form__img" src={`${result}/src/assets/img/enter.svg`} alt="planet" />
               <p className="form__text">Добро пожаловать в RSLang!</p>
               <div className="form__input-block">
-                <Field type="text" name="email" className="form__email" placeholder="введите email" autoComplete="off" />
+                <Field
+                  type="text"
+                  name="email"
+                  className="form__email"
+                  placeholder="введите email"
+                  autoComplete="off"
+                />
                 <div className="form__error-container">
                   {errors.email && touched.email ? (
                     <span className="form__error-message">{errors.email}</span>
@@ -72,7 +77,13 @@ const LoginForm: FC = () => {
                 </div>
               </div>
               <div className="form__input-block">
-                <Field name="password" className="form__password" type="password" placeholder="введите пароль" autoComplete="off" />
+                <Field
+                  name="password"
+                  className="form__password"
+                  type="password"
+                  placeholder="введите пароль"
+                  autoComplete="off"
+                />
                 <div className="form__error-container">
                   {errors.password && touched.password ? (
                     <span className="form__error-message">{errors.password}</span>
@@ -80,14 +91,16 @@ const LoginForm: FC = () => {
                 </div>
               </div>
               <div className="form__button">
-                <button className="form__button-enter" type="submit">{ isSubmitting ? '...' : 'войти' }</button>
+                <button className="form__button-enter" type="submit">
+                  {isSubmitting ? '...' : 'войти'}
+                </button>
               </div>
-              {error ? (
-                <span className="form__error-message">{error}</span>
-              ) : null}
+              {error ? <span className="form__error-message">{error}</span> : null}
               <span>
                 {'Нет аккаунта? - '}
-                <NavLink className="auth-link" to="/registration">Регистрация</NavLink>
+                <NavLink className="auth-link" to="/registration">
+                  Регистрация
+                </NavLink>
               </span>
             </div>
           </Form>

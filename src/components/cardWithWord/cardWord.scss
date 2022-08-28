@@ -38,9 +38,9 @@
     outline: none;
     cursor: pointer;
 
-    &:hover{
+    &:hover {
       opacity: 0.8;
-   }
+    }
   }
 
   &__translation {
@@ -62,7 +62,8 @@
     color: $whiteColor;
   }
 
-  &__meaning,  &__example {
+  &__meaning,
+  &__example {
     display: flex;
     flex-direction: column;
     padding: 0 24px;
@@ -72,16 +73,19 @@
     line-height: 16.41px;
   }
 
-  &__meaning__text,  &__example__text {
+  &__meaning__text,
+  &__example__text {
     color: $darkBrownColor;
     margin-bottom: 8px;
   }
 
-  &__meaning__textMeaningTranslate, &__example__textExampleTranslate {
+  &__meaning__textMeaningTranslate,
+  &__example__textExampleTranslate {
     color: $greyColor;
   }
 
-  &__meaning__sound,  &__example__sound {
+  &__meaning__sound,
+  &__example__sound {
     width: 15px;
     height: 15px;
     margin-right: 10px;
@@ -92,13 +96,13 @@
     outline: none;
     cursor: pointer;
 
-    &:hover{
+    &:hover {
       opacity: 0.8;
-   }
+    }
   }
 
   &__buttons {
-    display:flex;
+    display: flex;
     justify-content: flex-end;
     margin-top: 9px;
     margin-bottom: 9px;

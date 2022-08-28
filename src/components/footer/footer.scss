@@ -1,56 +1,55 @@
 @import '../../style/global.scss';
 
 .footer {
-   display: flex;
-   justify-content: center;
-   align-items: flex-end;
-   // width: calc(100% - 63px);
-   // margin-left: 63px;
-   padding-bottom: 10px;
-   &__about{
-      display: flex;
-      width: calc(100% - 63px);
-      align-items: center;
-      justify-content: center;
-      column-gap: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  // width: calc(100% - 63px);
+  // margin-left: 63px;
+  padding-bottom: 10px;
+  &__about {
+    display: flex;
+    width: calc(100% - 63px);
+    align-items: center;
+    justify-content: center;
+    column-gap: 34px;
+    height: 25px;
+    &_logo {
+      width: 66px;
       height: 25px;
-      &_logo{
-         width: 66px;
-         height: 25px;
-         background-image: url('../../assets/img/logo.svg');
-         cursor: pointer;         
-      }
-      &_year {
-         font-size: $mainFontSize;
-      }
-   }
-   &__link {
-      margin-left: - calc(84px + 20px);
-      position: relative;
-      float: right;
-      &_circular {
-         width: 84px;
-         height: 84px;
-         //margin: 3px auto 0;
-         border-radius: 100%;
-         background-color: $lightPinkColor;
-      }
-   }  
+      background-image: url('../../assets/img/logo.svg');
+      cursor: pointer;
+    }
+    &_year {
+      font-size: $mainFontSize;
+    }
+  }
+  &__link {
+    margin-left: -calc(84px + 20px);
+    position: relative;
+    float: right;
+    &_circular {
+      width: 84px;
+      height: 84px;
+      //margin: 3px auto 0;
+      border-radius: 100%;
+      background-color: $lightPinkColor;
+    }
+  }
 }
 .round {
-   &__svg {
-      display: block;
-      overflow: visible;
-      &_text {
-         fill: #fff;
-         padding-bottom: 5px;
-         font-size: $addFontSize;
-      }
-   }
+  &__svg {
+    display: block;
+    overflow: visible;
+    &_text {
+      fill: #fff;
+      padding-bottom: 5px;
+      font-size: $addFontSize;
+    }
+  }
 }
 
-
 .image {
-   width: 200px;
-   height: 100px;
+  width: 200px;
+  height: 100px;
 }

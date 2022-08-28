@@ -4,8 +4,7 @@ import { IWord } from '../models/IWord';
 import apiUrl from '../utils/api';
 
 export default class UserWordService {
-  static async getAllUserWords(id: string, token: string)
-    : Promise<AxiosResponse<IUserWord[]>> {
+  static async getAllUserWords(id: string, token: string): Promise<AxiosResponse<IUserWord[]>> {
     return axios.get(`${apiUrl}/users/${id}/words`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -14,8 +13,11 @@ export default class UserWordService {
     });
   }
 
-  static async getUserWord(userId: string, wordId: string, token:string)
-    : Promise<AxiosResponse<IUserWord>> {
+  static async getUserWord(
+    userId: string,
+    wordId: string,
+    token: string,
+  ): Promise<AxiosResponse<IUserWord>> {
     return axios.get(`${apiUrl}/users/${userId}/words/${wordId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -48,13 +50,17 @@ export default class UserWordService {
     difficulty: string,
     optional?: Options,
   ): Promise<AxiosResponse<IUserWord>> {
-    return axios.put(`${apiUrl}/users/${userId}/words/${wordId}`, { difficulty, optional }, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+    return axios.put(
+      `${apiUrl}/users/${userId}/words/${wordId}`,
+      { difficulty, optional },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
       },
-    });
+    );
   }
 
   static async deleteUserWord(userId: string, wordId: string): Promise<AxiosResponse> {

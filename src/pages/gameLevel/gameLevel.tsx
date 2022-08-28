@@ -28,7 +28,16 @@ const AudioLevel: FC<AudioLevelProps> = ({ gameName, to }) => {
       <div className="gamelevel__container">
         <p className="gamelevel__header">Аудиовызов</p>
         <p className="gamelevel__text">Давай выберем уровень</p>
-        <div className="gamelevel__button" onClick={(e) => { chooseLevel(e); sound('https://zvukipro.com/uploads/files/2019-09/1567587229_8af5b2bf5d19c00.mp3'); }} role="button" tabIndex={0} onKeyDown={() => { }}>
+        <div
+          className="gamelevel__button"
+          onClick={(e) => {
+            chooseLevel(e);
+            sound('https://zvukipro.com/uploads/files/2019-09/1567587229_8af5b2bf5d19c00.mp3');
+          }}
+          role="button"
+          tabIndex={0}
+          onKeyDown={() => {}}
+        >
           <LevelButton addClass="first-level" text="1" />
           <LevelButton addClass="second-level" text="2" />
           <LevelButton addClass="third-level" text="3" />
@@ -36,7 +45,9 @@ const AudioLevel: FC<AudioLevelProps> = ({ gameName, to }) => {
           <LevelButton addClass="fifth-level" text="5" />
           <LevelButton addClass="sixth-level" text="6" />
         </div>
-        <NavLink className={`gamelevel__start ${choose ? 'active-btn' : ''}`} to={to}>вперёд</NavLink>
+        <NavLink className={`gamelevel__start ${choose ? 'active-btn' : ''}`} to={to}>
+          вперёд
+        </NavLink>
       </div>
     </div>
   );

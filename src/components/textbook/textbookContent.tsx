@@ -7,7 +7,7 @@ import Pagination from '../pagination/pagination';
 import TextbookContainer from './textbookContainer';
 import './textbook.scss';
 
-const TextbookContent = ():JSX.Element => (
+const TextbookContent = (): JSX.Element => (
   <div className="book__container">
     <div className="book__header">
       <GroupsBlock />
