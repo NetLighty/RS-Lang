@@ -20,11 +20,11 @@ interface GameResultProps {
 const GameResult: FC<GameResultProps> = ({ nameResult }) => {
   const [result, setResult] = useState<IResultWord[]>([]);
   const [loading, setLoading] = useState(true);
+  const [series] = useState(+localStorage.audioseries);
   const answerArr = JSON.parse(localStorage.getItem(nameResult) as string) as IAnswer[];
   const successResult = answerArr.filter((item) => item.answer === true);
-  //  const { dowloadUserWords } = useGetUserWords();
-  const { dowloadUserWords, userWords } = useGetUserWords();
-  const dispatch = useDispatch();
+  const { dowloadUserWords, userWords } = useGetUserWords(); // delete this
+  const dispatch = useDispatch(); // delete this
   const { updateWord } = useUpdateUserWord();
   const nowdDate = new Date();
   const gameName = (localStorage.gameName === 'audiogame') ? 'audiogame' : 'sprint';
@@ -35,10 +35,9 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
     gameName,
     answerArr.length,
     successResult.length,
-    +localStorage.audioseries,
+    series,
     nowdDate,
   );
-
   let flag: boolean;
   const isAuth = true;
   function getResult() {

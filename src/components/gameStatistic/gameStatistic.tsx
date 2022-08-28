@@ -45,7 +45,6 @@ const GameStatistic: FC<GameStatisticpProps> = ({ gameName }) => {
     const aggreg: IAggregatedResponse[] = aggregated as IAggregatedResponse[];
     setNewWords(aggreg[0].paginatedResults.length);
   }
-  // getSettingsData
   useEffect(() => {
     if (flag !== false) {
       fetchStatisticGame(SETTINGS.USER_ID, SETTINGS.TOKEN)
