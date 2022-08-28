@@ -7,12 +7,15 @@ import './logo.scss';
 const Logo: FC = () => {
   const { user, isAuth } = useTypedSelector((state) => state.auth);
   return (
-    <div className="logo">
-      <NavLink className="logo__name" to="/">
-        RSLang
-        { user.name ? `( ${user.name} )` : '' }
-      </NavLink>
-      { isAuth ? <LogoutButton /> : null}
+    <div>
+      <div className="logo__img" />
+      <div className="logo">
+        <NavLink className="logo__name" to="/">
+          RSLang
+          { user.name ? `( ${user.name} )` : '' }
+        </NavLink>
+        { isAuth ? <LogoutButton /> : null}
+      </div>
     </div>
   );
 };

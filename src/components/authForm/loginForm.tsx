@@ -6,6 +6,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import UserService from '~/api/userService';
 import useActions from '~/hooks/useActions';
 import useTypedSelector from '~/hooks/useTypedSelector';
+import Loader from '~/ui/loader/loader';
 import { LoginSchema } from '~/utils/rules/authSchemas';
 import './authForm.scss';
 
@@ -79,7 +80,7 @@ const LoginForm: FC = () => {
                 </div>
               </div>
               <div className="form__button">
-                <button className="form__button-enter" type="submit">{ isSubmitting ? 'загрузка' : 'войти' }</button>
+                <button className="form__button-enter" type="submit">{ isSubmitting ? '...' : 'войти' }</button>
               </div>
               {error ? (
                 <span className="form__error-message">{error}</span>

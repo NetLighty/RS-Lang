@@ -70,7 +70,10 @@
             height: 40px;
             border-radius: 2px;
             color: #fff;
-            font-size: $mainFontSize;
+            font-size: 2rem;
+            letter-spacing: 0.1rem;
+            font-weight: 200;
+            text-transform: capitalize;
             border: none;
             transition: opacity 0.3s ease;
             &:hover {
