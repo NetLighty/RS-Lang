@@ -73,6 +73,7 @@ const AudioCall: FC = () => {
   useEffect(() => {
     if (!levelWords.length && flag !== false) {
       showWord();
+      localStorage.removeItem('audioseries');
     }
   });
 
