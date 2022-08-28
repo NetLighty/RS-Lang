@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/index.reducers';
+import { RootState } from '../../store/index-reducers';
 import SETTINGS from '~/utils/settings';
 import { addCurrentPage } from '../../store/textbook.actions';
 import PaginationButton from './paginationButton';
 
 const Pagination = () => {
   const dispatch = useDispatch();
-  const pageText = useSelector((state: RootState) => state.textbook.page + 1);
+  const pageText = useSelector((state:RootState) => state.textbook.page + 1);
   const [prevDisabled, setPrevDisabled] = useState(true);
   const [lastDisabled, setLastDisabled] = useState(false);
 
-  function setPage(event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) {
+  function setPage(event:React.MouseEvent<HTMLDivElement> |
+  React.KeyboardEvent<HTMLDivElement>) {
     const target = event.target as HTMLButtonElement;
     if (target.classList.contains('book__pagination__button')) {
       switch (target.dataset.direction) {
@@ -27,8 +28,7 @@ const Pagination = () => {
         case SETTINGS.NEXT_PAGE:
           dispatch(addCurrentPage(pageText));
           break;
-        default:
-          break;
+        default: break;
       }
     }
   }

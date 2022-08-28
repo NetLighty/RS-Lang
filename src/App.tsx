@@ -15,7 +15,7 @@ import AudioResult from './pages/gameResult/gameResult';
 import RegistrationPage from './pages/authPages/registration';
 import LoginPage from './pages/authPages/login';
 import useActions from './hooks/useAction';
-import { accesTokenName, getCookie } from './utils/cookie';
+import getCookie, { accesTokenName } from './utils/cookie';
 import UserService from './api/userService';
 import { IUser } from './models/IUser';
 import useTypedSelector from './hooks/useTypedSelector';
@@ -33,13 +33,11 @@ const App = () => {
       const userId = localStorage.getItem('userId');
       const accessToken = getCookie(accesTokenName);
       if (userId && accessToken) {
-        userInit(userId, accessToken)
-          .then((res) => {
-            // document.cookie = `token=${res.data.token}; secure; sameSite=strict`;
-            setUser({ id: '', name: res.data.name });
-            setIsAuth(true);
-          })
-          .catch(() => {});
+        userInit(userId, accessToken).then((res) => {
+          // document.cookie = `token=${res.data.token}; secure; sameSite=strict`;
+          setUser({ id: '', name: res.data.name });
+          setIsAuth(true);
+        }).catch(() => {});
       }
     }
   });

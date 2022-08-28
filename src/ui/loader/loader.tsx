@@ -5,12 +5,8 @@ import './loader.scss';
 const Loader: FC = () => (
   <p className="circle">
     <span className="ouro">
-      <span className="left">
-        <span className="anim" />
-      </span>
-      <span className="right">
-        <span className="anim" />
-      </span>
+      <span className="left"><span className="anim" /></span>
+      <span className="right"><span className="anim" /></span>
     </span>
   </p>
 );

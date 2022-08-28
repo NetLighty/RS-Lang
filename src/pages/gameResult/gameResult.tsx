@@ -22,15 +22,16 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
     flag = false;
     const arr: IResultWord[] = [];
     answerArr.forEach((item: IAnswer) => {
-      const el = WordService.getWord(item.id).then((response) => {
-        const obj: IResultWord = createResultWord(
-          response.data.word,
-          response.data.wordTranslate,
-          response.data.audio,
-          item.answer,
-        );
-        arr.push(obj);
-      });
+      const el = WordService.getWord(item.id)
+        .then((response) => {
+          const obj: IResultWord = createResultWord(
+            response.data.word,
+            response.data.wordTranslate,
+            response.data.audio,
+            item.answer,
+          );
+          arr.push(obj);
+        });
     });
     setResult(arr);
   }
@@ -40,29 +41,23 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
       // getResult().then(() => { setResult(arr); }, () => {});
       getResult();
     }
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    setTimeout(() => { setLoading(false); }, 2000);
   }, []);
 
   return (
     <div className="gameresult">
-      {loading === true ? (
-        <div className="gameresult__loader">
-          <Loader />
-        </div>
-      ) : (
-        <div>
-          <NavLink className="gameresult__close _icon-close" to="/" />
-          <div className="gameresult__contaniner">
-            <div className="gameresult__header">Твои результаты</div>
-            {result.map((item) => (
-              <ResultWord key={item.word} item={item} prefixClass="gameresult" />
-            ))}
-            <NavLink className="gameresult__repeat _icon-refresh" to="/audiocall/game" />
+      { (loading === true)
+        ? <div className="gameresult__loader"><Loader /></div>
+        : (
+          <div>
+            <NavLink className="gameresult__close _icon-close" to="/" />
+            <div className="gameresult__contaniner">
+              <div className="gameresult__header">Твои результаты</div>
+              {result.map((item) => <ResultWord key={item.word} item={item} prefixClass="gameresult" />)}
+              <NavLink className="gameresult__repeat _icon-refresh" to="/audiocall/game" />
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </div>
   );
 };

@@ -12,8 +12,7 @@ const SETTINGS = {
   HARD_WORD: 'hard',
   NORMAL_WORD: 'normal',
   // TODO for testing. Delete after we get users data
-  TOKEN:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDQ5NTQxM2M2YjYwMDAxNjcyYjhlNiIsImlhdCI6MTY2MTI3NzA5MSwiZXhwIjoxNjYxMjkxNDkxfQ.ZWdbXtLHm35sINuIPiQWQBpFwGLtZzVeGJ8fjBTPWr0',
+  TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDQ5NTQxM2M2YjYwMDAxNjcyYjhlNiIsImlhdCI6MTY2MTI3NzA5MSwiZXhwIjoxNjYxMjkxNDkxfQ.ZWdbXtLHm35sINuIPiQWQBpFwGLtZzVeGJ8fjBTPWr0',
 };
 
 export default SETTINGS;

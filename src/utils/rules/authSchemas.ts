@@ -5,12 +5,8 @@ const eng = false;
 
 const requiredMessage = eng ? 'Required' : 'Необходимо заполнить';
 const invalidEmailMessage = eng ? 'Invalid email' : 'Некоректный адрес электронной почты';
-const minPasswordLengthMessage = eng
-  ? `Atlest ${minPasswordLength} characters long`
-  : `Минимум ${minPasswordLength} символов`;
-const minUsernameLengthMessage = eng
-  ? `Atlest ${minUsernameLength} characters long`
-  : `Минимум ${minUsernameLength} символов`;
+const minPasswordLengthMessage = eng ? `Atlest ${minPasswordLength} characters long` : `Минимум ${minPasswordLength} символов`;
+const minUsernameLengthMessage = eng ? `Atlest ${minUsernameLength} characters long` : `Минимум ${minUsernameLength} символов`;
 
 export const RegistrationSchema = Yup.object().shape({
   name: Yup.string()

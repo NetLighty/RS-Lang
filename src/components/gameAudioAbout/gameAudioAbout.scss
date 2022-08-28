@@ -1,26 +1,26 @@
 @import '../../style/mixin.scss';
 
 .games {
-  &__audio {
-    display: flex;
-    flex-direction: row-reverse;
-    height: 550px;
-    align-items: center;
-    @media (max-width: 1280px) {
-      height: 390px;
-    }
-    &_girl {
-      width: 171px;
-      height: 390px;
-      @include adaptiv-value('width', 171, 87, 1);
-      @include adaptiv-value('height', 390, 200, 1);
-      background: url('../../assets/img/girl.svg') no-repeat;
-      background-size: contain;
-      position: relative;
-      top: 15%;
-    }
-  }
+   &__audio{
+      display: flex;
+      flex-direction: row-reverse;
+      height: 550px;
+      align-items: center;
+      @media(max-width: 1280px) {
+         height: 390px;
+      }
+      &_girl{
+         width: 171px;
+         height: 390px;
+         @include adaptiv-value('width', 171, 87, 1);
+         @include adaptiv-value('height', 390, 200, 1);
+         background: url('../../assets/img/girl.svg') no-repeat;
+         background-size: contain;
+         position: relative;
+         top: 15%;
+      }
+   }
 }
 .reverse {
-  transform: scale(-1, 1);
+   transform: scale(-1, 1);
 }
