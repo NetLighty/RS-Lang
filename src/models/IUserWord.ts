@@ -12,7 +12,7 @@ export type Options = {
   countSuccessInRow: number,
   success: number,
   allAttemts: number,
-  dataupdate: string,
+  dataupdate: Date,
   game: 'audiogame' | 'sprint' | 'undefined',
   audiogame: string,
   sprint: string

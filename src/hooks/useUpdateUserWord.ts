@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import formatDate from '~/utils/date';
 import { useAppDispatch, useAppSelector } from './index';
 import { updateUserWord, createUserWord } from '../store/userWords.actions';
 import SETTINGS from '~/utils/settings';
@@ -35,10 +36,10 @@ export default function useUpdateUserWord() {
         }
         if (dataupdate && game) {
           if (game === 'audiogame' && editWord.optional.audiogame === '0') {
-            editWord.optional.audiogame = dataupdate;
+            editWord.optional.audiogame = formatDate(dataupdate);
           }
           if (game === 'sprint' && editWord.optional.sprint === '0') {
-            editWord.optional.sprint = dataupdate;
+            editWord.optional.sprint = formatDate(dataupdate);
           }
         }
 
@@ -69,7 +70,7 @@ export default function useUpdateUserWord() {
       countSuccessInRow: 0,
       success: 0,
       allAttemts: 0,
-      dataupdate: '0',
+      dataupdate: new Date('1970-01-01'),
       game: 'undefined',
       audiogame: '0',
       sprint: '0',
@@ -82,10 +83,10 @@ export default function useUpdateUserWord() {
     }
     if (dataupdate && game) {
       if (game === 'audiogame' && defaultOptionalInfo.audiogame === '0') {
-        defaultOptionalInfo.audiogame = dataupdate;
+        defaultOptionalInfo.audiogame = formatDate(dataupdate);
       }
       if (game === 'sprint' && defaultOptionalInfo.sprint === '0') {
-        defaultOptionalInfo.sprint = dataupdate;
+        defaultOptionalInfo.sprint = formatDate(dataupdate);
       }
     }
     return dispatch(

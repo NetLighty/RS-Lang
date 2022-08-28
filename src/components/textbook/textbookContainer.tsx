@@ -44,7 +44,7 @@ const TextbookContainer:FC = () => {
         countSuccessInRow: 0,
         success: 0,
         allAttemts: 0,
-        dataupdate: '0',
+        dataupdate: new Date('1970-01-01'),
         game: 'undefined',
         audiogame: '0',
         sprint: '0',
