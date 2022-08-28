@@ -11,20 +11,25 @@ import './hardWords.scss';
 const result = window.location.origin;
 
 const HardWords = () => {
-  const wordsToRender:Array<IWord & IUserWord> = [];
+  const wordsToRender: Array<IWord & IUserWord> = [];
 
   return (
     <>
       <header>
-        <MainPageButton image={`${result}/src/assets/img/studybook.svg`} text={`${result}/src/assets/img/book-text.svg`} link="/book" classAdd="hard__words__link" />
+        <MainPageButton
+          image={`${result}/src/assets/img/studybook.svg`}
+          text={`${result}/src/assets/img/book-text.svg`}
+          link='/book'
+          classAdd='hard__words__link'
+        />
       </header>
-      <div className="hard__words__cards">
+      <div className='hard__words__cards'>
         {wordsToRender?.length
-          ? wordsToRender.map((word:IWord & IUserWord) => <CardWord key={word.id} word={word} />)
+          ? wordsToRender.map((word: IWord & IUserWord) => <CardWord key={word.id} word={word} />)
           : null}
       </div>
       <Pagination />
-      <div className="hard__footer">
+      <div className='hard__footer'>
         <Footer />
       </div>
     </>

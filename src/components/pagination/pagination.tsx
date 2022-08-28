@@ -7,12 +7,11 @@ import PaginationButton from './paginationButton';
 
 const Pagination = () => {
   const dispatch = useDispatch();
-  const pageText = useSelector((state:RootState) => state.textbook.page + 1);
+  const pageText = useSelector((state: RootState) => state.textbook.page + 1);
   const [prevDisabled, setPrevDisabled] = useState(true);
   const [lastDisabled, setLastDisabled] = useState(false);
 
-  function setPage(event:React.MouseEvent<HTMLDivElement> |
-  React.KeyboardEvent<HTMLDivElement>) {
+  function setPage(event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) {
     const target = event.target as HTMLButtonElement;
     if (target.classList.contains('book__pagination__button')) {
       switch (target.dataset.direction) {
@@ -32,7 +31,8 @@ const Pagination = () => {
           dispatch(addCurrentPage(pageText));
           localStorage.setItem('bookPage', JSON.stringify(pageText));
           break;
-        default: break;
+        default:
+          break;
       }
     }
   }
@@ -51,12 +51,12 @@ const Pagination = () => {
   }, [pageText]);
 
   return (
-    <div className="book__pagination" onClick={setPage} onKeyDown={setPage} role="presentation">
-      <PaginationButton text="<<" direction={SETTINGS.FIRST_PAGE} disabledValue={prevDisabled} />
-      <PaginationButton text="<" direction={SETTINGS.PREVIOUS_PAGE} disabledValue={prevDisabled} />
+    <div className='book__pagination' onClick={setPage} onKeyDown={setPage} role='presentation'>
+      <PaginationButton text='<<' direction={SETTINGS.FIRST_PAGE} disabledValue={prevDisabled} />
+      <PaginationButton text='<' direction={SETTINGS.PREVIOUS_PAGE} disabledValue={prevDisabled} />
       <PaginationButton text={pageText.toString()} direction={SETTINGS.CURRENT_PAGE} />
-      <PaginationButton text=">" direction={SETTINGS.NEXT_PAGE} disabledValue={lastDisabled} />
-      <PaginationButton text=">>" direction={SETTINGS.LAST_PAGE} disabledValue={lastDisabled} />
+      <PaginationButton text='>' direction={SETTINGS.NEXT_PAGE} disabledValue={lastDisabled} />
+      <PaginationButton text='>>' direction={SETTINGS.LAST_PAGE} disabledValue={lastDisabled} />
     </div>
   );
 };

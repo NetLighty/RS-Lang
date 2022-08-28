@@ -2,7 +2,7 @@
 @import './../../style/mixin.scss';
 
 .book {
-  &__container{
+  &__container {
     display: flex;
     flex-direction: column;
     margin-left: 25px;
@@ -10,20 +10,20 @@
     max-width: 1200px;
   }
 
-  &__header{
-    display: flex; 
+  &__header {
+    display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  &__cards{
+  &__cards {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 34px;
   }
 
-  &__groups{
+  &__groups {
     width: 60%;
     display: flex;
     justify-content: space-evenly;
@@ -41,12 +41,12 @@
     position: relative;
 
     &-active {
-      opacity: 1;  
+      opacity: 1;
     }
 
-    &:hover{
+    &:hover {
       opacity: 0.8;
-   }
+    }
   }
 
   &__group__span {
@@ -54,7 +54,7 @@
     border-radius: 50%;
     background-color: transparent;
     display: block;
-    width: 75px; 
+    width: 75px;
     height: 75px;
   }
 
@@ -66,9 +66,9 @@
     position: relative;
     background-color: transparent;
     transition: all 0.6s ease;
-    &:hover{
+    &:hover {
       transform: scale(1.1) rotate(30deg);
-   }
+    }
   }
 
   &__difficult__button__image {
@@ -109,19 +109,19 @@
     outline: none;
     cursor: pointer;
 
-    &:hover{
+    &:hover {
       opacity: 0.8;
-   }
-   &:disabled {
-    color: $darkBlueColor;
-    background-color: $greyColor;
-    border: 1px solid $lightGreyColor;
-   }
+    }
+    &:disabled {
+      color: $darkBlueColor;
+      background-color: $greyColor;
+      border: 1px solid $lightGreyColor;
+    }
   }
 
   &__bottom {
     display: grid;
-    grid-template-rows: 1fr 2fr; 
+    grid-template-rows: 1fr 2fr;
     align-items: center;
     justify-items: stretch;
     align-self: center;
@@ -137,9 +137,9 @@
     transition: all 0.6s ease;
     outline: none;
     cursor: pointer;
-    &:hover{
+    &:hover {
       transform: scale(1.1) rotate(-30deg);
-   }
+    }
   }
 
   &__sprint__button__image {
@@ -165,9 +165,9 @@
     transition: all 0.6s ease;
     outline: none;
     cursor: pointer;
-    &:hover{
+    &:hover {
       transform: scale(1.1) rotate(30deg);
-   }
+    }
   }
 
   &__audioGame__button__image {
@@ -192,10 +192,10 @@
 
   &__footer {
     width: calc(100% - 63px);
-      @media (max-width: 1200px) {
-         width: 100%;
-      }
- }
+    @media (max-width: 1200px) {
+      width: 100%;
+    }
+  }
 }
 
 #darkBrown {

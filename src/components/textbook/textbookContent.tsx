@@ -9,29 +9,41 @@ import TextbookContainer from './textbookContainer';
 import './textbook.scss';
 import useSavePageToLocalStorage from '~/hooks/useSavePageToLocalStorage';
 
-const TextbookContent = ():JSX.Element => {
+const TextbookContent = (): JSX.Element => {
   const navigate = useNavigate();
   const { savePageToLocalStore } = useSavePageToLocalStorage();
 
-  function savePageToLocalStoreAndGo(value:string) {
+  function savePageToLocalStoreAndGo(value: string) {
     savePageToLocalStore();
     navigate(`${value}`);
   }
 
   return (
-    <div className="book__container">
-      <div className="book__header">
+    <div className='book__container'>
+      <div className='book__header'>
         <GroupsBlock />
-        <DifficultWordButton onClick={() => { savePageToLocalStoreAndGo('/hardwords'); }} />
+        <DifficultWordButton
+          onClick={() => {
+            savePageToLocalStoreAndGo('/hardwords');
+          }}
+        />
       </div>
-      <div className="book__cards__container">
+      <div className='book__cards__container'>
         <TextbookContainer />
       </div>
-      <div className="book__bottom">
+      <div className='book__bottom'>
         <Pagination />
-        <div className="book__games">
-          <AudioGameButton onClick={() => { savePageToLocalStoreAndGo('/audiocall'); }} />
-          <SprintButton onClick={() => { savePageToLocalStoreAndGo('/sprint'); }} />
+        <div className='book__games'>
+          <AudioGameButton
+            onClick={() => {
+              savePageToLocalStoreAndGo('/audiocall');
+            }}
+          />
+          <SprintButton
+            onClick={() => {
+              savePageToLocalStoreAndGo('/sprint');
+            }}
+          />
         </div>
       </div>
     </div>

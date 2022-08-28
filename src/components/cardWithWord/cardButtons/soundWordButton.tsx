@@ -3,22 +3,28 @@ import SETTINGS from '../../../utils/settings';
 
 interface SoundButtonProps {
   audio: string;
-  audioMeaning: string,
-  audioExample: string,
-  className: string
+  audioMeaning: string;
+  audioExample: string;
+  className: string;
 }
 
-const SoundWordButton:FC<SoundButtonProps> = ({
-  audio, audioMeaning, audioExample, className,
+const SoundWordButton: FC<SoundButtonProps> = ({
+  audio,
+  audioMeaning,
+  audioExample,
+  className,
 }) => {
   const player = new Audio();
-  let nextStep:number;
-  let nextSound:string;
+  let nextStep: number;
+  let nextSound: string;
 
-  function handlePlayButton(sound:string, step:number) {
+  function handlePlayButton(sound: string, step: number) {
     player.src = `${SETTINGS.BASE_URL}/${sound}`;
     player.load();
-    player.play().then(() => {}).catch(() => player.pause());
+    player
+      .play()
+      .then(() => {})
+      .catch(() => player.pause());
     if (step === 1) {
       nextStep = 2;
       nextSound = audioMeaning;
@@ -39,7 +45,12 @@ const SoundWordButton:FC<SoundButtonProps> = ({
   }
 
   return (
-    <button type="button" className={className} onClick={() => handlePlayButton(audio, 1)} aria-label="Play" />
+    <button
+      type='button'
+      className={className}
+      onClick={() => handlePlayButton(audio, 1)}
+      aria-label='Play'
+    />
   );
 };
 
