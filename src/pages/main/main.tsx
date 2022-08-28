@@ -4,14 +4,16 @@ import './main.scss';
 import '../../style/global.scss';
 import MainPageButton from '../../ui/mainPageButton/mainPageButton';
 import MyModal from '../../ui/myModal/myModal';
-import AuthForm from '../../components/authForm/authForm';
+import AuthForm from '../../components/authForm/loginForm';
 import Footer from '../../components/footer/footer';
+import useTypedSelector from '~/hooks/useTypedSelector';
 
 const result = window.location.origin;
 
 // eslint-disable-next-line react/function-component-definition
 const MainPage: FC = () => {
   const [modal, setModal] = useState(false);
+  const { isAuth } = useTypedSelector((state) => state.auth);
 
   function changeModal(): void {
     setModal(true);
@@ -20,7 +22,7 @@ const MainPage: FC = () => {
   return (
     <div className="main">
       <div>
-        <MyModal visible={modal} setVisible={setModal}><AuthForm /></MyModal>
+        { !isAuth ? <MyModal visible={modal} setVisible={setModal}><AuthForm /></MyModal> : null }
         <div className="main__container">
           <div className="content">
             <p className="content__description">

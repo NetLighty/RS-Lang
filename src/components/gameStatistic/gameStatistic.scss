@@ -1,0 +1,23 @@
+@import '../../style/global.scss';
+
+.game-statistic {
+   width: 400px;
+   background-color: $lightPinkColor;
+   border-radius: 5px;
+   padding: 29px 25px;
+   line-height: 25px;
+   &__header {
+      font-size: $addFontSize;
+      color: $darkOrangeColor;
+      margin-bottom: 18px;
+   }
+   &__item {
+      margin-top: 12px;
+      width: 346px;
+      display: flex;
+      justify-content: space-between;
+      &_number {
+         color: $darkBlueColor;
+      }
+   }
+}

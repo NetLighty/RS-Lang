@@ -1,0 +1,19 @@
+@import '../../style/global.scss';
+
+.statistic {
+   &__container {
+      width: 855px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      row-gap: 28px;
+   }
+   &__header {
+      font-size: $headerFontSize;
+      color: $whiteColor;
+      text-align: center;
+      padding-top: 95px;
+      margin-bottom: 60px;
+   }
+}

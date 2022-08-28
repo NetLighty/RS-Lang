@@ -8,7 +8,7 @@ const SETTINGS = {
   LAST_PAGE: 'last_page',
   PREVIOUS_PAGE: 'previous_page',
   CURRENT_PAGE: 'current_page',
-  USER_ID: '630495413c6b60001672b8e6', // TODO for testing. Delete after we get users data
+  USER_ID: '63063db4db482e0016e14c74', // TODO for testing. Delete after we get users data
   HARD_WORD: 'hard',
   NORMAL_WORD: 'normal',
   COUNTSUCCESSINROW: 2,

@@ -1,13 +1,13 @@
 import { IWord } from '../models/IWord';
 import { getDocumentElement, generateNum } from './subGameFunc';
 
-export function generateTranslateWord(arr: IWord[], curr: IWord) {
+export function generateTranslateWord(arr: IWord[], curr: IWord, amount: number) {
   let i = 0;
   const buff: string[] = [];
   while (i < 4) {
-    let randomWord: string = arr[Math.floor(Math.random() * 20)].wordTranslate;
+    let randomWord: string = arr[Math.floor(Math.random() * amount)].wordTranslate;
     while (buff.includes(randomWord) || curr.wordTranslate === randomWord) {
-      randomWord = arr[Math.floor(Math.random() * 20)].wordTranslate;
+      randomWord = arr[Math.floor(Math.random() * amount)].wordTranslate;
     }
     buff.push(randomWord);
     i += 1;
@@ -16,9 +16,9 @@ export function generateTranslateWord(arr: IWord[], curr: IWord) {
   return buff;
 }
 
-export function getCurrentWord(arr: IWord[], res: string[]) {
-  let current: IWord = arr[generateNum(20)];
-  while (res.includes(current.id)) current = arr[generateNum(20)];
+export function getCurrentWord(arr: IWord[], res: string[], amount: number) {
+  let current: IWord = arr[generateNum(amount)];
+  while (res.includes(current.id)) current = arr[generateNum(amount)];
   return current;
 }
 

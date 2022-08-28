@@ -13,6 +13,8 @@ import {
   generateTranslateWord,
   clearStyleButton, showImage, hideImage, audioBlockButton, audioPlay,
 } from '../../utils/audioFunc';
+import SETTINGS from '~/utils/settings';
+import generateArrayGameFunc from '~/utils/generateArrayGame';
 import './audioCall.scss';
 
 const AudioCall: FC = () => {
@@ -23,21 +25,35 @@ const AudioCall: FC = () => {
   const [prevWords, setprevWords] = useState<string[]>([]);
   const [currWord, setCurrWord] = useState(obj);
   const [loading, setLoading] = useState(true);
+  const [totalCount, setTotalCount] = useState(10);
+  const [series, setSeries] = useState(0);
   const testResult: IAnswer[] = [];
   let arrTranslate: string[] = [];
   let count = 1;
   let flag: boolean;
-
+  const bookGroup = localStorage.bookGroup ? localStorage.bookGroup as string : '';
+  const bookPage = localStorage.bookPage ? localStorage.bookPage as string : '';
   async function fetchWords(group: string, page: string) {
     clearStyleButton();
     try {
-      const response = (await WordService.getChunkOfWords(group, page));
-      const words: IWord[] = response.data;
+      let words: IWord[];
+      if (bookGroup !== '' && bookPage !== '') {
+        words = (await generateArrayGameFunc(
+          SETTINGS.USER_ID,
+          SETTINGS.TOKEN,
+          bookGroup,
+          bookPage,
+        ));
+        if (words.length < 10) setTotalCount(words.length);
+      } else {
+        const response = (await WordService.getChunkOfWords(group, page));
+        words = response.data;
+      }
       setLevelWords(words);
-      const current = getCurrentWord(words, prevWords);
+      const current = getCurrentWord(words, prevWords, words.length);
       setprevWords([...prevWords, current.id]);
       setCurrWord(current);
-      arrTranslate = generateTranslateWord(words, current);
+      arrTranslate = generateTranslateWord(words, current, words.length);
       setTranslateWord(shuffle(arrTranslate));
       if (loading === true) {
         setTimeout(() => { setLoading(false); audioPlay(current); }, 2000);
@@ -57,6 +73,7 @@ const AudioCall: FC = () => {
   useEffect(() => {
     if (!levelWords.length && flag !== false) {
       showWord();
+      localStorage.removeItem('audioseries');
     }
   });
 
@@ -69,6 +86,7 @@ const AudioCall: FC = () => {
 
   function checkAnswer(target: HTMLInputElement, answer: Element[]) {
     if (currWord.wordTranslate === target.textContent) {
+      setSeries(series + 1);
       testResult.push({ id: currWord.id, answer: true });
       setResult([...result, { id: (currWord.id), answer: true }]);
       setTimeout(() => {
@@ -76,6 +94,12 @@ const AudioCall: FC = () => {
         showImage();
       }, 1000);
     } else {
+      if (localStorage.audioseries) {
+        if (+localStorage.audioseries <= series) localStorage.audioseries = (series + 1).toString();
+      } else {
+        localStorage.audioseries = (series + 1).toString();
+      }
+      setSeries(0);
       testResult.push({ id: currWord.id, answer: false });
       setResult([...result, { id: (currWord.id), answer: false }]);
       setTimeout(() => {
@@ -89,7 +113,7 @@ const AudioCall: FC = () => {
 
   function goToResult() {
     localStorage.setItem('audiores', JSON.stringify(result.concat(testResult)));
-    localStorage.setItem('gameName', 'audio');
+    localStorage.setItem('gameName', 'audiogame');
     const pageRes: HTMLElement | null = document.querySelector('.audiogame__result');
     pageRes?.click();
   }
@@ -99,9 +123,10 @@ const AudioCall: FC = () => {
       hideImage();
       setAmountWords(amountWords + 1);
       count = amountWords + 1;
-      if (count <= 10) {
+      if (count <= totalCount) {
         showWord();
       } else {
+        if (!localStorage.audioseries) localStorage.audioseries = (series + 1).toString();
         goToResult();
       }
     }, 3000);
@@ -111,9 +136,13 @@ const AudioCall: FC = () => {
     const answer = getDocumentElement('.audiogame__translate_item');
     audioBlockButton();
     const target = e.target as HTMLInputElement;
-    target.classList.add('choose-answer');
-    checkAnswer(target, answer);
-    checkAmount();
+    if (target.classList.contains('audiogame__translate_item')) {
+      target.classList.add('choose-answer');
+      checkAnswer(target, answer);
+      checkAmount();
+    } else {
+      clearStyleButton();
+    }
   }
 
   document.onkeydown = chooseKeyDown;
@@ -130,7 +159,8 @@ const AudioCall: FC = () => {
               <div className="audiogame__header">
                 <p className="audiogame__header_amount">
                   {amountWords}
-                  /10
+                  /
+                  {totalCount}
                 </p>
                 <img className="audiogame__header_img" src={`https://rs-lang-team148.herokuapp.com/${currWord.image}`} alt="" />
               </div>

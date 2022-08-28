@@ -5,12 +5,13 @@ import WordService from '../../api/wordsService';
 import ResultWord from '../../components/resultWord/resultWord';
 import { IAnswer } from '../../models/IAnswer';
 import { IResultWord } from '../../models/IResultWord';
+import { useSelector, useDispatch } from 'react-redux';
 import createResultWord from '../../utils/createResultWord';
 import './gameResult.scss';
 import useGetUserWords from '~/hooks/useGetUserWords';
 import useUpdateUserWord from '~/hooks/useUpdateUserWord';
 import useUpsertSetting from '~/hooks/useUpsertSetting';
-import { ID, TOKEN } from '~/utils/my';
+import SETTINGS from '~/utils/settings';
 
 interface GameResultProps {
   nameResult: string;
@@ -19,28 +20,37 @@ interface GameResultProps {
 const GameResult: FC<GameResultProps> = ({ nameResult }) => {
   const [result, setResult] = useState<IResultWord[]>([]);
   const [loading, setLoading] = useState(true);
+  const [series] = useState(+localStorage.audioseries);
   const answerArr = JSON.parse(localStorage.getItem(nameResult) as string) as IAnswer[];
   const successResult = answerArr.filter((item) => item.answer === true);
-  const { dowloadUserWords } = useGetUserWords();
+  const { dowloadUserWords, userWords } = useGetUserWords(); // delete this
+  const dispatch = useDispatch(); // delete this
   const { updateWord } = useUpdateUserWord();
   const nowdDate = new Date();
+  const gameName = (localStorage.gameName === 'audiogame') ? 'audiogame' : 'sprint';
+
   const { upsertSettings } = useUpsertSetting(
-    ID,
-    TOKEN,
-    localStorage.gameName as string,
+    SETTINGS.USER_ID,
+    SETTINGS.TOKEN,
+    gameName,
     answerArr.length,
     successResult.length,
+    series,
     nowdDate,
   );
   let flag: boolean;
   const isAuth = true;
-
   function getResult() {
     flag = false;
     const arr: IResultWord[] = [];
     answerArr.forEach((item: IAnswer) => {
       const el = WordService.getWord(item.id)
         .then((response) => {
+          if (isAuth) {
+            updateWord(response.data, {
+              result: item.answer, game: gameName, dataupdate: (new Date()).toString(),
+            });
+          }
           const obj: IResultWord = createResultWord(
             response.data.word,
             response.data.wordTranslate,
@@ -48,8 +58,6 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
             item.answer,
           );
           arr.push(obj);
-        }).then((response) => {
-          // updateWord(response.data, {su})
         });
     });
     setResult(arr);

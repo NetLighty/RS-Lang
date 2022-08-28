@@ -12,7 +12,8 @@ interface AudioLevelProps {
 
 const AudioLevel: FC<AudioLevelProps> = ({ gameName, to }) => {
   const [choose, setChoose] = useState(false);
-
+  if (localStorage.bookGroup) localStorage.removeItem('bookGroup');
+  if (localStorage.bookPage) localStorage.removeItem('bookPage');
   function chooseLevel(e: React.SyntheticEvent) {
     const levels = [...document.querySelectorAll('.level-button')];
     levels.map((item: Element) => item.classList.remove('active'));

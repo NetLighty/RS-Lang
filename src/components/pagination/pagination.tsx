@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/index.reducers';
+import { RootState } from '../../store/index-reducers';
 import SETTINGS from '~/utils/settings';
 import { addCurrentPage } from '../../store/textbook.actions';
 import PaginationButton from './paginationButton';

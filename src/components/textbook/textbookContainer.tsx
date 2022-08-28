@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/index.reducers';
+import { RootState } from '../../store/index-reducers';
 import useGetWords from '../../hooks/useGetWords';
 import { IWord } from '../../models/IWord';
 import { IUserWord } from '../../models/IUserWord';
