@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import UserService from '~/api/userService';
 import useActions from '~/hooks/useActions';
 import useTypedSelector from '~/hooks/useTypedSelector';
-import Loader from '~/ui/loader/loader';
+import { accesTokenName, createSecureCookie } from '~/utils/cookie';
 import { LoginSchema } from '~/utils/rules/authSchemas';
 import './authForm.scss';
 
@@ -30,7 +30,7 @@ const LoginForm: FC = () => {
       setIsLoading(true);
       const loginRes = await UserService.signIn(email, password);
       if (loginRes.status === 200) {
-        document.cookie = `token=${loginRes.data.token}; secure; sameSite=strict`;
+        createSecureCookie(accesTokenName, loginRes.data.token, 48);
         localStorage.setItem('auth', 'true');
         localStorage.setItem('username', loginRes.data.name);
         localStorage.setItem('userId', loginRes.data.userId);
