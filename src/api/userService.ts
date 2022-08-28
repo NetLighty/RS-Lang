@@ -15,15 +15,25 @@ export default class UserService {
   }
 
   static async signIn(email: string, password: string): Promise<AxiosResponse<Auth>> {
-    return axios.post<Auth>(`${apiUrl}/users`, { email, password });
+    return axios.post<Auth>(`${apiUrl}/signin`, { email, password });
   }
 
-  static async getNewUserTokens(id: string): Promise<AxiosResponse<Auth>> {
-    return axios.get<Auth>(`${apiUrl}/users/${id}/tokens`);
+  static async getNewUserTokens(id: string, token: string): Promise<AxiosResponse<Auth>> {
+    return axios.get<Auth>(`${apiUrl}/users/${id}/tokens`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+      },
+    });
   }
 
-  static async getUser(id: string): Promise<AxiosResponse<IUser>> {
-    return axios.get(`${apiUrl}/users/${id}`);
+  static async getUser(id: string, token: string): Promise<AxiosResponse<IUser>> {
+    return axios.get(`${apiUrl}/users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+      },
+    });
   }
 
   static async updateUser(
