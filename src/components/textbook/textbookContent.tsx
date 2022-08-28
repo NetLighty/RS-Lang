@@ -35,7 +35,7 @@ const TextbookContent = ():JSX.Element => {
       <div className="book__bottom">
         <Pagination />
         <div className="book__games">
-          <AudioGameButton onClick={() => { savePageToLocalStoreAndGo('/audiocall'); }} />
+          <AudioGameButton onClick={() => { savePageToLocalStoreAndGo('/audiocall/game'); }} />
           <SprintButton onClick={() => { savePageToLocalStoreAndGo('/sprint'); }} />
         </div>
       </div>
