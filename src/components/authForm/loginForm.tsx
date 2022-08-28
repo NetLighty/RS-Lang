@@ -4,7 +4,7 @@ import {
 import React, { FC } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import UserService from '~/api/userService';
-import useActions from '~/hooks/useActions';
+import useActions from '~/hooks/useAction';
 import useTypedSelector from '~/hooks/useTypedSelector';
 import { accesTokenName, createSecureCookie } from '~/utils/cookie';
 import { LoginSchema } from '~/utils/rules/authSchemas';

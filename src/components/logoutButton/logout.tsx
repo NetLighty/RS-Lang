@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import useActions from '~/hooks/useActions';
+import useActions from '~/hooks/useAction';
 import './logoutButton.scss';
 
 const logoutText = 'Выйти';

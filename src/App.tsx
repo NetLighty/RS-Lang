@@ -14,7 +14,7 @@ import AudioCall from './pages/audioCall/audioCall';
 import AudioResult from './pages/gameResult/gameResult';
 import RegistrationPage from './pages/authPages/registration';
 import LoginPage from './pages/authPages/login';
-import useActions from './hooks/useActions';
+import useActions from './hooks/useAction';
 import getCookie, { accesTokenName } from './utils/cookie';
 import UserService from './api/userService';
 import { IUser } from './models/IUser';
