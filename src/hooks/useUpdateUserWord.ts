@@ -123,7 +123,7 @@ export default function useUpdateUserWord() {
 
   const updateWordDifficulty = useCallback(
     (word: IWord, data: Partial<IUserWord>) => {
-      if (userWords[word.group] && userWords[word.group][word.page]) {
+      if (userWords && userWords[word.group] && userWords[word.group][word.page]) {
         const editWord: IUserWord | undefined = userWords[word.group][word.page].find(
           (item: IUserWord) => item.optional?.id === word.id,
         );
@@ -150,7 +150,7 @@ export default function useUpdateUserWord() {
         }) as unknown as UserWordsActions,
       );
     },
-    [dispatch, userWords],
+    [dispatch, userWords, userId, userToken],
   );
 
   return { updateWord, updateWordDifficulty };

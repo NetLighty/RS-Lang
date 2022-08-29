@@ -8,6 +8,7 @@ import {
   AddUserWordsActionsTypes,
   AddUserWordToStoreAction,
   AddUserWordsToStoreAction,
+  DeleteActionsTypes,
 } from '../models/IUserWord';
 import UserWordService from '../api/userWordsService';
 
@@ -30,7 +31,12 @@ export const addWordToUser = (word: IUserWord) => ({
   payload: word,
 });
 
-export function getUserWords(userId: string) {
+export const deleteUserWordsFromStore = () => ({
+  type: DeleteActionsTypes.DELETE_USER_WORDS,
+  payload: '',
+});
+
+export function getUserWords(userId: string, token: string) {
   return async (dispatch: Dispatch<AddUserWordsToStoreAction>) => {
     try {
       const response: AxiosResponse = await UserWordService.getAllUserWords(userId);
