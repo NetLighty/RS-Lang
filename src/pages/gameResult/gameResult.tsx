@@ -39,7 +39,7 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
     nowdDate,
   );
   let flag: boolean;
-  const isAuth = true;
+  const isAuth = localStorage.auth as string;
   function getResult() {
     flag = false;
     const arr: IResultWord[] = [];
@@ -48,7 +48,7 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
         .then((response) => {
           if (isAuth) {
             updateWord(response.data, {
-              result: item.answer, game: gameName, dataupdate: (new Date()).toString(),
+              result: item.answer, game: gameName, dataupdate: (new Date()),
             });
           }
           const obj: IResultWord = createResultWord(
@@ -66,7 +66,7 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
   useEffect(() => {
     if (flag !== false) {
       getResult();
-      if (isAuth) {
+      if (isAuth === 'true') {
         dowloadUserWords();
         upsertSettings();
       }

@@ -1,11 +1,17 @@
 import React, { FC, useEffect, useState } from 'react';
+import { IAggregatedResponse } from '~/models/IAggregated';
 import { ISettingsRes } from '~/models/ISetting';
+import { getAggregatedWordsForStatistic } from '~/utils/aggregatedWordsFunc';
+import formatDate from '~/utils/date';
+import removeDuplicates from '~/utils/removeDublicat';
 import { getSettingsData } from '~/utils/setting.action';
 import SETTINGS from '~/utils/settings';
 import './dayStatistic.scss';
 
 const DayStatistic: FC = () => {
   const [percent, setPercent] = useState(0);
+  const [newDayWords, setNewDayWords] = useState(0);
+
   let flag = true;
   async function fetchStatisticDay(id: string, token: string) {
     flag = false;
@@ -20,6 +26,20 @@ const DayStatistic: FC = () => {
           (seccessWords * 100) / totalCount,
         ));
       }
+      const date = new Date();
+      const filter = `{"userWord.optional.sprint":"${formatDate(date)}"}`;
+      const sprintNewWords = (await getAggregatedWordsForStatistic(id, token, filter));
+      const sprintNew: IAggregatedResponse[] = sprintNewWords as IAggregatedResponse[];
+      const bufSprintNew = sprintNew[0].paginatedResults.filter(
+        (item) => (item.userWord.optional?.audiogame >= item.userWord.optional?.sprint) || item.userWord.optional?.audiogame === '0',
+      );
+      const filterAudio = `{"userWord.optional.audiogame":"${formatDate(date)}"}`;
+      const audioNewWords = (await getAggregatedWordsForStatistic(id, token, filterAudio));
+      const audioNew: IAggregatedResponse[] = audioNewWords as IAggregatedResponse[];
+      const bufAudioNew = audioNew[0].paginatedResults.filter(
+        (item) => (item.userWord.optional?.sprint >= item.userWord.optional?.audiogame) || item.userWord.optional?.sprint === '0',
+      );
+      setNewDayWords((removeDuplicates(bufSprintNew.concat(bufAudioNew))).length);
     }
   }
   useEffect(() => {
@@ -36,7 +56,7 @@ const DayStatistic: FC = () => {
       <p className="day-statistic__header">Результаты за сегодня</p>
       <div className="day-statistic__item">
         <p className="day-statistic__item_text">количество новых слов:</p>
-        <p className="day-statistic__item_number">0</p>
+        <p className="day-statistic__item_number">{newDayWords}</p>
       </div>
       <div className="day-statistic__item">
         <p className="day-statistic__item_text">количество изученных слов:</p>
