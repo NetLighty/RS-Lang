@@ -14,7 +14,7 @@ const SETTINGS = {
   COUNTSUCCESSINROW: 2,
   COUNTSUCCESSINROWHARD: 4,
   // TODO for testing. Delete after we get users data
-  TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGM4MTM0MGUxMDg3MDAxNjllYzU1ZiIsImlhdCI6MTY2MTc2NTQ2OCwiZXhwIjoxNjYxNzc5ODY4fQ.MdraTc4Tcj7FHhKUch2fgMt8pZtAEy3jTq2nc_u7q64',
+  TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGM4MTM0MGUxMDg3MDAxNjllYzU1ZiIsImlhdCI6MTY2MTc5NzY2OCwiZXhwIjoxNjYxODEyMDY4fQ.9jrHAc6xSRMf2qXSqu1nFNOUyYlm2H-cG8dA0QuH1DM',
 };
 
 // TODO delete after users information will be added. For testin

@@ -6,3 +6,10 @@ export interface User {
 export interface IUser extends User {
   name: string;
 }
+
+export interface IUserResponse {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+}

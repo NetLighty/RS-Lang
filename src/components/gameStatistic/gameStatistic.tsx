@@ -39,11 +39,10 @@ const GameStatistic: FC<GameStatisticpProps> = ({ gameName }) => {
         setSeries(data.optional.sprintSeries);
       }
     }
-    const date = new Date();
-    const filter = `{"userWord.optional.${gameName}":"${formatDate(date)}"}`;
+    const filter = `{"userWord.optional.${gameName}":"${formatDate(new Date())}"}`;
     const aggregated = (await getAggregatedWordsForStatistic(id, token, filter));
     const aggreg: IAggregatedResponse[] = aggregated as IAggregatedResponse[];
-    setNewWords(aggreg[0].paginatedResults.length);
+    setNewWords(aggreg[0].totalCount[0].count);
   }
   useEffect(() => {
     if (flag !== false) {

@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 import UserService from '~/api/userService';
 import UserWordService from '~/api/userWordsService';
 import { ISettings, SettingsOptional } from '~/models/ISetting';
+import { IUser, IUserResponse } from '~/models/IUser';
 import { IUserWord } from '~/models/IUserWord';
 
 export async function getUserWordsById(userId: string, wordId:string, token:string) {
@@ -38,6 +39,16 @@ export async function updateSettingsData(
       optional,
     );
     const data = (await response.data) as ISettings;
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function getUserById(userId: string, token: string) {
+  try {
+    const response:AxiosResponse = await UserService.getUser(userId, token);
+    const data = (await response.data) as IUserResponse;
     return data;
   } catch (error) {
     return error;

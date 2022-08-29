@@ -1,4 +1,99 @@
+@import '../../style/global.scss';
+
 .user {
    width: 400px;
    height: 199px;
+   &__content {
+      display: flex;
+      column-gap: 4rem;
+      &_img {
+         width: 13.6rem;
+         height: 13.6rem;
+         border-radius: 100%;
+         background-color: rgb(155, 148, 148);
+      }
+   }
+   &__control{
+      &_changeimg,
+      &_exit {
+         background-color: $darkOrangeColor;
+         width: 13.6rem;
+         height: 3rem;
+         border-radius: 0.2rem;
+         border: none;
+         color: $whiteColor;
+         font-size: $mainFontSize;
+         margin-top: 1.4rem;
+         transition: opacity 0.3s ease;
+         cursor: pointer;
+         &:hover {
+            opacity: 0.7;
+         }
+      }
+      &_changeimg {
+         margin-right: 4rem;
+      }
+   }
+}
+.fild {
+   display: flex;
+   flex-direction: column;
+   row-gap: 2rem;
+   &__login,
+   &__email{
+      display: flex;
+      align-items: flex-end;
+      border-bottom: 0.5px solid $whiteColor;
+      width: 21rem;
+      &_descr {
+         color: $whiteColor;
+         font-size: $mainFontSize;
+      }
+   }
+   &__login {
+      &-input{
+         width: 15rem;
+         color: $greyColor;
+         font-size: $mainFontSize;
+         padding-left: 10px;
+         &:disabled{
+            background-color: $backgrounColor;
+            border: none;
+            color: $whiteColor;
+            font-size: $mainFontSize;
+            padding-left: 10px;
+         }
+         &::placeholder {
+            color: $whiteColor;
+         }
+      }
+   }
+   &__email {
+      &-input{
+         font-family: 'Roboto';
+         width: 14.5rem;
+         color: $greyColor;
+         font-size: $mainFontSize;
+         padding-left: 10px;
+         &:disabled{
+            background-color: $backgrounColor;
+            border: none;
+            font-size: $mainFontSize;
+            padding-left: 10px;
+         }
+         &::placeholder {
+            color: $whiteColor;
+         }
+      }
+   }
+}
+.edit {
+   font-size: 2rem;
+   color: $lightOrangeColor;
+   margin-left: 10px;
+   transition: opacity 0.3s ease;
+   cursor: pointer;
+   &:hover {
+      opacity: 0.7;
+   }
 }

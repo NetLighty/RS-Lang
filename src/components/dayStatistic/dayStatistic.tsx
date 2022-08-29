@@ -36,6 +36,7 @@ const DayStatistic: FC = () => {
       const filterAudio = `{"userWord.optional.audiogame":"${formatDate(date)}"}`;
       const audioNewWords = (await getAggregatedWordsForStatistic(id, token, filterAudio));
       const audioNew: IAggregatedResponse[] = audioNewWords as IAggregatedResponse[];
+      console.log(audioNewWords);
       const bufAudioNew = audioNew[0].paginatedResults.filter(
         (item) => (item.userWord.optional?.sprint >= item.userWord.optional?.audiogame) || item.userWord.optional?.sprint === '0',
       );
