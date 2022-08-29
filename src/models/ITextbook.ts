@@ -1,3 +1,4 @@
+import { IUserWord } from '~/models/IUserWord';
 import { IWord } from './IWord';
 
 export enum BookActionsTypes {
@@ -9,7 +10,7 @@ export enum BookActionsTypes {
 export type BookStateType = {
   group: number,
   page: number,
-  bookWords?: Array<IWord>
+  bookWords?: Array<IUserWord & IWord>
 };
 
 interface AddPageAction {

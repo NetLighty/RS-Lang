@@ -11,8 +11,10 @@ const SETTINGS = {
   USER_ID: '63063db4db482e0016e14c74', // TODO for testing. Delete after we get users data
   HARD_WORD: 'hard',
   NORMAL_WORD: 'normal',
+  COUNTSUCCESSINROW: 2,
+  COUNTSUCCESSINROWHARD: 4,
   // TODO for testing. Delete after we get users data
-  TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDYzZGI0ZGI0ODJlMDAxNmUxNGM3NCIsImlhdCI6MTY2MTY3MTgxMywiZXhwIjoxNjYxNjg2MjEzfQ.Lg0NyrAHxw_uow0qi8B4Yhh2xhS7LA7BZfKlbYC98_0',
+  TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDQ5NTQxM2M2YjYwMDAxNjcyYjhlNiIsImlhdCI6MTY2MTcxNTg4NSwiZXhwIjoxNjYxNzMwMjg1fQ.3QvwFmU-hTzRx9ElNEbeD1mcdsU1EPuzC8DbaJcusGg',
 };
 
 // TODO delete after users information will be added. For testin

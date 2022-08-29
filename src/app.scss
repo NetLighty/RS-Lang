@@ -1,14 +1,14 @@
 @import './style/global.scss';
 
-*{ 
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 html {
    font-size: 10px;
 }
 body {
-   background-color: $backgrounColor;
-   font-family: 'Roboto';
+  background-color: $backgrounColor;
+  font-family: 'Roboto';
 }

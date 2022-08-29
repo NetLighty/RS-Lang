@@ -7,28 +7,32 @@ import PaginationButton from './paginationButton';
 
 const Pagination = () => {
   const dispatch = useDispatch();
-  const pageText = useSelector((state:RootState) => state.textbook.page + 1);
+  const pageText = useSelector((state: RootState) => state.textbook.page + 1);
   const [prevDisabled, setPrevDisabled] = useState(true);
   const [lastDisabled, setLastDisabled] = useState(false);
 
-  function setPage(event:React.MouseEvent<HTMLDivElement> |
-  React.KeyboardEvent<HTMLDivElement>) {
+  function setPage(event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) {
     const target = event.target as HTMLButtonElement;
     if (target.classList.contains('book__pagination__button')) {
       switch (target.dataset.direction) {
         case SETTINGS.FIRST_PAGE:
           dispatch(addCurrentPage(0));
+          localStorage.setItem('bookPage', JSON.stringify(0));
           break;
         case SETTINGS.LAST_PAGE:
           dispatch(addCurrentPage(SETTINGS.PAGES - 1));
+          localStorage.setItem('bookPage', JSON.stringify(SETTINGS.PAGES - 1));
           break;
         case SETTINGS.PREVIOUS_PAGE:
           dispatch(addCurrentPage(pageText - 2));
+          localStorage.setItem('bookPage', JSON.stringify(pageText - 2));
           break;
         case SETTINGS.NEXT_PAGE:
           dispatch(addCurrentPage(pageText));
+          localStorage.setItem('bookPage', JSON.stringify(pageText));
           break;
-        default: break;
+        default:
+          break;
       }
     }
   }

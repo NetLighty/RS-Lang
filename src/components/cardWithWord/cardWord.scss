@@ -37,9 +37,9 @@
     outline: none;
     cursor: pointer;
 
-    &:hover{
+    &:hover {
       opacity: 0.8;
-   }
+    }
   }
 
   &__translation {
@@ -61,7 +61,8 @@
     color: $whiteColor;
   }
 
-  &__meaning,  &__example {
+  &__meaning,
+  &__example {
     display: flex;
     flex-direction: column;
     padding: 0 24px;
@@ -71,15 +72,18 @@
     line-height: 16.41px;
   }
 
-  &__meaning__text,  &__example__text {
+  &__meaning__text,
+  &__example__text {
     margin-bottom: 8px;
   }
 
-  &__meaning__textMeaningTranslate, &__example__textExampleTranslate {
+  &__meaning__textMeaningTranslate,
+  &__example__textExampleTranslate {
     color: $greyColor;
   }
 
-  &__meaning__sound,  &__example__sound {
+  &__meaning__sound,
+  &__example__sound {
     width: 15px;
     height: 15px;
     margin-right: 10px;
@@ -90,19 +94,19 @@
     outline: none;
     cursor: pointer;
 
-    &:hover{
+    &:hover {
       opacity: 0.8;
-   }
+    }
   }
 
   &__buttons {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     margin: 9px 20px;
   }
 
   &__buttons__block {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     margin: 9px 0;
   }
@@ -120,6 +124,17 @@
 
   &__button__hard {
     margin-right: 10px;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__button__learned:hover {
+    opacity: 0.5;
+  }
+
+  &__button__learned-active {
+    color: $true;
   }
 
   &__progress__block {
@@ -130,23 +145,23 @@
   &__color0 {
     color: $darkBrownColor;
   }
-  
+
   &__color1 {
-    color:$lightBrownColor;;
+    color: $lightBrownColor;
   }
-  
+
   &__color2 {
     color: $lightPinkColor;
   }
-  
+
   &__color3 {
     color: $darkBlueColor;
   }
-  
+
   &__color4 {
     color: $lightOrangeColor;
   }
-  
+
   &__color5 {
     color: $darkOrangeColor;
   }
@@ -154,25 +169,24 @@
   &__bgcolor0 {
     background-color: $darkBrownColor;
   }
-  
+
   &__bgcolor1 {
-    background-color:$lightBrownColor;;
+    background-color: $lightBrownColor;
   }
-  
+
   &__bgcolor2 {
     background-color: $lightPinkColor;
   }
-  
+
   &__bgcolor3 {
     background-color: $darkBlueColor;
   }
-  
+
   &__bgcolor4 {
     background-color: $lightOrangeColor;
   }
-  
+
   &__bgcolor5 {
     background-color: $darkOrangeColor;
   }
 }
-
