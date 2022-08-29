@@ -121,7 +121,6 @@ export default function useUpdateUserWord() {
     [dispatch, userWords, userId],
   );
 
-  // TODO replace user and token when we get this information
   const updateWordDifficulty = useCallback(
     (word: IWord, data: Partial<IUserWord>) => {
       if (userWords[word.group] && userWords[word.group][word.page]) {

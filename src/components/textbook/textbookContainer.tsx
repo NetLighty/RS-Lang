@@ -1,23 +1,22 @@
 import React, { FC, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/index-reducers';
+import { useDispatch } from 'react-redux';
 import useGetWords from '../../hooks/useGetWords';
 import { IWord } from '../../models/IWord';
 import { IUserWord } from '../../models/IUserWord';
 import { addCurrentBookWords, addCurrentGroup, addCurrentPage } from '../../store/textbook.actions';
 import CardWord from '../cardWithWord/cardWord';
-import useGetUserWords from '~/hooks/useGetUserWords';
 import Loader from '~/ui/loader/loader';
 import SETTINGS from '~/utils/settings';
+import { useAppSelector } from '~/hooks';
 
 const TextbookContainer: FC = () => {
   const { bookPageWords, getWords, isLoading } = useGetWords();
-  const { dowloadUserWords, userWords } = useGetUserWords();
   const dispatch = useDispatch();
   const group = Number(localStorage.getItem('bookGroup') || 0);
   const page = Number(localStorage.getItem('bookPage') || 0);
-  const wordsToRender = useSelector((state: RootState) => state.textbook.bookWords);
-  const isAuth = true;
+  const wordsToRender = useAppSelector((state) => state.textbook.bookWords);
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const userWords = useAppSelector((state) => state.userWords);
 
   const findUserWord = useCallback(
     (word: IWord) => {
@@ -64,12 +63,6 @@ const TextbookContainer: FC = () => {
   useEffect(() => {
     getWords(group, page);
   }, [group, page, getWords]);
-
-  useEffect(() => {
-    if (isAuth) {
-      dowloadUserWords();
-    }
-  }, [isAuth, dowloadUserWords]);
 
   useEffect(() => {
     if (userWords[group] && userWords[group][page]) {

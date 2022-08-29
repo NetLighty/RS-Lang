@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import Parser from 'html-react-parser';
 import SETTINGS from '../../utils/settings';
 import { IWord } from '../../models/IWord';
@@ -8,13 +8,14 @@ import LearnedWordButton from './cardButtons/learnedWordButton';
 import SoundWordButton from './cardButtons/soundWordButton';
 import useUpdateUserWord from '~/hooks/useUpdateUserWord';
 import { IUserWord } from '~/models/IUserWord';
+import { useAppSelector } from '~/hooks';
 
 interface CardWordProps {
   word: IWord & IUserWord;
 }
 
 const CardWord: FC<CardWordProps> = ({ word }) => {
-  const [isAuth] = useState(true);
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
   const { updateWord, updateWordDifficulty } = useUpdateUserWord();
   const { difficulty } = word;
   return (

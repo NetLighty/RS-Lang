@@ -16,16 +16,18 @@ import HardWords from './pages/hardWords/hardWords';
 import RegistrationPage from './pages/authPages/registration';
 import LoginPage from './pages/authPages/login';
 import useActions from './hooks/useAction';
-import { localStorageNames } from './utils/auth';
+import {  localStorageNames } from './utils/auth';
 import UserService from './api/userService';
 import { IUser } from './models/IUser';
 import useTypedSelector from './hooks/useTypedSelector';
 import { logoutUser } from './api/controllers/userController';
 import LoginForm from './components/authForm/loginForm';
+import useGetUserWords from './hooks/useGetUserWords';
 
 const App = () => {
   const { setUser, setIsAuth } = useActions();
   const { isAuth } = useTypedSelector((state) => state.auth);
+  const { dowloadUserWords } = useGetUserWords();
 
   useEffect(() => {
     if (localStorage.getItem(localStorageNames.isAuth) && !isAuth) {
@@ -40,6 +42,7 @@ const App = () => {
           // document.cookie = `token=${res.data.token}; secure; sameSite=strict`;
           setUser({ id: userId, name: res.data.name });
           setIsAuth(true);
+          dowloadUserWords(userId, accessToken);
         }).catch(() => { logoutUser(); });
       }
     }
