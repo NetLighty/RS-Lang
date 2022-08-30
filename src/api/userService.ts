@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { Auth } from '../models/Auth';
 import { ISettings, SettingsOptional } from '../models/ISetting';
 import { IStatistic } from '../models/IStatistic';
@@ -47,7 +47,7 @@ export default class UserService {
     return axiosInstance.put(`${apiUrl}/users/${id}`, { learnedWords, optional });
   }
 
-  static async getUserSettings(id: string, token: string): Promise<AxiosResponse<ISettings>> {
+  static async getUserSettings(id: string): Promise<AxiosResponse<ISettings>> {
     return axiosInstance.get(`${apiUrl}/users/${id}/settings`);
   }
 
