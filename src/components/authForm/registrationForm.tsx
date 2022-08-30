@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { loginUser, registrationUser } from '~/api/controllers/userController';
 import useActions from '~/hooks/useAction';
 import useTypedSelector from '~/hooks/useTypedSelector';
-import { errorRegistrationMsg, successfullRegistrationMsg } from '~/utils/auth';
+import { errorRegistrationMsg } from '~/utils/auth';
 import { RegistrationSchema } from '~/utils/rules/authSchemas';
 import './authForm.scss';
 
