@@ -4,6 +4,7 @@ import {
 import React, { FC } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { registrationUser } from '~/api/controllers/userController';
+import useActions from '~/hooks/useAction';
 import { RegistrationSchema } from '~/utils/rules/authSchemas';
 import './authForm.scss';
 
@@ -17,6 +18,9 @@ interface RegistrationValues {
 
 const RegistrationForm: FC = () => {
   const initialValues: RegistrationValues = { name: '', email: '', password: '' };
+  const {
+    setIsAuth, setError, setUser,
+  } = useActions();
   const navigate = useNavigate();
   return (
     <div className="auth">
@@ -25,13 +29,19 @@ const RegistrationForm: FC = () => {
         validationSchema={RegistrationSchema}
         onSubmit={async (values, actions) => {
           const regRes = await registrationUser(values.name, values.email, values.password);
+          console.log(regRes);
           if (regRes) {
+            setUser({
+              id: regRes.id, name: regRes.name,
+            });
+            setIsAuth(true);
+            setError('');
             navigate('../');
           }
           actions.setSubmitting(false);
         }}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, isSubmitting }) => (
           <Form>
             <div className="form">
               <img className="form__img" src={`${result}/src/assets/img/enter.svg`} alt="planet" />
@@ -61,7 +71,7 @@ const RegistrationForm: FC = () => {
                 </div>
               </div>
               <div className="form__button">
-                <button className="form__button-enter" type="submit">Регистрация</button>
+                <button className="form__button-enter" type="submit">{ isSubmitting ? '...' : 'регистрация' }</button>
               </div>
               <span>
                 {'Есть аккаунт? - '}

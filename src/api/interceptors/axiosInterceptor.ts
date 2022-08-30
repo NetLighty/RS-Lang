@@ -23,8 +23,6 @@ const getNewUserTokens = async (id: string, token: string): Promise<AxiosRespons
   },
 });
 
-/* const noAuthRoute = (uri: string) => /^(words\/|words:id\/|register$)/.test(uri); */
-
 axiosInstance.interceptors.request.use(async (req) => {
   if (isAuth === 'true' && userId) {
     /* if (!accessToken || !refreshToken) {
@@ -32,18 +30,18 @@ axiosInstance.interceptors.request.use(async (req) => {
       refreshToken = localStorage.getItem(localStorageNames.refreshToken);
       req.headers.Authorization = `Bearer ${accessToken || ''}`;
     } */
-
     const decodedJwt = jwt_decode<JwtPayload>(accessToken || '') as TokenDto;
     const isExpired = dayjs.unix(decodedJwt.exp).diff(dayjs()) < 1;
-    console.log('isExpired: ', isExpired);
     if (!isExpired) {
       return req;
     }
     const res = await getNewUserTokens(userId, refreshToken || '');
     localStorage.setItem(localStorageNames.accesToken, res.data.token);
     localStorage.setItem(localStorageNames.refreshToken, res.data.refreshToken);
+    if (req.headers) {
+      req.headers.Authorization = `Bearer ${localStorage.getItem(localStorageNames.accesToken) || ''}`;
+    }
   }
-
   return req;
 });
 
