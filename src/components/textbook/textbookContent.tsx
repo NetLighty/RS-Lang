@@ -41,7 +41,7 @@ const TextbookContent = (): JSX.Element => {
           />
           <SprintButton
             onClick={() => {
-              savePageToLocalStoreAndGo('/sprint');
+              savePageToLocalStoreAndGo('/sprint/game');
             }}
           />
         </div>

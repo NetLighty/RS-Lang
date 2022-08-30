@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { IAggregated } from '~/models/IAggregated';
 import formatDate from '~/utils/date';
 import { useAppDispatch, useAppSelector } from './index';
 import { updateUserWord, createUserWord } from '../store/userWords.actions';
@@ -122,7 +123,7 @@ export default function useUpdateUserWord() {
   );
 
   const updateWordDifficulty = useCallback(
-    (word: IWord, data: Partial<IUserWord>) => {
+    (word: IWord | IAggregated, data: Partial<IUserWord>) => {
       if (userWords && userWords[word.group] && userWords[word.group][word.page]) {
         const editWord: IUserWord | undefined = userWords[word.group][word.page].find(
           (item: IUserWord) => item.optional?.id === word.id,

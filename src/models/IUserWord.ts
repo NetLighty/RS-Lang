@@ -12,6 +12,8 @@ export type Options = {
   countSuccessInRow: number;
   success: number;
   allAttemts: number;
+  isThisFirst: boolean;
+  firstDate: string;
   dataupdate: Date;
   game: 'audiogame' | 'sprint' | 'undefined';
   audiogame: string;
