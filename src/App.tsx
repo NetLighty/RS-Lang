@@ -16,29 +16,30 @@ import HardWords from './pages/hardWords/hardWords';
 import RegistrationPage from './pages/authPages/registration';
 import LoginPage from './pages/authPages/login';
 import useActions from './hooks/useAction';
-import {getCookie, accesTokenName } from './utils/cookie';
+import { localStorageNames } from './utils/auth';
 import UserService from './api/userService';
 import { IUser } from './models/IUser';
 import useTypedSelector from './hooks/useTypedSelector';
+import { logoutUser } from './api/controllers/userController';
 
 const App = () => {
   const { setUser, setIsAuth } = useActions();
   const { isAuth } = useTypedSelector((state) => state.auth);
 
   useEffect(() => {
-    if (localStorage.getItem('auth') && !isAuth) {
-      const userInit = async (id: string, accessToken: string): Promise<AxiosResponse<IUser>> => {
-        const res = await UserService.getUser(id, accessToken);
+    if (localStorage.getItem(localStorageNames.isAuth) && !isAuth) {
+      const userInit = async (id: string): Promise<AxiosResponse<IUser>> => {
+        const res = await UserService.getUser(id);
         return res;
       };
-      const userId = localStorage.getItem('userId');
-      const accessToken = getCookie(accesTokenName);
+      const userId = localStorage.getItem(localStorageNames.userId);
+      const accessToken = localStorage.getItem(localStorageNames.accesToken);
       if (userId && accessToken) {
-        userInit(userId, accessToken).then((res) => {
+        userInit(userId).then((res) => {
           // document.cookie = `token=${res.data.token}; secure; sameSite=strict`;
-          setUser({ id: '', name: res.data.name });
+          setUser({ id: userId, name: res.data.name });
           setIsAuth(true);
-        }).catch(() => {});
+        }).catch(() => { logoutUser(); });
       }
     }
   });

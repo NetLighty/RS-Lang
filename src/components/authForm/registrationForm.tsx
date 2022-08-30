@@ -2,8 +2,8 @@ import {
   Field, Form, Formik,
 } from 'formik';
 import React, { FC } from 'react';
-import { NavLink } from 'react-router-dom';
-import UserService from '~/api/userService';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { registrationUser } from '~/api/controllers/userController';
 import { RegistrationSchema } from '~/utils/rules/authSchemas';
 import './authForm.scss';
 
@@ -17,19 +17,16 @@ interface RegistrationValues {
 
 const RegistrationForm: FC = () => {
   const initialValues: RegistrationValues = { name: '', email: '', password: '' };
+  const navigate = useNavigate();
   return (
     <div className="auth">
       <Formik
         initialValues={initialValues}
         validationSchema={RegistrationSchema}
         onSubmit={async (values, actions) => {
-          const regRes = await UserService.createUser(values.name, values.email, values.password);
-          console.log(regRes);
-          console.log(regRes.data);
-          if (regRes.status === 200) {
-            const loginRes = await UserService.signIn(values.email, values.password);
-            console.log('LOGIN>>>?>?:????');
-            console.log(loginRes);
+          const regRes = await registrationUser(values.name, values.email, values.password);
+          if (regRes) {
+            navigate('../');
           }
           actions.setSubmitting(false);
         }}

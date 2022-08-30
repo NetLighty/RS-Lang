@@ -1,4 +1,10 @@
-export const accesTokenName = 'token';
+export const localStorageNames = {
+  accesToken: 'token',
+  refreshToken: 'refreshToken',
+  userId: 'userId',
+  userName: 'username',
+  isAuth: 'auth',
+};
 
 export const getCookie = (name: string) => {
   const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));

@@ -2,23 +2,22 @@ import axios, { AxiosResponse } from 'axios';
 import { Options, IUserWord } from '../models/IUserWord';
 import { IWord } from '../models/IWord';
 import apiUrl from '../utils/api';
+import axiosInstance from './interceptors/axiosInterceptor';
 
 export default class UserWordService {
-  static async getAllUserWords(id: string, token: string)
+  static async getAllUserWords(id: string)
     : Promise<AxiosResponse<IUserWord[]>> {
-    return axios.get(`${apiUrl}/users/${id}/words`, {
+    return axiosInstance.get(`${apiUrl}/users/${id}/words`, {
       headers: {
-        Authorization: `Bearer ${token}`,
         Accept: 'application/json',
       },
     });
   }
 
-  static async getUserWord(userId: string, wordId: string, token:string)
+  static async getUserWord(userId: string, wordId: string)
     : Promise<AxiosResponse<IUserWord>> {
-    return axios.get(`${apiUrl}/users/${userId}/words/${wordId}`, {
+    return axiosInstance.get(`${apiUrl}/users/${userId}/words/${wordId}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
         Accept: 'application/json',
       },
     });
@@ -27,14 +26,12 @@ export default class UserWordService {
   static async createUserWord(
     userId: string,
     wordId: string,
-    token: string,
     difficulty: string,
     optional?: Options,
   ): Promise<AxiosResponse<IUserWord>> {
     const body = JSON.stringify({ difficulty, optional });
-    return axios.post(`${apiUrl}/users/${userId}/words/${wordId}`, body, {
+    return axiosInstance.post(`${apiUrl}/users/${userId}/words/${wordId}`, body, {
       headers: {
-        Authorization: `Bearer ${token}`,
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
@@ -44,13 +41,11 @@ export default class UserWordService {
   static async updateUserWord(
     userId: string,
     wordId: string,
-    token: string,
     difficulty: string,
     optional?: Options,
   ): Promise<AxiosResponse<IUserWord>> {
-    return axios.put(`${apiUrl}/users/${userId}/words/${wordId}`, { difficulty, optional }, {
+    return axiosInstance.put(`${apiUrl}/users/${userId}/words/${wordId}`, { difficulty, optional }, {
       headers: {
-        Authorization: `Bearer ${token}`,
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
@@ -58,17 +53,15 @@ export default class UserWordService {
   }
 
   static async deleteUserWord(userId: string, wordId: string): Promise<AxiosResponse> {
-    return axios.delete(`${apiUrl}/users/${userId}/words/${wordId}`);
+    return axiosInstance.delete(`${apiUrl}/users/${userId}/words/${wordId}`);
   }
 
   static async getUserAggregatedWord(
     userId: string,
     wordId: string,
-    token: string,
   ): Promise<AxiosResponse<IUserWord>> {
-    return axios.get(`${apiUrl}/users/${userId}/aggregatedWords/${wordId}`, {
+    return axiosInstance.get(`${apiUrl}/users/${userId}/aggregatedWords/${wordId}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
         Accept: 'application/json',
       },
     });
@@ -76,7 +69,6 @@ export default class UserWordService {
 
   static async getAllUserAggregatedWords(
     id: string,
-    token: string,
     filter?: string,
     group?: string,
     wordsPerPage?: string,
@@ -87,9 +79,8 @@ export default class UserWordService {
     if (page) url.searchParams.set('page', page);
     if (wordsPerPage) url.searchParams.set('wordsPerPage', wordsPerPage);
     if (filter) url.searchParams.set('filter', filter);
-    return axios.get((url as unknown as string), {
+    return axiosInstance.get((url as unknown as string), {
       headers: {
-        Authorization: `Bearer ${token}`,
         Accept: 'application/json',
       },
     });
