@@ -10,7 +10,7 @@ export enum BookActionsTypes {
 export type BookStateType = {
   group: number,
   page: number,
-  bookWords?: Array<IUserWord & IWord>
+  bookWords?: Array<IWord |(IUserWord & IWord)>
 };
 
 interface AddPageAction {

@@ -44,6 +44,8 @@ const TextbookContainer: FC = () => {
           countSuccessInRow: 0,
           success: 0,
           allAttemts: 0,
+          isThisFirst: true,
+          firstDate: '0',
           dataupdate: new Date('1970-01-01'),
           game: 'undefined',
           audiogame: '0',
@@ -72,7 +74,7 @@ const TextbookContainer: FC = () => {
     } else if (bookPageWords?.length) {
       if (bookPageWords?.length) dispatch(addCurrentBookWords([...bookPageWords]));
     }
-  }, [group, page, isAuth, bookPageWords, dispatch, findUserWord, userWords]);
+  }, [group, page, bookPageWords, dispatch, findUserWord, userWords]);
 
   useEffect(() => {
     if (!isAuth) {
@@ -85,7 +87,8 @@ const TextbookContainer: FC = () => {
       <div className="book__loader">{isLoading && <Loader />}</div>
       <div className="book__cards">
         {wordsToRender?.length
-          ? wordsToRender.map((word: IWord & IUserWord) => <CardWord key={word.id} word={word} />)
+          ? wordsToRender
+            .map((word: IWord | (IWord & IUserWord)) => <CardWord key={word.id} word={word} />)
           : null}
       </div>
     </>
