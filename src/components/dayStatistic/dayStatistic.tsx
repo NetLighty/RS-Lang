@@ -3,7 +3,6 @@ import { IAggregatedResponse } from '~/models/IAggregated';
 import { ISettingsRes } from '~/models/ISetting';
 import { getAggregatedWordsForStatistic } from '~/utils/aggregatedWordsFunc';
 import formatDate from '~/utils/date';
-import removeDuplicates from '~/utils/removeDublicat';
 import { getSettingsData } from '~/utils/setting.action';
 import SETTINGS from '~/utils/settings';
 import './dayStatistic.scss';
@@ -17,7 +16,7 @@ const DayStatistic: FC = () => {
     flag = false;
     const response = (await getSettingsData(id, token));
     const data = response as ISettingsRes;
-    if (data.optional) {
+    if (data.optional && data.optional.dataSettings === formatDate(new Date())) {
       const totalCount = data.optional.audioTotalCount + data.optional.sprintTotalCount;
       // eslint-disable-next-line no-unsafe-optional-chaining
       const seccessWords = data.optional?.audioSuccess + data.optional?.sprintSuccess;
@@ -27,20 +26,10 @@ const DayStatistic: FC = () => {
         ));
       }
       const date = new Date();
-      const filter = `{"userWord.optional.sprint":"${formatDate(date)}"}`;
-      const sprintNewWords = (await getAggregatedWordsForStatistic(id, token, filter));
-      const sprintNew: IAggregatedResponse[] = sprintNewWords as IAggregatedResponse[];
-      const bufSprintNew = sprintNew[0].paginatedResults.filter(
-        (item) => (item.userWord.optional?.audiogame >= item.userWord.optional?.sprint) || item.userWord.optional?.audiogame === '0',
-      );
-      const filterAudio = `{"userWord.optional.audiogame":"${formatDate(date)}"}`;
-      const audioNewWords = (await getAggregatedWordsForStatistic(id, token, filterAudio));
-      const audioNew: IAggregatedResponse[] = audioNewWords as IAggregatedResponse[];
-      console.log(audioNewWords);
-      const bufAudioNew = audioNew[0].paginatedResults.filter(
-        (item) => (item.userWord.optional?.sprint >= item.userWord.optional?.audiogame) || item.userWord.optional?.sprint === '0',
-      );
-      setNewDayWords((removeDuplicates(bufSprintNew.concat(bufAudioNew))).length);
+      const filter = `{"userWord.optional.firstDate":"${formatDate(date)}"}`;
+      const newWordsResp = (await getAggregatedWordsForStatistic(id, token, filter));
+      const newWords: IAggregatedResponse[] = newWordsResp as IAggregatedResponse[];
+      setNewDayWords(newWords[0].totalCount[0].count);
     }
   }
   useEffect(() => {

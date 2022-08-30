@@ -15,12 +15,13 @@ const GameStatistic: FC<GameStatisticpProps> = ({ gameName }) => {
   const [newWords, setNewWords] = useState(0);
   const [percent, setPercent] = useState(0);
   const [series, setSeries] = useState(0);
+
   let flag = true;
   async function fetchStatisticGame(id: string, token: string) {
     flag = false;
     const response = (await getSettingsData(id, token));
     const data = response as ISettingsRes;
-    if (data.optional) {
+    if (data.optional && data.optional.dataSettings === formatDate(new Date())) {
       if (gameName === 'audiogame') {
         if (data.optional.audioTotalCount !== 0) {
           setPercent(Math.ceil(
@@ -44,6 +45,7 @@ const GameStatistic: FC<GameStatisticpProps> = ({ gameName }) => {
     const aggreg: IAggregatedResponse[] = aggregated as IAggregatedResponse[];
     setNewWords(aggreg[0].totalCount[0].count);
   }
+
   useEffect(() => {
     if (flag !== false) {
       fetchStatisticGame(SETTINGS.USER_ID, SETTINGS.TOKEN)
@@ -52,7 +54,7 @@ const GameStatistic: FC<GameStatisticpProps> = ({ gameName }) => {
           () => {},
         );
     }
-  });
+  }, []);
   return (
     <div className="game-statistic">
       <p className="game-statistic__header">{(gameName === 'audiogame') ? 'Аудиовызов' : 'Спринт'}</p>

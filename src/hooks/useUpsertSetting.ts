@@ -13,6 +13,7 @@ export default function useUpsertSetting(
   nowData: Date,
 ) {
   const upsertSettings = () => {
+    console.log(formatDate(nowData));
     const settings = getSettingsData(userId, token)
       .then((response) => {
         const data = response as ISettings;
@@ -59,12 +60,16 @@ export default function useUpsertSetting(
         } else if (settingstDate === '' || settingstDate !== formatDate(nowData)) {
           if (gameName === 'audiogame') {
             optional = {
-              ...DefaultSettingsOptional,
+              // ...DefaultSettingsOptional,
               audioSuccess: success,
               audioTotalCount: wordsCount,
               audioSeries: series,
+              sprintSuccess: 0,
+              sprintTotalCount: 0,
+              sprintSeries: 0,
               dataSettings: formatDate(nowData),
             };
+            console.log(optional);
           } else if (gameName === 'sprint') {
             optional = {
               ...DefaultSettingsOptional,
@@ -75,6 +80,7 @@ export default function useUpsertSetting(
             };
           }
           const result = updateSettingsData(userId, wordsCount, token, optional);
+          console.log(result);
         }
       });
   };

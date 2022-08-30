@@ -27,6 +27,7 @@ const UserComponent: FC = () => {
         );
     }
   }, []);
+
   return (
     <div className="user">
       <div className="user__content">
@@ -34,19 +35,17 @@ const UserComponent: FC = () => {
         <div className="user__content_fild fild">
           <div className="fild__login">
             <p className="fild__login_descr">имя:</p>
-            <input type="text" className="fild__login-input" disabled placeholder={login} />
-            <div className="fild__login-edit edit _icon-pencil" />
+            <input type="text" className="fild__login-input" disabled value={login} />
           </div>
           <div className="fild__email">
             <p className="fild__email_descr">email:</p>
-            <input type="text" className="fild__email-input" disabled placeholder={email} />
-            <div className="fild__email-edit edit _icon-pencil" />
+            <input type="text" className="fild__email-input" disabled value={email} />
           </div>
         </div>
       </div>
       <div className="user__control">
-        <button className="user__control_changeimg">сменить фото</button>
-        <button className="user__control_exit">выйти</button>
+        <button className="user__control_changeimg" type="button">редактировать</button>
+        <button className="user__control_exit" type="button">выйти</button>
       </div>
     </div>
   );

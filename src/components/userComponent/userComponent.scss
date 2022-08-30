@@ -63,9 +63,6 @@
             font-size: $mainFontSize;
             padding-left: 10px;
          }
-         &::placeholder {
-            color: $whiteColor;
-         }
       }
    }
    &__email {
@@ -75,14 +72,12 @@
          color: $greyColor;
          font-size: $mainFontSize;
          padding-left: 10px;
+         color: $whiteColor;
          &:disabled{
             background-color: $backgrounColor;
             border: none;
             font-size: $mainFontSize;
             padding-left: 10px;
-         }
-         &::placeholder {
-            color: $whiteColor;
          }
       }
    }

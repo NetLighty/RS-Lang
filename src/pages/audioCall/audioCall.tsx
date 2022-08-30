@@ -31,6 +31,7 @@ const AudioCall: FC = () => {
   let arrTranslate: string[] = [];
   let count = 1;
   let flag: boolean;
+  let trueSeries = false;
   const bookGroup = localStorage.bookGroup ? localStorage.bookGroup as string : '';
   const bookPage = localStorage.bookPage ? localStorage.bookPage as string : '';
   async function fetchWords(group: string, page: string) {
@@ -86,6 +87,7 @@ const AudioCall: FC = () => {
 
   function checkAnswer(target: HTMLInputElement, answer: Element[]) {
     if (currWord.wordTranslate === target.textContent) {
+      trueSeries = true;
       setSeries(series + 1);
       testResult.push({ id: currWord.id, answer: true });
       setResult([...result, { id: (currWord.id), answer: true }]);
@@ -95,9 +97,13 @@ const AudioCall: FC = () => {
       }, 1000);
     } else {
       if (localStorage.audioseries) {
-        if (+localStorage.audioseries <= series) localStorage.audioseries = (series + 1).toString();
-      } else {
+        if (+localStorage.audioseries < (series + 1)) {
+          localStorage.audioseries = (series + 1).toString();
+        }
+      } else if (trueSeries) {
         localStorage.audioseries = (series + 1).toString();
+      } else {
+        localStorage.audioseries = (series).toString();
       }
       setSeries(0);
       testResult.push({ id: currWord.id, answer: false });
