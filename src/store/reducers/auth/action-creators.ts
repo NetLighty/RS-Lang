@@ -1,5 +1,6 @@
 import {
-  AuthActionEnum, CurrentUser, SetAuthAction, SetErrorAction, SetLoadingAction, SetUserAction,
+  AuthActionEnum, CurrentUser, SetAuthAction, SetErrorAction, SetLoadingAction,
+  SetRegistrationErrorAction, SetUserAction,
 } from './types';
 
 const AuthActionCreators = {
@@ -9,6 +10,9 @@ const AuthActionCreators = {
     { type: AuthActionEnum.SET_LOADING, payload: loading }
   ),
   setError: (error: string): SetErrorAction => ({ type: AuthActionEnum.SET_ERROR, payload: error }),
+  setRegistrationError: (error: string): SetRegistrationErrorAction => ({
+    type: AuthActionEnum.SET_REGISTRATION_ERROR, payload: error,
+  }),
 };
 
 export default AuthActionCreators;

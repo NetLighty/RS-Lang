@@ -6,6 +6,9 @@ export const localStorageNames = {
   isAuth: 'auth',
 };
 
+export const successfullRegistrationMsg = 'Successful creation.';
+export const errorRegistrationMsg = 'Почта занята';
+
 export const getCookie = (name: string) => {
   const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
   if (match) {
