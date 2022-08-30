@@ -9,15 +9,15 @@ const result = window.location.origin;
 
 const HardWords = () => (
   <>
-    <header>
+    <div className="hard__words">
       <MainPageButton
         image={`${result}/src/assets/img/studybook.svg`}
         text={`${result}/src/assets/img/book-text.svg`}
         link="/book"
         classAdd="hard__words__link"
       />
-    </header>
-    <HardWordContainer />
+      <HardWordContainer />
+    </div>
     <div className="hard__footer">
       <Footer />
     </div>

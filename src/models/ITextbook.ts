@@ -25,7 +25,7 @@ interface AddGroupAction {
 
 interface AddBookWordsAction {
   type: BookActionsTypes. ADD_CURRENT_PAGE_WORDS
-  payload: Array<IWord>;
+  payload: Array<IWord | (IWord & IUserWord)>;
 }
 
 export type BookActions = AddPageAction | AddGroupAction | AddBookWordsAction;

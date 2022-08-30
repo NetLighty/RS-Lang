@@ -6,6 +6,9 @@ import { IUserWord } from '~/models/IUserWord';
 import { getWordById } from '~/utils/getWordById';
 import CardWord from '../cardWithWord/cardWord';
 
+import EmptyHardWordContainer from './emptyHardWordContainer';
+import './hardWord.scss';
+
 const HardWordContainer = () => {
   const [bookPageArray, setBookPageArray] = useState<Array<IUserWord & IWord>>([]);
   const userWords = useAppSelector((state) => state.userWords);
@@ -22,9 +25,10 @@ const HardWordContainer = () => {
       Object.values(item).forEach((word) => { userWordsArray = [...userWordsArray, ...word]; });
     });
     const wordsResult:Array<IWord & IUserWord> = [];
-    userWordsArray
-      .filter((word:IUserWord) => word.difficulty === SETTINGS.HARD_WORD)
-      .forEach((iWord:IUserWord) => {
+    const filterUserArray = userWordsArray
+      .filter((word:IUserWord) => word.difficulty === SETTINGS.HARD_WORD);
+    if (filterUserArray.length > 0) {
+      filterUserArray.forEach((iWord:IUserWord) => {
         if (iWord.optional) {
           if (words[iWord.optional?.group] && words[iWord.optional?.group][iWord.optional?.page]) {
             const findWord:IWord | undefined = words[iWord.optional?.group][iWord.optional?.page]
@@ -43,13 +47,18 @@ const HardWordContainer = () => {
           }
         }
       });
-  }, [userWords, words]);
+    } else {
+      bookPageArray.length = 0;
+      setBookPageArray([]);
+    }
+  }, [userWords, words, bookPageArray]);
 
   return (
-    <div className="book__cards">
+    <div className="hard__word__cards">
       {bookPageArray?.length
-        ? bookPageArray.map((word: IWord & IUserWord) => <CardWord key={word.id} word={word} />)
-        : null}
+        ? bookPageArray
+          .map((word: IWord|(IWord & IUserWord)) => <CardWord key={word.id} word={word} />)
+        : <EmptyHardWordContainer />}
     </div>
   );
 };
