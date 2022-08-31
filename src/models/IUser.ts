@@ -13,3 +13,8 @@ export interface IUserResponse {
   email: string;
   password: string;
 }
+export interface IUserUpdate {
+  id: string;
+  name: string;
+  email: string;
+}

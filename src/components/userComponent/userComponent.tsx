@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { IUserResponse } from '~/models/IUser';
 import { getUserById } from '~/utils/setting.action';
 import SETTINGS from '~/utils/settings';
+import { showForm, updateUser } from '~/utils/updateUser';
 import './userComponent.scss';
 
 const result = window.location.origin;
@@ -13,7 +14,6 @@ const UserComponent: FC = () => {
   async function getUser() {
     flag = false;
     const response = (await getUserById(SETTINGS.USER_ID, SETTINGS.TOKEN));
-    console.log(response);
     const data: IUserResponse = response as IUserResponse;
     setLogin(data.name);
     setEmail(data.email);
@@ -39,12 +39,26 @@ const UserComponent: FC = () => {
           </div>
           <div className="fild__email">
             <p className="fild__email_descr">email:</p>
-            <input type="text" className="fild__email-input" disabled value={email} />
+            <input type="text" className="fild__email-input" disabled placeholder={email} />
           </div>
+          <input type="password" className="fild__password" placeholder="введите новый пароль" />
         </div>
       </div>
       <div className="user__control">
-        <button className="user__control_changeimg" type="button">редактировать</button>
+        <button className="user__control_change" type="button" onClick={() => { showForm(); }}>редактировать</button>
+        <button
+            className="save-updateuser"
+            type="button"
+            onClick={() => {
+              updateUser(SETTINGS.USER_ID, SETTINGS.TOKEN)
+                .then(
+                  () => {},
+                  () => {},
+                );
+            }}
+          >
+            сохранить
+          </button>
         <button className="user__control_exit" type="button">выйти</button>
       </div>
     </div>

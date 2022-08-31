@@ -40,8 +40,15 @@ export default class UserService {
     id: string,
     email: string,
     password: string,
+    token: string,
   ): Promise<AxiosResponse<IUser>> {
-    return axios.put(`${apiUrl}/users/${id}`, { email, password });
+    return axios.put(`${apiUrl}/users/${id}`, { email, password }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   static async deleteUser(id: string): Promise<AxiosResponse<IUser>> {

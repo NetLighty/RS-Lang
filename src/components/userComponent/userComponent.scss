@@ -14,7 +14,10 @@
       }
    }
    &__control{
-      &_changeimg,
+      display: flex;
+      margin-top: 2rem;
+      column-gap: 4rem;
+      &_change,
       &_exit {
          background-color: $darkOrangeColor;
          width: 13.6rem;
@@ -23,21 +26,24 @@
          border: none;
          color: $whiteColor;
          font-size: $mainFontSize;
-         margin-top: 1.4rem;
          transition: opacity 0.3s ease;
          cursor: pointer;
          &:hover {
             opacity: 0.7;
          }
       }
-      &_changeimg {
-         margin-right: 4rem;
+      &_change {
+         &:disabled {
+            opacity: 0.7;
+            cursor: default;
+         }
       }
    }
 }
 .fild {
    display: flex;
    flex-direction: column;
+   justify-content: flex-end;
    row-gap: 2rem;
    &__login,
    &__email{
@@ -72,23 +78,59 @@
          color: $greyColor;
          font-size: $mainFontSize;
          padding-left: 10px;
-         color: $whiteColor;
+         color: $colorForm;
+         &:focus {
+            outline: 0;
+            border: 2px solid $lightOrangeColor;
+         }
          &:disabled{
             background-color: $backgrounColor;
             border: none;
             font-size: $mainFontSize;
             padding-left: 10px;
+            color: $whiteColor;
+            &::placeholder {
+               color: $whiteColor;
+            }
          }
       }
    }
+   &__password {
+      opacity: 0;
+      cursor: default;
+      height: 2rem;
+      border-radius: 2px;
+      padding-left: 0.5rem;
+      border: 1px solid $colorForm;
+      &:focus {
+         outline: 0;
+         border: 2px solid $lightOrangeColor;
+      }
+   }
 }
-.edit {
-   font-size: 2rem;
-   color: $lightOrangeColor;
-   margin-left: 10px;
+.save-updateuser {
+   display: none;
+   background-color: $lightOrangeColor;
+   width: 13.6rem;
+   height: 3rem;
+   border-radius: 0.2rem;
+   border: none;
+   color: $whiteColor;
+   font-size: $mainFontSize;
    transition: opacity 0.3s ease;
+}
+.password-active {
+   opacity: 1;
+   cursor: auto;
+}
+.save-active {
+   display: block;
    cursor: pointer;
+   transition: all 0.3s ease;
    &:hover {
       opacity: 0.7;
    }
+}
+.hidden-exit {
+   display: none;
 }
