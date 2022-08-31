@@ -13,6 +13,7 @@ import {
   generateTranslateWord,
   clearStyleButton, showImage, hideImage, audioBlockButton, audioPlay,
 } from '../../utils/audioFunc';
+import SETTINGS from '~/utils/settings';
 import generateArrayGameFunc from '~/utils/generateArrayGame';
 import './audioCall.scss';
 
@@ -30,17 +31,16 @@ const AudioCall: FC = () => {
   let arrTranslate: string[] = [];
   let count = 1;
   let flag: boolean;
-  let trueSeries = false;
   const bookGroup = localStorage.bookGroup ? localStorage.bookGroup as string : '';
   const bookPage = localStorage.bookPage ? localStorage.bookPage as string : '';
-
   async function fetchWords(group: string, page: string) {
     clearStyleButton();
     try {
       let words: IWord[];
       if (bookGroup !== '' && bookPage !== '') {
         words = (await generateArrayGameFunc(
-          localStorage.getItem('userId') as string,
+          SETTINGS.USER_ID,
+          SETTINGS.TOKEN,
           bookGroup,
           bookPage,
         ));
@@ -53,8 +53,7 @@ const AudioCall: FC = () => {
       const current = getCurrentWord(words, prevWords, words.length);
       setprevWords([...prevWords, current.id]);
       setCurrWord(current);
-      const wordsTranslate = (await WordService.getChunkOfWords(group, page)).data;
-      arrTranslate = generateTranslateWord(wordsTranslate, current, wordsTranslate.length);
+      arrTranslate = generateTranslateWord(words, current, words.length);
       setTranslateWord(shuffle(arrTranslate));
       if (loading === true) {
         setTimeout(() => { setLoading(false); audioPlay(current); }, 2000);
@@ -87,7 +86,6 @@ const AudioCall: FC = () => {
 
   function checkAnswer(target: HTMLInputElement, answer: Element[]) {
     if (currWord.wordTranslate === target.textContent) {
-      trueSeries = true;
       setSeries(series + 1);
       testResult.push({ id: currWord.id, answer: true });
       setResult([...result, { id: (currWord.id), answer: true }]);
@@ -96,8 +94,10 @@ const AudioCall: FC = () => {
         showImage();
       }, 1000);
     } else {
-      if (localStorage.audioseries < series || !localStorage.audioseries) {
-        localStorage.audioseries = series.toString();
+      if (localStorage.audioseries) {
+        if (+localStorage.audioseries <= series) localStorage.audioseries = (series + 1).toString();
+      } else {
+        localStorage.audioseries = (series + 1).toString();
       }
       setSeries(0);
       testResult.push({ id: currWord.id, answer: false });

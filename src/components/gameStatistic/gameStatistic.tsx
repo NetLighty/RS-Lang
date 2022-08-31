@@ -2,8 +2,8 @@ import React, { FC, useEffect, useState } from 'react';
 import { IAggregatedResponse } from '~/models/IAggregated';
 import { ISettingsRes } from '~/models/ISetting';
 import { getAggregatedWordsForStatistic } from '~/utils/aggregatedWordsFunc';
-import formatDate from '~/utils/date';
 import { getSettingsData } from '~/utils/setting.action';
+import SETTINGS from '~/utils/settings';
 import './gameStatistic.scss';
 
 interface GameStatisticpProps {
@@ -14,13 +14,12 @@ const GameStatistic: FC<GameStatisticpProps> = ({ gameName }) => {
   const [newWords, setNewWords] = useState(0);
   const [percent, setPercent] = useState(0);
   const [series, setSeries] = useState(0);
-
   let flag = true;
-  async function fetchStatisticGame(id: string) {
+  async function fetchStatisticGame(id: string, token: string) {
     flag = false;
-    const response = (await getSettingsData(id));
+    const response = (await getSettingsData(id, token));
     const data = response as ISettingsRes;
-    if (data.optional && data.optional.dataSettings === formatDate(new Date())) {
+    if (data.optional) {
       if (gameName === 'audiogame') {
         if (data.optional.audioTotalCount !== 0) {
           setPercent(Math.ceil(
@@ -39,21 +38,22 @@ const GameStatistic: FC<GameStatisticpProps> = ({ gameName }) => {
         setSeries(data.optional.sprintSeries);
       }
     }
-    const filter = `{"userWord.optional.${gameName}":"${formatDate(new Date())}"}`;
-    const aggregated = (await getAggregatedWordsForStatistic(id, filter));
+    const date = new Date() as unknown as string;
+    // приведение к формату даты
+    const filter = `{"userWord.optional.${gameName}":"${date}"}`;
+    const aggregated = (await getAggregatedWordsForStatistic(id, token, filter));
     const aggreg: IAggregatedResponse[] = aggregated as IAggregatedResponse[];
-    setNewWords(aggreg[0].totalCount[0].count);
+    setNewWords(aggreg[0].paginatedResults.length);
   }
-
   useEffect(() => {
     if (flag !== false) {
-      fetchStatisticGame(localStorage.getItem('userId') as string)
+      fetchStatisticGame(SETTINGS.USER_ID, SETTINGS.TOKEN)
         .then(
           () => {},
           () => {},
         );
     }
-  }, []);
+  });
   return (
     <div className="game-statistic">
       <p className="game-statistic__header">{(gameName === 'audiogame') ? 'Аудиовызов' : 'Спринт'}</p>

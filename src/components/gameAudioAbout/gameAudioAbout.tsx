@@ -13,7 +13,7 @@ const GameAudioAbout: FC = () => (
       addClass="audio"
       textButton="играем"
       path="/audiocall"
-      keys="1, 2, 3, 4, 5 и пробел"
+      keys="1, 2, 3, 4, 5"
     />
   </div>
 );

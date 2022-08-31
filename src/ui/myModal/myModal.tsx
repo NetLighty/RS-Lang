@@ -7,6 +7,7 @@ interface MyModalProps {
   setVisible: (b:boolean) => void;
 }
 
+// eslint-disable-next-line react/function-component-definition
 const MyModal: FC<MyModalProps> = ({ children, visible, setVisible }) => {
   const rootClasses = ['myModal'];
   if (visible) {

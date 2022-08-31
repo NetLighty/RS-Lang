@@ -5,6 +5,7 @@ import { getSettingsData, updateSettingsData } from '~/utils/setting.action';
 
 export default function useUpsertSetting(
   userId: string,
+  token: string,
   gameName: string,
   wordsCount: number,
   success: number,
@@ -12,7 +13,7 @@ export default function useUpsertSetting(
   nowData: Date,
 ) {
   const upsertSettings = () => {
-    const settings = getSettingsData(userId)
+    const settings = getSettingsData(userId, token)
       .then((response) => {
         const data = response as ISettings;
         const { wordsPerDay } = data;
@@ -54,17 +55,14 @@ export default function useUpsertSetting(
               dataSettings: settingstDate,
             };
           }
-          const result = updateSettingsData(userId, wordsPerDay + wordsCount, optional);
+          const result = updateSettingsData(userId, wordsPerDay + wordsCount, token, optional);
         } else if (settingstDate === '' || settingstDate !== formatDate(nowData)) {
           if (gameName === 'audiogame') {
             optional = {
-              // ...DefaultSettingsOptional,
+              ...DefaultSettingsOptional,
               audioSuccess: success,
               audioTotalCount: wordsCount,
               audioSeries: series,
-              sprintSuccess: 0,
-              sprintTotalCount: 0,
-              sprintSeries: 0,
               dataSettings: formatDate(nowData),
             };
           } else if (gameName === 'sprint') {
@@ -76,7 +74,7 @@ export default function useUpsertSetting(
               dataSettings: formatDate(nowData),
             };
           }
-          const result = updateSettingsData(userId, wordsCount, optional);
+          const result = updateSettingsData(userId, wordsCount, token, optional);
         }
       });
   };

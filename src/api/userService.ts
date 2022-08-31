@@ -28,12 +28,7 @@ export default class UserService {
     email: string,
     password: string,
   ): Promise<AxiosResponse<IUser>> {
-    return axiosInstance.put(`${apiUrl}/users/${id}`, { email, password }, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    return axiosInstance.put(`${apiUrl}/users/${id}`, { email, password });
   }
 
   static async deleteUser(id: string): Promise<AxiosResponse<IUser>> {
