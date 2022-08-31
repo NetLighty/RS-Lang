@@ -3,10 +3,9 @@ import {
 } from 'formik';
 import React, { FC } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import UserService from '~/api/userService';
+import { loginUser } from '~/api/controllers/userController';
 import useActions from '~/hooks/useAction';
 import useTypedSelector from '~/hooks/useTypedSelector';
-import { accesTokenName, createSecureCookie } from '~/utils/cookie';
 import { LoginSchema } from '~/utils/rules/authSchemas';
 import './authForm.scss';
 
@@ -26,27 +25,21 @@ const LoginForm: FC = () => {
   const initialValues: LoginValues = { email: '', password: '' };
 
   const login = async (email: string, password: string) => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-      const loginRes = await UserService.signIn(email, password);
-      if (loginRes.status === 200) {
-        createSecureCookie(accesTokenName, loginRes.data.token, 48);
-        localStorage.setItem('auth', 'true');
-        localStorage.setItem('username', loginRes.data.name);
-        localStorage.setItem('userId', loginRes.data.userId);
+      const loginRes = await loginUser(email, password);
+      if (loginRes) {
         setUser({
-          id: loginRes.data.userId, name: loginRes.data.name,
+          id: loginRes.id, name: loginRes.name,
         });
         setIsAuth(true);
         setError('');
         navigate('../');
-      } else {
-        /* dispatch(AuthActionCreators.setError('Некорректный логин или пароль')); */
       }
-      setIsLoading(false);
-    } catch (e) {
-      setError('Некорректный логин или пароль');
+    } catch {
+      setError('Некоректный логин или пароль');
     }
+    setIsLoading(false);
   };
   return (
     <div className="auth">

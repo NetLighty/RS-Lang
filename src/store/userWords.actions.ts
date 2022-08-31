@@ -30,10 +30,10 @@ export const addWordToUser = (word: IUserWord) => ({
   payload: word,
 });
 
-export function getUserWords(userId: string, token: string) {
+export function getUserWords(userId: string) {
   return async (dispatch: Dispatch<AddUserWordsToStoreAction>) => {
     try {
-      const response: AxiosResponse = await UserWordService.getAllUserWords(userId, token);
+      const response: AxiosResponse = await UserWordService.getAllUserWords(userId);
       const data = (await response.data) as Array<IUserWord>;
       dispatch(addUserWordsToStore(data));
       return data;
@@ -43,9 +43,9 @@ export function getUserWords(userId: string, token: string) {
   };
 }
 
-export async function getUserWordsById(userId: string, wordId: string, token: string) {
+export async function getUserWordsById(userId: string, wordId: string) {
   try {
-    const response: AxiosResponse = await UserWordService.getUserWord(userId, wordId, token);
+    const response: AxiosResponse = await UserWordService.getUserWord(userId, wordId);
     const data = (await response.data) as IUserWord;
     return data;
   } catch (error) {
@@ -55,7 +55,7 @@ export async function getUserWordsById(userId: string, wordId: string, token: st
 
 // Don't send requests with empty strings. You get 422 Error
 
-export function createUserWord(userId: string, word: IWord, token: string, data: IUserWord) {
+export function createUserWord(userId: string, word: IWord, data: IUserWord) {
   const defaultOptionalInfo: Options = {
     id: word.id,
     group: word.group,
@@ -84,7 +84,6 @@ export function createUserWord(userId: string, word: IWord, token: string, data:
       const response: AxiosResponse = await UserWordService.createUserWord(
         userId,
         word.id,
-        token,
         difficulty,
         optional,
       );
@@ -99,7 +98,7 @@ export function createUserWord(userId: string, word: IWord, token: string, data:
 
 // Don't send requests with empty strings. You get 422 Error
 
-export function updateUserWord(userId: string, word: IWord, token: string, data: IUserWord) {
+export function updateUserWord(userId: string, word: IWord, data: IUserWord) {
   const defaultOptionalInfo: Options = {
     id: word.id,
     group: word.group,
@@ -128,7 +127,6 @@ export function updateUserWord(userId: string, word: IWord, token: string, data:
       const response: AxiosResponse = await UserWordService.updateUserWord(
         userId,
         word.id,
-        token,
         difficulty,
         optional,
       );

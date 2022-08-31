@@ -5,6 +5,7 @@ import {
 const initialState: AuthState = {
   isAuth: false,
   error: '',
+  regError: '',
   user: {} as CurrentUser,
   isLoading: false,
 };
@@ -20,6 +21,8 @@ export default function authReducer(state = initialState, action: AuthAction): A
       return { ...state, isLoading: action.payload };
     case AuthActionEnum.SET_ERROR:
       return { ...state, error: action.payload, isLoading: false };
+    case AuthActionEnum.SET_REGISTRATION_ERROR:
+      return { ...state, regError: action.payload, isLoading: false };
     default:
       return state;
   }

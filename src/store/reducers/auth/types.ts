@@ -7,11 +7,13 @@ export interface AuthState {
   user: CurrentUser;
   isLoading: boolean;
   error: string;
+  regError: string;
 }
 
 export enum AuthActionEnum {
   SET_AUTH = 'SET_AUTH',
   SET_ERROR = 'SET_ERROR',
+  SET_REGISTRATION_ERROR = 'SET_REGISTRATION_ERROR',
   SET_USER = 'SET_USER',
   SET_LOADING = 'SET_LOADING',
 }
@@ -22,6 +24,10 @@ export interface SetAuthAction {
 }
 export interface SetErrorAction {
   type: AuthActionEnum.SET_ERROR;
+  payload: string;
+}
+export interface SetRegistrationErrorAction {
+  type: AuthActionEnum.SET_REGISTRATION_ERROR;
   payload: string;
 }
 export interface SetUserAction {
@@ -37,4 +43,5 @@ export type AuthAction =
 SetAuthAction |
 SetErrorAction |
 SetLoadingAction |
-SetUserAction;
+SetUserAction |
+SetRegistrationErrorAction;

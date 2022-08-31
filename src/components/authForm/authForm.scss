@@ -37,6 +37,7 @@
       &__error-message {
          font-size: $mainFontSize;
          color: $darkOrangeColor;
+         text-transform: capitalize;
       }
       &__email,
       &__password{

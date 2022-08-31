@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { logoutUser } from '~/api/controllers/userController';
 import useActions from '~/hooks/useAction';
 import './logoutButton.scss';
 
@@ -6,17 +7,16 @@ const logoutText = 'Выйти';
 
 const LogoutButton: FC = () => {
   const { setIsAuth, setUser } = useActions();
+
   const logout = () => {
     setIsAuth(false);
-    localStorage.removeItem('auth');
-    localStorage.removeItem('username');
-    localStorage.removeItem('userId');
+    logoutUser();
     setUser({
       id: '', name: '',
     });
   };
+
   return (
-    // eslint-disable-next-line jsx-a11y/control-has-associated-label
     <button onClick={logout} className="logout-button" type="button">{logoutText}</button>
   );
 };
