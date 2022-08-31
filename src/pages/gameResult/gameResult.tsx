@@ -11,6 +11,7 @@ import './gameResult.scss';
 import useGetUserWords from '~/hooks/useGetUserWords';
 import useUpdateUserWord from '~/hooks/useUpdateUserWord';
 import useUpsertSetting from '~/hooks/useUpsertSetting';
+import SETTINGS from '~/utils/settings';
 
 interface GameResultProps {
   nameResult: string;
@@ -29,7 +30,8 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
   const gameName = (localStorage.gameName === 'audiogame') ? 'audiogame' : 'sprint';
 
   const { upsertSettings } = useUpsertSetting(
-    localStorage.getItem('userId') as string,
+    SETTINGS.USER_ID,
+    SETTINGS.TOKEN,
     gameName,
     answerArr.length,
     successResult.length,
@@ -37,7 +39,7 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
     nowdDate,
   );
   let flag: boolean;
-  const isAuth = localStorage.auth as string;
+  const isAuth = true;
   function getResult() {
     flag = false;
     const arr: IResultWord[] = [];
@@ -46,7 +48,7 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
         .then((response) => {
           if (isAuth) {
             updateWord(response.data, {
-              result: item.answer, game: gameName, dataupdate: (new Date()),
+              result: item.answer, game: gameName, dataupdate: (new Date()).toString(),
             });
           }
           const obj: IResultWord = createResultWord(
@@ -64,7 +66,7 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
   useEffect(() => {
     if (flag !== false) {
       getResult();
-      if (isAuth === 'true') {
+      if (isAuth) {
         dowloadUserWords();
         upsertSettings();
       }

@@ -56,9 +56,9 @@ const RegistrationForm: FC = () => {
           <Form>
             <div className="form">
               <img className="form__img" src={`${result}/src/assets/img/enter.svg`} alt="planet" />
-              <p className="form__text">Добро пожаловать в RSLang!</p>
+              <p className="form__text">Введите ваши данные</p>
               <div className="form__input-block">
-                <Field name="name" className="form__email" placeholder="Введите имя" />
+                <Field name="name" className="form__email" placeholder="Имя" />
                 <div className="form__error-container">
                   {errors.name && touched.name ? (
                     <span className="form__error-message">{errors.name}</span>
@@ -66,7 +66,7 @@ const RegistrationForm: FC = () => {
                 </div>
               </div>
               <div className="form__input-block">
-                <Field onInput={handleChange} name="email" className="form__email" placeholder="Введите email" />
+                <Field onInput={handleChange} name="email" className="form__email" placeholder="Почта" />
                 <div className="form__error-container">
                   {errors.email && touched.email ? (
                     <span className="form__error-message">{errors.email}</span>
@@ -74,7 +74,7 @@ const RegistrationForm: FC = () => {
                 </div>
               </div>
               <div className="form__input-block">
-                <Field name="password" className="form__password" type="password" placeholder="Введите пароль" />
+                <Field name="password" className="form__password" type="password" placeholder="Пароль" />
                 <div className="form__error-container">
                   {errors.password && touched.password ? (
                     <span className="form__error-message">{errors.password}</span>
