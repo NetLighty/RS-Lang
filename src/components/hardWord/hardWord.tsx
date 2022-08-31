@@ -3,7 +3,7 @@ import SETTINGS from '~/utils/settings';
 import { useAppSelector } from '~/hooks';
 import { IWord } from '~/models/IWord';
 import { IUserWord } from '~/models/IUserWord';
-import { getWordById } from '~/utils/getWordById';
+import getWordById from '~/utils/getWordById';
 import CardWord from '../cardWithWord/cardWord';
 
 import EmptyHardWordContainer from './emptyHardWordContainer';
@@ -17,6 +17,10 @@ const HardWordContainer = () => {
   function addItemsToArray(array:Array<IWord & IUserWord>, item1:IWord, item2:IUserWord) {
     array.push({ ...item2, ...item1 });
     setBookPageArray([...array]);
+  }
+
+  function resetArray() {
+    setBookPageArray([]);
   }
 
   useEffect(() => {
@@ -48,10 +52,9 @@ const HardWordContainer = () => {
         }
       });
     } else {
-      bookPageArray.length = 0;
-      setBookPageArray([]);
+      resetArray();
     }
-  }, [userWords, words, bookPageArray]);
+  }, [userWords, words]);
 
   return (
     <div className="hard__word__cards">

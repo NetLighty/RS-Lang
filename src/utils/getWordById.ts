@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import WordService from '~/api/wordsService';
 import { IWord } from '~/models/IWord';
 
-export async function getWordById(id:string) {
+async function getWordById(id:string) {
   try {
     const response:AxiosResponse = await WordService
       .getWord(id);
@@ -12,3 +12,5 @@ export async function getWordById(id:string) {
     return error;
   }
 }
+
+export default getWordById;
