@@ -2,11 +2,10 @@ import { AxiosResponse } from 'axios';
 import UserWordService from '~/api/userWordsService';
 import WordService from '~/api/wordsService';
 import { IAggregatedResponse } from '~/models/IAggregated';
-import { AddWordsAction, IWord } from '~/models/IWord';
+import { IWord } from '~/models/IWord';
 
 export async function getAggregatedWordsForGame(
   userId: string,
-  token: string,
   filter?: string,
   group?: string,
   wordsPerPage?: string,
@@ -14,7 +13,6 @@ export async function getAggregatedWordsForGame(
   try {
     const response:AxiosResponse = await UserWordService.getAllUserAggregatedWords(
       userId,
-      token,
       filter,
       group,
       wordsPerPage,
@@ -28,13 +26,11 @@ export async function getAggregatedWordsForGame(
 
 export async function getAggregatedWordsForStatistic(
   userId: string,
-  token: string,
   filter?: string,
 ) {
   try {
     const response:AxiosResponse = await UserWordService.getAllUserAggregatedWords(
       userId,
-      token,
       filter,
     );
     const data = (await response.data) as IAggregatedResponse[];
