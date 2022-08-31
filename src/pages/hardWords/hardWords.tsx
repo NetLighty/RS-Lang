@@ -8,11 +8,11 @@ import './hardWords.scss';
 const result = window.location.origin;
 
 const HardWords = () => (
-  <>
-    <div className="hard__words">
+  <div className="hard">
+    <div className="hard__container">
       <MainPageButton
-        image={`${result}/src/assets/img/studybook.svg`}
-        text={`${result}/src/assets/img/book-text.svg`}
+        image={`${result}/src/assets/img/small-book.svg`}
+        text={`${result}/src/assets/img/small-book-line.svg`}
         link="/book"
         classAdd="hard__words__link"
       />
@@ -21,7 +21,7 @@ const HardWords = () => (
     <div className="hard__footer">
       <Footer />
     </div>
-  </>
+  </div>
 );
 
 export default HardWords;
