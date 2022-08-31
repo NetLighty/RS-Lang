@@ -35,7 +35,7 @@ const LoginForm: FC = () => {
           id: loginRes.id, name: loginRes.name,
         });
         setIsAuth(true);
-        dowloadUserWords(loginRes.data.userId, loginRes.data.token);
+        dowloadUserWords(loginRes.id);
         setError('');
         navigate('../');
       }

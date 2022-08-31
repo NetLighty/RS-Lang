@@ -36,7 +36,7 @@ export const deleteUserWordsFromStore = () => ({
   payload: '',
 });
 
-export function getUserWords(userId: string, token: string) {
+export function getUserWords(userId: string) {
   return async (dispatch: Dispatch<AddUserWordsToStoreAction>) => {
     try {
       const response: AxiosResponse = await UserWordService.getAllUserWords(userId);

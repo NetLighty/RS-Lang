@@ -5,15 +5,13 @@ import { updateUserWord, createUserWord } from '../store/userWords.actions';
 import SETTINGS from '~/utils/settings';
 import { IUserWord, Options, UserWordsActions } from '~/models/IUserWord';
 import { IWord } from '~/models/IWord';
-// import { getCookie, accesTokenName } from '~/utils/cookie';
 import checkChangedWord from '~/utils/checkChangedWord';
 
 export default function useUpdateUserWord() {
   const userWords = useAppSelector((state) => state.userWords);
   const dispatch = useAppDispatch();
   const userId = localStorage.getItem('userId') as string;
-  const userToken:string = localStorage.token as string;
-  // TODO replace user and token when we get this information
+
   const updateWord = useCallback(
     (word: IWord, data: Partial<Options>) => {
       if (userWords && userWords[word.group] && userWords[word.group][word.page]) {
@@ -42,16 +40,6 @@ export default function useUpdateUserWord() {
           updateUserWord(
             userId,
             word,
-            userToken,
-            wordForUpdate as IUserWord,
-          ) as unknown as UserWordsActions,
-        );
-      }
-        return dispatch(
-          updateUserWord(
-            userId,
-            word,
-            userToken,
             wordForUpdate as IUserWord,
           ) as unknown as UserWordsActions,
         );
@@ -123,7 +111,7 @@ export default function useUpdateUserWord() {
         }) as unknown as UserWordsActions,
       );
     },
-    [dispatch, userWords, userId, userToken],
+    [dispatch, userWords],
   );
 
   return { updateWord, updateWordDifficulty };

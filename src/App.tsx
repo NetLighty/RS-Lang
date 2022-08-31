@@ -16,7 +16,7 @@ import HardWords from './pages/hardWords/hardWords';
 import RegistrationPage from './pages/authPages/registration';
 import LoginPage from './pages/authPages/login';
 import useActions from './hooks/useAction';
-import {  localStorageNames } from './utils/auth';
+import { localStorageNames } from './utils/auth';
 import UserService from './api/userService';
 import { IUser } from './models/IUser';
 import useTypedSelector from './hooks/useTypedSelector';
@@ -42,7 +42,7 @@ const App = () => {
           // document.cookie = `token=${res.data.token}; secure; sameSite=strict`;
           setUser({ id: userId, name: res.data.name });
           setIsAuth(true);
-          dowloadUserWords(userId, accessToken);
+          dowloadUserWords(userId);
         }).catch(() => { logoutUser(); });
       }
     }
