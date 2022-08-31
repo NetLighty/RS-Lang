@@ -6,7 +6,7 @@
    width: 420px;
    border-radius: 5px;
    span {
-      font-size: 2rem;
+      font-size: $mainFontSize;
       color: $darkBrownColor;
    }
    .form {
@@ -14,7 +14,8 @@
       flex-direction: column;
       align-items: center;
       position: relative;
-      row-gap: 0.8rem;
+      row-gap: 0.7rem;
+      font-size: $mainFontSize;
       &__input-block {
          display: grid;
          grid-template-columns: 1fr;
@@ -22,45 +23,44 @@
       }
       &__img {
          position: absolute;
-         left: -100px;
-         top: -60px;
+         left: -80px;
+         top: -45px;
       }
       &__text{
-         color: $darkOrangeColor;
-         font-size: 2.4rem;
-         margin: 1.5rem 0 1.5rem 0;
+         color: $colorForm;
+         font-size: $addFontSize;
+         margin: 2.5rem 0 3.5rem 0;
       }
       &__error-container {
          height: $errorMessageHeight;
       }
       &__error-message {
+         font-size: $mainFontSize;
+         color: $darkOrangeColor;
          text-transform: capitalize;
-         font-size: 2.1rem;
-         color: red;
       }
       &__email,
       &__password{
          margin: 0;
          width: 360px;
          height: 40px;
-         border: 0.05rem solid #8F8C8C;
          padding-left: 1rem;
-         font-size: 1.7rem;
-         color: $darkOrangeColor;
-         background-color: rgba($darkBrownColor, 0.1);
-         border-color: rgba($darkBrownColor, 0.2);
+         font-size: $mainFontSize;
+         color: $colorForm;
+         background-color: rgba($whiteColor, 0.7);
+         border: 0.5px solid $colorForm;
          border-radius: 0.25rem;
          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
       }
       &__email:focus,
       &__password:focus {
-         border-color: rgba($darkBrownColor, 0.4);
+         border: 2px solid $lightOrangeColor;
          outline: 0;
-         box-shadow: 0 0 0 0.2rem rgba($darkBrownColor, 0.4);
+         //box-shadow: 0 0 0 0.2rem rgba($darkBrownColor, 0.4);
       }
       &__email::placeholder,
       &__password::placeholder {
-         color: rgba($darkBrownColor, 0.7);
+         color: rgba($colorForm, 0.7);
       }
       &__button {
          display: flex;
@@ -71,7 +71,7 @@
             height: 40px;
             border-radius: 2px;
             color: #fff;
-            font-size: 2rem;
+            font-size: $mainFontSize;
             letter-spacing: 0.1rem;
             font-weight: 200;
             text-transform: capitalize;
@@ -79,7 +79,7 @@
             transition: opacity 0.3s ease;
             &:hover {
                cursor: pointer;
-               opacity: 0.6;
+               opacity: 0.7;
             }
          }
          &-reg{
@@ -88,13 +88,13 @@
          }
          &-enter {
             width: 146px;
-            background-color: $lightOrangeColor;
+            background-color: $darkOrangeColor;
          }
       }
       .auth-link {
          text-decoration: none;
          color: $darkOrangeColor;
-         font-size: 2rem;
+         font-size: $mainFontSize;
       }
    }
 }

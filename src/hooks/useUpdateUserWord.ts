@@ -5,16 +5,18 @@ import { updateUserWord, createUserWord } from '../store/userWords.actions';
 import SETTINGS from '~/utils/settings';
 import { IUserWord, Options, UserWordsActions } from '~/models/IUserWord';
 import { IWord } from '~/models/IWord';
+// import { getCookie, accesTokenName } from '~/utils/cookie';
 
 export default function useUpdateUserWord() {
   const userWords = useAppSelector((state) => state.userWords);
   const dispatch = useAppDispatch();
-
+  const userId = localStorage.getItem('userId') as string;
+  const userToken:string = localStorage.token as string;
   // TODO replace user and token when we get this information
   const updateWord = useCallback(
     (word: IWord, data: Partial<Options>) => {
       const { result, dataupdate, game } = data;
-      if (userWords[word.group] && userWords[word.group][word.page]) {
+      if (userWords && userWords[word.group] && userWords[word.group][word.page]) {
         const editWord: IUserWord | undefined = userWords[word.group][word.page].find(
           (item: IUserWord) => item.optional?.id === word.id,
         );
@@ -40,6 +42,10 @@ export default function useUpdateUserWord() {
           } else if (result === false) {
             editWord.optional.allAttemts += 1;
           }
+          if (dataupdate && editWord.optional.isThisFirst) {
+            editWord.optional.firstDate = formatDate(dataupdate);
+            editWord.optional.isThisFirst = false;
+          }
           if (dataupdate && game) {
             if (game === 'audiogame' && editWord.optional.audiogame === '0') {
               editWord.optional.audiogame = formatDate(dataupdate);
@@ -59,9 +65,8 @@ export default function useUpdateUserWord() {
           };
           return dispatch(
             updateUserWord(
-              SETTINGS.USER_ID,
+              userId,
               word,
-              SETTINGS.TOKEN,
               wordForUpdate,
             ) as unknown as UserWordsActions,
           );
@@ -76,6 +81,8 @@ export default function useUpdateUserWord() {
         countSuccessInRow: 0,
         success: 0,
         allAttemts: 0,
+        isThisFirst: true,
+        firstDate: '0',
         dataupdate: new Date('1970-01-01'),
         game: 'undefined',
         audiogame: '0',
@@ -84,9 +91,15 @@ export default function useUpdateUserWord() {
       if (result === true) {
         defaultOptionalInfo.allAttemts += 1;
         defaultOptionalInfo.success += 1;
+        defaultOptionalInfo.countSuccessInRow += 1;
       } else if (result === false) {
         defaultOptionalInfo.allAttemts += 1;
       }
+      if (dataupdate && defaultOptionalInfo.isThisFirst) {
+        defaultOptionalInfo.firstDate = formatDate(dataupdate);
+        defaultOptionalInfo.isThisFirst = false;
+      }
+
       if (dataupdate && game) {
         if (game === 'audiogame' && defaultOptionalInfo.audiogame === '0') {
           defaultOptionalInfo.audiogame = formatDate(dataupdate);
@@ -96,7 +109,7 @@ export default function useUpdateUserWord() {
         }
       }
       return dispatch(
-        createUserWord(SETTINGS.USER_ID, word, SETTINGS.TOKEN, {
+        createUserWord(userId, word, {
           difficulty: SETTINGS.NORMAL_WORD,
           optional: {
             ...defaultOptionalInfo,
@@ -105,7 +118,7 @@ export default function useUpdateUserWord() {
         }) as unknown as UserWordsActions,
       );
     },
-    [dispatch, userWords],
+    [dispatch, userWords, userId],
   );
 
   // TODO replace user and token when we get this information
@@ -125,16 +138,15 @@ export default function useUpdateUserWord() {
           };
           return dispatch(
             updateUserWord(
-              SETTINGS.USER_ID,
+              localStorage.userId as string,
               word,
-              SETTINGS.TOKEN,
               wordForUpdate,
             ) as unknown as UserWordsActions,
           );
         }
       }
       return dispatch(
-        createUserWord(SETTINGS.USER_ID, word, SETTINGS.TOKEN, {
+        createUserWord(localStorage.userId as string, word, {
           difficulty: data.difficulty || SETTINGS.NORMAL_WORD,
         }) as unknown as UserWordsActions,
       );

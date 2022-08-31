@@ -16,6 +16,8 @@ export type Options = {
   game: 'audiogame' | 'sprint' | 'undefined';
   audiogame: string;
   sprint: string;
+  isThisFirst: boolean;
+  firstDate: string
 };
 
 export enum AddUserWordsActionsTypes {
