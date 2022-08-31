@@ -34,6 +34,7 @@ const AudioCall: FC = () => {
   let trueSeries = false;
   const bookGroup = localStorage.bookGroup ? localStorage.bookGroup as string : '';
   const bookPage = localStorage.bookPage ? localStorage.bookPage as string : '';
+
   async function fetchWords(group: string, page: string) {
     clearStyleButton();
     try {
@@ -54,7 +55,8 @@ const AudioCall: FC = () => {
       const current = getCurrentWord(words, prevWords, words.length);
       setprevWords([...prevWords, current.id]);
       setCurrWord(current);
-      arrTranslate = generateTranslateWord(words, current, words.length);
+      const wordsTranslate = (await WordService.getChunkOfWords(group, page)).data;
+      arrTranslate = generateTranslateWord(wordsTranslate, current, wordsTranslate.length);
       setTranslateWord(shuffle(arrTranslate));
       if (loading === true) {
         setTimeout(() => { setLoading(false); audioPlay(current); }, 2000);
@@ -96,14 +98,8 @@ const AudioCall: FC = () => {
         showImage();
       }, 1000);
     } else {
-      if (localStorage.audioseries) {
-        if (+localStorage.audioseries < (series + 1)) {
-          localStorage.audioseries = (series + 1).toString();
-        }
-      } else if (trueSeries) {
-        localStorage.audioseries = (series + 1).toString();
-      } else {
-        localStorage.audioseries = (series).toString();
+      if (localStorage.audioseries < series || !localStorage.audioseries) {
+        localStorage.audioseries = series.toString();
       }
       setSeries(0);
       testResult.push({ id: currWord.id, answer: false });
