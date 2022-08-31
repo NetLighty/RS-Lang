@@ -34,7 +34,8 @@
          height: $errorMessageHeight;
       }
       &__error-message {
-         font-size: 1.8rem;
+         text-transform: capitalize;
+         font-size: 2.1rem;
          color: red;
       }
       &__email,
