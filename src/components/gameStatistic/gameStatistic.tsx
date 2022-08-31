@@ -45,6 +45,7 @@ const GameStatistic: FC<GameStatisticpProps> = ({ gameName }) => {
     setNewWords(aggreg[0].totalCount[0].count);
   }
 
+
   useEffect(() => {
     if (flag !== false) {
       fetchStatisticGame(localStorage.getItem('userId') as string)
