@@ -11,7 +11,6 @@ import './gameResult.scss';
 import useGetUserWords from '~/hooks/useGetUserWords';
 import useUpdateUserWord from '~/hooks/useUpdateUserWord';
 import useUpsertSetting from '~/hooks/useUpsertSetting';
-import SETTINGS from '~/utils/settings';
 
 interface GameResultProps {
   nameResult: string;
@@ -30,8 +29,7 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
   const gameName = (localStorage.gameName === 'audiogame') ? 'audiogame' : 'sprint';
 
   const { upsertSettings } = useUpsertSetting(
-    SETTINGS.USER_ID,
-    SETTINGS.TOKEN,
+    localStorage.getItem('userId') as string,
     gameName,
     answerArr.length,
     successResult.length,

@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { IUserResponse } from '~/models/IUser';
 import { getUserById } from '~/utils/setting.action';
-import SETTINGS from '~/utils/settings';
 import { showForm, updateUser } from '~/utils/updateUser';
 import './userComponent.scss';
 
@@ -13,7 +12,7 @@ const UserComponent: FC = () => {
   let flag = true;
   async function getUser() {
     flag = false;
-    const response = (await getUserById(SETTINGS.USER_ID, SETTINGS.TOKEN));
+    const response = (await getUserById(localStorage.getItem('userId') as string));
     const data: IUserResponse = response as IUserResponse;
     setLogin(data.name);
     setEmail(data.email);
@@ -47,18 +46,18 @@ const UserComponent: FC = () => {
       <div className="user__control">
         <button className="user__control_change" type="button" onClick={() => { showForm(); }}>редактировать</button>
         <button
-            className="save-updateuser"
-            type="button"
-            onClick={() => {
-              updateUser(SETTINGS.USER_ID, SETTINGS.TOKEN)
-                .then(
-                  () => {},
-                  () => {},
-                );
-            }}
-          >
-            сохранить
-          </button>
+          className="save-updateuser"
+          type="button"
+          onClick={() => {
+            updateUser(localStorage.getItem('userId') as string)
+              .then(
+                () => {},
+                () => {},
+              );
+          }}
+        >
+          сохранить
+        </button>
         <button className="user__control_exit" type="button">выйти</button>
       </div>
     </div>

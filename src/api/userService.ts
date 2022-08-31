@@ -27,7 +27,6 @@ export default class UserService {
     id: string,
     email: string,
     password: string,
-    token: string,
   ): Promise<AxiosResponse<IUser>> {
     return axiosInstance.put(`${apiUrl}/users/${id}`, { email, password }, {
       headers: {

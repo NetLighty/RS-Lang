@@ -5,13 +5,13 @@ import { updateUserWord, createUserWord } from '../store/userWords.actions';
 import SETTINGS from '~/utils/settings';
 import { IUserWord, Options, UserWordsActions } from '~/models/IUserWord';
 import { IWord } from '~/models/IWord';
-import { getCookie, accesTokenName } from '~/utils/cookie';
+// import { getCookie, accesTokenName } from '~/utils/cookie';
 
 export default function useUpdateUserWord() {
   const userWords = useAppSelector((state) => state.userWords);
   const dispatch = useAppDispatch();
   const userId = localStorage.getItem('userId') as string;
-  const userToken:string = getCookie(accesTokenName);
+  const userToken:string = localStorage.token as string;
   // TODO replace user and token when we get this information
   const updateWord = useCallback(
     (word: IWord, data: Partial<Options>) => {
@@ -67,7 +67,6 @@ export default function useUpdateUserWord() {
             updateUserWord(
               userId,
               word,
-              userToken,
               wordForUpdate,
             ) as unknown as UserWordsActions,
           );
@@ -110,7 +109,7 @@ export default function useUpdateUserWord() {
         }
       }
       return dispatch(
-        createUserWord(userId, word, userToken, {
+        createUserWord(userId, word, {
           difficulty: SETTINGS.NORMAL_WORD,
           optional: {
             ...defaultOptionalInfo,
@@ -119,7 +118,7 @@ export default function useUpdateUserWord() {
         }) as unknown as UserWordsActions,
       );
     },
-    [dispatch, userWords, userId, userToken],
+    [dispatch, userWords, userId],
   );
 
   // TODO replace user and token when we get this information
@@ -139,16 +138,15 @@ export default function useUpdateUserWord() {
           };
           return dispatch(
             updateUserWord(
-              SETTINGS.USER_ID,
+              localStorage.userId as string,
               word,
-              SETTINGS.TOKEN,
               wordForUpdate,
             ) as unknown as UserWordsActions,
           );
         }
       }
       return dispatch(
-        createUserWord(SETTINGS.USER_ID, word, SETTINGS.TOKEN, {
+        createUserWord(localStorage.userId as string, word, {
           difficulty: data.difficulty || SETTINGS.NORMAL_WORD,
         }) as unknown as UserWordsActions,
       );

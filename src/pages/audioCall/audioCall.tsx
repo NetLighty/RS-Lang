@@ -13,7 +13,6 @@ import {
   generateTranslateWord,
   clearStyleButton, showImage, hideImage, audioBlockButton, audioPlay,
 } from '../../utils/audioFunc';
-import SETTINGS from '~/utils/settings';
 import generateArrayGameFunc from '~/utils/generateArrayGame';
 import './audioCall.scss';
 
@@ -41,8 +40,7 @@ const AudioCall: FC = () => {
       let words: IWord[];
       if (bookGroup !== '' && bookPage !== '') {
         words = (await generateArrayGameFunc(
-          SETTINGS.USER_ID,
-          SETTINGS.TOKEN,
+          localStorage.getItem('userId') as string,
           bookGroup,
           bookPage,
         ));

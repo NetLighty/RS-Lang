@@ -7,10 +7,9 @@ export async function updateUserParam(
   userId: string,
   email: string,
   password: string,
-  token: string,
 ) {
   try {
-    const response:AxiosResponse = await UserService.updateUser(userId, email, password, token);
+    const response:AxiosResponse = await UserService.updateUser(userId, email, password);
     const data = (await response.data) as IUserUpdate;
     return data;
   } catch (error) {
@@ -32,7 +31,6 @@ export function showForm() {
 }
 export async function updateUser(
   userId: string,
-  token: string,
 ) {
   const passwordFild = getDocumentElement('.fild__password')[0] as HTMLInputElement;
   passwordFild.classList.remove('password-active');
@@ -46,6 +44,6 @@ export async function updateUser(
   btn.removeAttribute('disabled');
   const exit = getDocumentElement('.user__control_exit')[0];
   exit.classList.remove('hidden-exit');
-  const response = (await updateUserParam(userId, email, password, token));
+  const response = (await updateUserParam(userId, email, password));
   passwordFild.value = '';
 }
