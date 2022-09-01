@@ -1,19 +1,14 @@
-/* eslint-disable react/jsx-no-bind */
 import React, { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { sound } from '../../utils/subGameFunc';
 import LevelButton from '../../ui/levelButton/levelButton';
-import './gameLevel.scss';
+import '../gameLevel/gameLevel.scss';
 
 interface GameLevelProps {
   gameName: string;
-  to?: string;
 }
 
-const GameLevel: FC<GameLevelProps> = ({ gameName, to }) => {
-  GameLevel.defaultProps = {
-    to: '',
-  };
+const SprintStart: FC<GameLevelProps> = ({ gameName }) => {
   const [choose, setChoose] = useState(false);
   if (localStorage.bookGroup) localStorage.removeItem('bookGroup');
   if (localStorage.bookPage) localStorage.removeItem('bookPage');
@@ -40,10 +35,10 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to }) => {
           <LevelButton addClass="fifth-level" text="5" />
           <LevelButton addClass="sixth-level" text="6" />
         </div>
-        <NavLink className={`gamelevel__start ${choose ? 'active-btn' : ''}`} to={to || ''}>вперёд</NavLink>
+        <button className={`gamelevel__start ${choose ? 'active-btn' : ''}`} type="button">вперёд</button>
       </div>
     </div>
   );
 };
 
-export default GameLevel;
+export default SprintStart;

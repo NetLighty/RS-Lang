@@ -1,113 +1,119 @@
-$backgrounColor : #007A7A;
-$darkOrangeColor: #DE6600;
-$lightOrangeColor: #FEA02F;
-$lightPinkColor: #EBD9C8;
-$darkBlueColor: #003F5A;
-$firstLevelButton: #DE863B;
-$secondLevelButton: #FFBF72;
-$lightYellow: #FEF200;
-$true: #24810D;
-$false: #AD2621;
-$whiteColor: #FFFFFF;
-$darkBrownColor: #DE863B;
-$lightBrownColor: #FFBF72;
-$beigeColor: #EDC9A7;
-$backgrounColorPaginationButton: #EFE6DE;
-$greyColor: #99978E;
-$lightGreyColor: #8D8787;
-$colorForm: #6B6868;
-
+$backgrounColor: #007a7a;
+$darkOrangeColor: #de6600;
+$lightOrangeColor: #fea02f;
+$lightPinkColor: #ebd9c8;
+$darkBlueColor: #003f5a;
+$firstLevelButton: #de863b;
+$secondLevelButton: #ffbf72;
+$lightYellow: #fef200;
+$true: #24810d;
+$false: #ad2621;
+$whiteColor: #ffffff;
+$darkBrownColor: #de863b;
+$lightBrownColor: #ffbf72;
+$beigeColor: #edc9a7;
+$backgrounColorPaginationButton: #efe6de;
+$greyColor: #99978e;
+$lightGreyColor: #8d8787;
+$colorForm: #6b6868;
 
 $mainFontSize: 1.4rem;
 $headerFontSize: 2.4rem;
 $addFontSize: 1.8rem;
 
+$font-family-Ermilov: "ErmilovBold";
+
 $errorMessageHeight: 2rem;
 
+//dark
+$backgroun-dark: rgb(27,27,27);
+
 //-------icon-------
-@font-face{
-	font-family: icons;
-	src: url("../assets/font/icons.ttf") format("truetype"),
-	url("../assets/font/icons.woff") format("woff"),
-	url("../assets/font/icons.eot") format("eof"),
-	url("../assets/font/icons.svg") format("svg");
-	font-weight: 400;
-	font-style: normal;
-	font-display: block;
+@font-face {
+  font-family: icons;
+  src: url('../assets/font/icons.ttf') format('truetype'),
+    url('../assets/font/icons.woff') format('woff'), url('../assets/font/icons.eot') format('eof'),
+    url('../assets/font/icons.svg') format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
 }
-%ic{
-   font-family: "icons";
-   font-style: normal;
-   font-weight: normal;
-   font-variant: normal;
-   text-transform: none;
-   line-height: 1;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
+%ic {
+  font-family: 'icons';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-[class*="_icon-"]{
-   &:before{
-      @extend %ic;
-      display: inline-block;
-   }
+[class*='_icon-'] {
+  &:before {
+    @extend %ic;
+    display: inline-block;
+  }
 }
 ._icon-arrow:before {
-   content: "\e901";
- }
- ._icon-book:before {
-   content: "\e926";
- }
- ._icon-close:before {
-   content: "\e927";
- }
- ._icon-false:before {
-   content: "\e96f";
-   color: $false;
- }
- ._icon-home:before {
-   content: "\e970";
- }
- ._icon-pencil:before {
-   content: "\e988";
- }
- ._icon-people:before {
-   content: "\e989";
- }
- ._icon-play:before {
-   content: "\e98a";
- }
- ._icon-refresh:before {
-   content: "\e98b";
- }
- ._icon-star:before {
-   content: "\e9a7";
- }
- ._icon-statistic:before {
-   content: "\e9a8";
- }
- ._icon-team:before {
-   content: "\e9c6";
-   color: $lightOrangeColor;
-   font-size: 60px;
-   position: absolute;
-   top: 10px;
-   left: 10px;
+  content: '\e901';
 }
- ._icon-true1:before {
-   content: "\e9c7";
-   color: $true;
- }
- ._icon-volum:before {
-   content: "\e9c8";
- }
+._icon-book:before {
+  content: '\e926';
+}
+._icon-close:before {
+  content: '\e927';
+}
+._icon-false:before {
+  content: '\e96f';
+  color: $false;
+}
+._icon-home:before {
+  content: '\e970';
+}
+._icon-pencil:before {
+  content: '\e988';
+}
+._icon-people:before {
+  content: '\e989';
+}
+._icon-play:before {
+  content: '\e98a';
+}
+._icon-refresh:before {
+  content: '\e98b';
+}
+._icon-star:before {
+  content: '\e9a7';
+}
+._icon-statistic:before {
+  content: '\e9a8';
+}
+._icon-team:before {
+  content: '\e9c6';
+  color: $lightOrangeColor;
+  font-size: 60px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+._icon-true1:before {
+  content: '\e9c7';
+  color: $true;
+}
+._icon-volum:before {
+  content: '\e9c8';
+}
 
- 
-//font
+//fonts
 @font-face {
-   font-family: "Roboto";
-   font-style: normal;
-   font-weight: 400;
-   src: local("Roboto"),
-        url("../assets/font/Roboto-Regular.ttf") format("ttf"),
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), url('../assets/font/Roboto-Regular.ttf') format('ttf');
 }
-
+@font-face {
+  font-family: "ErmilovBold";  
+  src: url("../assets/font/Ermilov-bold.otf") format("otf"); 
+  font-style: normal; 
+  font-weight: normal;
+}
