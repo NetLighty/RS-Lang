@@ -17,7 +17,7 @@ const TextbookContent = (): JSX.Element => {
   const navigate = useNavigate();
   const { savePageToLocalStore } = useSavePageToLocalStorage();
   const [disabled, setDisabled] = useState(true);
-  const userId:string | null = localStorage.getItem('userId');
+  const userId: string | null = localStorage.getItem('userId');
   const isAuth = useAppSelector((state) => state.auth.isAuth);
   const wordsToRender = useAppSelector((state) => state.textbook.bookWords);
   const [pageLearnedClass, setPageLearnedClass] = useState('');

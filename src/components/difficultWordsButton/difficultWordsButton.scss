@@ -42,7 +42,7 @@
   }
 
   &__hint::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     left: 100%;
@@ -50,19 +50,19 @@
     border-width: 5px;
     border-style: solid;
     border-color: $whiteColor transparent transparent transparent;
-}
+  }
 }
 
 button:disabled {
- filter: grayscale(100%);
- transition: none;
- cursor: pointer;
+  filter: grayscale(100%);
+  transition: none;
+  cursor: pointer;
 
-&:hover {
-  transform: none;
-}
+  &:hover {
+    transform: none;
+  }
 
-&:hover .book__hint {
-  display:block;
-}
+  &:hover .book__hint {
+    display: block;
+  }
 }

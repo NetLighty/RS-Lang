@@ -8,23 +8,23 @@ export enum BookActionsTypes {
 }
 
 export type BookStateType = {
-  group: number,
-  page: number,
-  bookWords?: Array<IWord |(IUserWord & IWord)>
+  group: number;
+  page: number;
+  bookWords?: Array<IWord | (IUserWord & IWord)>;
 };
 
 interface AddPageAction {
-  type: BookActionsTypes.ADD_CURRENT_PAGE
+  type: BookActionsTypes.ADD_CURRENT_PAGE;
   payload: number;
 }
 
 interface AddGroupAction {
-  type: BookActionsTypes.ADD_CURRENT_GROUP
+  type: BookActionsTypes.ADD_CURRENT_GROUP;
   payload: number;
 }
 
 interface AddBookWordsAction {
-  type: BookActionsTypes. ADD_CURRENT_PAGE_WORDS
+  type: BookActionsTypes.ADD_CURRENT_PAGE_WORDS;
   payload: Array<IWord | (IWord & IUserWord)>;
 }
 

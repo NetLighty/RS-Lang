@@ -9,7 +9,7 @@ import { useAppSelector } from '~/hooks';
 import CardWordBlockButton from './cardWordBlockButton';
 
 interface CardWordProps {
-  word: IWord| (IWord & IUserWord);
+  word: IWord | (IWord & IUserWord);
 }
 
 const CardWord: FC<CardWordProps> = ({ word }) => {
@@ -20,9 +20,7 @@ const CardWord: FC<CardWordProps> = ({ word }) => {
       <div className="card__sound__flex">
         <div className="card__word__wrapper">
           <div className={`card__word card__bgcolor${word.group}`}>
-            {`${
-              word.word[0].toUpperCase() + word.word.slice(1)
-            } ${word.transcription}`}
+            {`${word.word[0].toUpperCase() + word.word.slice(1)} ${word.transcription}`}
           </div>
           <div className="card__translation">{word.wordTranslate}</div>
         </div>
@@ -43,7 +41,7 @@ const CardWord: FC<CardWordProps> = ({ word }) => {
         <p className="card__example__textExample">{Parser(word.textExample)}</p>
         <p className="card__example__textExampleTranslate">{word.textExampleTranslate}</p>
       </div>
-      {isAuth && <CardWordBlockButton word={word as (IWord & IUserWord)} />}
+      {isAuth && <CardWordBlockButton word={word as IWord & IUserWord} />}
     </div>
   );
 };

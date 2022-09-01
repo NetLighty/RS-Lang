@@ -14,7 +14,7 @@ const HardWordContainer = () => {
   const userWords = useAppSelector((state) => state.userWords);
   const words = useAppSelector((state) => state.words);
 
-  function addItemsToArray(array:Array<IWord & IUserWord>, item1:IWord, item2:IUserWord) {
+  function addItemsToArray(array: Array<IWord & IUserWord>, item1: IWord, item2: IUserWord) {
     array.push({ ...item2, ...item1 });
     setBookPageArray([...array]);
   }
@@ -24,19 +24,23 @@ const HardWordContainer = () => {
   }
 
   useEffect(() => {
-    let userWordsArray:IUserWord[] = [];
+    let userWordsArray: IUserWord[] = [];
     Object.values(userWords).forEach((item) => {
-      Object.values(item).forEach((word) => { userWordsArray = [...userWordsArray, ...word]; });
+      Object.values(item).forEach((word) => {
+        userWordsArray = [...userWordsArray, ...word];
+      });
     });
-    const wordsResult:Array<IWord & IUserWord> = [];
-    const filterUserArray = userWordsArray
-      .filter((word:IUserWord) => word.difficulty === SETTINGS.HARD_WORD);
+    const wordsResult: Array<IWord & IUserWord> = [];
+    const filterUserArray = userWordsArray.filter(
+      (word: IUserWord) => word.difficulty === SETTINGS.HARD_WORD,
+    );
     if (filterUserArray.length > 0) {
-      filterUserArray.forEach((iWord:IUserWord) => {
+      filterUserArray.forEach((iWord: IUserWord) => {
         if (iWord.optional) {
           if (words[iWord.optional?.group] && words[iWord.optional?.group][iWord.optional?.page]) {
-            const findWord:IWord | undefined = words[iWord.optional?.group][iWord.optional?.page]
-              .find((item) => item.id === iWord.optional?.id);
+            const findWord: IWord | undefined = words[iWord.optional?.group][
+              iWord.optional?.page
+            ].find((item) => item.id === iWord.optional?.id);
             if (findWord) {
               addItemsToArray(wordsResult, findWord, iWord);
             }
@@ -58,10 +62,13 @@ const HardWordContainer = () => {
 
   return (
     <div className="hard__word__cards">
-      {bookPageArray?.length
-        ? bookPageArray
-          .map((word: IWord|(IWord & IUserWord)) => <CardWord key={word.id} word={word} />)
-        : <EmptyHardWordContainer />}
+      {bookPageArray?.length ? (
+        bookPageArray.map((word: IWord | (IWord & IUserWord)) => (
+          <CardWord key={word.id} word={word} />
+        ))
+      ) : (
+        <EmptyHardWordContainer />
+      )}
     </div>
   );
 };

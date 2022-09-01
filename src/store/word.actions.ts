@@ -1,9 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { Dispatch } from 'redux';
 import WordService from '../api/wordsService';
-import {
-  AddWordsAction, IWord, WordActionsTypes, WordRequest,
-} from '../models/IWord';
+import { AddWordsAction, IWord, WordActionsTypes, WordRequest } from '../models/IWord';
 
 export const addWords = (requestInfo: WordRequest) => ({
   type: WordActionsTypes.ADD_WORDS,

@@ -20,7 +20,7 @@ export default function useUpdateUserWord() {
           (item: IUserWord) => item.optional?.id === word.id,
         );
         if (editWord && editWord.optional) {
-          const newEditWord:IUserWord | undefined = checkChangedWord(
+          const newEditWord: IUserWord | undefined = checkChangedWord(
             editWord.optional,
             editWord.difficulty,
             data,
@@ -36,11 +36,7 @@ export default function useUpdateUserWord() {
             };
           }
           return dispatch(
-            updateUserWord(
-              userId,
-              word,
-              wordForUpdate as IUserWord,
-            ) as unknown as UserWordsActions,
+            updateUserWord(userId, word, wordForUpdate as IUserWord) as unknown as UserWordsActions,
           );
         }
       }
@@ -70,7 +66,7 @@ export default function useUpdateUserWord() {
         createUserWord(userId, word, {
           difficulty: SETTINGS.NORMAL_WORD,
           optional: {
-            ...newEditWord.optional as Options,
+            ...(newEditWord.optional as Options),
             ...data,
           },
         }) as unknown as UserWordsActions,

@@ -5,7 +5,7 @@ import SETTINGS from '~/utils/settings';
 import { addCurrentPage } from '../../store/textbook.actions';
 import PaginationButton from './paginationButton';
 
-const Pagination:FC<{ learned:string }> = ({ learned }) => {
+const Pagination: FC<{ learned: string }> = ({ learned }) => {
   const dispatch = useDispatch();
   const pageText = useSelector((state: RootState) => state.textbook.page + 1);
   const [prevDisabled, setPrevDisabled] = useState(true);

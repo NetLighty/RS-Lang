@@ -3,14 +3,12 @@ import SETTINGS from '~/utils/settings';
 import { Options, IUserWord } from '~/models/IUserWord';
 
 function checkChangedWord(
-  options:Options | undefined,
-  difficulty:string,
+  options: Options | undefined,
+  difficulty: string,
   data: Partial<Options>,
 ) {
-  const {
-    result, dataupdate, game, learned,
-  } = data;
-  let newEditWord:IUserWord | undefined;
+  const { result, dataupdate, game, learned } = data;
+  let newEditWord: IUserWord | undefined;
   if (options) {
     newEditWord = {
       difficulty,
@@ -24,15 +22,15 @@ function checkChangedWord(
         newEditWord.optional.success += 1;
         newEditWord.optional.countSuccessInRow += 1;
         if (
-          newEditWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROW
-        && newEditWord.difficulty === SETTINGS.NORMAL_WORD
+          newEditWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROW &&
+          newEditWord.difficulty === SETTINGS.NORMAL_WORD
         ) {
           newEditWord.optional.learned = true;
           newEditWord.optional.countSuccessInRow = 0;
         }
         if (
-          newEditWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROWHARD
-        && newEditWord.difficulty === SETTINGS.HARD_WORD
+          newEditWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROWHARD &&
+          newEditWord.difficulty === SETTINGS.HARD_WORD
         ) {
           newEditWord.optional.learned = true;
           newEditWord.optional.countSuccessInRow = 0;

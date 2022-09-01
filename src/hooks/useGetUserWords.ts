@@ -8,9 +8,12 @@ export default function useGetUserWords() {
   const dispatch = useDispatch();
   const userWords = useAppSelector((state) => state.userWords);
 
-  const dowloadUserWords = useCallback((userId:string) => {
-    dispatch(getUserWords(userId) as unknown as UserWordsActions);
-  }, [dispatch]);
+  const dowloadUserWords = useCallback(
+    (userId: string) => {
+      dispatch(getUserWords(userId) as unknown as UserWordsActions);
+    },
+    [dispatch],
+  );
 
   const deleteUserWords = () => {
     dispatch(deleteUserWordsFromStore() as unknown as UserWordsActions);

@@ -13,8 +13,9 @@ type Request = {
 export default function useGetWords() {
   const dispatch = useDispatch();
   const words = useSelector((state: RootState) => state.words);
-  const [bookPageWords, setBookPageWords] = useState<Array<IWord |(IUserWord & IWord)> | null>(
-    null);
+  const [bookPageWords, setBookPageWords] = useState<Array<IWord | (IUserWord & IWord)> | null>(
+    null,
+  );
   const [request, setRequest] = useState<Request>({ group: null, page: null });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,10 +35,10 @@ export default function useGetWords() {
 
   useEffect(() => {
     if (
-      request.group !== null
-      && request.page !== null
-      && Object.keys(words).includes(request.group.toString())
-      && words[request.group][request.page]
+      request.group !== null &&
+      request.page !== null &&
+      Object.keys(words).includes(request.group.toString()) &&
+      words[request.group][request.page]
     ) {
       setBookPageWords(words[request.group][request.page]);
       setRequest({ group: null, page: null });

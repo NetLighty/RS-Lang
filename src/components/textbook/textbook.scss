@@ -94,11 +94,10 @@
     }
   }
 
-  &__pagination__learned{
+  &__pagination__learned {
     background-color: $darkOrangeColor;
     color: $backgrounColorPaginationButton;
     border: 1px solid $lightGreyColor;
-
   }
 
   &__bottom {
@@ -184,38 +183,40 @@
     display: none;
   }
 
- &__learned {
-  width: 50px;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: $whiteColor;
-  font-size: 1.3rem;
-  position: fixed;
-  writing-mode: vertical-lr;
-  text-orientation: upright;
-  background-color: #DE6600;
-  bottom: 20px;
-  left: 30px;
-
+  &__learned {
+    width: 50px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $whiteColor;
+    font-size: 1.3rem;
+    position: fixed;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    background-color: #de6600;
+    bottom: 20px;
+    left: 30px;
   }
 
- &__sprint__button:disabled, &__audioGame__button:disabled {
+  &__sprint__button:disabled,
+  &__audioGame__button:disabled {
     filter: grayscale(100%);
     transition: none;
     cursor: pointer;
-   
-   &:hover {
-     transform: none;
-   }
-   
-   &:hover .book__audioGame__hint, &:hover .book__sprint__hint {
-     display:block;
-   }
+
+    &:hover {
+      transform: none;
+    }
+
+    &:hover .book__audioGame__hint,
+    &:hover .book__sprint__hint {
+      display: block;
+    }
   }
 
-  &__audioGame__hint, &__sprint__hint {
+  &__audioGame__hint,
+  &__sprint__hint {
     position: absolute;
     width: 200px;
     height: 70px;
@@ -230,9 +231,10 @@
     top: -10px;
     left: -200px;
   }
-  
-  &__audioGame__hint::after, &__sprint__hint::after {
-    content: "";
+
+  &__audioGame__hint::after,
+  &__sprint__hint::after {
+    content: '';
     position: absolute;
     top: 50%;
     left: 100%;
@@ -246,7 +248,7 @@
     top: -10px;
     left: 120px;
   }
-  
+
   &__sprint__hint::after {
     left: 0%;
   }
@@ -299,5 +301,3 @@
 #darkBluespan.book__group__span-active {
   border: 3px solid $darkBlueColor;
 }
-
-

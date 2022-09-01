@@ -12,9 +12,7 @@ interface MainButtonProps {
 }
 
 // eslint-disable-next-line react/function-component-definition
-const MainButton: FC<MainButtonProps> = ({
-  image, text, link, classAdd, changeModal,
-}) => (
+const MainButton: FC<MainButtonProps> = ({ image, text, link, classAdd, changeModal }) => (
   <NavLink to={link} className={classAdd} onClick={changeModal}>
     <div className={`${classAdd}round-button`}>
       <img className={`${classAdd}round-button__image`} src={image} alt="" />

@@ -5,8 +5,7 @@ const EmptyHardWordContainer = () => (
     <p className="hard__word__empty__text">
       Твой список сложных слов пуст.&nbsp;Нажимай на &nbsp;
       <span className="_icon-star" />
-      &nbsp;
-      и пополняй слова, к которым хочется возвращаться.
+      &nbsp; и пополняй слова, к которым хочется возвращаться.
     </p>
   </div>
 );

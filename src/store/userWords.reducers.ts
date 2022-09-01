@@ -55,11 +55,11 @@ export default function userWordsReducer(
       }
     }
     return { ...state, ...userWords };
-  } else if(action.type === DeleteActionsTypes.DELETE_USER_WORDS) {
-     for (let key in state) {
+  } else if (action.type === DeleteActionsTypes.DELETE_USER_WORDS) {
+    for (let key in state) {
       delete state[key];
-     }
-     return {...state};
+    }
+    return { ...state };
   } else {
     return state;
   }
