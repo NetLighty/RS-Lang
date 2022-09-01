@@ -2,8 +2,11 @@ import React, { FC } from 'react';
 
 const result = window.location.origin;
 
-const SprintButton: FC<{ onClick: React.MouseEventHandler<HTMLElement> }> = ({ onClick }) => (
-  <button type="button" className="book__sprint__button" onClick={onClick}>
+const SprintButton: FC<{
+  disabled: boolean;
+  onClick: React.MouseEventHandler<HTMLElement>;
+}> = ({ disabled, onClick }) => (
+  <button type="button" className="book__sprint__button" disabled={disabled} onClick={onClick}>
     <img
       src={`${result}/src/assets/img/sprintGame.svg`}
       alt="Sprint game"
@@ -14,6 +17,9 @@ const SprintButton: FC<{ onClick: React.MouseEventHandler<HTMLElement> }> = ({ o
       alt="Sprint game"
       className="book__sprint__button__text"
     />
+    <div className="book__sprint__hint">
+      Все слова на этой странице выучены либо отмечены как сложные
+    </div>
   </button>
 );
 

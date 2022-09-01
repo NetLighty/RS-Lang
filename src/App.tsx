@@ -22,10 +22,14 @@ import { IUser } from './models/IUser';
 import useTypedSelector from './hooks/useTypedSelector';
 import { logoutUser } from './api/controllers/userController';
 import LoginForm from './components/authForm/loginForm';
+import useGetUserWords from './hooks/useGetUserWords';
+import useStatistics from './hooks/useStatistics';
 
 const App = () => {
   const { setUser, setIsAuth } = useActions();
   const { isAuth } = useTypedSelector((state) => state.auth);
+  const { dowloadUserWords } = useGetUserWords();
+  const { getStatistic } = useStatistics();
 
   useEffect(() => {
     if (localStorage.getItem(localStorageNames.isAuth) && !isAuth) {
@@ -40,6 +44,8 @@ const App = () => {
           // document.cookie = `token=${res.data.token}; secure; sameSite=strict`;
           setUser({ id: userId, name: res.data.name });
           setIsAuth(true);
+          dowloadUserWords(userId);
+          getStatistic(userId);
         }).catch(() => { logoutUser(); });
       }
     }

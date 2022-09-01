@@ -12,12 +12,14 @@ export type Options = {
   countSuccessInRow: number;
   success: number;
   allAttemts: number;
+  isThisFirst: boolean;
+  firstDate: string;
   dataupdate: Date;
   game: 'audiogame' | 'sprint' | 'undefined';
   audiogame: string;
   sprint: string;
   isThisFirst: boolean;
-  firstDate: string
+  firstDate: string;
 };
 
 export enum AddUserWordsActionsTypes {
@@ -28,11 +30,16 @@ export enum AddUserWordsIdActionsTypes {
   ADD_USER_WORD_TO_STORE = 'ADD_USER_WORD_TO_USER_STORE',
 }
 
+export enum DeleteActionsTypes {
+  DELETE_USER_WORDS = 'DELETE_USER_WORDS',
+}
+
 export enum UserWordsActionsTypes {
   GET_ALL_USER_WORDS = 'GET_ALL_USER_WORDS',
   GET_USER_WORDS = 'GET_USER_WORDS',
   CREATE_USER_WORD = 'CREATE_USER_WORD',
   UPDATE_USER_WORD = 'UPDATE_USER_WORD',
+  DELETE_USER_WORDS = 'DELETE_USER_WORDS',
 }
 
 interface GetUserWordsAction {
@@ -76,6 +83,11 @@ export interface AddUserWordToStoreAction {
   payload: IUserWord;
 }
 
+export interface DeleteUserWordsAction {
+  type: DeleteActionsTypes.DELETE_USER_WORDS;
+  payload: string;
+}
+
 export type UsersWordsStateType = {
   [group: number]: {
     [page: number]: Array<IUserWord>;
@@ -87,5 +99,6 @@ export type UserWordsActions =
   | GetUserWordByIdAction
   | CreateUserWordsAction
   | UpdateUserWordsAction
+  | DeleteUserWordsAction
   | AddUserWordsToStoreAction
   | AddUserWordToStoreAction;

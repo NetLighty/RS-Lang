@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import Loader from '../../ui/loader/loader';
 import WordService from '../../api/wordsService';
 import ResultWord from '../../components/resultWord/resultWord';
 import { IAnswer } from '../../models/IAnswer';
 import { IResultWord } from '../../models/IResultWord';
-import { useSelector, useDispatch } from 'react-redux';
 import createResultWord from '../../utils/createResultWord';
 import './gameResult.scss';
 import useGetUserWords from '~/hooks/useGetUserWords';

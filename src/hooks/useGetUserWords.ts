@@ -2,18 +2,22 @@ import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
 import { useAppSelector } from './index';
 import { UserWordsActions } from '~/models/IUserWord';
-import SETTINGS from '~/utils/settings';
-import { getUserWords } from '../store/userWords.actions';
+import { getUserWords, deleteUserWordsFromStore } from '../store/userWords.actions';
 
 export default function useGetUserWords() {
   const dispatch = useDispatch();
   const userWords = useAppSelector((state) => state.userWords);
 
-  const dowloadUserWords = useCallback(() => {
-    if (Object.keys(userWords).length === 0) {
-      dispatch(getUserWords(SETTINGS.USER_ID, SETTINGS.TOKEN) as unknown as UserWordsActions);
-    }
-  }, [dispatch, userWords]);
+  const dowloadUserWords = useCallback(
+    (userId: string) => {
+      dispatch(getUserWords(userId) as unknown as UserWordsActions);
+    },
+    [dispatch],
+  );
 
-  return { dowloadUserWords, userWords };
+  const deleteUserWords = () => {
+    dispatch(deleteUserWordsFromStore() as unknown as UserWordsActions);
+  };
+
+  return { dowloadUserWords, userWords, deleteUserWords };
 }

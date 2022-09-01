@@ -4,6 +4,7 @@ import {
   UsersWordsStateType,
   AddUserWordsActionsTypes,
   AddUserWordsIdActionsTypes,
+  DeleteActionsTypes,
 } from '~/models/IUserWord';
 
 const initialState: UsersWordsStateType = {};
@@ -54,6 +55,11 @@ export default function userWordsReducer(
       }
     }
     return { ...state, ...userWords };
+  } else if (action.type === DeleteActionsTypes.DELETE_USER_WORDS) {
+    for (let key in state) {
+      delete state[key];
+    }
+    return { ...state };
   } else {
     return state;
   }

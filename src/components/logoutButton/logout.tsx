@@ -1,12 +1,14 @@
 import React, { FC } from 'react';
 import { logoutUser } from '~/api/controllers/userController';
 import useActions from '~/hooks/useAction';
+import useGetUserWords from '~/hooks/useGetUserWords';
 import './logoutButton.scss';
 
 const logoutText = 'Выйти';
 
 const LogoutButton: FC = () => {
   const { setIsAuth, setUser } = useActions();
+  const { deleteUserWords } = useGetUserWords();
 
   const logout = () => {
     setIsAuth(false);
@@ -14,6 +16,7 @@ const LogoutButton: FC = () => {
     setUser({
       id: '', name: '',
     });
+    deleteUserWords();
   };
 
   return (

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/index-reducers';
 import SETTINGS from '~/utils/settings';
 import { addCurrentPage } from '../../store/textbook.actions';
 import PaginationButton from './paginationButton';
 
-const Pagination = () => {
+const Pagination: FC<{ learned: string }> = ({ learned }) => {
   const dispatch = useDispatch();
   const pageText = useSelector((state: RootState) => state.textbook.page + 1);
   const [prevDisabled, setPrevDisabled] = useState(true);
@@ -52,11 +52,35 @@ const Pagination = () => {
 
   return (
     <div className="book__pagination" onClick={setPage} onKeyDown={setPage} role="presentation">
-      <PaginationButton text="<<" direction={SETTINGS.FIRST_PAGE} disabledValue={prevDisabled} />
-      <PaginationButton text="<" direction={SETTINGS.PREVIOUS_PAGE} disabledValue={prevDisabled} />
-      <PaginationButton text={pageText.toString()} direction={SETTINGS.CURRENT_PAGE} />
-      <PaginationButton text=">" direction={SETTINGS.NEXT_PAGE} disabledValue={lastDisabled} />
-      <PaginationButton text=">>" direction={SETTINGS.LAST_PAGE} disabledValue={lastDisabled} />
+      <PaginationButton
+        text="<<"
+        direction={SETTINGS.FIRST_PAGE}
+        disabledValue={prevDisabled}
+        learned=""
+      />
+      <PaginationButton
+        text="<"
+        direction={SETTINGS.PREVIOUS_PAGE}
+        disabledValue={prevDisabled}
+        learned=""
+      />
+      <PaginationButton
+        text={pageText.toString()}
+        direction={SETTINGS.CURRENT_PAGE}
+        learned={learned}
+      />
+      <PaginationButton
+        text=">"
+        direction={SETTINGS.NEXT_PAGE}
+        disabledValue={lastDisabled}
+        learned=""
+      />
+      <PaginationButton
+        text=">>"
+        direction={SETTINGS.LAST_PAGE}
+        disabledValue={lastDisabled}
+        learned=""
+      />
     </div>
   );
 };

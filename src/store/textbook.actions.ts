@@ -10,7 +10,7 @@ export const addCurrentGroup = (group: number) => ({
   type: BookActionsTypes.ADD_CURRENT_GROUP,
   payload: group,
 });
-export const addCurrentBookWords = (words: Array<IWord | IUserWord>) => ({
+export const addCurrentBookWords = (words: Array<IWord | (IWord & IUserWord)>) => ({
   type: BookActionsTypes.ADD_CURRENT_PAGE_WORDS,
   payload: words,
 });

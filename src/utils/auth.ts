@@ -4,6 +4,9 @@ export const localStorageNames = {
   userId: 'userId',
   userName: 'username',
   isAuth: 'auth',
+  bookPage: 'bookPage',
+  bookGroup: 'bookGroup',
+  statistics: 'statistics',
 };
 
 export const successfullRegistrationMsg = 'Successful creation.';
