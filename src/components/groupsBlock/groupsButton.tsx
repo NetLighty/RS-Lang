@@ -7,7 +7,9 @@ interface GroupsButtonProps {
   span?: string;
 }
 
-const GroupButton: FC<GroupsButtonProps> = ({ index, color, active, span }) => (
+const GroupButton: FC<GroupsButtonProps> = ({
+  index, color, active, span,
+}) => (
   <span id={`${color}span`} className={`book__group__span ${span || ''}`}>
     <button type="button" id={`${color}`} className={`book__group__button ${active || ''}`}>
       {index}

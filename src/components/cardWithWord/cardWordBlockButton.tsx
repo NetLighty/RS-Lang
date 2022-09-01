@@ -24,19 +24,15 @@ const CardWordBlockButton: FC<CardWordBlockButtonProps> = ({ word }) => {
       <div className="card__buttons__block">
         <DifficultWordButton
           classString={word.difficulty === SETTINGS.HARD_WORD ? `card__color${word.group}` : ''}
-          onClick={() =>
-            word.difficulty === SETTINGS.HARD_WORD
-              ? updateWordDifficulty(word, { difficulty: SETTINGS.NORMAL_WORD })
-              : updateWordDifficulty(word, { difficulty: SETTINGS.HARD_WORD })
-          }
+          onClick={() => (word.difficulty === SETTINGS.HARD_WORD
+            ? updateWordDifficulty(word, { difficulty: SETTINGS.NORMAL_WORD })
+            : updateWordDifficulty(word, { difficulty: SETTINGS.HARD_WORD }))}
         />
         <LearnedWordButton
           classString={word.optional?.learned === true ? 'card__button__learned-active' : ''}
-          onClick={() =>
-            word.optional?.learned === true
-              ? updateWord(word, { learned: false })
-              : updateWord(word, { learned: true })
-          }
+          onClick={() => (word.optional?.learned === true
+            ? updateWord(word, { learned: false })
+            : updateWord(word, { learned: true }))}
         />
       </div>
     </div>

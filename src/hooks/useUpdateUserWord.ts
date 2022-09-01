@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import useStatistics from '~/hooks/useStatistics';
 import { IAggregated } from '~/models/IAggregated';
 import { useAppDispatch, useAppSelector } from './index';
 import { updateUserWord, createUserWord } from '../store/userWords.actions';
@@ -11,6 +12,7 @@ export default function useUpdateUserWord() {
   const userWords = useAppSelector((state) => state.userWords);
   const dispatch = useAppDispatch();
   const userId = localStorage.getItem('userId') as string;
+  const { updateStatistic } = useStatistics();
 
   const updateWord = useCallback(
     (word: IWord, data: Partial<Options>) => {
@@ -24,6 +26,7 @@ export default function useUpdateUserWord() {
             editWord.optional,
             editWord.difficulty,
             data,
+            updateStatistic,
           );
           if (newEditWord && newEditWord.optional) {
             wordForUpdate = {
@@ -60,6 +63,7 @@ export default function useUpdateUserWord() {
         defaultOptionalInfo,
         SETTINGS.NORMAL_WORD,
         data,
+        updateStatistic,
       ) as IUserWord;
 
       return dispatch(
@@ -72,7 +76,7 @@ export default function useUpdateUserWord() {
         }) as unknown as UserWordsActions,
       );
     },
-    [dispatch, userWords, userId],
+    [dispatch, userWords, userId, updateStatistic],
   );
 
   const updateWordDifficulty = useCallback(

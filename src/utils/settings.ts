@@ -12,6 +12,7 @@ const SETTINGS = {
   NORMAL_WORD: 'normal',
   COUNTSUCCESSINROW: 2,
   COUNTSUCCESSINROWHARD: 4,
+  STATISTIC_MESSAGE: 'Statistic is empty',
   FILTER_HARD_WORDS: '{"userWord.difficulty":"hard"}',
 };
 

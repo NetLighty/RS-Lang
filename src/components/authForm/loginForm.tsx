@@ -6,6 +6,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { loginUser } from '~/api/controllers/userController';
 import useActions from '~/hooks/useAction';
 import useGetUserWords from '~/hooks/useGetUserWords';
+import useStatistics from '~/hooks/useStatistics';
 import useTypedSelector from '~/hooks/useTypedSelector';
 import { LoginSchema } from '~/utils/rules/authSchemas';
 import './authForm.scss';
@@ -25,6 +26,7 @@ const LoginForm: FC = () => {
   const navigate = useNavigate();
   const initialValues: LoginValues = { email: '', password: '' };
   const { dowloadUserWords } = useGetUserWords();
+  const { getStatistic } = useStatistics();
 
   const login = async (email: string, password: string) => {
     setIsLoading(true);
@@ -36,6 +38,7 @@ const LoginForm: FC = () => {
         });
         setIsAuth(true);
         dowloadUserWords(loginRes.id);
+        getStatistic(loginRes.id);
         setError('');
         navigate('../');
       }

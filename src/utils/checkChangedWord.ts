@@ -6,8 +6,12 @@ function checkChangedWord(
   options: Options | undefined,
   difficulty: string,
   data: Partial<Options>,
+  updateStatistic:()=>void,
 ) {
-  const { result, dataupdate, game, learned } = data;
+  const {
+    result, dataupdate, game, learned,
+  } = data;
+
   let newEditWord: IUserWord | undefined;
   if (options) {
     newEditWord = {
@@ -17,24 +21,29 @@ function checkChangedWord(
       },
     };
     if (newEditWord && newEditWord.optional) {
+      if (learned === true) {
+        updateStatistic();
+      }
       if (result === true) {
         newEditWord.optional.allAttemts += 1;
         newEditWord.optional.success += 1;
         newEditWord.optional.countSuccessInRow += 1;
         if (
-          newEditWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROW &&
-          newEditWord.difficulty === SETTINGS.NORMAL_WORD
+          newEditWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROW
+          && newEditWord.difficulty === SETTINGS.NORMAL_WORD
         ) {
           newEditWord.optional.learned = true;
           newEditWord.optional.countSuccessInRow = 0;
+          updateStatistic();
         }
         if (
-          newEditWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROWHARD &&
-          newEditWord.difficulty === SETTINGS.HARD_WORD
+          newEditWord.optional.countSuccessInRow === SETTINGS.COUNTSUCCESSINROWHARD
+          && newEditWord.difficulty === SETTINGS.HARD_WORD
         ) {
           newEditWord.optional.learned = true;
           newEditWord.optional.countSuccessInRow = 0;
           newEditWord.difficulty = SETTINGS.NORMAL_WORD;
+          updateStatistic();
         }
       } else if (result === false) {
         newEditWord.optional.allAttemts += 1;

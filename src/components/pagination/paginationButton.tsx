@@ -7,7 +7,9 @@ interface PaginationWordProps {
   learned: string;
 }
 
-const PaginationButton: FC<PaginationWordProps> = ({ text, direction, disabledValue, learned }) => (
+const PaginationButton: FC<PaginationWordProps> = ({
+  text, direction, disabledValue, learned,
+}) => (
   <button
     type="button"
     className={`book__pagination__button ${learned}`}

@@ -88,8 +88,8 @@ const TextbookContainer: FC = () => {
       <div className="book__cards">
         {wordsToRender?.length
           ? wordsToRender.map((word: IWord | (IWord & IUserWord)) => (
-              <CardWord key={word.id} word={word} />
-            ))
+            <CardWord key={word.id} word={word} />
+          ))
           : null}
       </div>
     </div>
