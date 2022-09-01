@@ -24,6 +24,11 @@ const getNewUserTokens = async (id: string, token: string): Promise<AxiosRespons
 });
 
 axiosInstance.interceptors.request.use(async (req) => {
+  const actualAccessToken = localStorage.getItem(localStorageNames.accesToken);
+  if (req.headers) {
+    req.headers.Authorization = `Bearer ${actualAccessToken || ''}`;
+  }
+
   if (isAuth === 'true' && userId) {
     /* if (!accessToken || !refreshToken) {
       accessToken = localStorage.getItem(localStorageNames.accesToken);

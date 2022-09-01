@@ -35,14 +35,14 @@ export default function useUpdateUserWord() {
               },
             };
           }
+          return dispatch(
+            updateUserWord(
+              userId,
+              word,
+              wordForUpdate as IUserWord,
+            ) as unknown as UserWordsActions,
+          );
         }
-        return dispatch(
-          updateUserWord(
-            userId,
-            word,
-            wordForUpdate as IUserWord,
-          ) as unknown as UserWordsActions,
-        );
       }
       const defaultOptionalInfo: Options = {
         id: word.id,

@@ -36,6 +36,7 @@ function checkChangedWord(
         ) {
           newEditWord.optional.learned = true;
           newEditWord.optional.countSuccessInRow = 0;
+          newEditWord.difficulty = SETTINGS.NORMAL_WORD;
         }
       } else if (result === false) {
         newEditWord.optional.allAttemts += 1;

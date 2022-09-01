@@ -123,7 +123,6 @@ export function updateUserWord(userId: string, word: IWord, data: IUserWord) {
     audiogame: '0',
     sprint: '0',
   };
-
   const userWord: IUserWord = {
     ...data,
     optional: {

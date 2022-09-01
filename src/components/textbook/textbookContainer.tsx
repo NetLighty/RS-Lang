@@ -83,7 +83,7 @@ const TextbookContainer: FC = () => {
   }, [bookPageWords, dispatch, isAuth]);
 
   return (
-    <>
+    <div className="book__cards__container">
       <div className="book__loader">{isLoading && <Loader />}</div>
       <div className="book__cards">
         {wordsToRender?.length
@@ -91,7 +91,7 @@ const TextbookContainer: FC = () => {
             .map((word: IWord | (IWord & IUserWord)) => <CardWord key={word.id} word={word} />)
           : null}
       </div>
-    </>
+    </div>
   );
 };
 
