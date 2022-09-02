@@ -19,9 +19,9 @@
 
   &__cards {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    margin-top: 34px;
+    gap: 30px;
   }
 
   &__groups {
@@ -171,14 +171,6 @@
     align-items: center;
   }
 
-  &__footer {
-    width: calc(100% - 63px);
-    margin-bottom: 20px;
-    @media (max-width: 1200px) {
-      width: 100%;
-    }
-  }
-
   &__info {
     display: none;
   }
@@ -197,6 +189,10 @@
     background-color: #de6600;
     bottom: 20px;
     left: 30px;
+  }
+
+  &__body__learned {
+    background-color: grey;
   }
 
   &__sprint__button:disabled,
