@@ -29,18 +29,19 @@ export default function useStatistics() {
       const key = formatDate(new Date());
       if (oldStatistic && oldStatistic.optional) {
         const statisticKeys = Object.keys(oldStatistic.optional);
-        if((statisticKeys.findIndex(item => item === key)) === -1){
+        if ((statisticKeys.findIndex((item) => item === key)) === -1) {
           oldStatistic.optional[key] = 1;
           oldStatistic.learnedWords += 1;
         } else {
-        statisticKeys.forEach((item) => {
-          if(oldStatistic.optional){
-          if (item === key) {
-            oldStatistic.optional[item] += 1;
-            oldStatistic.learnedWords += 1;
-          }
+          statisticKeys.forEach((item) => {
+            if (oldStatistic.optional) {
+              if (item === key) {
+                oldStatistic.optional[item] += 1;
+                oldStatistic.learnedWords += 1;
+              }
+            }
+          });
         }
-        })};
         const newStatistic:IStatistic = {
           learnedWords: oldStatistic.learnedWords,
           optional: {

@@ -3,19 +3,20 @@
 
 .card {
   font-family: 'Roboto';
-  display: grid;
-  grid-template-rows: 2fr 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   width: 30%;
   min-width: 150px;
-  height: 600px;
   background-color: $whiteColor;
   margin-bottom: 36px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
+  position: relative;
 
   &__image {
     width: 100%;
-    max-height: 306px;
+    max-height: 200px;
+    object-fit: cover;
     padding: 9px;
   }
 
@@ -24,7 +25,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 13px;
+    margin-bottom: 5px;
   }
 
   &__sound {
@@ -55,8 +56,7 @@
 
   &__word {
     display: inline-block;
-    height: 37px;
-    padding: 9px 22px;
+    padding: 10px 22px;
     margin-right: 25px;
     color: $whiteColor;
   }
@@ -68,8 +68,9 @@
     padding: 0 24px;
     font-family: 'Roboto';
     font-size: 14px;
-    font-weight: 400px;
+    font-weight: 300px;
     line-height: 16.41px;
+    margin-bottom: 12px;
   }
 
   &__meaning__text,
@@ -102,19 +103,22 @@
   &__buttons {
     display: flex;
     justify-content: space-between;
-    margin: 9px 20px;
+    margin-bottom: 5px;
   }
 
   &__buttons__block {
     display: flex;
     justify-content: space-between;
     margin: 9px 0;
+    position: absolute;
+    top: 3px;
+    right: 12px;
   }
 
   &__button {
-    width: 45px;
-    height: 45px;
-    font-size: 36px;
+    width: 25px;
+    height: 25px;
+    font-size: 25px;
     color: $lightGreyColor;
     background-color: transparent;
     border: none;
@@ -123,7 +127,7 @@
   }
 
   &__button__hard {
-    margin-right: 10px;
+    margin-right: 8px;
     &:hover {
       opacity: 0.5;
     }
@@ -133,37 +137,67 @@
     opacity: 0.5;
   }
 
-  &__button__learned-active {
-    color: $true;
-  }
-
   &__progress__block {
-    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
     font-weight: 700;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: $whiteColor;
   }
 
   &__color0 {
     color: $darkBrownColor;
   }
 
+  &__border__color0 {
+    border: 1.5px solid $darkBrownColor;
+  }
+
   &__color1 {
     color: $lightBrownColor;
+  }
+
+  &__border__color1 {
+    border: 1.5px solid $lightBrownColor;
   }
 
   &__color2 {
     color: $lightPinkColor;
   }
 
+  &__border__color2 {
+    border: 1.5px solid $lightPinkColor;
+  }
+
   &__color3 {
     color: $darkBlueColor;
+  }
+
+  &__border__color3 {
+    border: 1.5px solid $darkBlueColor;
   }
 
   &__color4 {
     color: $lightOrangeColor;
   }
 
+  &__border__color4 {
+    border: 1.5px solid $lightOrangeColor;
+  }
+
   &__color5 {
     color: $darkOrangeColor;
+  }
+
+  &__border__color5 {
+    border: 1.5px solid $darkOrangeColor;
   }
 
   &__bgcolor0 {

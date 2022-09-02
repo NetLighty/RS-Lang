@@ -8,7 +8,7 @@ const Book = () => (
     <div className="book">
       <TextbookContent />
     </div>
-      <Footer />
+    <Footer />
   </>
 );
 

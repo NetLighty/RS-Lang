@@ -18,7 +18,7 @@ const HardWords = () => (
       />
       <HardWordContainer />
     </div>
-      <Footer />
+    <Footer />
   </>
 );
 
