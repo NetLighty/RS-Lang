@@ -9,6 +9,7 @@ const result = window.location.origin;
 
 const HardWords = () => (
   <>
+  <div className="hard">
     <div className="hard__container">
       <MainPageButton
         image={`${result}/src/assets/img/small-book.svg`}
@@ -17,6 +18,7 @@ const HardWords = () => (
         classAdd="hard__words__link"
       />
       <HardWordContainer />
+    </div>
     </div>
     <Footer />
   </>
