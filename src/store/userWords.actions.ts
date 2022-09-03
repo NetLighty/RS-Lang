@@ -8,6 +8,7 @@ import {
   AddUserWordsActionsTypes,
   AddUserWordToStoreAction,
   AddUserWordsToStoreAction,
+  DeleteActionsTypes,
 } from '../models/IUserWord';
 import UserWordService from '../api/userWordsService';
 
@@ -28,6 +29,11 @@ export const addUserWordsToStore = (data: Array<IUserWord>) => ({
 export const addWordToUser = (word: IUserWord) => ({
   type: AddUserWordsIdActionsTypes.ADD_USER_WORD_TO_STORE,
   payload: word,
+});
+
+export const deleteUserWordsFromStore = () => ({
+  type: DeleteActionsTypes.DELETE_USER_WORDS,
+  payload: '',
 });
 
 export function getUserWords(userId: string) {
@@ -65,6 +71,8 @@ export function createUserWord(userId: string, word: IWord, data: IUserWord) {
     countSuccessInRow: 0,
     success: 0,
     allAttemts: 0,
+    isThisFirst: true,
+    firstDate: '0',
     dataupdate: new Date('1970-01-01'),
     game: 'undefined',
     audiogame: '0',
@@ -108,12 +116,13 @@ export function updateUserWord(userId: string, word: IWord, data: IUserWord) {
     countSuccessInRow: 0,
     success: 0,
     allAttemts: 0,
+    isThisFirst: true,
+    firstDate: '0',
     dataupdate: new Date('1970-01-01'),
     game: 'undefined',
     audiogame: '0',
     sprint: '0',
   };
-
   const userWord: IUserWord = {
     ...data,
     optional: {

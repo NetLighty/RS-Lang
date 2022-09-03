@@ -41,15 +41,14 @@ export default class UserService {
   }
 
   static async getUserStat(id: string): Promise<AxiosResponse<IStatistic>> {
-    return axiosInstance.get(`${apiUrl}/users/${id}`);
+    return axiosInstance.get(`${apiUrl}/users/${id}/statistics`);
   }
 
   static async upsertUserStat(
     id: string,
-    learnedWords: number,
-    optional?: Record<string, string>,
+    statistics: IStatistic,
   ): Promise<AxiosResponse<IStatistic>> {
-    return axiosInstance.put(`${apiUrl}/users/${id}`, { learnedWords, optional });
+    return axiosInstance.put(`${apiUrl}/users/${id}/statistics`, statistics);
   }
 
   static async getUserSettings(id: string): Promise<AxiosResponse<ISettings>> {
