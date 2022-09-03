@@ -12,6 +12,12 @@
   width: 50rem;
   color: white;
   font-size: 2rem;
+
+  hr {
+    height: 0.1rem;
+    width: 90%;
+    border: 0.1rem solid rgba(white, 1);
+  }
 }
 .result {
   height: 100vh;
@@ -26,9 +32,11 @@
     }
   }
   &__wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     row-gap: 2rem;
+    // grid-template-columns: 1fr;
+    // row-gap: 2rem;
     width: 50rem;
     height: 46rem;
     overflow: auto;
@@ -74,12 +82,8 @@
 .words-list {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 3.2rem;
   height: fit-content;
   &__title {
-    display: grid;
-    grid-template-columns: 11rem 1fr;
-    column-gap: 2rem;
     margin-bottom: 1rem;
     span {
       font-size: 3rem;
@@ -87,7 +91,6 @@
   }
 }
 .words-list__word {
-  height: 3rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -129,14 +132,20 @@
                 <span>{' - '}</span>
                 <span className="word-translate">{word.wordTranslate}</span>
               </div> */
+
 .words-list__length {
+  width: fit-content;
+  padding: 0 1rem;
+  border-radius: 1.7rem;
   font-family: $font-family-Ermilov;
   font-weight: bold;
   font-size: 4rem;
+  color: white;
+  margin: 0 1rem;
   &_correct {
-    color: $true-green;
+    background-color: $true-green;
   }
   &_wrong {
-    color: $false-red;
+    background-color: $false-red;
   }
 }

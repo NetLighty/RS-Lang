@@ -30,16 +30,17 @@ const SprintResult: FC = () => {
         <div className="result__wrapper">
           <div className="words-list">
             <div className="words-list__title">
-              <span>Ошибки</span>
+              <span>Ошибок</span>
               <span className="words-list__length words-list__length_wrong">{sprintWrongWords.length}</span>
             </div>
             {sprintWrongWords.map((word) => (
               <SprintResultWord key={word.id} word={word} />
             ))}
+            <hr />
           </div>
           <div className="words-list">
             <div className="words-list__title">
-              <span>Верно</span>
+              <span>Знаю</span>
               <span className="words-list__length words-list__length_correct">{sprintCorrectWords.length}</span>
             </div>
             {sprintCorrectWords.map((word) => (

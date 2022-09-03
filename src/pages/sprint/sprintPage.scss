@@ -1,5 +1,13 @@
 @import '../../style/global.scss';
 
+.loading-circle {
+  position: absolute;
+  right: calc(50vw - 6.7rem / 2);
+  top: calc(50vh - 6.7rem / 2);
+  width: fit-content;
+  height: fit-content;
+  margin: 0 auto;
+}
 .sprint {
   height: 100vh;
   padding: 15vh 0;

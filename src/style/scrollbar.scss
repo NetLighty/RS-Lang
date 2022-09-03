@@ -2,7 +2,7 @@
 /* полоса прокрутки (скроллбар) */
 ::-webkit-scrollbar {
   width: 1rem; /* ширина для вертикального скролла */
-  height: 8px; /* высота для горизонтального скролла */
+  height: 0.8rem; /* высота для горизонтального скролла */
   background-color: rgba(grey, 0.2);
 }
 
@@ -13,7 +13,6 @@
 }
 
 /* Стрелки */
-
 ::-webkit-scrollbar-button {
   width: 0rem;
   height: 0rem;

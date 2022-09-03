@@ -4,6 +4,7 @@ import Timer from '~/components/timer/timer';
 import useActions from '~/hooks/useAction';
 import useTypedSelector from '~/hooks/useTypedSelector';
 import { IWord } from '~/models/IWord';
+import Loader from '~/ui/loader/loader';
 import { basePointsAdd, maxPointsMultiply } from '~/utils/rules/sprintRules';
 import { alternativeShuffle } from '~/utils/subGameFunc';
 import './sprintPage.scss';
@@ -95,7 +96,7 @@ const SprintGame: FC = () => {
       getWords()
         .then((resWords) => {
           setwords(resWords.flat());
-          setTimeout(() => setIsLoading(false), 500);
+          setTimeout(() => setIsLoading(false), 700);
         })
         .catch((e) => {
           console.log(e);
@@ -105,7 +106,7 @@ const SprintGame: FC = () => {
   return (
     <div className="sprint">
       {isLoading ? (
-        'Loading'
+        <div className="loading-circle"><Loader /></div>
       ) : (
         <div className="sprint-container">
           <div className="sprint__info">
