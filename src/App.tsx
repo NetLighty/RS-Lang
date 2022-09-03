@@ -21,7 +21,6 @@ import UserService from './api/userService';
 import { IUser } from './models/IUser';
 import useTypedSelector from './hooks/useTypedSelector';
 import { logoutUser } from './api/controllers/userController';
-import LoginForm from './components/authForm/loginForm';
 import useGetUserWords from './hooks/useGetUserWords';
 import useStatistics from './hooks/useStatistics';
 
@@ -66,7 +65,6 @@ const App = () => {
         <Route path="/audiocall" element={<AudioLevel gameName="audio" to="/audiocall/game" />} />
         <Route path="/audiocall/game" element={<AudioCall />} />
         <Route path="/audiocall/result" element={<AudioResult nameResult="audiores" />} />
-        <Route path="/user" element={<LoginForm />} />
       </Routes>
     </BrowserRouter>
   );
