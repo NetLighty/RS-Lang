@@ -4,50 +4,110 @@ import Timer from '~/components/timer/timer';
 import useActions from '~/hooks/useAction';
 import useTypedSelector from '~/hooks/useTypedSelector';
 import { IWord } from '~/models/IWord';
+import { basePointsAdd, maxPointsMultiply } from '~/utils/rules/sprintRules';
+import { alternativeShuffle } from '~/utils/subGameFunc';
 import './sprintPage.scss';
 
 const SprintGame: FC = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [words, setwords] = useState<IWord[][]>([]);
-  const { sprintWords } = useTypedSelector((state) => state.sprint);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [currentWords, setwords] = useState<IWord[]>([]);
+  const [currentWord, setCurrentWord] = useState<IWord>();
+  const [points, setPoints] = useState<number>(0);
+  const [pointsAdditing, setPointsAdditing] = useState<number>(basePointsAdd);
+  const [isCorrectAnswer, setIsCorrectAnswer] = useState<string>('');
+  const [correctAnswersRow, setCorrectAnswersRow] = useState<number>(0);
+  const [potentialTranslate, setPotentialTranslate] = useState<string>();
   const {
-    setSprintWords,
-  } = useActions();
+    sprintWords,
+    sprintCorrectWords,
+    sprintWrongWords,
+  } = useTypedSelector((state) => state.sprint);
+  const { setSprintCorrectWords, setSprintWrongWords } = useActions();
+  /* const { setSprintWords } = useActions(); */
+
+  const initWords = (words: IWord[]) => {
+    const filteredWords = words.filter((word) => word.id !== currentWord?.id);
+    const newWord = filteredWords[Math.floor(Math.random() * 598 + 1)];
+    setCurrentWord(newWord);
+    if (Math.floor(Math.random() * 2)) {
+      setPotentialTranslate(newWord.wordTranslate);
+    } else {
+      setPotentialTranslate(filteredWords[Math.floor(Math.random() * 599 + 1)].wordTranslate);
+    }
+  };
+
+  const addPointsAdditing = () => {
+    if (pointsAdditing === basePointsAdd * (2 ** maxPointsMultiply)) return;
+    setPointsAdditing(pointsAdditing * 2);
+  };
+  const addCorrectAnswersRow = () => {
+    if (correctAnswersRow < 3) {
+      setCorrectAnswersRow(correctAnswersRow + 1);
+    } else {
+      setCorrectAnswersRow(0);
+      addPointsAdditing();
+    }
+  };
+
+  const submitAnswer = (
+    word: IWord | undefined,
+    translate: string | undefined,
+    answer: boolean,
+  ) => {
+    if (word && translate) {
+      const isTranslateCorrect = word.wordTranslate === translate;
+      if (isTranslateCorrect === answer) {
+        setSprintCorrectWords([...sprintCorrectWords, word]);
+        setPoints(points + pointsAdditing);
+        setIsCorrectAnswer('true');
+        addCorrectAnswersRow();
+      } else {
+        setSprintWrongWords([...sprintWrongWords, word]);
+        setCorrectAnswersRow(0);
+        setIsCorrectAnswer('false');
+        setPointsAdditing(basePointsAdd);
+      }
+      initWords(currentWords);
+    }
+  };
 
   useEffect(() => {
     setIsLoading(true);
+    setSprintCorrectWords([]);
+    setSprintWrongWords([]);
     if (sprintWords.length === 0) {
       const getWords = async () => {
-        // const randomPage = Math.floor(Math.random() * 30);
         const promises = [];
-        const wordss: IWord[][] = [];
+        const words: IWord[][] = [];
         for (let i = 0; i < 30; i += 1) {
           const promise = WordService.getChunkOfWords('5', `${i}`);
           promises.push(promise);
         }
         await Promise.all(promises).then((responses) => {
           responses.forEach((res) => {
-            wordss.push(res.data);
+            words.push(res.data);
           });
         });
-        console.log(wordss);
-        setSprintWords(wordss.flat());
-        return wordss;
+        console.log(words);
+        initWords(alternativeShuffle(words.flat()));
+        return words;
       };
-      getWords().then((resWords) => {
-        setwords(resWords);
-      })
+      getWords()
+        .then((resWords) => {
+          setwords(resWords.flat());
+          setTimeout(() => setIsLoading(false), 500);
+        })
         .catch((e) => {
           console.log(e);
         });
     }
-    setTimeout(() => setIsLoading(false), 2000);
   }, []);
   return (
-  // eslint-disable-next-line react/jsx-no-useless-fragment
     <div className="sprint">
-      {isLoading ? 'Loading' : (
-        <>
+      {isLoading ? (
+        'Loading'
+      ) : (
+        <div className="sprint-container">
           <div className="sprint__info">
             <div className="sprint__timer">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -59,25 +119,34 @@ const SprintGame: FC = () => {
               <Timer />
             </div>
             <div className="sprint__points">
-              <div className="sprint__points-total">Очки: 0</div>
-              <div className="sprint__points-addition">+10 очков за слово</div>
+              <div className="sprint__points-total">
+                Очки:
+                {' '}
+                {points}
+              </div>
+              <div className="sprint__points-addition">{`+${pointsAdditing} очков за слово`}</div>
             </div>
           </div>
-          <div className="shadow-inset">
-            <div className="sprint__words">
-              <span>Phenominal</span>
-              <span>Сахар</span>
+          <div className="sprint__correct-row">
+            <div className={`row-circle ${correctAnswersRow > 0 ? 'row-circle_green' : ''}`} />
+            <div className={`row-circle ${correctAnswersRow > 1 ? 'row-circle_green' : ''}`} />
+            <div className={`row-circle ${correctAnswersRow > 2 ? 'row-circle_green' : ''}`} />
+          </div>
+          <div onAnimationEnd={() => setIsCorrectAnswer('')} className={`shadow-inset shadow-inset_${isCorrectAnswer}`}>
+            <div className={`sprint__words sprint__words_${isCorrectAnswer}`}>
+              <span>{currentWord?.word}</span>
+              <span>{potentialTranslate}</span>
             </div>
           </div>
           <div className="sprint__buttons">
-            <button className="sprint__button false" type="button" id="1">
+            <button onClick={() => submitAnswer(currentWord, potentialTranslate, false)} className="sprint__button false" type="button" id="1">
               НЕВЕРНО
             </button>
-            <button className="sprint__button true" type="button" id="0">
+            <button onClick={() => submitAnswer(currentWord, potentialTranslate, true)} className="sprint__button true" type="button" id="0">
               ВЕРНО
             </button>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

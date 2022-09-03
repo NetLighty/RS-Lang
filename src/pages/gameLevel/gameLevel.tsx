@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { sound } from '../../utils/subGameFunc';
 import LevelButton from '../../ui/levelButton/levelButton';
 import './gameLevel.scss';
+import useActions from '~/hooks/useAction';
 
 interface GameLevelProps {
   gameName: string;
@@ -15,6 +16,9 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to }) => {
     to: '',
   };
   const [choose, setChoose] = useState(false);
+  const {
+    setSprintView,
+  } = useActions();
   if (localStorage.bookGroup) localStorage.removeItem('bookGroup');
   if (localStorage.bookPage) localStorage.removeItem('bookPage');
   function chooseLevel(e: React.SyntheticEvent) {
@@ -25,6 +29,12 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to }) => {
     localStorage[`${gameName}level`] = target.textContent;
     setChoose(true);
   }
+
+  const goToGame = () => {
+    if (gameName === 'Спринт') {
+      setSprintView('game');
+    }
+  };
 
   return (
     <div className="gamelevel">
@@ -40,7 +50,7 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to }) => {
           <LevelButton addClass="fifth-level" text="5" />
           <LevelButton addClass="sixth-level" text="6" />
         </div>
-        <NavLink className={`gamelevel__start ${choose ? 'active-btn' : ''}`} to={to || ''}>вперёд</NavLink>
+        <NavLink onClick={goToGame} className={`gamelevel__start ${choose ? 'active-btn' : ''}`} to={to || ''}>вперёд</NavLink>
       </div>
     </div>
   );

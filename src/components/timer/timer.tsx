@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import useActions from '~/hooks/useAction';
 
 const Timer: FC = () => {
-  const [timeLeft, setTimeLeft] = useState(255);
-  const navigate = useNavigate();
+  const [timeLeft, setTimeLeft] = useState(5);
+  const { setSprintView } = useActions();
 
   const tick = () => {
     setTimeLeft(timeLeft - 1);
@@ -14,7 +14,7 @@ const Timer: FC = () => {
     if (timeLeft > 0) {
       timer = setInterval(() => tick(), 1000);
     } else {
-      navigate('../sprint/result');
+      setSprintView('result');
     }
     return () => clearInterval(timer);
   }, [timeLeft]);

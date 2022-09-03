@@ -22,7 +22,6 @@ import { IUser } from './models/IUser';
 import useTypedSelector from './hooks/useTypedSelector';
 import { logoutUser } from './api/controllers/userController';
 import SprintPage from './pages/sprint/sprintPage';
-import Timer from './components/timer/timer';
 
 const App = () => {
   const { setUser, setIsAuth } = useActions();

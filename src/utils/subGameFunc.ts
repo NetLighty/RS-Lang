@@ -1,3 +1,5 @@
+import { IWord } from '~/models/IWord';
+
 export function sound(path: string) {
   const audio = new Audio();
   audio.src = path;
@@ -6,6 +8,19 @@ export function sound(path: string) {
 
 export function shuffle(array: string[]) {
   return array.sort(() => Math.random() - 0.5);
+}
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+export function alternativeShuffle(array: IWord[]) {
+  const shuffledArray = array;
+  let currentIndex = shuffledArray.length;
+  let randomIndex;
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    [shuffledArray[currentIndex],
+      shuffledArray[randomIndex]] = [shuffledArray[randomIndex], shuffledArray[currentIndex]];
+  }
+  return shuffledArray;
 }
 
 export function getDocumentElement(name: string) {
