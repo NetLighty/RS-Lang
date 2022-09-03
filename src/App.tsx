@@ -60,7 +60,6 @@ const App = () => {
         <Route path="/audiocall/game" element={<AudioCall />} />
         <Route path="/audiocall/result" element={<AudioResult nameResult="audiores" />} />
         <Route path="/sprint" element={<SprintPage />} />
-        <Route path="/user" element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
   );
