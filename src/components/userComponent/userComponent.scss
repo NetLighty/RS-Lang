@@ -1,6 +1,7 @@
 @import '../../style/global.scss';
 
 .user {
+   z-index: 4;
    width: 400px;
    height: 199px;
    &__content {
