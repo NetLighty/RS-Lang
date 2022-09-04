@@ -151,7 +151,7 @@
 }
 .sprint__buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.1fr 0.1fr;
   column-gap: 2rem;
   button {
     font-size: 2rem;
@@ -165,18 +165,41 @@
     cursor: pointer;
     color: white;
   }
-  .true {
+  .sprint__button_true {
     border: 0.2rem solid $true-green;
     color: $true-green;
   }
-  .true:hover {
+  .sprint__button_true:hover {
     background-color: $true-green;
   }
-  .false {
+  .sprint__button_false {
     border: 0.2rem solid rgba($false-red, 0.8);
     color: rgba($false-red, 0.8);
   }
-  .false:hover {
+  .sprint__button_false:hover {
     background-color: rgba($false-red, 0.9);
   }
+  .sprint__button__container {
+    width: fit-content;
+    display: grid;
+    grid-template-columns: 0.1fr 0.1fr;
+    column-gap: 0.5rem;
+    align-items: center;
+  }
+  .arrow-left {
+    width: 2rem;
+    height: 2rem;
+    fill: rgba($false-red, 0.8);
+    transform: rotate(270deg);
+  }
+  .arrow-right {
+    width: 2rem;
+    height: 2rem;
+    fill: rgba($true-green, 0.8);
+    transform: rotate(90deg);
+  }
+}
+.sprint__buttons >:nth-child(2) {
+  display: grid;
+  justify-self: end;
 }

@@ -1,39 +1,88 @@
 import React, { FC, useEffect, useState } from 'react';
 import WordService from '~/api/wordsService';
+import ArrowSvg from '~/components/arrow/arrow';
 import Timer from '~/components/timer/timer';
 import useActions from '~/hooks/useAction';
 import useTypedSelector from '~/hooks/useTypedSelector';
+import useUpdateUserWord from '~/hooks/useUpdateUserWord';
+import useUpsertSetting from '~/hooks/useUpsertSetting';
+import { IAggregatedResponse } from '~/models/IAggregated';
 import { IWord } from '~/models/IWord';
 import Loader from '~/ui/loader/loader';
+import { getAggregatedWordsForGame } from '~/utils/aggregatedWordsFunc';
+import { localStorageNames } from '~/utils/auth';
 import { basePointsAdd, maxPointsMultiply } from '~/utils/rules/sprintRules';
-import { alternativeShuffle } from '~/utils/subGameFunc';
+import { alternativeShuffle, appPath } from '~/utils/subGameFunc';
 import './sprintPage.scss';
 
-const SprintGame: FC = () => {
+interface SprintGameProps {
+  bookPage?: string,
+  bookGroup?: string,
+}
+
+const SprintGame: FC<SprintGameProps> = ({ bookGroup, bookPage }) => {
+  SprintGame.defaultProps = {
+    bookGroup: '',
+    bookPage: '',
+  };
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [currentWords, setwords] = useState<IWord[]>([]);
+  const [currentWords, setCurrentWords] = useState<IWord[]>([]);
   const [currentWord, setCurrentWord] = useState<IWord>();
   const [points, setPoints] = useState<number>(0);
   const [pointsAdditing, setPointsAdditing] = useState<number>(basePointsAdd);
   const [isCorrectAnswer, setIsCorrectAnswer] = useState<string>('');
   const [correctAnswersRow, setCorrectAnswersRow] = useState<number>(0);
+  const [correctAnswersSerie, setCorrectAnswersSerie] = useState<number>(0);
+  const [maxCorrectAnswersSerie, setMaxCorrectAnswersSerie] = useState<number>(0);
   const [potentialTranslate, setPotentialTranslate] = useState<string>();
   const {
     sprintWords,
     sprintCorrectWords,
     sprintWrongWords,
+    sprintView,
   } = useTypedSelector((state) => state.sprint);
-  const { setSprintCorrectWords, setSprintWrongWords } = useActions();
-  /* const { setSprintWords } = useActions(); */
+  let timer: NodeJS.Timeout;
+  const { setSprintCorrectWords, setSprintWrongWords, setSprintView } = useActions();
+  const { updateWord } = useUpdateUserWord();
+
+  const endGame = () => {
+    const userId = localStorage.getItem(localStorageNames.userId);
+    const isAuth = localStorage.getItem(localStorageNames.isAuth);
+    if (userId && isAuth) {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const { upsertSettings } = useUpsertSetting(
+        userId,
+        'sprint',
+        sprintCorrectWords.length + sprintWrongWords.length,
+        sprintCorrectWords.length,
+        maxCorrectAnswersSerie,
+        new Date(),
+      );
+      upsertSettings();
+      sprintCorrectWords.forEach((word) => {
+        updateWord(word, { result: true, game: 'sprint', dataupdate: new Date() });
+      });
+      sprintWrongWords.forEach((word) => {
+        updateWord(word, { result: false, game: 'sprint', dataupdate: new Date() });
+      });
+    }
+    setSprintView('result');
+  };
 
   const initWords = (words: IWord[]) => {
     const filteredWords = words.filter((word) => word.id !== currentWord?.id);
-    const newWord = filteredWords[Math.floor(Math.random() * 598 + 1)];
-    setCurrentWord(newWord);
-    if (Math.floor(Math.random() * 2)) {
-      setPotentialTranslate(newWord.wordTranslate);
+    if (filteredWords.length === 0) {
+      endGame();
     } else {
-      setPotentialTranslate(filteredWords[Math.floor(Math.random() * 599 + 1)].wordTranslate);
+      const newWord = filteredWords[Math.floor(Math.random() * filteredWords.length)];
+      setCurrentWord(newWord);
+      if (Math.floor(Math.random() * 2)) {
+        setPotentialTranslate(newWord.wordTranslate);
+      } else {
+        setPotentialTranslate(
+          filteredWords[Math.floor(Math.random() * filteredWords.length)].wordTranslate,
+        );
+      }
     }
   };
 
@@ -41,6 +90,7 @@ const SprintGame: FC = () => {
     if (pointsAdditing === basePointsAdd * (2 ** maxPointsMultiply)) return;
     setPointsAdditing(pointsAdditing * 2);
   };
+
   const addCorrectAnswersRow = () => {
     if (correctAnswersRow < 3) {
       setCorrectAnswersRow(correctAnswersRow + 1);
@@ -50,26 +100,93 @@ const SprintGame: FC = () => {
     }
   };
 
+  const addCorrectAnswersSerie = () => {
+    setCorrectAnswersSerie(correctAnswersSerie + 1);
+    if (correctAnswersSerie + 1 > maxCorrectAnswersSerie) {
+      setMaxCorrectAnswersSerie(correctAnswersSerie + 1);
+    }
+  };
+
   const submitAnswer = (
     word: IWord | undefined,
     translate: string | undefined,
     answer: boolean,
   ) => {
     if (word && translate) {
+      setCurrentWords(currentWords.filter((currWord) => word.id !== currWord.id));
       const isTranslateCorrect = word.wordTranslate === translate;
       if (isTranslateCorrect === answer) {
         setSprintCorrectWords([...sprintCorrectWords, word]);
         setPoints(points + pointsAdditing);
         setIsCorrectAnswer('true');
         addCorrectAnswersRow();
+        addCorrectAnswersSerie();
       } else {
         setSprintWrongWords([...sprintWrongWords, word]);
         setCorrectAnswersRow(0);
         setIsCorrectAnswer('false');
         setPointsAdditing(basePointsAdd);
+        setCorrectAnswersSerie(0);
       }
       initWords(currentWords);
     }
+  };
+
+  const keyUpHandler = (e: React.KeyboardEvent) => {
+    if (e.code === 'ArrowLeft') {
+      submitAnswer(currentWord, potentialTranslate, false);
+    }
+    if (e.code === 'ArrowRight') {
+      submitAnswer(currentWord, potentialTranslate, true);
+    }
+  };
+
+  const getUnlearnedWords = async (page: string) => {
+    if (bookGroup?.length && bookPage?.length) {
+      const allWordsPromises = [];
+      for (let i = Number(page); i > -1; i -= 1) {
+        const wordsRes = WordService.getChunkOfWords(bookGroup, `${i}`);
+        allWordsPromises.push(wordsRes);
+      }
+      const allWordsResponses = await Promise.all(allWordsPromises);
+      const allWords = allWordsResponses.map((wordRes) => wordRes.data).flat();
+      const aggregatedRes = await getAggregatedWordsForGame(
+        localStorage.getItem(localStorageNames.userId) || '',
+        '{"userWord.optional.learned":true}',
+        bookGroup,
+      ) as IAggregatedResponse[];
+      const aggregatedWords = aggregatedRes[0].paginatedResults;
+      const unlearnedWords = allWords.filter(
+        (word) => !aggregatedWords.find((aggregatedWord) => aggregatedWord.word === word.word),
+      );
+      return unlearnedWords;
+    }
+    return [];
+  };
+
+  const getAllGroupWords = async () => {
+    const difficultyLevel = localStorage.getItem(`${localStorageNames.sprintNameRus}level`);
+    const wordsGroup = difficultyLevel ? `${+difficultyLevel - 1}` : '0';
+    const words: IWord[][] = [];
+    const promises = [];
+    for (let i = 0; i < 30; i += 1) {
+      const promise = WordService.getChunkOfWords(wordsGroup, `${i}`);
+      promises.push(promise);
+    }
+    await Promise.all(promises).then((responses) => {
+      responses.forEach((res) => {
+        words.push(res.data);
+      });
+    });
+    initWords(alternativeShuffle(words.flat()));
+    return words.flat();
+  };
+
+  const startGame = () => {
+    localStorage.removeItem(localStorageNames.bookGroup);
+    localStorage.removeItem(localStorageNames.bookPage);
+    setIsLoading(false);
+    if (!timer) timer = setTimeout(() => endGame(), 60000);
   };
 
   useEffect(() => {
@@ -78,25 +195,23 @@ const SprintGame: FC = () => {
     setSprintWrongWords([]);
     if (sprintWords.length === 0) {
       const getWords = async () => {
-        const promises = [];
-        const words: IWord[][] = [];
-        for (let i = 0; i < 30; i += 1) {
-          const promise = WordService.getChunkOfWords('5', `${i}`);
-          promises.push(promise);
+        let gameWords: IWord[] = [];
+        if (bookPage && bookPage?.length !== 0) {
+          const unlearnedWords = await getUnlearnedWords(bookPage);
+          console.log('unlearned', unlearnedWords);
+          gameWords = unlearnedWords;
+        } else {
+          const allGroupWords = await getAllGroupWords();
+          gameWords = allGroupWords;
         }
-        await Promise.all(promises).then((responses) => {
-          responses.forEach((res) => {
-            words.push(res.data);
-          });
-        });
-        console.log(words);
-        initWords(alternativeShuffle(words.flat()));
-        return words;
+        initWords(gameWords);
+        return gameWords;
       };
       getWords()
         .then((resWords) => {
-          setwords(resWords.flat());
-          setTimeout(() => setIsLoading(false), 700);
+          console.log('setWords', resWords);
+          setCurrentWords(resWords);
+          setTimeout(() => startGame(), 700);
         })
         .catch((e) => {
           console.log(e);
@@ -104,7 +219,7 @@ const SprintGame: FC = () => {
     }
   }, []);
   return (
-    <div className="sprint">
+    <div className="sprint" tabIndex={0} onKeyUp={keyUpHandler}>
       {isLoading ? (
         <div className="loading-circle"><Loader /></div>
       ) : (
@@ -140,12 +255,18 @@ const SprintGame: FC = () => {
             </div>
           </div>
           <div className="sprint__buttons">
-            <button onClick={() => submitAnswer(currentWord, potentialTranslate, false)} className="sprint__button false" type="button" id="1">
-              НЕВЕРНО
-            </button>
-            <button onClick={() => submitAnswer(currentWord, potentialTranslate, true)} className="sprint__button true" type="button" id="0">
-              ВЕРНО
-            </button>
+            <div className="sprint__button__container">
+              <ArrowSvg className="arrow-left" />
+              <button onClick={() => submitAnswer(currentWord, potentialTranslate, false)} className="sprint__button sprint__button_false" type="button" id="1">
+                НЕВЕРНО
+              </button>
+            </div>
+            <div className="sprint__button__container">
+              <button onClick={() => submitAnswer(currentWord, potentialTranslate, true)} className="sprint__button sprint__button_true" type="button" id="0">
+                ВЕРНО
+              </button>
+              <ArrowSvg className="arrow-right" />
+            </div>
           </div>
         </div>
       )}

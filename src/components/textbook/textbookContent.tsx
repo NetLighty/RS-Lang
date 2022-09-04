@@ -85,7 +85,7 @@ const TextbookContent = (): JSX.Element => {
           <SprintButton
             disabled={gameDisabled}
             onClick={() => {
-              savePageToLocalStoreAndGo('/sprint/game');
+              savePageToLocalStoreAndGo('/book/sprint');
             }}
           />
         </div>

@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import useActions from '~/hooks/useAction';
 
 const Timer: FC = () => {
-  const [timeLeft, setTimeLeft] = useState(5);
+  const [timeLeft, setTimeLeft] = useState(60);
   const { setSprintView } = useActions();
 
   const tick = () => {
@@ -14,7 +14,7 @@ const Timer: FC = () => {
     if (timeLeft > 0) {
       timer = setInterval(() => tick(), 1000);
     } else {
-      setSprintView('result');
+      // setSprintView('result');
     }
     return () => clearInterval(timer);
   }, [timeLeft]);

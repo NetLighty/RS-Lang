@@ -1,5 +1,7 @@
 import { IWord } from '~/models/IWord';
 
+export const appPath = window.location.origin;
+
 export function sound(path: string) {
   const audio = new Audio();
   audio.src = path;

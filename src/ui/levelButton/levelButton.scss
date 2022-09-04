@@ -8,7 +8,6 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   cursor: pointer;
    transition: all 0.5s ease;
    color: #fff;
    font-size: $addFontSize;
@@ -16,6 +15,9 @@
       opacity: 1;
       transform: scale(1.2);
    }
+}
+.level-button:hover {
+   cursor: pointer;
 }
 .level-button.active {
    opacity: 1;
