@@ -1,9 +1,12 @@
+import { IUserWord } from '../models/IUserWord';
+import { useAppSelector } from './index';
 import SETTINGS from '~/utils/settings';
 import { IStatistic } from '../models/IStatistic';
 import formatDate from '~/utils/date';
 import UserService from '~/api/userService';
 
 export default function useStatistics() {
+  const userWords = useAppSelector((state) => state.userWords);
   function writeStatistic(statistic:IStatistic) {
     UserService.upsertUserStat(localStorage.getItem('userId') as string, statistic)
       .then(() => {})
@@ -62,5 +65,27 @@ export default function useStatistics() {
     }
   };
 
-  return { getStatistic, updateStatistic };
+  const countNewWords = () => {
+    const userWordsArray:Array<IUserWord> = [];
+    if (userWords) {
+      Object.keys(userWords).forEach((group) => {
+        Object.keys(userWords[Number(group)]).forEach((page) => {
+          userWords[Number(group)][Number(page)].forEach((word) => {
+            userWordsArray.push(word);
+          });
+        });
+      });
+    }
+    const newWordsObject = userWordsArray
+      .filter((word) => word.optional?.isThisFirst === false)
+      .reduce((acc:Record<string, number>, word:IUserWord): Record<string, number> => {
+        if (word.optional) {
+          acc[word.optional?.firstDate] = (acc[word.optional?.firstDate] || 0) + 1;
+        }
+        return acc;
+      }, {});
+    return newWordsObject;
+  };
+
+  return { getStatistic, updateStatistic, countNewWords };
 }
