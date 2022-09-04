@@ -9,7 +9,7 @@ import { IStatistic } from '~/models/IStatistic';
 import './statistic.scss';
 
 const StatisticPage: FC = () => {
-  const stat = localStorage.getItem('statistics') !== 'Statistic is empty'
+  const stat = localStorage.getItem('statistics') !== 'Statistic is empty' && localStorage.getItem('statistics') !== null
     ? JSON.parse(localStorage.getItem('statistics') as string) as IStatistic
     : {
       learnedWords: 0,

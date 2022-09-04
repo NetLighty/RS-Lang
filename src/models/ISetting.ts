@@ -1,3 +1,5 @@
+import formatDate from '~/utils/date';
+
 export interface ISettings {
   wordsPerDay: number,
   optional?: SettingsOptional,
@@ -26,5 +28,5 @@ export const DefaultSettingsOptional = {
   sprintSuccess: 0,
   sprintTotalCount: 0,
   sprintSeries: 0,
-  dataSettings: '',
+  dataSettings: '0',
 };
