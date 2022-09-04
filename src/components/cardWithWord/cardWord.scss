@@ -224,3 +224,16 @@
     background-color: $darkOrangeColor;
   }
 }
+
+
+@media (max-width: 1100px) {
+  .card{
+    width: 40%;
+  }
+}
+
+@media (max-width: 660px) {
+  .card{
+    width: 95%;
+  }
+}
