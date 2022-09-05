@@ -22,8 +22,8 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
   const [series] = useState(+localStorage.audioseries);
   const answerArr = JSON.parse(localStorage.getItem(nameResult) as string) as IAnswer[];
   const successResult = answerArr.filter((item) => item.answer === true);
-  const { dowloadUserWords, userWords } = useGetUserWords(); // delete this
-  const dispatch = useDispatch(); // delete this
+  // const { dowloadUserWords, userWords } = useGetUserWords(); // delete this
+  // const dispatch = useDispatch(); // delete this
   const { updateWord } = useUpdateUserWord();
   const nowdDate = new Date();
   const gameName = (localStorage.gameName === 'audiogame') ? 'audiogame' : 'sprint';
@@ -65,7 +65,7 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
     if (flag !== false) {
       getResult();
       if (isAuth === 'true') {
-        dowloadUserWords();
+        // dowloadUserWords();
         upsertSettings();
       }
     }

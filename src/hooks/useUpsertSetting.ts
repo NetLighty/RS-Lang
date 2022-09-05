@@ -12,6 +12,7 @@ export default function useUpsertSetting(
   nowData: Date,
 ) {
   const upsertSettings = () => {
+    let optional = DefaultSettingsOptional;
     const settings = getSettingsData(userId)
       .then((response) => {
         const data = response as ISettings;
@@ -19,7 +20,6 @@ export default function useUpsertSetting(
         let totalCount: number | undefined = 0;
         let successCount: number | undefined = 0;
         let seriesCount: number | undefined = 0;
-        let optional = DefaultSettingsOptional;
         let settingstDate = '';
         if (data.optional?.dataSettings !== undefined) {
           settingstDate = data.optional?.dataSettings;

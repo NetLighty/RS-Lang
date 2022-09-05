@@ -1,0 +1,17 @@
+@import '../../style/global.scss';
+
+.graf{
+   margin-top: 6rem;
+   width: 85.4rem;
+   &__header {
+      color: $whiteColor;
+      font-size: $addFontSize;
+      margin-bottom: 2.4rem;
+   }
+   &__content {
+      background-color: $lightPinkColor;
+      border-radius: 0.5rem;
+      height: 26rem;
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+   }
+}

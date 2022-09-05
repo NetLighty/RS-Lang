@@ -3,12 +3,19 @@ import { IAggregatedResponse } from '~/models/IAggregated';
 import { ISettingsRes } from '~/models/ISetting';
 import { getAggregatedWordsForStatistic } from '~/utils/aggregatedWordsFunc';
 import formatDate from '~/utils/date';
+import { IStatistic } from '../../models/IStatistic';
 import { getSettingsData } from '~/utils/setting.action';
 import './dayStatistic.scss';
 
 const DayStatistic: FC = () => {
   const [percent, setPercent] = useState(0);
+  const [learnWords, setLearnWords] = useState(0);
   const [newDayWords, setNewDayWords] = useState(0);
+  const stat = localStorage.getItem('statistics') !== 'Statistic is empty'
+    ? JSON.parse(localStorage.getItem('statistics') as string) as IStatistic
+    : {
+      learnedWords: 0,
+    };
 
   let flag = true;
   async function fetchStatisticDay(id: string) {
@@ -30,6 +37,16 @@ const DayStatistic: FC = () => {
       const newWords: IAggregatedResponse[] = newWordsResp as IAggregatedResponse[];
       setNewDayWords(newWords[0].totalCount[0].count);
     }
+    if (stat.learnedWords !== 0) {
+      if (stat.optional) {
+        const keys = Object.keys(stat.optional);
+        keys.forEach((key) => {
+          if (key === formatDate(new Date())) {
+            setLearnWords(stat.optional[key]);
+          }
+        });
+      }
+    }
   }
   useEffect(() => {
     if (flag !== false) {
@@ -49,7 +66,7 @@ const DayStatistic: FC = () => {
       </div>
       <div className="day-statistic__item">
         <p className="day-statistic__item_text">количество изученных слов:</p>
-        <p className="day-statistic__item_number">0</p>
+        <p className="day-statistic__item_number">{learnWords}</p>
       </div>
       <div className="day-statistic__item">
         <p className="day-statistic__item_text">процент правильных ответов:</p>

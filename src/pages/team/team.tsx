@@ -13,7 +13,7 @@ const Team: FC = () => (
         link="https://github.com/Mariia22"
         gitName="Mariia22"
         imgClass="mariia"
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of t"
+        description="Создала копию BackEnd. Разработала страницы учебника и раздел для сложных слов. Занималась вёрсткой карточек. Реализовала логику добавления слов в пользовательские и логику расчёта долгосрочной статистики."
       />
       <MemberTeam
         name="Александр Шукалович"
@@ -27,7 +27,7 @@ const Team: FC = () => (
         link="https://github.com/Irina05-04"
         gitName="Irina05-04"
         imgClass="irina"
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of t"
+        description="Разработала дизайн приложения. Занималась вёрсткой следующих страниц: главная, о команде, описание игр, статистика. Разработала мини-игру аудиовызов. Участвовала в составлении логики для пользовательских слов и статистики."
       />
     </div>
     <div className="team__footer">
