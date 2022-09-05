@@ -51,18 +51,18 @@
     border-style: solid;
     border-color: $whiteColor transparent transparent transparent;
   }
-}
 
-button:disabled {
-  // filter: grayscale(100%);
-  transition: none;
-  cursor: pointer;
-
-  &:hover {
-    transform: none;
-  }
-
-  &:hover .book__hint {
-    display: block;
+  &__difficult__button:disabled {
+    filter: grayscale(100%);
+    transition: none;
+    cursor: pointer;
+  
+    &:hover {
+      transform: none;
+    }
+  
+    &:hover .book__hint {
+      display: block;
+    }
   }
 }

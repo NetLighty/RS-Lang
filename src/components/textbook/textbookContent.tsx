@@ -22,11 +22,20 @@ const TextbookContent = (): JSX.Element => {
   const wordsToRender = useAppSelector((state) => state.textbook.bookWords);
   const [pageLearnedClass, setPageLearnedClass] = useState('');
   const [paginationLearnedClass, setPaginationLearnedClass] = useState('');
-  const [gameDisabled, setGameDisabled] = useState(true);
+  const [gameDisabled, setGameDisabled] = useState(false);
 
   function savePageToLocalStoreAndGo(value: string) {
     savePageToLocalStore();
     navigate(`${value}`);
+  }
+
+  function removeHardWordStyles () {
+    setPageLearnedClass('');
+    setPaginationLearnedClass('');
+    setGameDisabled(false);
+    if (document.body.classList.contains('book__body__learned')) {
+      document.body.classList.remove('book__body__learned');
+    }
   }
 
   useEffect(() => {
@@ -52,13 +61,11 @@ const TextbookContent = (): JSX.Element => {
         setGameDisabled(true);
         document.body.classList.add('book__body__learned');
       } else {
-        setPageLearnedClass('');
-        setPaginationLearnedClass('');
-        setGameDisabled(false);
-        if (document.body.classList.contains('book__body__learned')) {
-          document.body.classList.remove('book__body__learned');
-        }
+        removeHardWordStyles ();
       }
+    }
+    else {
+      removeHardWordStyles ();
     }
   }, [wordsToRender, isAuth]);
 
