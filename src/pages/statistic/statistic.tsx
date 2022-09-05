@@ -1,11 +1,11 @@
-import { setNestedObjectValues } from 'formik';
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import DayStatistic from '~/components/dayStatistic/dayStatistic';
 import Footer from '~/components/footer/footer';
 import GameStatistic from '~/components/gameStatistic/gameStatistic';
 import LearnedWordsGraf from '~/components/learnedWordsGraf/learnedWordsGraf';
 import UserComponent from '~/components/userComponent/userComponent';
 import { IStatistic } from '~/models/IStatistic';
+import useStatistics from '~/hooks/useStatistics';
 import './statistic.scss';
 
 const StatisticPage: FC = () => {
@@ -14,6 +14,8 @@ const StatisticPage: FC = () => {
     : {
       learnedWords: 0,
     };
+  const { countNewWords } = useStatistics();
+  const newWords = countNewWords();
   const isAuth = localStorage.auth as string;
   return (
     <div className="statistic">
@@ -27,7 +29,7 @@ const StatisticPage: FC = () => {
               <DayStatistic />
               <GameStatistic gameName="sprint" />
               <LearnedWordsGraf header="Общее количество изученных слов за весь период обучения по дням" lbl="изученные слова" labelsArray={stat.learnedWords !== 0 ? Object.keys(stat.optional) : ['0']} dataArray={stat.learnedWords !== 0 ? Object.values(stat.optional) : [0]} />
-              <LearnedWordsGraf header="Количество новых слов за каждый день изучения" lbl="новые слова" labelsArray={['0']} dataArray={[0]} />
+              <LearnedWordsGraf header="Количество новых слов за каждый день изучения" lbl="новые слова" labelsArray={newWords ? Object.keys(newWords) : ['0']} dataArray={newWords ? Object.values(newWords) : [0]} />
             </div>
             <Footer />
           </div>

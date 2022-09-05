@@ -1,9 +1,8 @@
 import React, { FC, useState } from 'react';
-import { Line } from 'react-chartjs-2';
+import { Line, Bar, Chart } from 'react-chartjs-2';
 import { Chart as ChartJS, registerables } from 'chart.js';
-import { Chart } from 'react-chartjs-2'
+// import { Chart } from 'react-chartjs-2'
 import './learnedWordsGraf.scss';
-import { IStatistic } from '~/models/IStatistic';
 
 ChartJS.register(...registerables);
 
@@ -22,8 +21,8 @@ const LearnedWordsGraf: FC<LearnedWordsGrafProps> = ({
       {
         label: lbl,
         data: dataArray,
-        fill: '#EBD9C8',
-        backgroundColor: '#EBD9C8',
+        fill: '#DE6600',
+        backgroundColor: '#DE6600',
         borderColor: '#DE6600',
       },
     ],
@@ -32,7 +31,7 @@ const LearnedWordsGraf: FC<LearnedWordsGrafProps> = ({
   return (
     <div className="graf">
       <p className="graf__header">{header}</p>
-      <Line className="graf__content" datasetIdKey="id" data={data} />
+      <Bar className="graf__content" datasetIdKey="id" data={data} />
     </div>
   );
 };
