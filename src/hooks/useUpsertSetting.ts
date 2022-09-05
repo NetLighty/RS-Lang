@@ -12,8 +12,6 @@ export default function useUpsertSetting(
   nowData: Date,
 ) {
   const upsertSettings = () => {
-    console.log('i work');
-    console.log(series);
     let optional = DefaultSettingsOptional;
     const settings = getSettingsData(userId)
       .then((response) => {
@@ -42,7 +40,6 @@ export default function useUpsertSetting(
               dataSettings: settingstDate,
             };
           } else if (gameName === 'sprint') {
-            console.log('1');
             totalCount = data.optional?.sprintTotalCount as number + wordsCount;
             successCount = data.optional?.sprintSuccess as number + success;
             seriesCount = (data.optional?.sprintSeries as number > series)
@@ -61,7 +58,6 @@ export default function useUpsertSetting(
         } else if (settingstDate === '' || settingstDate !== formatDate(nowData)) {
           if (gameName === 'audiogame') {
             optional = {
-              // ...DefaultSettingsOptional,
               audioSuccess: success,
               audioTotalCount: wordsCount,
               audioSeries: series,
