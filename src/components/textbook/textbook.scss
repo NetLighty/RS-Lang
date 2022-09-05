@@ -312,8 +312,8 @@
 }
 
 @media (max-width: 768px) {
-   .book__header {
-      width: 80%;
+.book__header {
+  width: 80%;
 }
 .book__group__button {
   width: 40px;
@@ -327,16 +327,20 @@
 }
 
 @media (max-width: 660px) {
-  .book__header {
-     width: 90%;
+.book__header {
+  width: 90%;
+  flex-direction: column-reverse;
 }
 .book__group__button {
  width: 30px;
  height: 30px;
 }
-
 .book__group__span {
  width: 45px;
  height: 45px;
+}
+
+.book__groups {
+  margin-top: 20px;
 }
 }
