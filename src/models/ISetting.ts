@@ -26,5 +26,5 @@ export const DefaultSettingsOptional = {
   sprintSuccess: 0,
   sprintTotalCount: 0,
   sprintSeries: 0,
-  dataSettings: '',
+  dataSettings: '0',
 };

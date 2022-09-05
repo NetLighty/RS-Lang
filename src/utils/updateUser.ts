@@ -44,6 +44,6 @@ export async function updateUser(
   btn.removeAttribute('disabled');
   const exit = getDocumentElement('.user__control_exit')[0];
   exit.classList.remove('hidden-exit');
-  const response = (await updateUserParam(userId, email, password));
+  await updateUserParam(userId, email, password);
   passwordFild.value = '';
 }

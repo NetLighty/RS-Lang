@@ -30,21 +30,26 @@ const AudioCall: FC = () => {
   let arrTranslate: string[] = [];
   let count = 1;
   let flag: boolean;
-  let trueSeries = false;
   const bookGroup = localStorage.bookGroup ? localStorage.bookGroup as string : '';
   const bookPage = localStorage.bookPage ? localStorage.bookPage as string : '';
-
+  const isAuth = localStorage.auth ? localStorage.auth as string : 'false';
+  // eslint-disable-next-line consistent-return
   async function fetchWords(group: string, page: string) {
     clearStyleButton();
     try {
       let words: IWord[];
       if (bookGroup !== '' && bookPage !== '') {
-        words = (await generateArrayGameFunc(
-          localStorage.getItem('userId') as string,
-          bookGroup,
-          bookPage,
-        ));
-        if (words.length < 10) setTotalCount(words.length);
+        if (isAuth === 'true') {
+          words = (await generateArrayGameFunc(
+            localStorage.getItem('userId') as string,
+            bookGroup,
+            bookPage,
+          ));
+          if (words.length < 10) setTotalCount(words.length);
+        } else {
+          const response = (await WordService.getChunkOfWords(bookGroup, bookPage));
+          words = response.data;
+        }
       } else {
         const response = (await WordService.getChunkOfWords(group, page));
         words = response.data;
@@ -59,7 +64,7 @@ const AudioCall: FC = () => {
       if (loading === true) {
         setTimeout(() => { setLoading(false); audioPlay(current); }, 2000);
       } else audioPlay(current);
-    } catch (e) { console.log(e); }
+    } catch (e) { return e; }
   }
 
   function showWord() {
@@ -87,7 +92,6 @@ const AudioCall: FC = () => {
 
   function checkAnswer(target: HTMLInputElement, answer: Element[]) {
     if (currWord.wordTranslate === target.textContent) {
-      trueSeries = true;
       setSeries(series + 1);
       testResult.push({ id: currWord.id, answer: true });
       setResult([...result, { id: (currWord.id), answer: true }]);

@@ -22,7 +22,7 @@
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",
-        "project": "./RS-Lang/tsconfig.json"
+        "project": "./tsconfig.json"
     },
     "plugins": [
         "react"

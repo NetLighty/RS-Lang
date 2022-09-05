@@ -11,7 +11,6 @@ const ChangeThemeButton: FC = () => {
     } else {
       setTheme('dark');
     }
-    console.log('changeTheme');
   };
   return (
     <button onClick={changeTheme} className="change-theme__button" type="button">

@@ -33,8 +33,13 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
         choosenLevelButton.classList.add('choosen');
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   if (difficultyLevel?.length === 0) {
+    if (localStorage.bookGroup) localStorage.removeItem('bookGroup');
+    if (localStorage.bookPage) localStorage.removeItem('bookPage');
+  }
+  if (gameName === 'Аудиовызов') {
     if (localStorage.bookGroup) localStorage.removeItem('bookGroup');
     if (localStorage.bookPage) localStorage.removeItem('bookPage');
   }
@@ -46,7 +51,8 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
       levels.map((item: Element) => item.classList.remove('active'));
       const target = e.target as HTMLInputElement;
       target.classList.add('active');
-      localStorage[`${gameName}level`] = target.textContent;
+      if (gameName === 'Аудиовызов' && (target.textContent)) localStorage.audiolevel = (+(target.textContent) - 1) as unknown as string;
+      else localStorage[`${gameName}level`] = target.textContent;
       setChoose(true);
     }
   }

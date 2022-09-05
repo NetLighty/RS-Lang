@@ -12,14 +12,14 @@ export default function useUpsertSetting(
   nowData: Date,
 ) {
   const upsertSettings = () => {
-    const settings = getSettingsData(userId)
+    let optional = DefaultSettingsOptional;
+    getSettingsData(userId)
       .then((response) => {
         const data = response as ISettings;
         const { wordsPerDay } = data;
         let totalCount: number | undefined = 0;
         let successCount: number | undefined = 0;
         let seriesCount: number | undefined = 0;
-        let optional = DefaultSettingsOptional;
         let settingstDate = '';
         if (data.optional?.dataSettings !== undefined) {
           settingstDate = data.optional?.dataSettings;
@@ -40,8 +40,8 @@ export default function useUpsertSetting(
               dataSettings: settingstDate,
             };
           } else if (gameName === 'sprint') {
-            totalCount = data.optional?.sprintTotalCount as number;
-            successCount = data.optional?.sprintSuccess as number;
+            totalCount = data.optional?.sprintTotalCount as number + wordsCount;
+            successCount = data.optional?.sprintSuccess as number + success;
             seriesCount = (data.optional?.sprintSeries as number > series)
               ? data.optional?.sprintSeries as number : series;
             optional = {
@@ -54,11 +54,13 @@ export default function useUpsertSetting(
               dataSettings: settingstDate,
             };
           }
-          const result = updateSettingsData(userId, wordsPerDay + wordsCount, optional);
+          updateSettingsData(userId, wordsPerDay + wordsCount, optional).then(
+            () => {},
+            () => {},
+          );
         } else if (settingstDate === '' || settingstDate !== formatDate(nowData)) {
           if (gameName === 'audiogame') {
             optional = {
-              // ...DefaultSettingsOptional,
               audioSuccess: success,
               audioTotalCount: wordsCount,
               audioSeries: series,
@@ -76,9 +78,12 @@ export default function useUpsertSetting(
               dataSettings: formatDate(nowData),
             };
           }
-          const result = updateSettingsData(userId, wordsCount, optional);
+          updateSettingsData(userId, wordsCount, optional).then(
+            () => {},
+            () => {},
+          );
         }
-      });
+      }).catch(() => {});
   };
   return { upsertSettings };
 }

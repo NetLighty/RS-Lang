@@ -8,9 +8,7 @@
    border: var(--game-link-border);
    border-radius: 100%;
    color: var(--game-link-color);
-   transition: background-color 0.3 linear,
-   border 0.3 linear,
-   color 0.3 linear;
+   transition: background-color 0.3 linear;
    text-decoration: none;
    align-items: center;
    justify-content: center;
@@ -35,6 +33,7 @@
 }
 html[data-theme="original"] {
    --game-link-background-color: #de6600;
+   --game-link-background-color-hover: #de6600;
    --game-link-color: #fff;
    --game-link-border: 0;
  }

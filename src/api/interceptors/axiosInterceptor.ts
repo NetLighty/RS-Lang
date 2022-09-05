@@ -37,7 +37,6 @@ axiosInstance.interceptors.request.use(async (req) => {
     } */
     const decodedJwt = jwt_decode<JwtPayload>(accessToken || '') as TokenDto;
     const isExpired = dayjs.unix(decodedJwt.exp).diff(dayjs()) < 1;
-    console.log('isExpired', isExpired);
     if (!isExpired) {
       return req;
     }

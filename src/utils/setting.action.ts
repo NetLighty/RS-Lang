@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 import UserService from '~/api/userService';
 import UserWordService from '~/api/userWordsService';
-import { ISettings, SettingsOptional } from '~/models/ISetting';
-import { IUser, IUserResponse } from '~/models/IUser';
+import { DefaultSettingsOptional, ISettings, SettingsOptional } from '~/models/ISetting';
+import { IUserResponse } from '~/models/IUser';
 import { IUserWord } from '~/models/IUserWord';
 
 export async function getUserWordsById(userId: string, wordId:string) {
@@ -14,17 +14,6 @@ export async function getUserWordsById(userId: string, wordId:string) {
     return error;
   }
 }
-
-export async function getSettingsData(userId: string) {
-  try {
-    const response:AxiosResponse = await UserService.getUserSettings(userId);
-    const data = (await response.data) as ISettings;
-    return data;
-  } catch (error) {
-    return error;
-  }
-}
-
 export async function updateSettingsData(
   userId: string,
   wordsPerDay: number,
@@ -40,6 +29,17 @@ export async function updateSettingsData(
     return data;
   } catch (error) {
     return error;
+  }
+}
+
+export async function getSettingsData(userId: string) {
+  const optional = DefaultSettingsOptional;
+  try {
+    const response:AxiosResponse = await UserService.getUserSettings(userId);
+    const data = (await response.data) as ISettings;
+    return data;
+  } catch (error) {
+    return updateSettingsData(userId, 1, optional);
   }
 }
 

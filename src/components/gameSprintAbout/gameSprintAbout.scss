@@ -1,3 +1,4 @@
+@import '../../style/global.scss';
 @import '../../style/mixin.scss';
 
 .games {
@@ -5,6 +6,7 @@
       display: flex;
       position: relative;
       height: 550px;
+      font-size: $mainFontSize;
       @media(max-width: 1280px) {
          height: 390px;
       }

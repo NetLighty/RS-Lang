@@ -85,7 +85,6 @@ const SprintGame: FC<SprintGameProps> = ({ bookGroup, bookPage }) => {
   };
 
   const addCorrectAnswersSerie = () => {
-    console.log('серия верных', maxCorrectAnswersSerie);
     setCorrectAnswersSerie(correctAnswersSerie + 1);
     if (correctAnswersSerie + 1 > maxCorrectAnswersSerie) {
       setMaxCorrectAnswersSerie(correctAnswersSerie + 1);
