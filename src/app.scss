@@ -1,4 +1,5 @@
 @import './style/global.scss';
+@import './style//scrollbar.scss';
 
 * {
   margin: 0;
@@ -11,4 +12,6 @@ html {
 body {
   background-color: $backgrounColor;
   font-family: 'Roboto';
+  scrollbar-color: #458245 #714826; /* «цвет ползунка» «цвет полосы скроллбара» */
+  scrollbar-width: thin;  /* толщина */
 }

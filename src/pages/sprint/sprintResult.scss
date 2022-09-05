@@ -1,0 +1,151 @@
+@import '../../style/global.scss';
+
+.result__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5rem 48rem 7rem;
+  justify-items: center;
+  position: relative;
+  top: calc(50% - 30rem);
+  margin: 0 auto;
+  height: 60rem;
+  width: 50rem;
+  color: white;
+  font-size: 2rem;
+
+  hr {
+    height: 0.1rem;
+    width: 90%;
+    border: 0.1rem solid rgba(white, 1);
+  }
+}
+.result {
+  height: 100vh;
+  &__head {
+    font-size: 3rem;
+    height: 5rem;
+    text-align: center;
+    .title {
+      font-size: 3.5rem;
+      color: white;
+      width: fit-content;
+    }
+  }
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    // grid-template-columns: 1fr;
+    // row-gap: 2rem;
+    width: 50rem;
+    height: 46rem;
+    overflow: auto;
+    scrollbar-color: #458245 #714826; /* «цвет ползунка» «цвет полосы скроллбара» */
+    scrollbar-width: thin; /* толщина */
+  }
+  &__buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+    button {
+      font-family: $font-family-Ermilov;
+      height: 5rem;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 0.2rem;
+      border-radius: 1.5rem;
+      padding: 1rem 1.5rem;
+      background-color: transparent;
+    }
+    button:hover {
+      cursor: pointer;
+      color: white;
+    }
+    .green {
+      background-color: rgba($true-green, 0.2);
+      border: 0.2rem solid rgba($true-green, 1);
+      color: rgba($true-green, 1);
+    }
+    .green:hover {
+      background-color: $true-green;
+    }
+    .orange {
+      background-color: rgba($darkOrangeColor, 0.3);
+      border: 0.2rem solid $darkOrangeColor;
+      color: $darkOrangeColor;
+    }
+    .orange:hover {
+      background-color: $darkOrangeColor;
+    }
+  }
+}
+.words-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: fit-content;
+  &__title {
+    margin-bottom: 1rem;
+    span {
+      font-size: 3rem;
+    }
+  }
+}
+.words-list__word {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 1.1rem 0;
+}
+.words-audio {
+  fill: rgba(#cdcdcd, 0.5);
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.7rem;
+}
+.word-eng {
+  text-transform: capitalize;
+  font-size: 2.5rem;
+  margin-right: 0.2rem;
+}
+.word-transcription {
+  color: rgba(#cdcdcd, 0.6);
+  font-size: 2rem;
+  margin-right: 0.5rem;
+}
+.word-translate {
+  color: rgba(#cdcdcd, 0.8);
+  font-size: 2.3rem;
+  margin-left: 0.7rem;
+}
+.words-audio:hover {
+  cursor: pointer;
+  fill: rgba(#cdcdcd, 1);
+  transition: all 0.1s ease;
+}
+/* <div className="words-list__word">
+                <svg className="words-audio" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86
+                    5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+                  />
+                </svg>
+                <span className="word-eng">{word.word}</span>
+                <span>{' - '}</span>
+                <span className="word-translate">{word.wordTranslate}</span>
+              </div> */
+
+.words-list__length {
+  width: fit-content;
+  padding: 0 1rem;
+  border-radius: 1.7rem;
+  font-family: $font-family-Ermilov;
+  font-weight: bold;
+  font-size: 4rem;
+  color: white;
+  margin: 0 1rem;
+  &_correct {
+    background-color: $true-green;
+  }
+  &_wrong {
+    background-color: $false-red;
+  }
+}

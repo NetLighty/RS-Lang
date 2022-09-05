@@ -47,6 +47,7 @@ function checkChangedWord(
         }
       } else if (result === false) {
         newEditWord.optional.allAttemts += 1;
+        newEditWord.optional.countSuccessInRow = 0;
         if (newEditWord.optional.learned === true) {
           newEditWord.optional.learned = false;
         }

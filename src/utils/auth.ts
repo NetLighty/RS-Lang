@@ -7,6 +7,7 @@ export const localStorageNames = {
   bookPage: 'bookPage',
   bookGroup: 'bookGroup',
   statistics: 'statistics',
+  sprintNameRus: 'Спринт',
 };
 
 export const successfullRegistrationMsg = 'Successful creation.';

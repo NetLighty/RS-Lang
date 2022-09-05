@@ -9,7 +9,7 @@ export async function getAggregatedWordsForGame(
   filter?: string,
   group?: string,
   wordsPerPage?: string,
-) {
+): Promise<IAggregatedResponse[] | unknown> {
   try {
     const response:AxiosResponse = await UserWordService.getAllUserAggregatedWords(
       userId,

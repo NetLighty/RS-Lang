@@ -26,7 +26,7 @@ const DescriptionGame: FC<DescriptionGameProps> = ({
     </div>
     <div className={`description-${addClass}__promt`}>
       <div className={`description-${addClass}__promt_content`}>
-        Для управления клавиатурой используйте клавиши:
+        Для управления клавиатурой используйте:
         {' '}
         {keys}
       </div>
