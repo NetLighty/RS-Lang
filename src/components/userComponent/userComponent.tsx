@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { IUserResponse } from '~/models/IUser';
+// eslint-disable-next-line import/extensions
 import { getUserById } from '~/utils/setting.action';
 import { showForm, updateUser } from '~/utils/updateUser';
 import './userComponent.scss';
@@ -25,6 +26,7 @@ const UserComponent: FC = () => {
           () => {},
         );
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

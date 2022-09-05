@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import useActions from '~/hooks/useAction';
 import useTypedSelector from '~/hooks/useTypedSelector';
 import { localStorageNames } from '~/utils/auth';
@@ -22,6 +22,7 @@ const SprintPage: FC<SprintPageProps> = ({ isFromBook }) => {
     setSprintCorrectWords([]);
     setSprintWrongWords([]);
     console.log(isFromBook);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

@@ -47,5 +47,6 @@ export function audioBlockButton() {
 
 export function audioPlay(curr: IWord) {
   const audio = new Audio(`https://rs-lang-team148.herokuapp.com/${curr.audio}`);
+  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   audio.play();
 }

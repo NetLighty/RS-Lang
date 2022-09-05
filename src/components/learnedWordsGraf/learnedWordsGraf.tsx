@@ -1,7 +1,6 @@
-import React, { FC, useState } from 'react';
-import { Line, Bar, Chart } from 'react-chartjs-2';
+import React, { FC } from 'react';
+import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, registerables } from 'chart.js';
-// import { Chart } from 'react-chartjs-2'
 import './learnedWordsGraf.scss';
 
 ChartJS.register(...registerables);

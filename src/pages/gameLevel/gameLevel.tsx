@@ -25,7 +25,6 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
       setSprintView('start');
     }
     if (difficultyLevel) {
-      console.log('я работаю');
       const levels = [...document.querySelectorAll('.level-button')];
       levels.map((item: Element) => item.classList.add('disabled'));
       const choosenLevelButton = levels.find((levelButton) => levelButton.textContent === `${Number(difficultyLevel) + 1}`);
@@ -34,8 +33,8 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
         choosenLevelButton.classList.add('active');
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log('difficultylvl', difficultyLevel);
   if (difficultyLevel?.length === 0) {
     if (localStorage.bookGroup) localStorage.removeItem('bookGroup');
     if (localStorage.bookPage) localStorage.removeItem('bookPage');
@@ -52,7 +51,7 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
       levels.map((item: Element) => item.classList.remove('active'));
       const target = e.target as HTMLInputElement;
       target.classList.add('active');
-      if (gameName === 'Аудиовызов') localStorage['audiolevel'] = (+(target.textContent) - 1) as unknown as string ;
+      if (gameName === 'Аудиовызов' && (target.textContent)) localStorage.audiolevel = (+(target.textContent) - 1) as unknown as string;
       else localStorage[`${gameName}level`] = target.textContent;
       setChoose(true);
     }

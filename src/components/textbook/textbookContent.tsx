@@ -15,7 +15,7 @@ import SETTINGS from '~/utils/settings';
 
 const TextbookContent = (): JSX.Element => {
   const navigate = useNavigate();
-  const { savePageToLocalStore } = useWorkWithPageAndGroup ();
+  const { savePageToLocalStore } = useWorkWithPageAndGroup();
   const [disabled, setDisabled] = useState(true);
   const userId: string | null = localStorage.getItem('userId');
   const isAuth = useAppSelector((state) => state.auth.isAuth);
