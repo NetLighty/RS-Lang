@@ -7,7 +7,7 @@
   width: 46px;
   margin: 1em;
   border-radius: 50%;
-  background: none repeat scroll 0 0 $lightPinkColor;
+  background: none repeat scroll 0 0 var(--ouro-background-color);
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) inset, 0 0 25px rgba(0, 0, 255, 0.075);
 }
@@ -20,7 +20,7 @@
   display: block;
   height: 28px;
   width: 28px;
-  background: none repeat scroll 0 0 $backgrounColor;
+  background: none repeat scroll 0 0 var(--ouro-content-background-color);
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -131,4 +131,13 @@
   100% {
     -webkit-transform: rotate(360deg);
   }
+}
+
+html[data-theme="original"] {
+  --ouro-background-color: #ebd9c8;
+  --ouro-content-background-color: #007a7a;
+}
+html[data-theme="dark"] {
+  --ouro-background-color: rgb(24,24,24);
+  --ouro-content-background-color: rgb(20,20,20);
 }

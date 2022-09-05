@@ -1,19 +1,28 @@
 @import '../../style/global.scss';
 
 .footer {
+   position: relative;
    display: flex;
    justify-content: center;
    align-items: flex-end;
+   width: calc(100% - 6.4rem);
    // width: calc(100% - 63px);
    // margin-left: 63px;
    padding-bottom: 10px;
+   bottom: 0;
    &__about{
-      display: flex;
-      width: calc(100% - 63px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 0.7rem;
       align-items: center;
       justify-content: center;
-      column-gap: 34px;
-      height: 25px;
+      height: 2.5rem;
+      color: #cdcdcd;
+      font-size: 1.7rem;
+      a {
+         color: #fff;
+         text-decoration: none;
+      }
       &_logo{
          width: 66px;
          height: 25px;
@@ -26,14 +35,15 @@
    }
    &__link {
       margin-left: - calc(84px + 20px);
-      position: relative;
-      float: right;
+      position: absolute;
+      right: 2rem;
       &_circular {
          width: 84px;
          height: 84px;
          //margin: 3px auto 0;
          border-radius: 100%;
-         background-color: $lightPinkColor;
+         background-color: var(--background-our-team-link-color);
+         transition: background-color 0.3s linear;
       }
    }  
 }
@@ -49,8 +59,14 @@
    }
 }
 
-
 .image {
    width: 200px;
    height: 100px;
 }
+
+html[data-theme="original"] {
+   --background-our-team-link-color: #ebd9c8; // $lightPinkColor
+ }
+ html[data-theme="dark"] {
+   --background-our-team-link-color: rgb(20,20,20);
+ }

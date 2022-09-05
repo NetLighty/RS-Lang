@@ -1,7 +1,8 @@
 @import '../../style/global.scss';
 
 .auth {
-   background-color: $lightPinkColor;
+   background-color: var(--background-form-color);
+   transition: background-color 0.3s linear;
    padding: 1rem 0 1rem 0;
    width: 420px;
    border-radius: 5px;
@@ -27,7 +28,8 @@
          top: -45px;
       }
       &__text{
-         color: $colorForm;
+         color: var(--form-text-color);
+         transition: color 0.3s linear;
          font-size: $addFontSize;
          margin: 2.5rem 0 3.5rem 0;
       }
@@ -37,7 +39,6 @@
       &__error-message {
          font-size: $mainFontSize;
          color: $darkOrangeColor;
-         text-transform: capitalize;
       }
       &__email,
       &__password{
@@ -46,11 +47,14 @@
          height: 40px;
          padding-left: 1rem;
          font-size: $mainFontSize;
-         color: $colorForm;
-         background-color: rgba($whiteColor, 0.7);
+         color: var(--form-text-color);
+         background-color: var(--background-input-color);
          border: 0.5px solid $colorForm;
          border-radius: 0.25rem;
-         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+         transition: border-color 0.15s ease-in-out,
+         box-shadow 0.15s ease-in-out,
+         background-color 0.3s linear,
+         color 0.3s linear;
       }
       &__email:focus,
       &__password:focus {
@@ -98,3 +102,13 @@
       }
    }
 }
+
+html[data-theme="original"] {
+   --background-form-color: #ebd9c8; // $lightPinkColor
+   --form-text-color: #6b6868;
+   --background-input-color: rgba(255, 255, 255, 0.7); 
+ }
+ html[data-theme="dark"] {
+   --background-form-color: rgb(20,20,20);
+   --form-text-color: #fff;
+ }

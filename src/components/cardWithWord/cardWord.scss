@@ -7,7 +7,8 @@
   flex-direction: column;
   width: 30%;
   min-width: 150px;
-  background-color: $whiteColor;
+  background-color: var(--card-background-color);  //$whiteColor;
+  transition: background-color 0.2s linear;
   margin-bottom: 36px;
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
@@ -44,7 +45,7 @@
   }
 
   &__translation {
-    color: $greyColor;
+    color: var(--card-translation-color);
   }
 
   &__word__wrapper {
@@ -76,6 +77,12 @@
   &__meaning__text,
   &__example__text {
     margin-bottom: 8px;
+  }
+
+  &__meaning__textMeaning,
+  &__example__textExample {
+    color: var(--card-meaning-text-color);
+    transition: color 0.3s linear;
   }
 
   &__meaning__textMeaningTranslate,
@@ -114,7 +121,8 @@
     position: absolute;
     top: 4px;
     right: 5px;
-    background-color: $whiteColor;
+    background-color: var(--buttons-block-color);
+    transition: background-color 0.3s linear;
     border-top-left-radius: 5%;
     border-bottom-left-radius: 5%;
   }
@@ -153,7 +161,8 @@
     width: 35px;
     height: 35px;
     border-radius: 100%;
-    background-color: $whiteColor;
+    background-color: var(--card-background-color);
+    transition: background-color 0.3s linear;
   }
 
   &__color0 {
@@ -240,4 +249,18 @@
   .card{
     width: 95%;
   }
+}
+
+
+html[data-theme="original"] {
+  --card-background-color: #fff; //
+  --buttons-block-color: #fff; //
+  --card-translation-color: #99978e;
+  --card-meaning-text-color: #000;
+}
+html[data-theme="dark"] {
+  --card-background-color: rgb(24,24,24);
+  --buttons-block-color: rgb(24,24,24); //
+  --card-translation-color: #fff;
+  --card-meaning-text-color: #fff;
 }

@@ -26,6 +26,7 @@ import useGetUserWords from './hooks/useGetUserWords';
 import useStatistics from './hooks/useStatistics';
 import ChangeThemeButton from './components/changeThemebutton/changeThemeButton';
 import useTheme from './hooks/useTheme';
+import FullScreenButton from './components/fullscreenButton/fullscreenButton';
 
 const App = () => {
   const { setUser, setIsAuth } = useActions();
@@ -57,6 +58,7 @@ const App = () => {
       <Menu />
       <Logo />
       <ChangeThemeButton />
+      <FullScreenButton />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/registration" element={<RegistrationPage />} />

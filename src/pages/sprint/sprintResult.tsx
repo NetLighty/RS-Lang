@@ -1,14 +1,24 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useActions from '~/hooks/useAction';
 import useTypedSelector from '~/hooks/useTypedSelector';
+import useUpdateUserWord from '~/hooks/useUpdateUserWord';
+import useUpsertSetting from '~/hooks/useUpsertSetting';
+import { localStorageNames } from '~/utils/auth';
 import './sprintResult.scss';
 import SprintResultWord from './sprintResultWord';
 
 const SprintResult: FC = () => {
-  const { setSprintView } = useActions();
-  const { sprintCorrectWords, sprintWrongWords } = useTypedSelector((state) => state.sprint);
+  const {
+    setSprintView,
+  } = useActions();
+  const {
+    sprintCorrectWords,
+    sprintWrongWords,
+    sprintCorrectSerie,
+  } = useTypedSelector((state) => state.sprint);
   const navigate = useNavigate();
+  const { updateWord } = useUpdateUserWord();
 
   const goToMain = () => {
     navigate('/');
@@ -17,10 +27,28 @@ const SprintResult: FC = () => {
     setSprintView('start');
     navigate('/sprint');
   };
-  /* useEffect(() => {
-    console.log('работаю');
-    setSprintView('start');
-  }, []); */
+  useEffect(() => {
+    const userId = localStorage.getItem(localStorageNames.userId);
+    const isAuth = localStorage.getItem(localStorageNames.isAuth);
+    if (userId && isAuth) {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const { upsertSettings } = useUpsertSetting(
+        userId,
+        'sprint',
+        sprintCorrectWords.length + sprintWrongWords.length,
+        sprintCorrectWords.length,
+        sprintCorrectSerie,
+        new Date(),
+      );
+      upsertSettings();
+      sprintCorrectWords.forEach((word) => {
+        updateWord(word, { result: true, game: 'sprint', dataupdate: new Date() });
+      });
+      sprintWrongWords.forEach((word) => {
+        updateWord(word, { result: false, game: 'sprint', dataupdate: new Date() });
+      });
+    }
+  }, []);
   return (
     <div className="result">
       <div className="result__container">

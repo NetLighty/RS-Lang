@@ -1,4 +1,3 @@
-import { number } from 'yup';
 import { IWord } from '~/models/IWord';
 import {
   SetSprintCorrectSerieAction,

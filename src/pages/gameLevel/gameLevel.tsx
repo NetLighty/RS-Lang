@@ -30,7 +30,7 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
       const choosenLevelButton = levels.find((levelButton) => levelButton.textContent === `${Number(difficultyLevel) + 1}`);
       if (choosenLevelButton) {
         choosenLevelButton.classList.remove('disabled');
-        choosenLevelButton.classList.add('active');
+        choosenLevelButton.classList.add('choosen');
       }
     }
   }, []);
@@ -60,8 +60,8 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
   return (
     <div className="gamelevel">
       <div className="gamelevel__container">
-          <NavLink className="gamelevel__close _icon-close" to="/" />
         <p className="gamelevel__header">
+          <NavLink className="gamelevel__close _icon-close" to="/" />
           {gameName}
         </p>
         <p className="gamelevel__text">{difficultyLevel ? `Слова выбраны из учебника, уровень сложности: ${+difficultyLevel + 1}` : 'Уровень сложности:'}</p>

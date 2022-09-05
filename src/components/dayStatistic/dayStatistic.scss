@@ -2,7 +2,8 @@
 
 .day-statistic {
    width: 400px;
-   background-color: rgba($color: #fff, $alpha: 0.7);
+   background-color: var(--day-statistic-background-color);
+   transition: background-color 0.3s linear;
    border-radius: 5px;
    padding: 29px 25px;
    line-height: 25px;
@@ -18,7 +19,24 @@
       display: flex;
       justify-content: space-between;
       &_number {
-         color: $darkBlueColor;
+         color: var(--statistic-number-color);
+         transition: color 0.3s linear;
+      }
+      &_text {
+         color: var(--statistic-text-color);
+         transition: color 0.3s linear;
       }
    }
 }
+
+html[data-theme="original"] {
+   --day-statistic-background-color: rgba(255, 255, 255, 0.7);
+   --statistic-text-color: black;
+   --statistic-number-color: #003f5a;
+
+ }
+ html[data-theme="dark"] {
+   --day-statistic-background-color: rgb(24,24,24);
+   --statistic-text-color: #fff;
+   --statistic-number-color: #de6600; // $darkorange
+ }

@@ -4,8 +4,6 @@ import ArrowSvg from '~/components/arrow/arrow';
 import Timer from '~/components/timer/timer';
 import useActions from '~/hooks/useAction';
 import useTypedSelector from '~/hooks/useTypedSelector';
-import useUpdateUserWord from '~/hooks/useUpdateUserWord';
-import useUpsertSetting from '~/hooks/useUpsertSetting';
 import { IAggregatedResponse } from '~/models/IAggregated';
 import { IWord } from '~/models/IWord';
 import Loader from '~/ui/loader/loader';
@@ -40,7 +38,6 @@ const SprintGame: FC<SprintGameProps> = ({ bookGroup, bookPage }) => {
     sprintCorrectWords,
     sprintWrongWords,
     sprintView,
-    sprintCorrectSerie,
   } = useTypedSelector((state) => state.sprint);
   let timer: NodeJS.Timeout;
   const {
@@ -49,30 +46,9 @@ const SprintGame: FC<SprintGameProps> = ({ bookGroup, bookPage }) => {
     setSprintView,
     setSprintCorrectSerie,
   } = useActions();
-  const { updateWord } = useUpdateUserWord();
 
   const endGame = () => {
     if (sprintView === 'game') {
-      const userId = localStorage.getItem(localStorageNames.userId);
-      const isAuth = localStorage.getItem(localStorageNames.isAuth);
-      if (userId && isAuth) {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { upsertSettings } = useUpsertSetting(
-          userId,
-          'sprint',
-          sprintCorrectWords.length + sprintWrongWords.length,
-          sprintCorrectWords.length,
-          sprintCorrectSerie,
-          new Date(),
-        );
-        upsertSettings();
-        sprintCorrectWords.forEach((word) => {
-          updateWord(word, { result: true, game: 'sprint', dataupdate: new Date() });
-        });
-        sprintWrongWords.forEach((word) => {
-          updateWord(word, { result: false, game: 'sprint', dataupdate: new Date() });
-        });
-      }
       setTimeout(() => setSprintView('result'), 100);
     }
   };
