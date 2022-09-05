@@ -25,7 +25,6 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
       setSprintView('start');
     }
     if (difficultyLevel) {
-      console.log('я работаю');
       const levels = [...document.querySelectorAll('.level-button')];
       levels.map((item: Element) => item.classList.add('disabled'));
       const choosenLevelButton = levels.find((levelButton) => levelButton.textContent === `${Number(difficultyLevel) + 1}`);
@@ -35,7 +34,6 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
       }
     }
   }, []);
-  console.log('difficultylvl', difficultyLevel);
   if (difficultyLevel?.length === 0) {
     if (localStorage.bookGroup) localStorage.removeItem('bookGroup');
     if (localStorage.bookPage) localStorage.removeItem('bookPage');
@@ -61,9 +59,11 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
 
   return (
     <div className="gamelevel">
-      <NavLink className="gamelevel__close _icon-close" to="/" />
       <div className="gamelevel__container">
-        <p className="gamelevel__header">{gameName}</p>
+          <NavLink className="gamelevel__close _icon-close" to="/" />
+        <p className="gamelevel__header">
+          {gameName}
+        </p>
         <p className="gamelevel__text">{difficultyLevel ? `Слова выбраны из учебника, уровень сложности: ${+difficultyLevel + 1}` : 'Уровень сложности:'}</p>
         <div className="gamelevel__button" onClick={(e) => { chooseLevel(e); }} role="button" tabIndex={0} onKeyDown={() => { }}>
           <LevelButton addClass="first-level" text="1" />

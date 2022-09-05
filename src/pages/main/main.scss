@@ -47,7 +47,8 @@
       width: 140px;
       height: 140px;
       border-radius: 100%;
-      background-color: $lightPinkColor;
+      background-color: var(--background-round-button-color);
+      transition: background-color 0.3s linear;
       position: relative;
       &__image{
          position: absolute;
@@ -74,7 +75,8 @@
       width: 140px;
       height: 140px;
       border-radius: 100%;
-      background-color: $lightPinkColor;
+      background-color: var(--background-round-button-color);
+      transition: background-color 0.3s linear;
       position: relative;
       &__image{
          position: absolute;
@@ -101,7 +103,8 @@
       width: 140px;
       height: 140px;
       border-radius: 100%;
-      background-color: $lightPinkColor;
+      background-color: var(--background-round-button-color);
+      transition: background-color 0.3s linear;
       position: relative;
       &__image{
          position: absolute;
@@ -116,3 +119,9 @@
    }
 }
 
+html[data-theme="original"] {
+   --background-round-button-color: #ebd9c8; // $lightPinkColor
+ }
+ html[data-theme="dark"] {
+   --background-round-button-color: rgba(24,24,24, 1);
+ }

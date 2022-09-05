@@ -24,12 +24,15 @@ import { logoutUser } from './api/controllers/userController';
 import SprintPage from './pages/sprint/sprintPage';
 import useGetUserWords from './hooks/useGetUserWords';
 import useStatistics from './hooks/useStatistics';
+import ChangeThemeButton from './components/changeThemebutton/changeThemeButton';
+import useTheme from './hooks/useTheme';
 
 const App = () => {
   const { setUser, setIsAuth } = useActions();
   const { isAuth } = useTypedSelector((state) => state.auth);
   const { dowloadUserWords } = useGetUserWords();
   const { getStatistic } = useStatistics();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     if (localStorage.getItem(localStorageNames.isAuth) && !isAuth) {
@@ -53,6 +56,7 @@ const App = () => {
     <BrowserRouter>
       <Menu />
       <Logo />
+      <ChangeThemeButton />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/registration" element={<RegistrationPage />} />

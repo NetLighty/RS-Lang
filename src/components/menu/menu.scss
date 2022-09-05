@@ -4,7 +4,8 @@
    width: 63px;
    height: 100%;
    position: fixed;
-   background-color: #EBD9C8;
+   background-color: var(--background-menu-color);
+   transition: background-color 0.3s linear;
    display: flex;
    flex-direction: column;
    align-content: center;
@@ -20,3 +21,10 @@
       }
    }
 }
+
+html[data-theme="original"] {
+   --background-menu-color: #EBD9C8;
+ }
+ html[data-theme="dark"] {
+   --background-menu-color: rgb(24,24,24);
+ }

@@ -12,7 +12,7 @@ import Loader from '~/ui/loader/loader';
 import { getAggregatedWordsForGame } from '~/utils/aggregatedWordsFunc';
 import { localStorageNames } from '~/utils/auth';
 import { basePointsAdd, maxPointsMultiply } from '~/utils/rules/sprintRules';
-import { alternativeShuffle, appPath } from '~/utils/subGameFunc';
+import { alternativeShuffle } from '~/utils/subGameFunc';
 import './sprintPage.scss';
 
 interface SprintGameProps {
@@ -40,33 +40,41 @@ const SprintGame: FC<SprintGameProps> = ({ bookGroup, bookPage }) => {
     sprintCorrectWords,
     sprintWrongWords,
     sprintView,
+    sprintCorrectSerie,
   } = useTypedSelector((state) => state.sprint);
   let timer: NodeJS.Timeout;
-  const { setSprintCorrectWords, setSprintWrongWords, setSprintView } = useActions();
+  const {
+    setSprintCorrectWords,
+    setSprintWrongWords,
+    setSprintView,
+    setSprintCorrectSerie,
+  } = useActions();
   const { updateWord } = useUpdateUserWord();
 
   const endGame = () => {
-    const userId = localStorage.getItem(localStorageNames.userId);
-    const isAuth = localStorage.getItem(localStorageNames.isAuth);
-    if (userId && isAuth) {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const { upsertSettings } = useUpsertSetting(
-        userId,
-        'sprint',
-        sprintCorrectWords.length + sprintWrongWords.length,
-        sprintCorrectWords.length,
-        maxCorrectAnswersSerie,
-        new Date(),
-      );
-      upsertSettings();
-      sprintCorrectWords.forEach((word) => {
-        updateWord(word, { result: true, game: 'sprint', dataupdate: new Date() });
-      });
-      sprintWrongWords.forEach((word) => {
-        updateWord(word, { result: false, game: 'sprint', dataupdate: new Date() });
-      });
+    if (sprintView === 'game') {
+      const userId = localStorage.getItem(localStorageNames.userId);
+      const isAuth = localStorage.getItem(localStorageNames.isAuth);
+      if (userId && isAuth) {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const { upsertSettings } = useUpsertSetting(
+          userId,
+          'sprint',
+          sprintCorrectWords.length + sprintWrongWords.length,
+          sprintCorrectWords.length,
+          sprintCorrectSerie,
+          new Date(),
+        );
+        upsertSettings();
+        sprintCorrectWords.forEach((word) => {
+          updateWord(word, { result: true, game: 'sprint', dataupdate: new Date() });
+        });
+        sprintWrongWords.forEach((word) => {
+          updateWord(word, { result: false, game: 'sprint', dataupdate: new Date() });
+        });
+      }
+      setTimeout(() => setSprintView('result'), 100);
     }
-    setSprintView('result');
   };
 
   const initWords = (words: IWord[]) => {
@@ -101,9 +109,11 @@ const SprintGame: FC<SprintGameProps> = ({ bookGroup, bookPage }) => {
   };
 
   const addCorrectAnswersSerie = () => {
+    console.log('серия верных', maxCorrectAnswersSerie);
     setCorrectAnswersSerie(correctAnswersSerie + 1);
     if (correctAnswersSerie + 1 > maxCorrectAnswersSerie) {
       setMaxCorrectAnswersSerie(correctAnswersSerie + 1);
+      setSprintCorrectSerie(correctAnswersSerie + 1);
     }
   };
 
@@ -185,37 +195,45 @@ const SprintGame: FC<SprintGameProps> = ({ bookGroup, bookPage }) => {
   const startGame = () => {
     localStorage.removeItem(localStorageNames.bookGroup);
     localStorage.removeItem(localStorageNames.bookPage);
+    setSprintCorrectSerie(0);
     setIsLoading(false);
-    if (!timer) timer = setTimeout(() => endGame(), 60000);
+    if (!timer) timer = setTimeout(() => endGame(), 6000);
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    setSprintCorrectWords([]);
-    setSprintWrongWords([]);
-    if (sprintWords.length === 0) {
-      const getWords = async () => {
-        let gameWords: IWord[] = [];
-        if (bookPage && bookPage?.length !== 0) {
-          const unlearnedWords = await getUnlearnedWords(bookPage);
-          console.log('unlearned', unlearnedWords);
-          gameWords = unlearnedWords;
-        } else {
-          const allGroupWords = await getAllGroupWords();
-          gameWords = allGroupWords;
-        }
-        initWords(gameWords);
-        return gameWords;
-      };
-      getWords()
-        .then((resWords) => {
-          console.log('setWords', resWords);
-          setCurrentWords(resWords);
-          setTimeout(() => startGame(), 700);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+    if (sprintView === 'game') {
+      setIsLoading(true);
+      setSprintCorrectWords([]);
+      setSprintWrongWords([]);
+      if (sprintWords.length === 0) {
+        const getWords = async () => {
+          let gameWords: IWord[] = [];
+          if (bookPage && bookPage?.length !== 0) {
+            const unlearnedWords = await getUnlearnedWords(bookPage);
+            gameWords = unlearnedWords;
+          } else {
+            const allGroupWords = await getAllGroupWords();
+            gameWords = allGroupWords;
+          }
+          initWords(gameWords);
+          return gameWords;
+        };
+        getWords()
+          .then((resWords) => {
+            setCurrentWords(resWords);
+            setTimeout(() => startGame(), 700);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
+    }
+  }, []);
+
+  useEffect(() => () => {
+    if (timer) {
+      clearTimeout(timer);
+      setSprintView('result');
     }
   }, []);
   return (

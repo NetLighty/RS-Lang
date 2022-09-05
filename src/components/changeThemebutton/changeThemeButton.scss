@@ -1,0 +1,40 @@
+@import '../../style/global.scss';
+
+.change-theme__button {
+  width: fit-content;
+  height: fit-content;
+  background-color: transparent;
+  position: absolute;
+  border: 0;
+  top: 2rem;
+  right: 2rem;
+  z-index: 999;
+}
+.change-theme__img {
+  width: 3.5rem;
+  height: 3.5rem;
+  transition: all 0.3s ease;
+}
+.change-theme__img:hover {
+  cursor: pointer;
+  /* fill: rgba(black, 1.1); */
+  transform: scale(0.95);
+  width: 3.5rem;
+  height: 3.5rem;
+}
+.change-theme__img_moon {
+  animation: 0.5s moonAppear;
+  fill: rgba(#cdcdcd, 0.8);
+}
+.change-theme__img_sun {
+  animation: 0.5s appear;
+  fill: $darkOrangeColor;
+}
+@keyframes appear {
+  0% { transform: scale(0.5) rotate(0deg); }
+  100% { transform: scale(1) rotate(0deg); }  
+}
+@keyframes moonAppear {
+  0% { transform: scale(0.5) rotate(50deg); }
+  100% {transform: scale(1) rotate(0deg);}
+}

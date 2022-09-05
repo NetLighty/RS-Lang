@@ -1,5 +1,7 @@
+import { number } from 'yup';
 import { IWord } from '~/models/IWord';
 import {
+  SetSprintCorrectSerieAction,
   SetSprintCorrectWordsAction,
   SetSprintViewAction,
   SetSprintWordsAction,
@@ -16,6 +18,10 @@ const SprintActionCreators = {
   setSprintView: (view: SprintView): SetSprintViewAction => ({
     type: SprintActionEnum.SET_SPRINT_VIEW,
     payload: view,
+  }),
+  setSprintCorrectSerie: (correctSerie: number): SetSprintCorrectSerieAction => ({
+    type: SprintActionEnum.SET_SPRINT_CORRECT_SERIE,
+    payload: correctSerie,
   }),
   setSprintCorrectWords: (words: IWord[]): SetSprintCorrectWordsAction => ({
     type: SprintActionEnum.SET_SPRINT_CORRECT_WORDS,

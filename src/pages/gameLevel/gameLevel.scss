@@ -14,6 +14,8 @@
       height: 100vh;
    }
    &__header {
+      text-align: center;
+      text-justify: center;
       font-size: $headerFontSize;
       margin-bottom: 80px;
    }
@@ -47,9 +49,9 @@
       }
    }
    &__close {
-      position: absolute;
-      top: 40px;
-      right: 40px;
+      position: relative;
+      top: 0rem;
+      left: 20rem;
       color: $lightPinkColor;
       font-size: 55px;
       transition: all 0.5s ease;

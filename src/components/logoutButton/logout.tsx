@@ -10,6 +10,14 @@ const LogoutButton: FC = () => {
   const { setIsAuth, setUser } = useActions();
   const { deleteUserWords } = useGetUserWords();
 
+  const fullScreen = () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    } else {
+      document.documentElement.requestFullscreen().catch(() => {});
+    }
+  };
+
   const logout = () => {
     setIsAuth(false);
     logoutUser();
@@ -20,7 +28,7 @@ const LogoutButton: FC = () => {
   };
 
   return (
-    <button onClick={logout} className="logout-button" type="button">{logoutText}</button>
+    <button onClick={fullScreen} className="logout-button" type="button">{logoutText}</button>
   );
 };
 
