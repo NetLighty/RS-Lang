@@ -40,6 +40,10 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
     if (localStorage.bookGroup) localStorage.removeItem('bookGroup');
     if (localStorage.bookPage) localStorage.removeItem('bookPage');
   }
+  if (gameName === 'Аудиовызов') {
+    if (localStorage.bookGroup) localStorage.removeItem('bookGroup');
+    if (localStorage.bookPage) localStorage.removeItem('bookPage');
+  }
 
   function chooseLevel(e: React.SyntheticEvent) {
     const levels = [...document.querySelectorAll('.level-button')];
@@ -48,7 +52,8 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
       levels.map((item: Element) => item.classList.remove('active'));
       const target = e.target as HTMLInputElement;
       target.classList.add('active');
-      localStorage[`${gameName}level`] = target.textContent;
+      if (gameName === 'Аудиовызов') localStorage['audiolevel'] = (+(target.textContent) - 1) as unknown as string ;
+      else localStorage[`${gameName}level`] = target.textContent;
       setChoose(true);
     }
   }

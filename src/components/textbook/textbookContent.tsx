@@ -22,7 +22,7 @@ const TextbookContent = (): JSX.Element => {
   const wordsToRender = useAppSelector((state) => state.textbook.bookWords);
   const [pageLearnedClass, setPageLearnedClass] = useState('');
   const [paginationLearnedClass, setPaginationLearnedClass] = useState('');
-  const [gameDisabled, setGameDisabled] = useState(true);
+  const [gameDisabled, setGameDisabled] = useState(false);
 
   function savePageToLocalStoreAndGo(value: string) {
     savePageToLocalStore();

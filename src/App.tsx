@@ -62,7 +62,7 @@ const App = () => {
         <Route path="/book" element={<Book />} />
         <Route path="/hardwords" element={<HardWords />} />
         <Route path="/games" element={<MiniGames />} />
-        <Route path="/audiocall" element={<GameLevel gameName="audio" to="/audiocall/game" />} />
+        <Route path="/audiocall" element={<GameLevel gameName="Аудиовызов" to="/audiocall/game" />} />
         <Route path="/audiocall/game" element={<AudioCall />} />
         <Route path="/audiocall/result" element={<AudioResult nameResult="audiores" />} />
         <Route path="/sprint" element={<SprintPage />} />

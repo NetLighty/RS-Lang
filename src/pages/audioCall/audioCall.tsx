@@ -33,18 +33,23 @@ const AudioCall: FC = () => {
   let trueSeries = false;
   const bookGroup = localStorage.bookGroup ? localStorage.bookGroup as string : '';
   const bookPage = localStorage.bookPage ? localStorage.bookPage as string : '';
-
+  const isAuth = localStorage.auth ? localStorage.auth as string : 'false';
   async function fetchWords(group: string, page: string) {
     clearStyleButton();
     try {
       let words: IWord[];
       if (bookGroup !== '' && bookPage !== '') {
-        words = (await generateArrayGameFunc(
-          localStorage.getItem('userId') as string,
-          bookGroup,
-          bookPage,
-        ));
-        if (words.length < 10) setTotalCount(words.length);
+        if (isAuth === 'true') {
+          words = (await generateArrayGameFunc(
+            localStorage.getItem('userId') as string,
+            bookGroup,
+            bookPage,
+          ));
+          if (words.length < 10) setTotalCount(words.length);
+        } else {
+          const response = (await WordService.getChunkOfWords(bookGroup, bookPage));
+          words = response.data;
+        }
       } else {
         const response = (await WordService.getChunkOfWords(group, page));
         words = response.data;
