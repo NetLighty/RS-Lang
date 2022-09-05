@@ -9,7 +9,7 @@ import Logo from './components/logo/logo';
 import Team from './pages/team/team';
 import Book from './pages/book/book';
 import MiniGames from './pages/miniGames/miniGames';
-import AudioLevel from './pages/gameLevel/gameLevel';
+import GameLevel from './pages/gameLevel/gameLevel';
 import AudioCall from './pages/audioCall/audioCall';
 import AudioResult from './pages/gameResult/gameResult';
 import HardWords from './pages/hardWords/hardWords';
@@ -21,6 +21,7 @@ import UserService from './api/userService';
 import { IUser } from './models/IUser';
 import useTypedSelector from './hooks/useTypedSelector';
 import { logoutUser } from './api/controllers/userController';
+import SprintPage from './pages/sprint/sprintPage';
 import useGetUserWords from './hooks/useGetUserWords';
 import useStatistics from './hooks/useStatistics';
 
@@ -40,7 +41,6 @@ const App = () => {
       const accessToken = localStorage.getItem(localStorageNames.accesToken);
       if (userId && accessToken) {
         userInit(userId).then((res) => {
-          // document.cookie = `token=${res.data.token}; secure; sameSite=strict`;
           setUser({ id: userId, name: res.data.name });
           setIsAuth(true);
           dowloadUserWords(userId);
@@ -62,9 +62,11 @@ const App = () => {
         <Route path="/book" element={<Book />} />
         <Route path="/hardwords" element={<HardWords />} />
         <Route path="/games" element={<MiniGames />} />
-        <Route path="/audiocall" element={<AudioLevel gameName="audio" to="/audiocall/game" />} />
+        <Route path="/audiocall" element={<GameLevel gameName="audio" to="/audiocall/game" />} />
         <Route path="/audiocall/game" element={<AudioCall />} />
         <Route path="/audiocall/result" element={<AudioResult nameResult="audiores" />} />
+        <Route path="/sprint" element={<SprintPage />} />
+        <Route path="/book/sprint" element={<SprintPage isFromBook />} />
       </Routes>
     </BrowserRouter>
   );

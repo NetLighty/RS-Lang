@@ -69,3 +69,13 @@
       transform: scale(1.1);
    }
 }
+
+.disabled {
+   opacity: 1;
+   background-color: grey;
+}
+.disabled:hover {
+   transform: scale(1);
+   cursor: default;
+   background-color: grey;
+}
