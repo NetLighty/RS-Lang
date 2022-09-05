@@ -7,7 +7,7 @@ import GroupsBlock from '../groupsBlock/groupsBlock';
 import Pagination from '../pagination/pagination';
 import TextbookContainer from './textbookContainer';
 import './textbook.scss';
-import useSavePageToLocalStorage from '~/hooks/useSavePageToLocalStorage';
+import useWorkWithPageAndGroup from '~/hooks/useSavePageToLocalStorage';
 import { useAppSelector } from '~/hooks';
 import { IWord } from '~/models/IWord';
 import { IUserWord } from '~/models/IUserWord';
@@ -15,7 +15,7 @@ import SETTINGS from '~/utils/settings';
 
 const TextbookContent = (): JSX.Element => {
   const navigate = useNavigate();
-  const { savePageToLocalStore } = useSavePageToLocalStorage();
+  const { savePageToLocalStore } = useWorkWithPageAndGroup ();
   const [disabled, setDisabled] = useState(true);
   const userId: string | null = localStorage.getItem('userId');
   const isAuth = useAppSelector((state) => state.auth.isAuth);
