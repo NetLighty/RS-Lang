@@ -1,5 +1,3 @@
-import formatDate from '~/utils/date';
-
 export interface ISettings {
   wordsPerDay: number,
   optional?: SettingsOptional,

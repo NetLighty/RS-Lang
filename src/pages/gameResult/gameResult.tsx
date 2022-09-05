@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import Loader from '../../ui/loader/loader';
 import WordService from '../../api/wordsService';
 import ResultWord from '../../components/resultWord/resultWord';
@@ -8,7 +7,6 @@ import { IAnswer } from '../../models/IAnswer';
 import { IResultWord } from '../../models/IResultWord';
 import createResultWord from '../../utils/createResultWord';
 import './gameResult.scss';
-import useGetUserWords from '~/hooks/useGetUserWords';
 import useUpdateUserWord from '~/hooks/useUpdateUserWord';
 import useUpsertSetting from '~/hooks/useUpsertSetting';
 
@@ -22,8 +20,6 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
   const [series] = useState(+localStorage.audioseries);
   const answerArr = JSON.parse(localStorage.getItem(nameResult) as string) as IAnswer[];
   const successResult = answerArr.filter((item) => item.answer === true);
-  // const { dowloadUserWords, userWords } = useGetUserWords(); // delete this
-  // const dispatch = useDispatch(); // delete this
   const { updateWord } = useUpdateUserWord();
   const nowdDate = new Date();
   const gameName = (localStorage.gameName === 'audiogame') ? 'audiogame' : 'sprint';
@@ -42,7 +38,7 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
     flag = false;
     const arr: IResultWord[] = [];
     answerArr.forEach((item: IAnswer) => {
-      const el = WordService.getWord(item.id)
+      WordService.getWord(item.id)
         .then((response) => {
           if (isAuth) {
             updateWord(response.data, {
@@ -56,7 +52,7 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
             item.answer,
           );
           arr.push(obj);
-        });
+        }).catch(() => {});
     });
     setResult(arr);
   }
@@ -65,11 +61,11 @@ const GameResult: FC<GameResultProps> = ({ nameResult }) => {
     if (flag !== false) {
       getResult();
       if (isAuth === 'true') {
-        // dowloadUserWords();
         upsertSettings();
       }
     }
     setTimeout(() => { setLoading(false); }, 2000);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

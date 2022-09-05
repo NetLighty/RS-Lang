@@ -4,6 +4,7 @@ import { ISettingsRes } from '~/models/ISetting';
 import { getAggregatedWordsForStatistic } from '~/utils/aggregatedWordsFunc';
 import formatDate from '~/utils/date';
 import { IStatistic } from '../../models/IStatistic';
+// eslint-disable-next-line import/extensions
 import { getSettingsData } from '~/utils/setting.action';
 import './dayStatistic.scss';
 
@@ -41,7 +42,7 @@ const DayStatistic: FC = () => {
       if (stat.optional) {
         const keys = Object.keys(stat.optional);
         keys.forEach((key) => {
-          if (key === formatDate(new Date())) {
+          if (key === formatDate(new Date()) && stat.optional) {
             setLearnWords(stat.optional[key]);
           }
         });

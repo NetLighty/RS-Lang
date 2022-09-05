@@ -3,6 +3,7 @@ import { IAggregatedResponse } from '~/models/IAggregated';
 import { ISettingsRes } from '~/models/ISetting';
 import { getAggregatedWordsForStatistic } from '~/utils/aggregatedWordsFunc';
 import formatDate from '~/utils/date';
+// eslint-disable-next-line import/extensions
 import { getSettingsData } from '~/utils/setting.action';
 import './gameStatistic.scss';
 
@@ -53,6 +54,7 @@ const GameStatistic: FC<GameStatisticpProps> = ({ gameName }) => {
           () => {},
         );
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="game-statistic">
