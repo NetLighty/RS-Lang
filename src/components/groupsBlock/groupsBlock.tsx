@@ -7,7 +7,7 @@ import { useAppSelector } from '~/hooks';
 
 const GroupsBlock = () => {
   const dispatch = useDispatch();
-  const group = useAppSelector(state=>state.textbook.group);
+  const group = useAppSelector((state) => state.textbook.group);
 
   function setGroup(
     event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>,
@@ -27,12 +27,12 @@ const GroupsBlock = () => {
 
   useEffect(() => {
     const buttons = document.querySelectorAll('.book__group__button ');
-    buttons.forEach(button => {
-      if(button.classList.contains('book__group__button-active')){
+    buttons.forEach((button) => {
+      if (button.classList.contains('book__group__button-active')) {
         button.classList.remove('book__group__button-active');
         button.closest('.book__group__span')?.classList.remove('book__group__span-active');
       }
-    })
+    });
     if (group) {
       buttons[group].classList.add('book__group__button-active');
       buttons[group].closest('.book__group__span')?.classList.add('book__group__span-active');

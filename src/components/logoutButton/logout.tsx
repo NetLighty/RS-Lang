@@ -10,7 +10,7 @@ const logoutText = 'Выйти';
 const LogoutButton: FC = () => {
   const { setIsAuth, setUser } = useActions();
   const { deleteUserWords } = useGetUserWords();
-  const {resetPageAndGroupOnExit} = useWorkWithPageAndGroup();
+  const { resetPageAndGroupOnExit } = useWorkWithPageAndGroup();
 
   const logout = () => {
     setIsAuth(false);
@@ -19,7 +19,7 @@ const LogoutButton: FC = () => {
       id: '', name: '',
     });
     deleteUserWords();
-    resetPageAndGroupOnExit(); 
+    resetPageAndGroupOnExit();
   };
 
   return (

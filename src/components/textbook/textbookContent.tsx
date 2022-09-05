@@ -29,7 +29,7 @@ const TextbookContent = (): JSX.Element => {
     navigate(`${value}`);
   }
 
-  function removeHardWordStyles () {
+  function removeHardWordStyles() {
     setPageLearnedClass('');
     setPaginationLearnedClass('');
     setGameDisabled(false);
@@ -61,11 +61,10 @@ const TextbookContent = (): JSX.Element => {
         setGameDisabled(true);
         document.body.classList.add('book__body__learned');
       } else {
-        removeHardWordStyles ();
+        removeHardWordStyles();
       }
-    }
-    else {
-      removeHardWordStyles ();
+    } else {
+      removeHardWordStyles();
     }
   }, [wordsToRender, isAuth]);
 
