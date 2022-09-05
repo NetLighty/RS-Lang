@@ -10,8 +10,8 @@ const SETTINGS = {
   CURRENT_PAGE: 'current_page',
   HARD_WORD: 'hard',
   NORMAL_WORD: 'normal',
-  COUNTSUCCESSINROW: 2,
-  COUNTSUCCESSINROWHARD: 4,
+  COUNTSUCCESSINROW: 3,
+  COUNTSUCCESSINROWHARD: 5,
   STATISTIC_MESSAGE: 'Statistic is empty',
   FILTER_HARD_WORDS: '{"userWord.difficulty":"hard"}',
 };

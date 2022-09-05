@@ -19,9 +19,9 @@
 
   &__cards {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    margin-top: 34px;
+    gap: 30px;
   }
 
   &__groups {
@@ -171,14 +171,6 @@
     align-items: center;
   }
 
-  &__footer {
-    width: calc(100% - 63px);
-    margin-bottom: 20px;
-    @media (max-width: 1200px) {
-      width: 100%;
-    }
-  }
-
   &__info {
     display: none;
   }
@@ -197,6 +189,10 @@
     background-color: #de6600;
     bottom: 20px;
     left: 30px;
+  }
+
+  &__body__learned {
+    background-color: grey;
   }
 
   &__sprint__button:disabled,
@@ -300,4 +296,51 @@
 
 #darkBluespan.book__group__span-active {
   border: 3px solid $darkBlueColor;
+}
+
+
+@media (min-width: 901px) and (max-width: 1100px) {
+ .book__header {
+    width: 90%;
+  }
+}
+
+@media (max-width: 900px) {
+  .book__header {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+.book__header {
+  width: 80%;
+}
+.book__group__button {
+  width: 40px;
+  height: 40px;
+}
+
+.book__group__span {
+  width: 55px;
+  height: 55px;
+}
+}
+
+@media (max-width: 660px) {
+.book__header {
+  width: 90%;
+  flex-direction: column-reverse;
+}
+.book__group__button {
+ width: 30px;
+ height: 30px;
+}
+.book__group__span {
+ width: 45px;
+ height: 45px;
+}
+
+.book__groups {
+  margin-top: 20px;
+}
 }

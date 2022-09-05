@@ -50,15 +50,23 @@ const TextbookContent = (): JSX.Element => {
         setPageLearnedClass('book__learned');
         setPaginationLearnedClass('book__pagination__learned');
         setGameDisabled(true);
-        document.body.style.backgroundColor = 'grey';
+        document.body.classList.add('book__body__learned');
       } else {
         setPageLearnedClass('');
         setPaginationLearnedClass('');
         setGameDisabled(false);
-        document.body.style.backgroundColor = '#007A7A';
+        if (document.body.classList.contains('book__body__learned')) {
+          document.body.classList.remove('book__body__learned');
+        }
       }
     }
   }, [wordsToRender, isAuth]);
+
+  useEffect(() => () => {
+    if (document.body.classList.contains('book__body__learned')) {
+      document.body.classList.remove('book__body__learned');
+    }
+  }, []);
 
   return (
     <div className="book__container">
