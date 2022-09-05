@@ -6,7 +6,7 @@ function checkChangedWord(
   options: Options | undefined,
   difficulty: string,
   data: Partial<Options>,
-  updateStatistic:()=>void,
+  updateStatistic: () => void,
 ) {
   const {
     result, dataupdate, game, learned,

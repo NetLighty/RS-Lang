@@ -28,8 +28,6 @@ export const logoutUser = () => {
   localStorage.removeItem(localStorageNames.userId);
   localStorage.removeItem(localStorageNames.accesToken);
   localStorage.removeItem(localStorageNames.refreshToken);
-  localStorage.removeItem(localStorageNames.bookGroup);
-  localStorage.removeItem(localStorageNames.bookPage);
   localStorage.removeItem(localStorageNames.statistics);
 };
 

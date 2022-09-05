@@ -7,20 +7,21 @@ import UserService from '~/api/userService';
 
 export default function useStatistics() {
   const userWords = useAppSelector((state) => state.userWords);
-  function writeStatistic(statistic:IStatistic) {
+  function writeStatistic(statistic: IStatistic) {
     UserService.upsertUserStat(localStorage.getItem('userId') as string, statistic)
       .then(() => {})
       .catch(() => {});
     localStorage.setItem('statistics', JSON.stringify(statistic));
   }
 
-  const getStatistic = (id:string) => {
+  const getStatistic = (id: string) => {
     UserService.getUserStat(id)
       .then((data) => {
         if (data.status === 200) {
           localStorage.setItem('statistics', JSON.stringify(data.data));
         }
-      }).catch(() => {
+      })
+      .catch(() => {
         localStorage.setItem('statistics', SETTINGS.STATISTIC_MESSAGE);
       });
   };
@@ -32,7 +33,7 @@ export default function useStatistics() {
       const key = formatDate(new Date());
       if (oldStatistic && oldStatistic.optional) {
         const statisticKeys = Object.keys(oldStatistic.optional);
-        if ((statisticKeys.findIndex((item) => item === key)) === -1) {
+        if (statisticKeys.findIndex((item) => item === key) === -1) {
           oldStatistic.optional[key] = 1;
           oldStatistic.learnedWords += 1;
         } else {
@@ -45,7 +46,7 @@ export default function useStatistics() {
             }
           });
         }
-        const newStatistic:IStatistic = {
+        const newStatistic: IStatistic = {
           learnedWords: oldStatistic.learnedWords,
           optional: {
             ...oldStatistic.optional,
@@ -55,7 +56,7 @@ export default function useStatistics() {
       }
     } else {
       const key = formatDate(new Date());
-      const newStatistic:IStatistic = {
+      const newStatistic: IStatistic = {
         learnedWords: 1,
         optional: {
           [key]: 1,
@@ -66,7 +67,7 @@ export default function useStatistics() {
   };
 
   const countNewWords = () => {
-    const userWordsArray:Array<IUserWord> = [];
+    const userWordsArray: Array<IUserWord> = [];
     if (userWords) {
       Object.keys(userWords).forEach((group) => {
         Object.keys(userWords[Number(group)]).forEach((page) => {
@@ -78,7 +79,7 @@ export default function useStatistics() {
     }
     const newWordsObject = userWordsArray
       .filter((word) => word.optional?.isThisFirst === false)
-      .reduce((acc:Record<string, number>, word:IUserWord): Record<string, number> => {
+      .reduce((acc: Record<string, number>, word: IUserWord): Record<string, number> => {
         if (word.optional) {
           acc[word.optional?.firstDate] = (acc[word.optional?.firstDate] || 0) + 1;
         }
