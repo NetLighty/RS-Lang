@@ -13,7 +13,7 @@ const GameSprintAbout: FC = () => (
       addClass="sprint"
       textButton="вперёд"
       path="/sprint"
-      keys="стрелочки ← влево вправо →"
+      keys="стрелки ← влево, вправо →"
     />
   </div>
 );

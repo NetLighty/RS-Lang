@@ -40,8 +40,8 @@ export default function useUpsertSetting(
               dataSettings: settingstDate,
             };
           } else if (gameName === 'sprint') {
-            totalCount = data.optional?.sprintTotalCount as number;
-            successCount = data.optional?.sprintSuccess as number;
+            totalCount = data.optional?.sprintTotalCount as number + wordsCount;
+            successCount = data.optional?.sprintSuccess as number + success;
             seriesCount = (data.optional?.sprintSeries as number > series)
               ? data.optional?.sprintSeries as number : series;
             optional = {
@@ -58,7 +58,6 @@ export default function useUpsertSetting(
         } else if (settingstDate === '' || settingstDate !== formatDate(nowData)) {
           if (gameName === 'audiogame') {
             optional = {
-              // ...DefaultSettingsOptional,
               audioSuccess: success,
               audioTotalCount: wordsCount,
               audioSeries: series,

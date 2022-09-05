@@ -3,7 +3,6 @@ import Footer from '../../components/footer/footer';
 import MemberTeam from '../../components/memberTeam/memberTeam';
 import './team.scss';
 
-// eslint-disable-next-line react/function-component-definition
 const Team: FC = () => (
   <div className="team">
     <h2 className="team__header">Наша команда</h2>
@@ -20,7 +19,7 @@ const Team: FC = () => (
         link="https://github.com/NetLighty"
         gitName="Netlighty"
         imgClass="sasha"
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of t"
+        description="Создал базовую конфигурацию проекта. Написал основные методы обращения к API. Разработал авторизацию, мини-игру спринт. Добавил возможность смены-темы для приложения."
       />
       <MemberTeam
         name="Дереча Ирина"
