@@ -80,7 +80,8 @@
     border-radius: 100px;
     border: 1px solid $darkOrangeColor;
     color: $darkOrangeColor;
-    background-color: $backgrounColorPaginationButton;
+    background-color:  var(--pagination-button-background-color); // #efe6de
+    transition: background-color 0.3s linear;
     outline: none;
     cursor: pointer;
 
@@ -89,8 +90,10 @@
     }
     &:disabled {
       color: $darkBlueColor;
-      background-color: $greyColor;
-      border: 1px solid $lightGreyColor;
+      background-color: var(--pagination-button-background-color-disabled);
+      border: 1px solid var(--pagination-button-border-color-disabled);
+      transition: border 0.3s linear
+      background-color 0.3s linear;
     }
   }
 
@@ -342,4 +345,15 @@
   .book__groups {
     margin-top: 20px;
   }
+}
+
+html[data-theme="original"] {
+  --pagination-button-background-color:#efe6de;
+  --pagination-button-background-color-disabled:#99978e;
+  --pagination-button-border-color-disabled:#99978e;
+}
+html[data-theme="dark"] {
+  --pagination-button-background-color: 'transparent';
+  --pagination-button-background-color-disabled: rgb(30, 30, 30);
+  --pagination-button-border-color-disabled: rgb(30, 30 , 30);
 }

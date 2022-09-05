@@ -6,8 +6,8 @@ import './footer.scss';
 const Footer: FC = () => (
   <footer className="footer">
     <div className="footer__about">
-      <a className="footer__about_logo" href="https://rs.school/js/" type="blank"> </a>
-      <h3 className="footer__about_year">2022</h3>
+      <span>©2022 RS LANG.&nbsp;</span>
+      <a href="https://rs.school/js/">RS School JS Course.</a>
     </div>
     <NavLink to="/team" className="footer__link _icon-team">
       <div className="footer__link_circular round">

@@ -23,9 +23,11 @@
          cursor: pointer;
          opacity: 0.6;
       }
-      &:before{
-         content: url('../../assets/img/git.png');
-         width: 30px;
+      .github-icon {
+         fill: var(--github-icon-color);
+         transition: fill 0.3s linear;
+         border-radius: 50%;
+         width: 29px;
          height: 30px;
       }
    }
@@ -33,3 +35,11 @@
       font-size: $addFontSize;
    }
 }
+
+html[data-theme="original"] {
+   --github-icon-color: 'transparent';
+ }
+ html[data-theme="dark"] {
+   --github-icon-color: rgba(255, 255, 255, 1);
+ }
+

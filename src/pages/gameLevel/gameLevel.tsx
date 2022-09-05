@@ -30,7 +30,7 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
       const choosenLevelButton = levels.find((levelButton) => levelButton.textContent === `${Number(difficultyLevel) + 1}`);
       if (choosenLevelButton) {
         choosenLevelButton.classList.remove('disabled');
-        choosenLevelButton.classList.add('active');
+        choosenLevelButton.classList.add('choosen');
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,9 +65,11 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
 
   return (
     <div className="gamelevel">
-      <NavLink className="gamelevel__close _icon-close" to="/" />
       <div className="gamelevel__container">
-        <p className="gamelevel__header">{gameName}</p>
+        <p className="gamelevel__header">
+          <NavLink className="gamelevel__close _icon-close" to="/" />
+          {gameName}
+        </p>
         <p className="gamelevel__text">{difficultyLevel ? `Слова выбраны из учебника, уровень сложности: ${+difficultyLevel + 1}` : 'Уровень сложности:'}</p>
         <div className="gamelevel__button" onClick={(e) => { chooseLevel(e); }} role="button" tabIndex={0} onKeyDown={() => { }}>
           <LevelButton addClass="first-level" text="1" />

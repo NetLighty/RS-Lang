@@ -7,11 +7,27 @@
   box-sizing: border-box;
 }
 html {
-   font-size: 10px;
+  font-size: 10px;
 }
 body {
-  background-color: $backgrounColor;
+  background-color: var(--background-color);
+  animation: changeColor 0.0001s;
+  transition: background-color 0.3s linear;
   font-family: 'Roboto';
-  scrollbar-color: #458245 #714826; /* «цвет ползунка» «цвет полосы скроллбара» */
-  scrollbar-width: thin;  /* толщина */
+}
+
+@keyframes changeColor {
+  0% {
+    background-color: #007a7a;
+  }
+  100% {
+    background-color: var(--background-color);
+  }
+}
+
+html[data-theme="original"] {
+  --background-color: #007a7a;
+}
+html[data-theme="dark"] {
+  --background-color: rgb(20,20,20);
 }

@@ -14,6 +14,10 @@
       height: 100vh;
    }
    &__header {
+      display: grid;
+      justify-items: center;
+      text-align: center;
+      text-justify: center;
       font-size: $headerFontSize;
       margin-bottom: 80px;
    }
@@ -29,7 +33,8 @@
       width: 150px;
       height: 40px;
       border-radius: 2px;
-      background-color: $darkOrangeColor;
+      background-color: var(--start-button-background-color);
+      border: var(--start-button-border);
       color: #fff;
       display: flex;
       margin-top: 60px;
@@ -46,10 +51,12 @@
          content: url('../../assets/img/longArrow.svg');
       }
    }
+   &_start:hover {
+   }
    &__close {
-      position: absolute;
-      top: 40px;
-      right: 40px;
+      position: relative;
+      top: 0rem;
+      left: 20rem;
       color: $lightPinkColor;
       font-size: 55px;
       transition: all 0.5s ease;
@@ -65,8 +72,9 @@
    cursor: pointer;
    transform: scale(1);
    &:hover{
+      background-color: var(--start-button-background-color-hover);
       opacity: 1;
-      transform: scale(1.1);
+      transform: scale(var(--level-button-hover-scale));
    }
 }
 
@@ -74,8 +82,30 @@
    opacity: 1;
    background-color: grey;
 }
+.choosen {
+   opacity: 1;
+   cursor: default;
+}
+.choosen:hover {
+   cursor: default;
+}
 .disabled:hover {
    transform: scale(1);
    cursor: default;
    background-color: grey;
 }
+
+html[data-theme="original"] {
+   --start-button-background-color-hover: 'transparent';
+   --start-button-background-color: #de6600;
+   --start-button-border: 0;
+   --level-button-hover-scale: #007a7a;
+   --level-button-hover-scale: 1.1;
+ }
+ html[data-theme="dark"] {
+   --start-button-background-color-hover: rgba(222, 102, 0, 0.5);
+   --start-button-background-color: rgb(20,20,20);
+   --start-button-border: 0.2rem solid rgba(222, 102, 0, 0.7);
+   --background-color: rgb(20,20,20);
+   --level-button-hover-scale: 1;
+ }

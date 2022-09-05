@@ -21,7 +21,6 @@ const SprintPage: FC<SprintPageProps> = ({ isFromBook }) => {
     setSprintView('start');
     setSprintCorrectWords([]);
     setSprintWrongWords([]);
-    console.log(isFromBook);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

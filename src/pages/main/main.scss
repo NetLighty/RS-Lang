@@ -3,7 +3,8 @@
 
 .main {
    height: 100vh;
-   background: url(../../assets/img/mainImg.svg) no-repeat;
+   background: var(--background-img);
+   transition: background 0.3s linear;
    margin-left: 63px;
    background-size: contain;
    display: flex;
@@ -18,6 +19,8 @@
    @include adaptiv-value("width",850,150,1);
    height: 85vh;
    position: relative;
+   right: var(--position-right);
+   transition: right 0.3s ease;
    margin-left: 63px;
    font-family: 'Roboto';
    z-index: 0;
@@ -47,7 +50,8 @@
       width: 140px;
       height: 140px;
       border-radius: 100%;
-      background-color: $lightPinkColor;
+      background-color: var(--background-round-button-color);
+      transition: background-color 0.3s linear;
       position: relative;
       &__image{
          position: absolute;
@@ -74,7 +78,8 @@
       width: 140px;
       height: 140px;
       border-radius: 100%;
-      background-color: $lightPinkColor;
+      background-color: var(--background-round-button-color);
+      transition: background-color 0.3s linear;
       position: relative;
       &__image{
          position: absolute;
@@ -101,7 +106,8 @@
       width: 140px;
       height: 140px;
       border-radius: 100%;
-      background-color: $lightPinkColor;
+      background-color: var(--background-round-button-color);
+      transition: background-color 0.3s linear;
       position: relative;
       &__image{
          position: absolute;
@@ -116,3 +122,13 @@
    }
 }
 
+html[data-theme="original"] {
+   --position-right: 0rem;
+   --background-img: url(../../assets/img/mainImg.svg) no-repeat;
+   --background-round-button-color: #ebd9c8; // $lightPinkColor
+ }
+ html[data-theme="dark"] {
+   --position-right: 15vw;
+   --background-img: '';
+   --background-round-button-color: rgba(24,24,24, 1);
+ }

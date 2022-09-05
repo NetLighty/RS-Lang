@@ -5,6 +5,7 @@ const initialState: SprintState = {
   sprintCorrectWords: [],
   sprintWrongWords: [],
   sprintView: 'start',
+  sprintCorrectSerie: 0,
 };
 
 // eslint-disable-next-line @typescript-eslint/default-param-last
@@ -18,6 +19,8 @@ export default function sprintReducer(state = initialState, action: SprintAction
       return { ...state, sprintWrongWords: action.payload };
     case SprintActionEnum.SET_SPRINT_VIEW:
       return { ...state, sprintView: action.payload };
+    case SprintActionEnum.SET_SPRINT_CORRECT_SERIE:
+      return { ...state, sprintCorrectSerie: action.payload };
     default:
       return state;
   }
