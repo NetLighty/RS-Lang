@@ -15,7 +15,8 @@ const CardWordBlockButton: FC<CardWordBlockButtonProps> = ({ word }) => {
   const { updateWord, updateWordDifficulty } = useUpdateUserWord();
   return (
     <div className="card__buttons">
-      <div className={`card__progress__block card__color${word.group} 
+      <div
+        className={`card__progress__block card__color${word.group} 
         card__border__color${word.group}`}
       >
         <span>{word.optional?.success || 0}</span>

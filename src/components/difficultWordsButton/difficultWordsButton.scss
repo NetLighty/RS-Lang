@@ -56,11 +56,11 @@
     filter: grayscale(100%);
     transition: none;
     cursor: pointer;
-  
+
     &:hover {
       transform: none;
     }
-  
+
     &:hover .book__hint {
       display: block;
     }

@@ -16,14 +16,17 @@ const LogoutButton: FC = () => {
     setIsAuth(false);
     logoutUser();
     setUser({
-      id: '', name: '',
+      id: '',
+      name: '',
     });
     deleteUserWords();
     resetPageAndGroupOnExit();
   };
 
   return (
-    <button onClick={logout} className="logout-button" type="button">{logoutText}</button>
+    <button onClick={logout} className="logout-button" type="button">
+      {logoutText}
+    </button>
   );
 };
 

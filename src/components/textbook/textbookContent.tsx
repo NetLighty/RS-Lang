@@ -68,11 +68,14 @@ const TextbookContent = (): JSX.Element => {
     }
   }, [wordsToRender, isAuth]);
 
-  useEffect(() => () => {
-    if (document.body.classList.contains('book__body__learned')) {
-      document.body.classList.remove('book__body__learned');
-    }
-  }, []);
+  useEffect(
+    () => () => {
+      if (document.body.classList.contains('book__body__learned')) {
+        document.body.classList.remove('book__body__learned');
+      }
+    },
+    [],
+  );
 
   return (
     <div className="book__container">
