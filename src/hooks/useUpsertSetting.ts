@@ -13,7 +13,7 @@ export default function useUpsertSetting(
 ) {
   const upsertSettings = () => {
     let optional = DefaultSettingsOptional;
-    const settings = getSettingsData(userId)
+    getSettingsData(userId)
       .then((response) => {
         const data = response as ISettings;
         const { wordsPerDay } = data;
@@ -54,7 +54,10 @@ export default function useUpsertSetting(
               dataSettings: settingstDate,
             };
           }
-          const result = updateSettingsData(userId, wordsPerDay + wordsCount, optional);
+          updateSettingsData(userId, wordsPerDay + wordsCount, optional).then(
+            () => {},
+            () => {},
+          );
         } else if (settingstDate === '' || settingstDate !== formatDate(nowData)) {
           if (gameName === 'audiogame') {
             optional = {
@@ -75,9 +78,12 @@ export default function useUpsertSetting(
               dataSettings: formatDate(nowData),
             };
           }
-          const result = updateSettingsData(userId, wordsCount, optional);
+          updateSettingsData(userId, wordsCount, optional).then(
+            () => {},
+            () => {},
+          );
         }
-      });
+      }).catch(() => {});
   };
   return { upsertSettings };
 }

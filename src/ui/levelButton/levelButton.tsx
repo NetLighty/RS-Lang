@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import './levelButton.scss';
 
 interface LevelButtonProps {
@@ -6,7 +6,6 @@ interface LevelButtonProps {
   text: string;
 }
 
-// eslint-disable-next-line react/function-component-definition
 const LevelButton: FC<LevelButtonProps> = ({ addClass, text }) => (
   <div className={`level-button ${addClass}`}>{text}</div>
 );
