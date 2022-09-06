@@ -28,7 +28,7 @@ const StatisticPage: FC = () => {
               <GameStatistic gameName="audiogame" />
               <DayStatistic />
               <GameStatistic gameName="sprint" />
-              <LearnedWordsGraf header="Общее количество изученных слов за весь период обучения по дням" lbl="изученные слова" labelsArray={stat.learnedWords !== 0 ? Object.keys(stat.optional) : ['0']} dataArray={stat.learnedWords !== 0 ? Object.values(stat.optional) : [0]} />
+              <LearnedWordsGraf header="Общее количество изученных слов за весь период обучения по дням" lbl="изученные слова" labelsArray={(stat.learnedWords !== 0 && stat.optional) ? Object.keys(stat.optional) : ['0']} dataArray={(stat.learnedWords !== 0 && stat.optional) ? Object.values(stat.optional) : [0]} />
               <LearnedWordsGraf header="Количество новых слов за каждый день изучения" lbl="новые слова" labelsArray={newWords ? Object.keys(newWords) : ['0']} dataArray={newWords ? Object.values(newWords) : [0]} />
             </div>
             <Footer />

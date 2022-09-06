@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './app.scss';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { AxiosResponse } from 'axios';
 import MainPage from './pages/main/main';
 import Menu from './components/menu/menu';
@@ -25,7 +25,6 @@ import SprintPage from './pages/sprint/sprintPage';
 import useGetUserWords from './hooks/useGetUserWords';
 import useStatistics from './hooks/useStatistics';
 import ChangeThemeButton from './components/changeThemebutton/changeThemeButton';
-import useTheme from './hooks/useTheme';
 import FullScreenButton from './components/fullscreenButton/fullscreenButton';
 
 const App = () => {
@@ -33,7 +32,6 @@ const App = () => {
   const { isAuth } = useTypedSelector((state) => state.auth);
   const { dowloadUserWords } = useGetUserWords();
   const { getStatistic } = useStatistics();
-  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     if (localStorage.getItem(localStorageNames.isAuth) && !isAuth) {
@@ -54,7 +52,7 @@ const App = () => {
     }
   });
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Menu />
       <Logo />
       <ChangeThemeButton />
@@ -74,7 +72,7 @@ const App = () => {
         <Route path="/sprint" element={<SprintPage />} />
         <Route path="/book/sprint" element={<SprintPage isFromBook />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

@@ -17,7 +17,7 @@ const GameLevel: FC<GameLevelProps> = ({ gameName, to, difficultyLevel }) => {
     to: undefined,
     difficultyLevel: undefined,
   };
-  const [choose, setChoose] = useState(difficultyLevel);
+  const [choose, setChoose] = useState<string|undefined|boolean>(difficultyLevel);
   const { setSprintView } = useActions();
 
   useEffect(() => {

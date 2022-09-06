@@ -1,9 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
-import useActions from '~/hooks/useAction';
 
 const Timer: FC = () => {
   const [timeLeft, setTimeLeft] = useState(60);
-  const { setSprintView } = useActions();
 
   const tick = () => {
     setTimeLeft(timeLeft - 1);
