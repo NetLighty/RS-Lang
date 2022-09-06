@@ -3,7 +3,6 @@
 .description {
    width: 400px;
    height: 227px;
-   // background: url('../../assets/img/aboutImgBackground.svg') no-repeat;
    position: relative;
    &__content{
       position: absolute;
@@ -49,7 +48,7 @@
          &_img{
             cursor: pointer;
             &:before {
-               content: url('../../assets/img/promt.svg');
+               content: url('./img/promt.svg');
                color: $lightBrownColor;
             }
             &:hover {
@@ -71,7 +70,6 @@
    &-sprint{
       width: 400px;
       height: 227px;
-      // background: url('../../assets/img/aboutImgBackground.svg') no-repeat;
       &__content {
          left: 61px;
       }
@@ -97,7 +95,7 @@
          &_img{
             cursor: pointer;
             &:before {
-               content: url('../../assets/img/promt.svg');
+               content: url('./img/promt.svg');
                color: $lightBrownColor;
             }
             &:hover {
@@ -129,7 +127,7 @@ html[data-theme="original"] {
    --hover-scale: 1.1;
    --description-content-text-color: #000;
    --description-background-color: rgb(235, 217, 200);
-   --audio-background: url(/src/assets/img/cloud.svg) no-repeat;
+   --audio-background: url(/img/cloud.svg) no-repeat;
  }
  html[data-theme="dark"] {
    --hover-scale: 1;

@@ -34,10 +34,10 @@ $background-dark: rgb(27,27,27);
 //-------icon-------
 @font-face{
 	font-family: icons;
-	src: url("../assets/font/icons.ttf") format("ttf"),
-	url("../assets/font/icons.woff") format("woff"),
-	url("../assets/font/icons.eot") format("eof"),
-	url("../assets/font/icons.svg") format("svg");
+	src: url("./font/icons.ttf") format("ttf"),
+	url("./font/icons.woff") format("woff"),
+	url("./font/icons.eot") format("eof"),
+	url("./font/icons.svg") format("svg");
 	font-weight: 400;
 	font-style: normal;
 	font-display: block;
@@ -114,14 +114,14 @@ $background-dark: rgb(27,27,27);
    font-style: normal;
    font-weight: 400;
    src: local("Roboto"),
-        url("../assets/font/Roboto-Regular.ttf") format("ttf"),
-        url("../assets/font/roboto-regular.eot") format("eot"),
-        url("../assets/font/roboto-regular.woff") format("woff"),
-        url("../assets/font/roboto-regular.otf") format("otf"),
+        url("./font/Roboto-Regular.ttf") format("ttf"),
+        url("./font/roboto-regular.eot") format("eot"),
+        url("./font/roboto-regular.woff") format("woff"),
+        url("./font/roboto-regular.otf") format("otf"),
 }
 @font-face {
   font-family: "ErmilovBold";  
-  src: url("../assets/font/Ermilov-bold.otf") format("otf"); 
+  src: url("./font/Ermilov-bold.otf") format("otf"); 
   font-style: normal; 
   font-weight: normal;
 }

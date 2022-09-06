@@ -10,7 +10,6 @@ import { errorRegistrationMsg } from '~/utils/auth';
 import { RegistrationSchema } from '~/utils/rules/authSchemas';
 import './authForm.scss';
 
-const result = window.location.origin;
 
 interface RegistrationValues {
   name: string;
@@ -55,7 +54,7 @@ const RegistrationForm: FC = () => {
         {({ errors, touched, isSubmitting }) => (
           <Form>
             <div className="form">
-              <img className="form__img" src={`${result}/src/assets/img/enter.svg`} alt="planet" />
+              <img className="form__img" src={`./img/enter.svg`} alt="planet" />
               <p className="form__text">Добро пожаловать в RSLang!</p>
               <div className="form__input-block">
                 <Field name="name" className="form__email" placeholder="Введите имя" />

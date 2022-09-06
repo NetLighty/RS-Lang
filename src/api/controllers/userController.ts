@@ -17,8 +17,6 @@ export const loginUser = async (email: string, password: string): Promise<Curren
 
 export const registrationUser = async (name: string, email: string, password: string) => {
   const regRes = await UserService.createUser(name, email, password);
-  console.log('createUser');
-  console.log(regRes);
   return regRes;
 };
 

@@ -14,7 +14,7 @@
          height: 390px;
          @include adaptiv-value('width', 171, 87, 1);
          @include adaptiv-value('height', 390, 200, 1);
-         background: url('../../assets/img/girl.svg') no-repeat;
+         background: url('./img/girl.svg') no-repeat;
          background-size: contain;
          position: relative;
          top: 15%;

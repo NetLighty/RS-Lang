@@ -48,11 +48,10 @@
       transform: scale(0.8);
       cursor: auto;
       &:after {
-         content: url('../../assets/img/longArrow.svg');
+         content: url('./img/longArrow.svg');
       }
    }
-   &_start:hover {
-   }
+
    &__close {
       position: relative;
       top: 0rem;

@@ -22,7 +22,7 @@
    }
    &__arrow{
       &:before {
-         content: url('../../assets/img/arrow.svg');
+         content: url('./img/arrow.svg');
          width: 12px;
          height: 3px;
       }
