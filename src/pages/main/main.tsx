@@ -8,8 +8,6 @@ import AuthForm from '../../components/authForm/loginForm';
 import Footer from '../../components/footer/footer';
 import useTypedSelector from '~/hooks/useTypedSelector';
 
-const result = window.location.origin;
-
 // eslint-disable-next-line react/function-component-definition
 const MainPage: FC = () => {
   const [modal, setModal] = useState(false);
@@ -31,9 +29,9 @@ const MainPage: FC = () => {
               запоминай их, играя в мини-игры.
               И у тебя всё получится.
             </p>
-            <MainPageButton image={`${result}/src/assets/img/enter.svg`} text={`${result}/src/assets/img/enter-text.svg`} link="/" classAdd="enter-link" changeModal={changeModal} />
-            <MainPageButton image={`${result}/src/assets/img/mini-games.svg`} text={`${result}/src/assets/img/miniGames-text.svg`} link="/games" classAdd="games-link" />
-            <MainPageButton image={`${result}/src/assets/img/studybook.svg`} text={`${result}/src/assets/img/book-text.svg`} link="/book" classAdd="book-link" />
+            <MainPageButton image={`./img/enter.svg`} text={`./img/enter-text.svg`} link="/" classAdd="enter-link" changeModal={changeModal} />
+            <MainPageButton image={`./img/mini-games.svg`} text={`./img/miniGames-text.svg`} link="/games" classAdd="games-link" />
+            <MainPageButton image={`./img/studybook.svg`} text={`./img/book-text.svg`} link="/book" classAdd="book-link" />
           </div>
         </div>
       </div>

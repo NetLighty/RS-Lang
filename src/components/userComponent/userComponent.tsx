@@ -5,8 +5,6 @@ import { getUserById } from '~/utils/setting.action';
 import { showForm, updateUser } from '~/utils/updateUser';
 import './userComponent.scss';
 
-const result = window.location.origin;
-
 const UserComponent: FC = () => {
   const [login, setLogin] = useState('');
   const [email, setEmail] = useState('');
@@ -32,7 +30,7 @@ const UserComponent: FC = () => {
   return (
     <div className="user">
       <div className="user__content">
-        <img className="user__content_img" src={`${result}/src/assets/img/avatar.png`} alt="avatar" />
+        <img className="user__content_img" src={`./img/avatar.png`} alt="avatar" />
         <div className="user__content_fild fild">
           <div className="fild__login">
             <p className="fild__login_descr">имя:</p>

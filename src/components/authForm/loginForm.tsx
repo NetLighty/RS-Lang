@@ -11,8 +11,6 @@ import useTypedSelector from '~/hooks/useTypedSelector';
 import { LoginSchema } from '~/utils/rules/authSchemas';
 import './authForm.scss';
 
-const result = window.location.origin;
-
 interface LoginValues {
   email: string;
   password: string;
@@ -60,7 +58,7 @@ const LoginForm: FC = () => {
         {({ errors, touched, isSubmitting }) => (
           <Form>
             <div className="form">
-              <img className="form__img" src={`${result}/src/assets/img/enter.svg`} alt="planet" />
+              <img className="form__img" src={`./img/enter.svg`} alt="planet" />
               <p className="form__text">Добро пожаловать в RSLang!</p>
               <div className="form__input-block">
                 <Field type="text" name="email" className="form__email" placeholder="введите email" autoComplete="off" />
