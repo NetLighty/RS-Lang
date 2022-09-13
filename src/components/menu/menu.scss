@@ -1,0 +1,30 @@
+@import '../../style/global.scss';
+
+.menu {
+   width: 63px;
+   height: 100%;
+   position: fixed;
+   background-color: var(--background-menu-color);
+   transition: background-color 0.3s linear;
+   display: flex;
+   flex-direction: column;
+   align-content: center;
+   row-gap: 40px;
+   padding-top: 60px;
+   &__item {
+      text-align: center;
+      font-size: 30px;
+      color: $darkOrangeColor;
+      transition: opacity 0.3s ease;
+      &:hover {
+         opacity: 0.6;
+      }
+   }
+}
+
+html[data-theme="original"] {
+   --background-menu-color: #EBD9C8;
+ }
+ html[data-theme="dark"] {
+   --background-menu-color: rgb(24,24,24);
+ }

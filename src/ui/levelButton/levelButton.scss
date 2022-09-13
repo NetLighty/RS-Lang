@@ -1,0 +1,68 @@
+@import '../../style/global.scss';
+
+.level-button {
+   width: 60px;
+   height: 60px;
+   border-radius: 100%;
+   opacity: var(--level-button-opacity);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   transition: var(--level-button-transition);
+   color: #fff;
+   font-size: $addFontSize;
+   &:hover{
+      opacity: 1;
+      transform: scale(var(--level-button-hover-scale));
+   }
+}
+.level-button:hover {
+   cursor: pointer;
+}
+.level-button.active {
+   opacity: 1;
+   scale: var(--level-button-active-scale);
+}
+.first-level{
+   background-color: var(--first-level-button-color);
+}
+.second-level{
+   background-color: var(--second-level-button-color);
+}
+.third-level{
+   background-color: var(--third-level-button-color);
+}
+.fourth-level{
+   background-color: var(--fourth-level-button-color);
+}
+.fifth-level{
+   background-color: var(--fifth-level-button-color);
+}
+.sixth-level{
+   background-color: var(--sixth-level-button-color);
+}
+
+html[data-theme="original"] {
+   --level-button-transition: all 0.5s ease;
+   --level-button-opacity: 0.8;
+   --level-button-active-scale: 1.2;
+   --first-level-button-color: #de863b;
+   --second-level-button-color: #ffbf72;
+   --third-level-button-color: #ebd9c8;
+   --fourth-level-button-color: #003f5a;
+   --fifth-level-button-color: #fea02f;
+   --sixth-level-button-color: #de6600;
+ }
+ html[data-theme="dark"] {
+   --level-button-transition: all 0.1s ease;
+   --level-button-opacity: 0.5;
+   --level-button-active-scale: 1;
+   --level-button-hover-scale: 1;
+   --first-level-button-color: rgba(172, 202, 0, 1);   
+   --second-level-button-color: rgba(182, 182, 0, 1);
+   --third-level-button-color: rgba(192, 162, 0, 1);
+   --fourth-level-button-color: rgba(202, 142, 0, 1);
+   --fifth-level-button-color: rgba(212, 122, 0, 1);
+   --sixth-level-button-color: rgba(222, 102, 0, 1);
+ }
+

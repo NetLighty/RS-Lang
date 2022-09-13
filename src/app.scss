@@ -1,0 +1,33 @@
+@import './style/global.scss';
+@import './style//scrollbar.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 10px;
+}
+body {
+  background-color: var(--background-color);
+  animation: changeColor 0.0001s;
+  transition: background-color 0.3s linear;
+  font-family: 'Roboto';
+}
+
+@keyframes changeColor {
+  0% {
+    background-color: #007a7a;
+  }
+  100% {
+    background-color: var(--background-color);
+  }
+}
+
+html[data-theme="original"] {
+  --background-color: #007a7a;
+}
+html[data-theme="dark"] {
+  --background-color: rgb(20,20,20);
+}

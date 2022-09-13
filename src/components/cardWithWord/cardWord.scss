@@ -1,0 +1,266 @@
+@import './../../style/global.scss';
+@import './../../style/mixin.scss';
+
+.card {
+  font-family: 'Roboto';
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 150px;
+  background-color: var(--card-background-color);  //$whiteColor;
+  transition: background-color 0.2s linear;
+  margin-bottom: 36px;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  font-size: $mainFontSize;
+  position: relative;
+
+  &__image {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    padding: 9px;
+  }
+
+  &__sound__flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  &__sound {
+    width: 32px;
+    height: 32px;
+    margin: 9px 15px;
+    font-size: 32px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__translation {
+    color: var(--card-translation-color);
+  }
+
+  &__word__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  &__word {
+    display: inline-block;
+    padding: 10px 22px;
+    margin-right: 25px;
+    color: $whiteColor;
+  }
+
+  &__meaning,
+  &__example {
+    display: flex;
+    flex-direction: column;
+    padding: 0 24px;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 300px;
+    line-height: 16.41px;
+    margin-bottom: 12px;
+  }
+
+  &__meaning__text,
+  &__example__text {
+    margin-bottom: 8px;
+  }
+
+  &__meaning__textMeaning,
+  &__example__textExample {
+    color: var(--card-meaning-text-color);
+    transition: color 0.3s linear;
+  }
+
+  &__meaning__textMeaningTranslate,
+  &__example__textExampleTranslate {
+    color: $greyColor;
+  }
+
+  &__meaning__sound,
+  &__example__sound {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    font-size: 15px;
+    color: $darkOrangeColor;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+
+  &__buttons__block {
+    display: flex;
+    justify-content: space-between;
+    margin: 9px 0 0 0;
+    padding: 5px;
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    background-color: var(--buttons-block-color);
+    transition: background-color 0.3s linear;
+    border-top-left-radius: 5%;
+    border-bottom-left-radius: 5%;
+  }
+
+  &__button {
+    width: 25px;
+    height: 25px;
+    font-size: 25px;
+    color: $lightGreyColor;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  &__button__hard {
+    margin-right: 8px;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  &__button__learned:hover {
+    opacity: 0.5;
+  }
+
+  &__progress__block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    background-color: var(--card-background-color);
+    transition: background-color 0.3s linear;
+  }
+
+  &__color0 {
+    color: $darkBrownColor;
+  }
+
+  &__border__color0 {
+    border: 1.5px solid $darkBrownColor;
+  }
+
+  &__color1 {
+    color: $lightBrownColor;
+  }
+
+  &__border__color1 {
+    border: 1.5px solid $lightBrownColor;
+  }
+
+  &__color2 {
+    color: $lightPinkColor;
+  }
+
+  &__border__color2 {
+    border: 1.5px solid $lightPinkColor;
+  }
+
+  &__color3 {
+    color: $darkBlueColor;
+  }
+
+  &__border__color3 {
+    border: 1.5px solid $darkBlueColor;
+  }
+
+  &__color4 {
+    color: $lightOrangeColor;
+  }
+
+  &__border__color4 {
+    border: 1.5px solid $lightOrangeColor;
+  }
+
+  &__color5 {
+    color: $darkOrangeColor;
+  }
+
+  &__border__color5 {
+    border: 1.5px solid $darkOrangeColor;
+  }
+
+  &__bgcolor0 {
+    background-color: $darkBrownColor;
+  }
+
+  &__bgcolor1 {
+    background-color: $lightBrownColor;
+  }
+
+  &__bgcolor2 {
+    background-color: $lightPinkColor;
+  }
+
+  &__bgcolor3 {
+    background-color: $darkBlueColor;
+  }
+
+  &__bgcolor4 {
+    background-color: $lightOrangeColor;
+  }
+
+  &__bgcolor5 {
+    background-color: $darkOrangeColor;
+  }
+}
+
+@media (max-width: 1100px) {
+  .card {
+    width: 40%;
+  }
+}
+
+@media (max-width: 660px) {
+  .card {
+    width: 95%;
+  }
+}
+
+
+html[data-theme="original"] {
+  --card-background-color: #fff; //
+  --buttons-block-color: #fff; //
+  --card-translation-color: #99978e;
+  --card-meaning-text-color: #000;
+}
+html[data-theme="dark"] {
+  --card-background-color: rgb(24,24,24);
+  --buttons-block-color: rgb(24,24,24); //
+  --card-translation-color: #fff;
+  --card-meaning-text-color: #fff;
+}

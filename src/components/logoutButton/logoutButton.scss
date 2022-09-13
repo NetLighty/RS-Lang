@@ -1,0 +1,16 @@
+@import '../../style/global.scss';
+
+.logout-button {
+  cursor: pointer;
+  width: fit-content;
+  height: 3rem;
+  color: rgba(whitesmoke, 0.7);
+  background-color: transparent;
+  font-size: 2rem;
+  font-weight: 200;
+  letter-spacing: 0.2rem;
+  border: 0;
+}
+.logout-button:hover {
+  color: white;
+}

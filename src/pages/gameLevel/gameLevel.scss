@@ -1,0 +1,110 @@
+@import '../../style/global.scss';
+
+.gamelevel {
+   margin-left: 63px;
+   color: #fff;
+   font-family: 'Roboto';
+   font-weight: 400;
+   &__container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      height: 100vh;
+   }
+   &__header {
+      display: grid;
+      justify-items: center;
+      text-align: center;
+      text-justify: center;
+      font-size: $headerFontSize;
+      margin-bottom: 80px;
+   }
+   &__text {
+      font-size: $addFontSize;
+      margin-bottom: 55px;
+   }
+   &__button{
+      display: flex;
+      column-gap: 32px;
+   }
+   &__start{
+      width: 150px;
+      height: 40px;
+      border-radius: 2px;
+      background-color: var(--start-button-background-color);
+      border: var(--start-button-border);
+      color: #fff;
+      display: flex;
+      margin-top: 60px;
+      align-items: center;
+      text-decoration: none;
+      font-size: $mainFontSize;
+      column-gap: 12px;
+      justify-content: center;
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: scale(0.8);
+      cursor: auto;
+      &:after {
+         content: url('./img/longArrow.svg');
+      }
+   }
+
+   &__close {
+      position: relative;
+      top: 0rem;
+      left: 20rem;
+      color: $lightPinkColor;
+      font-size: 55px;
+      transition: all 0.5s ease;
+      &:hover {
+         opacity: 0.7;
+         transform: scale(0.8);
+      }
+   }
+}
+
+.active-btn {
+   opacity: 1;
+   cursor: pointer;
+   transform: scale(1);
+   &:hover{
+      background-color: var(--start-button-background-color-hover);
+      opacity: 1;
+      transform: scale(var(--level-button-hover-scale));
+   }
+}
+
+.disabled {
+   opacity: 1;
+   background-color: grey;
+}
+.choosen {
+   opacity: 1;
+   cursor: default;
+}
+.choosen:hover {
+   cursor: default;
+}
+.disabled:hover {
+   transform: scale(1);
+   cursor: default;
+   background-color: grey;
+}
+
+html[data-theme="original"] {
+   --start-button-background-color-hover: 'transparent';
+   --start-button-background-color: #de6600;
+   --start-button-border: 0;
+   --level-button-hover-scale: #007a7a;
+   --level-button-hover-scale: 1.1;
+ }
+ html[data-theme="dark"] {
+   --start-button-background-color-hover: rgba(222, 102, 0, 0.5);
+   --start-button-background-color: rgb(20,20,20);
+   --start-button-border: 0.2rem solid rgba(222, 102, 0, 0.7);
+   --background-color: rgb(20,20,20);
+   --level-button-hover-scale: 1;
+ }

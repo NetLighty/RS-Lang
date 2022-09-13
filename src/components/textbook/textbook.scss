@@ -1,0 +1,359 @@
+@import './../../style/global.scss';
+@import './../../style/mixin.scss';
+
+.book {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  &__groups {
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__group__button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: $whiteColor;
+    opacity: 0.5;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+
+    &-active {
+      opacity: 1;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__group__span {
+    padding: 4px 4px 1px;
+    border-radius: 50%;
+    background-color: transparent;
+    display: block;
+    width: 75px;
+    height: 75px;
+  }
+
+  &__games {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+  }
+
+  &__pagination {
+    margin-bottom: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+  }
+
+  &__pagination__button {
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    border: 1px solid $darkOrangeColor;
+    color: $darkOrangeColor;
+    background-color:  var(--pagination-button-background-color); // #efe6de
+    transition: background-color 0.3s linear;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+    &:disabled {
+      color: $darkBlueColor;
+      background-color: var(--pagination-button-background-color-disabled);
+      border: 1px solid var(--pagination-button-border-color-disabled);
+      transition: border 0.3s linear
+      background-color 0.3s linear;
+    }
+  }
+
+  &__pagination__learned {
+    background-color: $darkOrangeColor;
+    color: $backgrounColorPaginationButton;
+    border: 1px solid $lightGreyColor;
+  }
+
+  &__bottom {
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    align-items: center;
+    justify-items: stretch;
+    align-self: center;
+  }
+
+  &__sprint__button {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: none;
+    position: relative;
+    background-color: transparent;
+    transition: all 0.6s ease;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.1) rotate(-30deg);
+    }
+  }
+
+  &__sprint__button__image {
+    position: absolute;
+    top: -18px;
+    left: 23px;
+    z-index: 2;
+  }
+
+  &__sprint__button__text {
+    position: absolute;
+    top: -45px;
+    left: 0;
+  }
+
+  &__audioGame__button {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: none;
+    position: relative;
+    background-color: transparent;
+    transition: all 0.6s ease;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.1) rotate(30deg);
+    }
+  }
+
+  &__audioGame__button__image {
+    position: absolute;
+    top: -25px;
+    left: 15px;
+    z-index: 2;
+  }
+
+  &__audioGame__button__text {
+    position: absolute;
+    top: -45px;
+    left: 0;
+  }
+
+  &__loader {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__info {
+    display: none;
+  }
+
+  &__learned {
+    width: 50px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $whiteColor;
+    font-size: 1.3rem;
+    position: fixed;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    background-color: #de6600;
+    bottom: 20px;
+    left: 30px;
+  }
+
+  &__body__learned {
+    background-color: grey;
+  }
+
+  &__sprint__button:disabled,
+  &__audioGame__button:disabled {
+    filter: grayscale(100%);
+    transition: none;
+    cursor: pointer;
+
+    &:hover {
+      transform: none;
+    }
+
+    &:hover .book__audioGame__hint,
+    &:hover .book__sprint__hint {
+      display: block;
+    }
+  }
+
+  &__audioGame__hint,
+  &__sprint__hint {
+    position: absolute;
+    width: 200px;
+    height: 70px;
+    z-index: 2;
+    background: $whiteColor;
+    color: $colorForm;
+    padding: 10px;
+    display: none;
+  }
+
+  &__audioGame__hint {
+    top: -10px;
+    left: -200px;
+  }
+
+  &__audioGame__hint::after,
+  &__sprint__hint::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: $whiteColor transparent transparent transparent;
+  }
+
+  &__sprint__hint {
+    top: -10px;
+    left: 120px;
+  }
+
+  &__sprint__hint::after {
+    left: 0%;
+  }
+}
+
+#darkBrown {
+  background-color: $darkBrownColor;
+}
+
+#darkBrownspan.book__group__span-active {
+  border: 3px solid $darkBrownColor;
+}
+
+#lightBrown {
+  background-color: $lightBrownColor;
+}
+
+#lightBrownspan.book__group__span-active {
+  border: 3px solid $lightBrownColor;
+}
+
+#lightPink {
+  background-color: $lightPinkColor;
+}
+
+#lightPinkspan.book__group__span-active {
+  border: 3px solid $lightPinkColor;
+}
+
+#lightOrange {
+  background-color: $lightOrangeColor;
+}
+
+#lightOrangespan.book__group__span-active {
+  border: 3px solid $lightOrangeColor;
+}
+
+#darkOrange {
+  background-color: $darkOrangeColor;
+}
+
+#darkOrangespan.book__group__span-active {
+  border: 3px solid $darkOrangeColor;
+}
+
+#darkBlue {
+  background-color: $darkBlueColor;
+}
+
+#darkBluespan.book__group__span-active {
+  border: 3px solid $darkBlueColor;
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  .book__header {
+    width: 90%;
+  }
+}
+
+@media (max-width: 900px) {
+  .book__header {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .book__header {
+    width: 80%;
+  }
+  .book__group__button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .book__group__span {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+@media (max-width: 660px) {
+  .book__header {
+    width: 90%;
+    flex-direction: column-reverse;
+  }
+  .book__group__button {
+    width: 30px;
+    height: 30px;
+  }
+  .book__group__span {
+    width: 45px;
+    height: 45px;
+  }
+
+  .book__groups {
+    margin-top: 20px;
+  }
+}
+
+html[data-theme="original"] {
+  --pagination-button-background-color:#efe6de;
+  --pagination-button-background-color-disabled:#99978e;
+  --pagination-button-border-color-disabled:#99978e;
+}
+html[data-theme="dark"] {
+  --pagination-button-background-color: 'transparent';
+  --pagination-button-background-color-disabled: rgb(30, 30, 30);
+  --pagination-button-border-color-disabled: rgb(30, 30 , 30);
+}

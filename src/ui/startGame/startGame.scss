@@ -1,0 +1,45 @@
+@import '../../style/global.scss';
+
+.game-link{
+   display: flex;
+   width: 95px;
+   height: 95px;
+   background-color: var(--game-link-background-color);
+   border: var(--game-link-border);
+   border-radius: 100%;
+   color: var(--game-link-color);
+   transition: background-color 0.3 linear;
+   text-decoration: none;
+   align-items: center;
+   justify-content: center;
+   &__container{
+      display: flex;
+      column-gap: 6px;
+      align-items: center;
+   }
+   &__text{
+      font-size: $mainFontSize;
+   }
+   &__arrow{
+      &:before {
+         content: url('./img/arrow.svg');
+         width: 12px;
+         height: 3px;
+      }
+   }
+}
+.game-link:hover {
+   background-color: var(--game-link-background-color-hover);
+}
+html[data-theme="original"] {
+   --game-link-background-color: #de6600;
+   --game-link-background-color-hover: #de6600;
+   --game-link-color: #fff;
+   --game-link-border: 0;
+ }
+ html[data-theme="dark"] {
+   --game-link-background-color: rgb(20,20,20);
+   --game-link-background-color-hover: rgba(222, 102, 0, 0.5);
+   --game-link-color: #fff;
+   --game-link-border: 0.3rem solid #de6600;
+ }

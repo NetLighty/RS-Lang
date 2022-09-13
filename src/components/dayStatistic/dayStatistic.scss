@@ -1,0 +1,42 @@
+@import '../../style/global.scss';
+
+.day-statistic {
+   width: 400px;
+   background-color: var(--day-statistic-background-color);
+   transition: background-color 0.3s linear;
+   border-radius: 5px;
+   padding: 29px 25px;
+   line-height: 25px;
+   font-size: $mainFontSize;
+   &__header {
+      font-size: $addFontSize;
+      color: $darkOrangeColor;
+      margin-bottom: 18px;
+   }
+   &__item {
+      margin-top: 12px;
+      width: 346px;
+      display: flex;
+      justify-content: space-between;
+      &_number {
+         color: var(--statistic-number-color);
+         transition: color 0.3s linear;
+      }
+      &_text {
+         color: var(--statistic-text-color);
+         transition: color 0.3s linear;
+      }
+   }
+}
+
+html[data-theme="original"] {
+   --day-statistic-background-color: rgba(255, 255, 255, 0.7);
+   --statistic-text-color: black;
+   --statistic-number-color: #003f5a;
+
+ }
+ html[data-theme="dark"] {
+   --day-statistic-background-color: rgb(24,24,24);
+   --statistic-text-color: #fff;
+   --statistic-number-color: #de6600; // $darkorange
+ }

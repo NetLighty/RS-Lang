@@ -1,0 +1,114 @@
+@import '../../style/global.scss';
+
+.auth {
+   background-color: var(--background-form-color);
+   transition: background-color 0.3s linear;
+   padding: 1rem 0 1rem 0;
+   width: 420px;
+   border-radius: 5px;
+   span {
+      font-size: $mainFontSize;
+      color: $darkBrownColor;
+   }
+   .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      row-gap: 0.7rem;
+      font-size: $mainFontSize;
+      &__input-block {
+         display: grid;
+         grid-template-columns: 1fr;
+         row-gap: 0.3rem;
+      }
+      &__img {
+         position: absolute;
+         left: -80px;
+         top: -45px;
+      }
+      &__text{
+         color: var(--form-text-color);
+         transition: color 0.3s linear;
+         font-size: $addFontSize;
+         margin: 2.5rem 0 3.5rem 0;
+      }
+      &__error-container {
+         height: $errorMessageHeight;
+      }
+      &__error-message {
+         font-size: $mainFontSize;
+         color: $darkOrangeColor;
+      }
+      &__email,
+      &__password{
+         margin: 0;
+         width: 360px;
+         height: 40px;
+         padding-left: 1rem;
+         font-size: $mainFontSize;
+         color: var(--form-text-color);
+         background-color: var(--background-input-color);
+         border: 0.5px solid $colorForm;
+         border-radius: 0.25rem;
+         transition: border-color 0.15s ease-in-out,
+         box-shadow 0.15s ease-in-out,
+         background-color 0.3s linear,
+         color 0.3s linear;
+      }
+      &__email:focus,
+      &__password:focus {
+         border: 2px solid $lightOrangeColor;
+         outline: 0;
+         //box-shadow: 0 0 0 0.2rem rgba($darkBrownColor, 0.4);
+      }
+      &__email::placeholder,
+      &__password::placeholder {
+         color: rgba($colorForm, 0.7);
+      }
+      &__button {
+         display: flex;
+         column-gap: 12px;
+         margin-bottom: 1rem;
+         &-reg,
+         &-enter {
+            height: 40px;
+            border-radius: 2px;
+            color: #fff;
+            font-size: $mainFontSize;
+            letter-spacing: 0.1rem;
+            font-weight: 200;
+            text-transform: capitalize;
+            border: none;
+            transition: opacity 0.3s ease;
+            &:hover {
+               cursor: pointer;
+               opacity: 0.7;
+            }
+         }
+         &-reg{
+            width: 202px;
+            background-color: $darkOrangeColor;
+         }
+         &-enter {
+            width: 146px;
+            background-color: $darkOrangeColor;
+         }
+      }
+      .auth-link {
+         text-decoration: none;
+         color: $darkOrangeColor;
+         font-size: $mainFontSize;
+      }
+   }
+}
+
+html[data-theme="original"] {
+   --background-form-color: #ebd9c8; // $lightPinkColor
+   --form-text-color: #6b6868;
+   --background-input-color: rgba(255, 255, 255, 0.7); 
+ }
+ html[data-theme="dark"] {
+   --background-form-color: rgb(20,20,20);
+   --form-text-color: #fff;
+ }
